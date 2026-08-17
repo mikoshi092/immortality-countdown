@@ -34,11 +34,12 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
   return (
     <section
       id="latest-news"
+      data-nosnippet=""
       className="scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12"
     >
       <div className="mx-auto max-w-7xl">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
-          Latest News
+          Prototype News Feed
         </h2>
 
         <div

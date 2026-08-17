@@ -33,7 +33,7 @@ export default function Image() {
             marginBottom: 28,
           }}
         >
-          A conservative scientific estimate
+          A provisional longevity estimate
         </div>
         <div
           style={{

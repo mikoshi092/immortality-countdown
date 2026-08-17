@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MobileHeader from "@/components/MobileHeader";
+import BetaBanner from "@/components/BetaBanner";
 import { fieldProgress } from "@/data/fields";
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ export default function MethodologyPage() {
   return (
     <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
       <MobileHeader />
+      <BetaBanner />
 
       <article className="px-5 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20">
         <div className="mx-auto max-w-3xl">

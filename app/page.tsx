@@ -1,4 +1,5 @@
 import MobileHeader from "@/components/MobileHeader";
+import BetaBanner from "@/components/BetaBanner";
 import Hero from "@/components/Hero";
 import ReadinessCard from "@/components/ReadinessCard";
 import NewsCard from "@/components/NewsCard";
@@ -13,15 +14,19 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
       <MobileHeader />
+      <BetaBanner />
       <Hero />
       <ReadinessCard />
       <FieldsProgress />
 
       {featuredItem && (
-        <section className="px-5 pt-8 pb-2 sm:px-6 sm:pt-10">
+        <section
+          data-nosnippet=""
+          className="px-5 pt-8 pb-2 sm:px-6 sm:pt-10"
+        >
           <div className="mx-auto max-w-7xl">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
-              Today’s Signal
+              Prototype Signal
             </h2>
             <div className="mt-5">
               <NewsCard item={featuredItem} />

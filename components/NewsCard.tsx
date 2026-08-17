@@ -1,7 +1,7 @@
 import type { NewsItem } from "@/data/news";
 
-// Shared presentational card used for both the TODAY'S SIGNAL item and
-// the LATEST NEWS list. `item.featured` only changes sizing, not layout.
+// Shared presentational card used for both the PROTOTYPE SIGNAL item and
+// the PROTOTYPE NEWS FEED list. `item.featured` only changes sizing, not layout.
 export default function NewsCard({ item }: { item: NewsItem }) {
   const isFeatured = item.featured;
 
@@ -11,12 +11,14 @@ export default function NewsCard({ item }: { item: NewsItem }) {
         isFeatured ? "p-5 sm:p-6" : "p-4 sm:p-5"
       }`}
     >
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium text-[#17202a]/50">
+      <p className="inline-block rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#17202a]/60">
+        Demo content · Not a real news report
+      </p>
+
+      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium text-[#17202a]/50">
         <span>{item.field}</span>
         <span aria-hidden="true">·</span>
         <span>{item.evidence}</span>
-        <span aria-hidden="true">·</span>
-        <span>{item.timeLabel}</span>
       </div>
 
       <h3
@@ -56,7 +58,7 @@ export default function NewsCard({ item }: { item: NewsItem }) {
 
       {item.sourceUrl === "#" ? (
         <p className="mt-4 text-sm font-medium text-[#17202a]/40">
-          Source pending
+          Demonstration content — not for citation
         </p>
       ) : (
         <a

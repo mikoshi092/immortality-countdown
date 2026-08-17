@@ -17,7 +17,7 @@ export default function ReadinessCard() {
                 Provisional · Methodology under review
               </p>
             </div>
-            <p className="text-[11px] text-[#17202a]/45">Last updated 4h ago</p>
+            <p className="text-[11px] text-[#17202a]/45">Demo snapshot</p>
           </div>
 
           <div className="mt-4 flex items-center gap-4">
