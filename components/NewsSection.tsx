@@ -32,7 +32,10 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
     selected === "All" ? sorted : sorted.filter((item) => item.category === selected);
 
   return (
-    <section className="px-5 py-10 sm:px-6 sm:py-12">
+    <section
+      id="latest-news"
+      className="scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12"
+    >
       <div className="mx-auto max-w-7xl">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
           Latest News

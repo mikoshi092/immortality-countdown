@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HeroCountdown from "./HeroCountdown";
 
 // Original inline SVG double-helix watermark, hand-generated as a
@@ -49,7 +50,7 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f766d] sm:text-sm">
-          A conservative scientific estimate
+          A provisional longevity estimate
         </p>
 
         <h1 className="mt-5 font-serif text-4xl leading-[0.98] tracking-[-0.03em] text-[#17202a] sm:text-6xl md:text-7xl">
@@ -68,13 +69,12 @@ export default function Hero() {
           Until medical progress may begin to outrun biological aging.
         </p>
 
-        {/* Placeholder anchor — no methodology page exists in this Preview */}
-        <a
-          href="#"
+        <Link
+          href="/methodology"
           className="mt-6 inline-block border-b border-[#17202a] pb-1 text-sm font-semibold text-[#17202a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]"
         >
           Why 28 years? →
-        </a>
+        </Link>
       </div>
     </section>
   );

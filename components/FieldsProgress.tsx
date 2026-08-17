@@ -6,7 +6,10 @@ import { fieldProgress } from "@/data/fields";
 // Scores come straight from the PROVISIONAL data in data/fields.ts.
 export default function FieldsProgress() {
   return (
-    <section className="px-5 pt-3 pb-8 sm:px-6 sm:pt-4 sm:pb-10">
+    <section
+      id="eight-fields"
+      className="scroll-mt-20 px-5 pt-3 pb-8 sm:px-6 sm:pt-4 sm:pb-10"
+    >
       <div className="mx-auto max-w-7xl">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
           Eight Fields of Progress
