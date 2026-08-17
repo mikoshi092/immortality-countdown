@@ -24,3 +24,60 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Technology Readiness bar: 0% -> 40% once on first paint only.
+   Pure CSS, no JS — avoids any hydration mismatch. */
+.readiness-bar-fill {
+  width: 40%;
+  animation: readiness-fill 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes readiness-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .readiness-bar-fill {
+    animation: none;
+    width: 40%;
+  }
+}
+
+/* Hides the scrollbar track on the category-chip row; the row
+   remains scrollable via touch/trackpad/keyboard. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Field-progress bars: scaleX(0) -> scaleX(target) once on first paint.
+   transform-only, so it never affects layout / causes reflow. */
+.field-bar-fill {
+  transform: scaleX(var(--field-target, 1));
+  animation: field-bar-fill 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes field-bar-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(var(--field-target, 1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-bar-fill {
+    animation: none;
+    transform: scaleX(var(--field-target, 1));
+  }
+}
