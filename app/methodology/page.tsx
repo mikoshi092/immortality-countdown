@@ -130,19 +130,29 @@ export default function MethodologyPage() {
 
           <Section title="Eight Fields of Progress">
             <p>
-              The estimate is intended to draw on eight longevity-relevant
-              research fields. Four are currently tracked with provisional
-              scores; the remaining four are intentionally left unpublished
-              rather than filled with invented placeholder scores.
+              The estimate draws on a provisional field taxonomy of eight
+              longevity-relevant research fields. Four are currently
+              tracked with provisional scores; the other four are
+              published as a provisional field taxonomy only — named and
+              scoped, but not yet scored. No score has been invented for
+              them.
             </p>
             <ul className="mt-2 list-disc space-y-1.5 pl-5">
               {fieldProgress.map((field) => (
-                <li key={field.slug}>{field.name}</li>
+                <li key={field.slug}>
+                  <Link
+                    href={`/fields/${field.slug}`}
+                    className="font-semibold text-[#17202a] underline decoration-black/20 underline-offset-2 hover:decoration-black/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]"
+                  >
+                    {field.name}
+                  </Link>
+                  {field.status === "pending" ? " — Score pending" : ""}
+                </li>
               ))}
             </ul>
             <p>
               <Link
-                href="/#eight-fields"
+                href="/fields"
                 className="font-semibold text-[#2f766d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]"
               >
                 See current field scores →
