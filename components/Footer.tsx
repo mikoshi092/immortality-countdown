@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NavLink from "@/components/NavLink";
 
 const NAV_LINKS = [
   { label: "Home", href: "/#top" },
@@ -35,12 +35,12 @@ export default function Footer() {
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-row sm:gap-8">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <NavLink
                     href={link.href}
                     className={`text-sm text-white/70 transition-colors hover:text-white ${FOCUS_RING}`}
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>

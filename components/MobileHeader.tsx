@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import NavLink from "@/components/NavLink";
 
 const MENU_LINKS = [
   { label: "Home", href: "/#top" },
@@ -30,7 +30,7 @@ export default function MobileHeader() {
   return (
     <header className="bg-[#141413]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-6 sm:py-4">
-        <Link href="/#top" className={`flex items-center gap-2.5 ${FOCUS_RING}`}>
+        <NavLink href="/#top" className={`flex items-center gap-2.5 ${FOCUS_RING}`}>
           {/* Same mark/path as app/icon.svg (the site favicon), reused
               here without its black square backing — the header's own
               near-black background already provides that contrast, and
@@ -59,7 +59,7 @@ export default function MobileHeader() {
           <span className="text-[13px] leading-none text-white/90 sm:text-sm">
             immortality countdown
           </span>
-        </Link>
+        </NavLink>
 
         <button
           type="button"
@@ -97,13 +97,13 @@ export default function MobileHeader() {
         <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-3">
           {MENU_LINKS.map((link) => (
             <li key={link.href}>
-              <Link
+              <NavLink
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`block py-1.5 text-sm text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
               >
                 {link.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
