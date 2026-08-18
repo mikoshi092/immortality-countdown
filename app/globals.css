@@ -77,3 +77,117 @@ body {
     transform: scaleX(1);
   }
 }
+
+/* LEV concept diagram: reveal the plot left-to-right once, then pulse
+   only the intersection. Reduced-motion shows the finished state.
+   --lev-cross-time is when the clip reaches the LEV point, not when
+   the 2.8s line draw finishes. */
+.lev-concept-visual {
+  --lev-cross-time: 1.55s;
+}
+
+.lev-plot-reveal {
+  clip-path: inset(0 100% 0 0);
+}
+
+.lev-concept-visual,
+.lev-concept-visual svg,
+.lev-plot-reveal {
+  background: transparent;
+}
+
+.lev-concept-visual.is-drawn .lev-plot-reveal {
+  animation: lev-plot-reveal 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.lev-label,
+.lev-dot-core,
+.lev-pulse-ring {
+  opacity: 0;
+}
+
+.lev-dot-core,
+.lev-pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.lev-halo-text {
+  paint-order: stroke;
+  stroke: #f7f5ef;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.lev-concept-visual.is-drawn .lev-label {
+  animation: lev-dot-in 0.4s ease-out var(--lev-cross-time) forwards;
+}
+
+.lev-concept-visual.is-drawn .lev-dot-core {
+  animation: lev-dot-pulse 1.3s ease-in-out var(--lev-cross-time) infinite;
+}
+
+.lev-concept-visual.is-drawn .lev-pulse-ring {
+  animation: lev-ring-pulse 1.3s ease-in-out var(--lev-cross-time) infinite;
+}
+
+@keyframes lev-plot-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes lev-dot-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lev-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes lev-ring-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lev-plot-reveal {
+    clip-path: none;
+    animation: none;
+  }
+
+  .lev-label,
+  .lev-dot-core {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  .lev-pulse-ring {
+    opacity: 0.35;
+    transform: scale(1);
+    animation: none;
+  }
+}
