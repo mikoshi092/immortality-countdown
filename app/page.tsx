@@ -12,7 +12,7 @@ export default function Home() {
   const listItems = newsItems.filter((item) => !item.featured);
 
   return (
-    <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
+    <main id="top" className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
       <MobileHeader />
       <BetaBanner />
       <Hero />

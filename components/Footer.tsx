@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/#top" },
   { label: "Methodology", href: "/methodology" },
-  { label: "Eight Fields", href: "/#eight-fields" },
+  { label: "Eight Fields", href: "/fields" },
   { label: "Latest News", href: "/#latest-news" },
 ];
 

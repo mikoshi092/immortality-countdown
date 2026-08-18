@@ -1,7 +1,10 @@
-// Progress-bar fill animation (0% → 40%, 1.6s, reduced-motion aware) is
-// defined as a CSS-only keyframe in app/globals.css under the class
+// Progress-bar fill animation (0 → full width, 1.6s, reduced-motion aware)
+// is defined as a CSS-only keyframe in app/globals.css under the class
 // `.readiness-bar-fill` — no JS is used, so there is no hydration risk
-// and the animation does not replay on re-render.
+// and the animation does not replay on re-render. The bar's real width
+// is set inline below (READINESS_SCORE%), not by the animation, so the
+// correct final size renders even if the animation never runs.
+const READINESS_SCORE = 40;
 
 export default function ReadinessCard() {
   return (
@@ -22,10 +25,13 @@ export default function ReadinessCard() {
 
           <div className="mt-4 flex items-center gap-4">
             <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/8">
-              <div className="readiness-bar-fill h-full rounded-full bg-[#2f766d]" />
+              <div
+                className="readiness-bar-fill h-full rounded-full bg-[#2f766d]"
+                style={{ width: `${READINESS_SCORE}%` }}
+              />
             </div>
             <p className="shrink-0 text-lg font-semibold tabular-nums text-[#17202a] sm:text-xl">
-              40 <span className="text-sm font-normal text-[#17202a]/45">/ 100</span>
+              {READINESS_SCORE} <span className="text-sm font-normal text-[#17202a]/45">/ 100</span>
             </p>
           </div>
         </div>

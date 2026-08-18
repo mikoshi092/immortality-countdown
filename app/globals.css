@@ -25,26 +25,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Technology Readiness bar: 0% -> 40% once on first paint only.
-   Pure CSS, no JS — avoids any hydration mismatch. */
+/* Technology Readiness bar. The element's real `width` (set inline per
+   instance) is the source of truth for the final size — the animation
+   only scales that already-correctly-sized box from 0 to its full
+   extent, so the correct width still renders even if the animation is
+   skipped, interrupted, or disabled. */
 .readiness-bar-fill {
-  width: 40%;
-  animation: readiness-fill 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-@keyframes readiness-fill {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 40%;
-  }
+  transform-origin: left;
+  animation: bar-grow 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .readiness-bar-fill {
     animation: none;
-    width: 40%;
+    transform: scaleX(1);
   }
 }
 
@@ -59,25 +53,27 @@ body {
   display: none;
 }
 
-/* Field-progress bars: scaleX(0) -> scaleX(target) once on first paint.
-   transform-only, so it never affects layout / causes reflow. */
+/* Field-progress bars. Same technique as .readiness-bar-fill above: the
+   element's real `width` (set inline per instance, e.g. `44%`) is the
+   source of truth, not a CSS custom property — the animation only
+   scales that box from 0 to its own full extent. */
 .field-bar-fill {
-  transform: scaleX(var(--field-target, 1));
-  animation: field-bar-fill 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: left;
+  animation: bar-grow 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes field-bar-fill {
+@keyframes bar-grow {
   from {
     transform: scaleX(0);
   }
   to {
-    transform: scaleX(var(--field-target, 1));
+    transform: scaleX(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .field-bar-fill {
     animation: none;
-    transform: scaleX(var(--field-target, 1));
+    transform: scaleX(1);
   }
 }
