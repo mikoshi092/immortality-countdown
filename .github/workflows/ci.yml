@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The model's own tests, including the editorial guardrail that fails
+      # if a field score changed without a written rationale.
+      - run: npx tsx --test lev/model.test.ts
+
+      # The published number must match the published assumptions. If someone
+      # edits params.json without regenerating, this fails instead of shipping
+      # a countdown that disagrees with its own methodology page.
+      - run: npx tsx lev/run.ts --write
+      - run: git diff --exit-code lev/forecast.json
+
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - run: npm run build
+
+      # Catches nav items pointing at routes nobody created, and #anchors
+      # whose target id no longer exists.
+      - name: Check internal links
+        run: |
+          npx next start -p 3000 &
+          npx wait-on --timeout 60000 http://localhost:3000
+          node scripts/check-links.mjs http://localhost:3000

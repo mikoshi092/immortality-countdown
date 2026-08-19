@@ -1,0 +1,157 @@
+{
+  "version": "0.2.0",
+  "modelId": "icd-lev-v0",
+  "publishedAt": "2026-08-19",
+  "license": "CC-BY-4.0",
+  "note": "Every number here is a judgement call, not a measurement. Change one, commit it, and the countdown moves. The git history of this file IS the changelog.",
+
+  "definition": {
+    "quantity": "d(remaining healthy life expectancy)/d(calendar time)",
+    "unit": "healthy years gained per calendar year",
+    "referenceCohort": "high-income country, age 50-70 at time t",
+    "levThreshold": 1.0,
+    "levThresholdRationale": "Longevity escape velocity is reached in the first year where remaining healthy life expectancy grows by at least one year per calendar year. Below 1.0 you lose ground as you age; at 1.0 you break even; above 1.0 your expected remaining healthy life grows faster than you burn it."
+  },
+
+  "baseline": {
+    "gBase": 0.2,
+    "gBaseSigma": 0.05,
+    "rationale": "Business-as-usual gain from incremental medicine and public health: cardiovascular and cancer mortality decline, surgery, infectious disease control. High-income life expectancy rose roughly 0.15-0.25 yr/yr over recent decades and healthy life expectancy more slowly. Contains NO geroscience contribution, and is assumed flat rather than accelerating, because the easy demographic wins are already banked.",
+    "source": "Human Mortality Database / Our World in Data life expectancy trends"
+  },
+
+  "impact": {
+    "midpoint": 65,
+    "steepness": 0.08,
+    "midpointSigma": 6,
+    "rationale": "Maps a 0-100 readiness score onto the fraction of a field's potential contribution that is actually being delivered to human beings. Deliberately non-linear: a field at 40/100 is preclinical and adds almost nothing to human healthspan no matter how exciting the mouse data is. midpoint=65 encodes 'a field delivers half its potential once it has convincing randomised human outcome data'."
+  },
+
+  "calibration": {
+    "backcastYear": 2006,
+    "rationale": "Growth rates are NOT hand-picked. Each field is scored twice, once for today and once for 2006, and the logistic rate that connects the two is derived. This makes the forward projection an explicit claim - 'the next twenty years resemble the last twenty, slowed by the damping factor' - instead of an unfalsifiable guess. The 2006 scores are the most attackable numbers in the model, which is exactly why they are published.",
+    "damping": 0.85,
+    "dampingRationale": "Forward growth rates are the backcast rates times 0.85. The last twenty years were mostly discovery: cheap, fast, mouse-scale. The next twenty are mostly translation: expensive, slow, human-scale, and regulated. A field cannot repeat its discovery-phase pace during clinical translation. Set this to 1.0 to see the naive 'the past repeats' scenario.",
+    "dampingSigma": 0.12
+  },
+
+  "regulatory": {
+    "id": "regulatory-readiness",
+    "label": "Regulatory & Deployment Readiness",
+    "score": 15,
+    "historicalScore": 8,
+    "biomarkerCoupling": 0.5,
+    "rationale": "THE MODEL'S CENTRAL CLAIM: technical readiness alone does not move the clock. Aging is not an approvable indication at FDA or EMA, there is no accepted surrogate endpoint for it, and payers have no route to reimburse prevention in healthy adults. A working therapy behind a closed regulatory door contributes exactly zero healthy years. 2006 score of 8 reflects that regulators were not engaging with aging as a target at all; today's 15 reflects that the conversation exists but the pathway does not.",
+    "couplingRationale": "Regulatory readiness is gated on biomarker validation, because aging clocks being accepted as surrogate endpoints is the single most plausible unlock. Effective gate = R(t) * (1 - coupling + coupling * impact(S_biomarkers)). This is why biomarkers carry a LOW direct contribution but the highest leverage in the model.",
+    "lastReviewed": "2026-08-19"
+  },
+
+  "fields": [
+    {
+      "id": "rejuvenation-regeneration",
+      "label": "Rejuvenation & Regeneration",
+      "score": 40,
+      "historicalScore": 12,
+      "ceiling": 100,
+      "maxContribution": 0.35,
+      "stallProbability": 0.1,
+      "rationale": "Highest ceiling of any field: partial epigenetic reprogramming is the only approach that has reversed multiple hallmarks of aging simultaneously in an animal. 2006 score of 12 marks the year the Yamanaka factors were published, with SENS newly proposed and senolytics not yet discovered. Today's 40 reflects a field with spectacular animal data, unsolved teratoma and dedifferentiation safety, no whole-organism delivery route, and a most-clinically-advanced sub-branch (senolytics) that has produced mixed-to-negative human readouts.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "biomarkers-diagnostics",
+      "label": "Biomarkers & Diagnostics",
+      "score": 44,
+      "historicalScore": 10,
+      "ceiling": 100,
+      "maxContribution": 0.08,
+      "stallProbability": 0.05,
+      "rationale": "Deliberately LOW direct contribution: measuring aging does not slow it, and a clock that reports your biological age adds no healthy years by itself. Its value is almost entirely indirect, through the regulatory coupling, where it is the highest-leverage variable in the model. Fastest backcast growth of any biology field because it is data-rich, cheap to iterate and commercially funded: 2006 predates the Horvath clock entirely. Held at 44 because no clock is a validated regulatory surrogate and cross-cohort reproducibility is still weak.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "geroscience-drugs-trials",
+      "label": "Geroscience Drugs & Trials",
+      "score": 33,
+      "historicalScore": 15,
+      "ceiling": 100,
+      "maxContribution": 0.28,
+      "stallProbability": 0.12,
+      "rationale": "Lowest score of the eight and the slowest backcast growth. Rapamycin, metformin, acarbose and the GLP-1 class have large human exposure, but healthspan effect sizes are modest and inferred from disease endpoints rather than aging endpoints. The bottleneck is not chemistry, it is trial design, duration and ownership: a properly powered aging-endpoint trial takes years and no sponsor owns the indication. Twenty years of slow movement is itself the evidence.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "gene-therapy-delivery",
+      "label": "Gene Therapy & Delivery",
+      "score": 36,
+      "historicalScore": 12,
+      "ceiling": 100,
+      "maxContribution": 0.3,
+      "stallProbability": 0.08,
+      "rationale": "2006 was the bottom of the post-Gelsinger trough and pre-dated CRISPR. Approved gene therapies now exist, which is real clinical validation, but every one targets a monogenic disease in a small population. For aging the binding constraint is delivery, not editing: safe, redosable, multi-tissue in-vivo delivery at a cost per patient compatible with population-scale prevention. Editing is close to solved. Delivery and cost are not.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "ai-drug-discovery",
+      "label": "AI Drug Discovery",
+      "score": 52,
+      "historicalScore": 8,
+      "ceiling": 100,
+      "maxContribution": 0.14,
+      "stallProbability": 0.03,
+      "rationale": "Fastest growth and highest current score of the eight, paired with a deliberately LOW maximum contribution. AI is an accelerator of other fields, not an independent source of healthy years: it compresses discovery while trials, biology and regulation remain rate-limiting. Assigning AI a large direct contribution is the single most common way these forecasts go wrong, and the reason optimistic timelines cluster in the 2030s.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "organ-replacement-biofabrication",
+      "label": "Organ Replacement & Biofabrication",
+      "score": 38,
+      "historicalScore": 15,
+      "ceiling": 100,
+      "maxContribution": 0.25,
+      "stallProbability": 0.1,
+      "rationale": "Xenotransplantation has produced documented human clinical milestones, which is why this outscores geroscience drugs. But replacement is a repair strategy with a hard ceiling: it addresses discrete organ failure rather than systemic aging, and the brain is not replaceable. Whole-organ de-novo biofabrication remains far from clinic with vascularisation the standing obstacle, which caps the contribution below rejuvenation.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "immune-engineering-cancer-control",
+      "label": "Immune Engineering & Cancer Control",
+      "score": 45,
+      "historicalScore": 18,
+      "ceiling": 100,
+      "maxContribution": 0.3,
+      "stallProbability": 0.07,
+      "rationale": "Highest score among the biology fields and a large contribution, because this field has the most actually-deployed technology: checkpoint inhibitors and CAR-T are standard of care, not promises. 2006 pre-dates both. Cancer and inflammaging together account for an enormous share of the mortality and morbidity that must be removed before any other intervention can show a healthspan signal, so progress here is a precondition for measuring progress anywhere else. Thymic regeneration and in-vivo CAR are credible near-term unlocks.",
+      "lastReviewed": "2026-08-19"
+    },
+    {
+      "id": "enabling-technology-automation",
+      "label": "Enabling Technology & Automation",
+      "score": 50,
+      "historicalScore": 22,
+      "ceiling": 100,
+      "maxContribution": 0.1,
+      "stallProbability": 0.03,
+      "rationale": "Lab automation, high-throughput screening, organoid platforms, scalable biomanufacturing. Like AI, a multiplier rather than a direct source of healthy years, so the contribution is intentionally small. Its real weight is on cost and throughput, which decide whether a working therapy reaches a population or only reaches a private clinic in Switzerland.",
+      "lastReviewed": "2026-08-19"
+    }
+  ],
+
+  "uncertainty": {
+    "growthRateLogSigma": 0.4,
+    "growthRateLogSigmaRationale": "Applied to each field's backcast-derived rate. sigma=0.40 in log space puts the 90% interval at roughly half to double the derived rate, reflecting that twenty years of history is a short and noisy sample.",
+    "contributionScaleLogSigma": 0.3,
+    "contributionScaleLogSigmaRationale": "A single global multiplier on all maxContribution values, representing the shared question 'is the total biological headroom as large as we assume?'. Applied globally rather than per-field because this error is correlated across fields - if aging is more intractable than we think, every field is affected at once. Expect this to be the model's largest single source of uncertainty.",
+    "regulatoryRateLogSigma": 0.5,
+    "stallFloorMultiplier": 0.15,
+    "stallRationale": "A stalled field does not stop, it crawls: its growth rate is multiplied by 0.15 for the whole run. Models a field that hits an unforeseen wall, such as a safety signal that closes a whole modality."
+  },
+
+  "simulation": {
+    "baseYear": 2026,
+    "horizonYears": 175,
+    "draws": 20000,
+    "seed": 20260819,
+    "seedRationale": "Fixed seed so anyone who clones this repo reproduces the published number exactly. A countdown that changes when you refresh is not evidence."
+  }
+}

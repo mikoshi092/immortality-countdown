@@ -2,18 +2,16 @@
 
 import { useEffect, useState } from "react";
 import NavLink from "@/components/NavLink";
+import { NAV_LINKS, FOCUS_RING } from "@/lib/nav";
 
-const MENU_LINKS = [
-  { label: "Home", href: "/#top" },
-  { label: "Methodology", href: "/methodology" },
-  { label: "Eight Fields", href: "/fields" },
-  { label: "Latest News", href: "/#latest-news" },
-];
-
-const FOCUS_RING =
-  "rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]";
-
-export default function MobileHeader() {
+/**
+ * Was MobileHeader, and it behaved like one at every breakpoint: the nav
+ * lived inside `<nav hidden={!open}>`, so desktop visitors also got a
+ * hamburger and had to click before they could see that the site has a
+ * methodology or eight field pages. Now the links sit inline from `sm` up
+ * and the collapsible panel is mobile-only.
+ */
+export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -29,7 +27,7 @@ export default function MobileHeader() {
 
   return (
     <header className="bg-[#141413]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-6 sm:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 sm:px-6 sm:py-4">
         <NavLink href="/#top" className={`flex items-center gap-2.5 ${FOCUS_RING}`}>
           {/* Same mark/path as app/icon.svg (the site favicon), reused
               here without its black square backing — the header's own
@@ -61,13 +59,29 @@ export default function MobileHeader() {
           </span>
         </NavLink>
 
+        {/* Desktop: always-visible inline navigation. */}
+        <nav aria-label="Primary" className="hidden sm:block">
+          <ul className="flex flex-row items-center gap-6">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <NavLink
+                  href={link.href}
+                  className={`block whitespace-nowrap py-1 text-sm text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="primary-nav-menu"
           onClick={() => setOpen((value) => !value)}
-          className={`flex h-7 w-7 shrink-0 items-center justify-center text-white/85 ${FOCUS_RING}`}
+          className={`flex h-7 w-7 shrink-0 items-center justify-center text-white/85 sm:hidden ${FOCUS_RING}`}
         >
           <svg
             aria-hidden="true"
@@ -93,9 +107,14 @@ export default function MobileHeader() {
         </button>
       </div>
 
-      <nav id="primary-nav-menu" aria-label="Primary" hidden={!open} className="border-t border-white/10">
-        <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-3">
-          {MENU_LINKS.map((link) => (
+      {/* Mobile: collapsible panel. */}
+      <nav
+        id="primary-nav-menu"
+        aria-label="Primary"
+        className={`border-t border-white/10 sm:hidden ${open ? "block" : "hidden"}`}
+      >
+        <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3">
+          {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <NavLink
                 href={link.href}
