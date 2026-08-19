@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
+import { countdown } from "@/lib/countdown";
 
-const START = 99;
-const END = 28;
-const TOTAL_STEPS = START - END; // 71 transitions, 72 values incl. both ends
+// The target is no longer hardcoded — it comes from lev/forecast.json via
+// lib/countdown.ts, so the hero, the sr-only fallback, the methodology copy
+// and the OG image can never disagree about what the number is.
+const END = countdown.years;
+// Start one "order of magnitude" above the target so the roll-down reads as
+// a countdown at any target value, instead of the old fixed 99.
+const START = END < 90 ? Math.min(99, END + 40) : END + 40;
+const TOTAL_STEPS = START - END;
 const SLOW_STEPS = 10;
 const BASE_DELAY_MS = 17;
 const MAX_EXTRA_DELAY_MS = 60;

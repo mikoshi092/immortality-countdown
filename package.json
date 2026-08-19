@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "model": "tsx lev/run.ts",
+    "model:write": "tsx lev/run.ts --write",
+    "test:model": "tsx --test lev/model.test.ts",
+    "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -22,6 +26,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.12",
+    "typescript": "^5",
+    "wait-on": "^9.1.0"
   }
 }

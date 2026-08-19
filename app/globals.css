@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* The site's palette is light by design — every page hardcodes
+   bg-[#f7f5ef]. The create-next-app dark-mode block used to flip
+   --background to #0a0a0a, which never showed as a dark theme, only as
+   black overscroll on iOS and dark-rendered form controls and
+   scrollbars behind a cream page. Declaring `color-scheme: light`
+   states the intent instead of half-supporting a theme that isn't
+   implemented. Delete this and build a real dark mode when you want one. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f7f5ef;
+  --foreground: #17202a;
 }
 
 @theme inline {
@@ -10,19 +18,19 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Was never defined, so every `font-serif` in the hero fell through to
+     Tailwind's default stack and rendered a different typeface per OS. */
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Previously `Arial, Helvetica, sans-serif`, which overrode the Geist
+     webfont this site pays to download on every page load. Only the hero
+     carried an explicit `font-sans`, so the hero was Geist and every
+     other page was Arial. */
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 /* Technology Readiness bar. The element's real `width` (set inline per

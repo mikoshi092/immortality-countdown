@@ -1,14 +1,5 @@
 import NavLink from "@/components/NavLink";
-
-const NAV_LINKS = [
-  { label: "Home", href: "/#top" },
-  { label: "Methodology", href: "/methodology" },
-  { label: "Eight Fields", href: "/fields" },
-  { label: "Latest News", href: "/#latest-news" },
-];
-
-const FOCUS_RING =
-  "rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]";
+import { NAV_LINKS, FOCUS_RING } from "@/lib/nav";
 
 export default function Footer() {
   const year = new Date().getFullYear();

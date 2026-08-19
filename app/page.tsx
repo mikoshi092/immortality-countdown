@@ -1,4 +1,4 @@
-import MobileHeader from "@/components/MobileHeader";
+import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import Hero from "@/components/Hero";
 import ReadinessCard from "@/components/ReadinessCard";
@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <main id="top" className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
-      <MobileHeader />
+      <SiteHeader />
       <BetaBanner />
       <Hero />
       <ReadinessCard />

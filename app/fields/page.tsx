@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import MobileHeader from "@/components/MobileHeader";
+import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import { fieldProgress } from "@/data/fields";
 
@@ -19,7 +19,7 @@ const FOCUS_RING =
 export default function FieldsPage() {
   return (
     <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
-      <MobileHeader />
+      <SiteHeader />
       <BetaBanner />
 
       <article className="px-5 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20">

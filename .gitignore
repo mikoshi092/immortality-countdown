@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# demo bundle (scripts/build-demo.sh)
+/demo.html
+/.demo-build/

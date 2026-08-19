@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
+import { SITE_URL, SITE_NAME, PUBLISHER } from "@/lib/site";
+import { countdown } from "@/lib/countdown";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +16,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://immortalitycountdown.com";
+/**
+ * The hero wordmark and the giant countdown numeral both use `font-serif`,
+ * but no serif was ever loaded — Tailwind's default stack meant the site's
+ * single most recognisable element rendered as Georgia on macOS, Times New
+ * Roman on Windows and Liberation Serif on Android. Now it is one typeface
+ * everywhere.
+ */
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const siteUrl = SITE_URL;
 const title = "Immortality Countdown | Tracking Longevity Escape Velocity";
 const description =
   "A conservative, evidence-based estimate of when medical technology may begin to outrun aging, with transparent methodology and longevity research updates.";
@@ -44,12 +59,49 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Dataset markup is the underused win here: this site publishes a
+ * versioned, reproducible dataset (lev/params.json + forecast.json), which
+ * makes it eligible for Google Dataset Search — a surface with almost no
+ * competition in this topic. Person/publisher markup covers E-E-A-T.
+ */
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Immortality Countdown",
-  url: siteUrl,
-  description,
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: SITE_NAME,
+      url: siteUrl,
+      description,
+      publisher: { "@id": `${siteUrl}/#publisher` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#publisher`,
+      name: PUBLISHER.name,
+      url: PUBLISHER.url,
+    },
+    {
+      "@type": "Dataset",
+      "@id": `${siteUrl}/#dataset`,
+      name: "Longevity Escape Velocity readiness index",
+      description:
+        "Readiness scores across eight longevity research fields plus a regulatory-readiness gate, with a reproducible Monte Carlo forecast of when remaining healthy life expectancy grows by one year per calendar year.",
+      url: `${siteUrl}/model`,
+      license: "https://creativecommons.org/licenses/by/4.0/",
+      creator: { "@id": `${siteUrl}/#publisher` },
+      version: countdown.paramsVersion,
+      isAccessibleForFree: true,
+      keywords: [
+        "longevity escape velocity",
+        "aging",
+        "healthspan",
+        "geroscience",
+        "technology readiness",
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -60,7 +112,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script
