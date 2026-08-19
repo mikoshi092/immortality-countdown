@@ -7,6 +7,7 @@ export const NAV_LINKS = [
   { label: "Eight Fields", href: "/fields" },
   { label: "The Model", href: "/model" },
   { label: "Latest News", href: "/#latest-news" },
+  { label: "About", href: "/about" },
 ] as const;
 
 export const FOCUS_RING =
