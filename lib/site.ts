@@ -11,10 +11,28 @@ export const SITE_NAME = "Immortality Countdown";
  * a sitemap that claims every page changed on every deploy trains Google
  * to ignore your lastmod entirely.
  */
-export const CONTENT_UPDATED = new Date("2026-08-18");
+export const CONTENT_UPDATED = new Date("2026-08-19");
 
-/** Author/publisher shown in metadata and JSON-LD. E-E-A-T needs a name. */
+/**
+ * Author/publisher. E-E-A-T needs a named human, and Google needs to be
+ * able to tie that name to profiles it already knows about — that is what
+ * `sameAs` is for. Deliberately NO postal address or phone number: those
+ * matter for LocalBusiness and for sites that sell things, and carry real
+ * personal risk on a site about immortality. They do nothing for search
+ * on an independent research site.
+ */
 export const PUBLISHER = {
   name: "Taketoki Fujita",
-  url: SITE_URL,
+  url: `${SITE_URL}/about`,
+  jobTitle: "Strategic investor",
+  /** Identity signals. Keep these in sync with the live profiles. */
+  sameAs: ["https://x.com/fruitescake", "https://github.com/mikoshi092"],
+  x: "https://x.com/fruitescake",
+  xHandle: "@fruitescake",
+  github: "https://github.com/mikoshi092",
+  /** Kept out of the nav and out of any heading; see /about. */
+  email: "cstaketoki@outlook.com",
+  /** Preferred channel: public, logged, and consistent with the site's ethos. */
+  issues: "https://github.com/mikoshi092/immortality-countdown/issues",
+  photo: "/taketoki-fujita.webp",
 } as const;

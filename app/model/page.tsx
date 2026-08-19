@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import Byline from "@/components/Byline";
 import BetaBanner from "@/components/BetaBanner";
 import LevFanChart from "@/components/LevFanChart";
 import { countdown, probabilityBy, formatPercent } from "@/lib/countdown";
@@ -56,6 +57,8 @@ export default function ModelPage() {
           <h1 className="mt-3 font-serif text-4xl leading-[1.02] tracking-[-0.03em] text-[#17202a] sm:text-5xl">
             Why {countdown.years} years?
           </h1>
+
+          <Byline reviewed={params.publishedAt} />
 
           <p className="mt-6 text-lg leading-8 text-[#17202a]/70">
             Because that is what the parameters say — not because anyone picked

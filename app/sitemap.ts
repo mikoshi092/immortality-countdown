@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/methodology`, lastModified: modelReviewed },
     { url: `${SITE_URL}/model`, lastModified: modelReviewed },
     { url: `${SITE_URL}/fields`, lastModified: CONTENT_UPDATED },
+    { url: `${SITE_URL}/about`, lastModified: CONTENT_UPDATED },
     ...fieldProgress.map((field) => ({
       url: `${SITE_URL}/fields/${field.slug}`,
       lastModified: fieldReviewDate(field.slug),
