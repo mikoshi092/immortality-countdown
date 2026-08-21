@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import { fieldProgress } from "@/data/fields";
+import { getFieldModel } from "@/lib/model-snapshot";
 
 const FOCUS_RING =
   "rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]";
@@ -76,6 +77,7 @@ export default async function FieldDetailPage({
   if (index === -1) notFound();
 
   const field = fieldProgress[index];
+  const modelField = getFieldModel(field.slug);
   const prev =
     fieldProgress[(index - 1 + fieldProgress.length) % fieldProgress.length];
   const next = fieldProgress[(index + 1) % fieldProgress.length];
@@ -121,15 +123,9 @@ export default async function FieldDetailPage({
             {field.description}
           </p>
 
-          {field.status === "provisional" ? (
-            <p className="mt-4 text-sm font-semibold text-[#2f766d]">
-              Provisional score: {field.score} / 100
-            </p>
-          ) : (
-            <span className="mt-4 inline-block rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#17202a]/55">
-              Score pending
-            </span>
-          )}
+          <p className="mt-4 text-sm font-semibold text-[#2f766d]">
+            Current model score: {modelField.score} / 100
+          </p>
 
           <Section title="The Gist">
             <Paragraphs text={field.plainEnglish} />
@@ -169,12 +165,18 @@ export default async function FieldDetailPage({
             </ul>
           </Section>
 
-          <Section title="Current Provisional Assessment">
-            <Paragraphs text={field.scoringNote} />
+          <Section title="Current Model Assessment">
+            <Paragraphs text={modelField.rationale} />
           </Section>
 
           <Section title="Reality Check">
-            <Paragraphs text={field.limitations} />
+            <Paragraphs
+              text={
+                field.status === "pending"
+                  ? "This readiness score is a published model input, not a measurement or clinical forecast. It summarizes the field under the assumptions documented in the model and does not predict that any specific intervention will succeed. It should be treated as an evolving assessment, not a guaranteed roadmap."
+                  : field.limitations
+              }
+            />
           </Section>
 
           <div className="mt-12 grid gap-3 border-t border-black/10 pt-6 sm:grid-cols-2">

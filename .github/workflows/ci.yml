@@ -21,6 +21,11 @@ jobs:
       # if a field score changed without a written rationale.
       - run: npx tsx --test lev/model.test.ts
 
+      # Guards the news feed: required fields, at most one featured item,
+      # unique ids/DOIs, sane dates, no placeholder sources or overclaiming
+      # headlines, and one field taxonomy across code, content and model.
+      - run: npx tsx --test data/news.test.ts
+
       # The published number must match the published assumptions. If someone
       # edits params.json without regenerating, this fails instead of shipping
       # a countdown that disagrees with its own methodology page.

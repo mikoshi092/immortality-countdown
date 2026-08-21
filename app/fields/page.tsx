@@ -3,11 +3,12 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import { fieldProgress } from "@/data/fields";
+import { getFieldModel } from "@/lib/model-snapshot";
 
 export const metadata: Metadata = {
   title: "Eight Fields of Progress | Immortality Countdown",
   description:
-    "Why longevity escape velocity depends on eight combined research fields, not one breakthrough — with provisional scores where available and Score pending status for the rest.",
+    "Why longevity escape velocity depends on eight combined research fields, not one breakthrough — with the current model readiness score for each field.",
   alternates: {
     canonical: "/fields",
   },
@@ -77,15 +78,9 @@ export default function FieldsPage() {
                 <p className="mt-2 text-sm leading-6 text-[#17202a]/70">
                   {field.description}
                 </p>
-                {field.status === "provisional" ? (
-                  <p className="mt-3 text-sm font-semibold text-[#2f766d]">
-                    Provisional score: {field.score} / 100
-                  </p>
-                ) : (
-                  <span className="mt-3 inline-block rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#17202a]/55">
-                    Score pending
-                  </span>
-                )}
+                <p className="mt-3 text-sm font-semibold text-[#2f766d]">
+                  Current model score: {getFieldModel(field.slug).score} / 100
+                </p>
                 <p className="mt-3 text-sm font-semibold text-[#2f766d]">
                   Read more →
                 </p>

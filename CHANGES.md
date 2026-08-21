@@ -182,3 +182,113 @@ Worth knowing if you ever consider moving off Vercel to a purely static host.
 
 Neither affected the Next build. Verified on all five page types: footer bottom
 now equals document height, and no page errors.
+
+
+---
+
+# Phase 2.0 — remove the demo news feed, one canonical taxonomy
+
+Verification after applying this patch: run TypeScript, lint, model tests,
+news tests, the production build and the link checker. Before merging, also
+confirm the generated HTML contains **0 occurrences of any demo marker**. CI
+runs the automated checks; the generated-HTML grep remains an explicit preview
+verification step.
+
+## The seven fixtures are gone
+
+`data/news.ts` shipped seven illustrative items, every one with
+`sourceUrl: "#"`. They were labelled, which was the right instinct, but they
+were roughly 70% of the homepage by height and Google's helpful-content
+signals do not read labels. The array is now empty and items are added by hand
+against real sources.
+
+## Unsourced items are now a compile error, not a convention
+
+```ts
+sourceUrl: `https://${string}`;
+```
+
+`sourceUrl: "#"` no longer type-checks, and `tsc --noEmit` already runs in CI.
+
+**This guarantees format, not truth.** The type proves a string starts with
+`https://`. It says nothing about whether the URL resolves or whether the page
+supports the claim. Manual additions require opening the link. Automated
+ingest must additionally cross-check each URL against that run's layer-1 fetch
+results — a URL a language model emitted, that is not in the fetched set, is
+discarded rather than trusted because it happens to type-check.
+
+A useful side effect: with the sentinel impossible, both demo affordances in
+`NewsCard` could be **deleted** rather than made conditional. tsc reports the
+old `item.sourceUrl === "#"` comparison as having no overlap.
+
+- The unconditional "Demo content · Not a real news report" badge is gone — it
+  would have labelled real reporting as fake.
+- `timeLabel` is gone. It was in the type and in all seven fixtures and
+  **rendered nowhere**. On a static site a baked-in "3h ago" would have stayed
+  "3h ago" forever.
+
+## One taxonomy instead of two
+
+There were two parallel classification axes: a six-value `NewsCategory` union
+and a free-text `field` ("Geroscience", "Diagnostics"), and **neither matched
+the site's eight field slugs**. News could not link to a field page.
+
+`NewsCategory` is deleted. Items carry `fieldId: FieldId`, filtering is by
+field, and each card links to `/fields/[id]`.
+
+New `lib/fields.ts` holds `FIELD_IDS` / `FieldId` / labels — identity only, no
+prose. It is separate from `data/fields.ts` because `NewsSection` is a client
+component: importing the ~300 lines of long-form field content from a card
+would ship all of it to every visitor.
+
+`data/fields.ts` now types `slug: FieldId`, so a typo in a slug is a compile
+error and `/fields/[slug]` cannot point at a field the model does not know.
+
+**If a different axis is needed later** (Clinical Trial / Paper / Regulatory /
+Company), add a purpose-named `contentType`. Do not reintroduce a
+general-purpose `category`.
+
+## `data/news.test.ts` — editorial and taxonomy guards
+
+Guards what types cannot express. Each was verified to **fail** on deliberately
+bad data before being accepted:
+
+| Guard | Why |
+|---|---|
+| at most one `featured` | `app/page.tsx` uses `.find()`, so a second would be silently dropped |
+| unique `id` and DOI | duplicate identifiers break deduplication |
+| required text non-empty | prevents structurally valid blank cards |
+| `caveat` ≥ 30 chars | an empty caveat reads as "no reservations" |
+| `publishedAt` valid, not future | |
+| `sourceUrl` not a placeholder host, not a bare homepage | |
+| `doi` matches `10.xxxx/...` | |
+| headline free of breakthrough / cure / miracle / proven / revolutionary | |
+| **`lib/fields.ts` ↔ `data/fields.ts` ↔ `lev/params.json` identical** | the three taxonomies can no longer drift |
+
+## `data-nosnippet` removed — after verifying, not before
+
+It told Google not to use this content in snippets, which was correct for
+fixtures and harmful for real reporting. Removed only after grepping the
+generated HTML of all seven page types for `Demo content`, `Demonstration
+content`, `Prototype`, `not for citation`, `sourceUrl="#"`, `nosnippet` and
+`not a real news report` — **0 occurrences total**.
+
+"Prototype News Feed" → **Latest Verified Updates**. "Prototype Signal" →
+**Latest Signal**.
+
+## Empty state
+
+An empty list previously rendered the full chip row plus "No additional stories
+in this category yet", implying stories existed elsewhere. It now says the feed
+starts empty because every entry must link to a source that was opened and
+read, and points at `/model`, which is the part of the site that works today.
+
+Chips only appear for fields that actually have an item behind them.
+
+## Not done, deliberately
+
+- **`lev/params.json` was not touched.** Moving a readiness score in order to
+  generate content inverts the causality this site exists to defend.
+- **"What Moved the Number" is a separate concept** and is not built here.
+  This feed is verified external research. A model changelog is different data,
+  a different component and a different heading. They are not merged.

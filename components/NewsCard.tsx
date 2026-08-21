@@ -1,7 +1,16 @@
+import Link from "next/link";
 import type { NewsItem } from "@/data/news";
+import { FIELD_LABELS } from "@/lib/fields";
+import { FOCUS_RING } from "@/lib/nav";
 
-// Shared presentational card used for both the PROTOTYPE SIGNAL item and
-// the PROTOTYPE NEWS FEED list. `item.featured` only changes sizing, not layout.
+// Shared presentational card, used both for the featured item and for the
+// list. `item.featured` only changes sizing, not layout.
+//
+// The two demo affordances that used to live here are gone:
+//   - an unconditional "Demo content · Not a real news report" badge, which
+//     would have labelled real reporting as fake;
+//   - an `item.sourceUrl === "#"` branch, which the type system now proves
+//     unreachable (tsc reports the comparison has no overlap).
 export default function NewsCard({ item }: { item: NewsItem }) {
   const isFeatured = item.featured;
 
@@ -11,14 +20,21 @@ export default function NewsCard({ item }: { item: NewsItem }) {
         isFeatured ? "p-5 sm:p-6" : "p-4 sm:p-5"
       }`}
     >
-      <p className="inline-block rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#17202a]/60">
-        Demo content · Not a real news report
-      </p>
-
-      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium text-[#17202a]/50">
-        <span>{item.field}</span>
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium text-[#17202a]/50">
+        <Link
+          href={`/fields/${item.fieldId}`}
+          className={`text-[#2f766d] hover:underline ${FOCUS_RING}`}
+        >
+          {FIELD_LABELS[item.fieldId]}
+        </Link>
         <span aria-hidden="true">·</span>
         <span>{item.evidence}</span>
+        <span aria-hidden="true">·</span>
+        {/* Deliberately not toLocaleDateString(): this card renders inside a
+            client component, and locale-dependent formatting differs between
+            server and client, which produces a hydration mismatch. Slicing the
+            ISO string is deterministic everywhere. */}
+        <time dateTime={item.publishedAt}>{item.publishedAt.slice(0, 10)}</time>
       </div>
 
       <h3
@@ -56,18 +72,19 @@ export default function NewsCard({ item }: { item: NewsItem }) {
         </div>
       </dl>
 
-      {item.sourceUrl === "#" ? (
-        <p className="mt-4 text-sm font-medium text-[#17202a]/40">
-          Demonstration content — not for citation
-        </p>
-      ) : (
-        <a
-          href={item.sourceUrl}
-          className="mt-4 inline-block text-sm font-semibold text-[#2f766d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]"
-        >
-          {item.sourceLabel} →
-        </a>
-      )}
+      <a
+        href={item.sourceUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        className={`mt-4 inline-block text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
+      >
+        {item.sourceLabel} →
+      </a>
+      {item.doi ? (
+        <span className="mt-4 ml-3 inline-block text-xs text-[#17202a]/40">
+          DOI {item.doi}
+        </span>
+      ) : null}
     </article>
   );
 }
