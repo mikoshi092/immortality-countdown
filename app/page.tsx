@@ -20,13 +20,10 @@ export default function Home() {
       <FieldsProgress />
 
       {featuredItem && (
-        <section
-          data-nosnippet=""
-          className="px-5 pt-8 pb-2 sm:px-6 sm:pt-10"
-        >
+        <section className="px-5 pt-8 pb-2 sm:px-6 sm:pt-10">
           <div className="mx-auto max-w-7xl">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
-              Prototype Signal
+              Latest Signal
             </h2>
             <div className="mt-5">
               <NewsCard item={featuredItem} />

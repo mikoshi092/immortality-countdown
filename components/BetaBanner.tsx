@@ -13,7 +13,7 @@ export default function BetaBanner() {
         </span>
         <p className="text-[11px] leading-4 text-white/55 sm:text-xs">
           The countdown model and news pipeline are under development.
-          Scores and demonstration items are provisional.
+          Scores are model inputs and may change as evidence is reviewed.
         </p>
       </div>
     </div>

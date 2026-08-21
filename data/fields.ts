@@ -10,10 +10,14 @@
 // with no score assigned yet. Do not invent scores, studies, trials,
 // companies, or citations for any field.
 
+import type { FieldId } from "@/lib/fields";
+
 export type FieldStatus = "provisional" | "pending";
 
 export type FieldProgress = {
-  slug: string;
+  // Typed against lib/fields.ts so a typo in a slug is a compile error, and
+  // so /fields/[slug] can never point at a field the model does not know.
+  slug: FieldId;
   name: string;
   // 0–100, PROVISIONAL — not an official/audited score. null while
   // status is "pending" (no score has been assigned yet).
