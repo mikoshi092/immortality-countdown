@@ -25,8 +25,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return entry ? new Date(entry.lastReviewed) : modelReviewed;
   };
 
+  // Only these two URLs are translations of each other, so only these two
+  // carry alternates. Listing a Japanese alternate for /model or /fields
+  // would point Google at pages that do not exist in Japanese.
+  const localePair = {
+    languages: {
+      en: SITE_URL,
+      ja: `${SITE_URL}/ja`,
+      "x-default": SITE_URL,
+    },
+  };
+
   return [
-    { url: SITE_URL, lastModified: modelReviewed },
+    { url: SITE_URL, lastModified: modelReviewed, alternates: localePair },
+    {
+      url: `${SITE_URL}/ja`,
+      lastModified: CONTENT_UPDATED,
+      alternates: localePair,
+    },
     { url: `${SITE_URL}/methodology`, lastModified: modelReviewed },
     { url: `${SITE_URL}/model`, lastModified: modelReviewed },
     { url: `${SITE_URL}/fields`, lastModified: CONTENT_UPDATED },
