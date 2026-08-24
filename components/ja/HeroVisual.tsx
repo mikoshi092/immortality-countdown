@@ -1,5 +1,4 @@
 import Image from "next/image";
-import heroIllustration from "@/public/ja/hero-lev.jpg";
 
 type Props = {
   medianYear: number;
@@ -8,11 +7,10 @@ type Props = {
 /**
  * The hero illustration.
  *
- * Statically imported rather than referenced by path so Next reads the
- * intrinsic 1024×682 off the file at build time and reserves the box
- * before the bytes arrive. The wrapper is square regardless: the source
- * is 3:2 with the figure hard right and a wide empty field to its left,
- * so `object-right` crops that field away and leaves the subject filling
+ * Referenced by public path with `fill`, so the box is reserved by the
+ * square wrapper and the intrinsic size is never needed. The source is
+ * 3:2 with the figure hard right and a wide empty field to its left, so
+ * `object-right` crops that field away and leaves the subject filling
  * the frame. Nothing about the layout depends on the image loading.
  *
  * `preload` rather than `priority` — Next 16 deprecated the latter in
@@ -51,7 +49,7 @@ export default function HeroVisual({ medianYear }: Props) {
 
       <div className="relative aspect-square w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_18%)]">
         <Image
-          src={heroIllustration}
+          src="/ja/hero-lev.jpg"
           alt="横顔の人物像に二重らせんと点描のデータ図が重なった抽象イラスト。医学と生物学のデータが人の身体に重なっていく様子を表しています。"
           fill
           preload
