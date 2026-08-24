@@ -1,5 +1,4 @@
 type Props = {
-  regulatoryScore: number;
   lastReviewed: string;
 };
 
@@ -25,12 +24,11 @@ const STAGES: readonly Stage[] = [
  * rail in both orientations, and each marker is filled with the page
  * background so the rail passes behind it rather than through it.
  *
- * Only the regulation stage carries a number, and that is not an
- * editorial choice — it is the only stage the model scores. Inventing
- * figures for the other four to make the row look uniform is exactly the
- * kind of thing this diagram exists to avoid.
+ * The regulation stage is marked but carries no figure: the score it
+ * would show is already stated in the card beside this diagram, and
+ * repeating it here reads as two separate measurements.
  */
-export default function PipelineFlow({ regulatoryScore, lastReviewed }: Props) {
+export default function PipelineFlow({ lastReviewed }: Props) {
   return (
     <figure className="mt-8">
       <div className="relative">
@@ -77,27 +75,6 @@ export default function PipelineFlow({ regulatoryScore, lastReviewed }: Props) {
                 >
                   {stage.en}
                 </p>
-
-                {stage.gate ? (
-                  <div className="mt-2.5 sm:mx-auto sm:max-w-[8.5rem]">
-                    <p className="text-[10px] font-semibold text-[#2f766d]">
-                      ボトルネック
-                    </p>
-                    <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-black/8">
-                      <div
-                        className="readiness-bar-fill h-full rounded-full bg-[#2f766d]"
-                        style={{ width: `${regulatoryScore}%` }}
-                      />
-                    </div>
-                    <p className="mt-1.5 text-xs font-semibold tabular-nums text-[#17202a]">
-                      {regulatoryScore}
-                      <span className="font-normal text-[#17202a]/45">
-                        {" "}
-                        / 100
-                      </span>
-                    </p>
-                  </div>
-                ) : null}
               </div>
             </li>
           ))}
