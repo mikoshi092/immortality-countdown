@@ -33,6 +33,33 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Japanese pages (/ja). Geist and Source Serif 4 are loaded with the
+   `latin` subset only, so before these stacks existed every kana and
+   kanji fell through to whatever the generic `sans-serif` happened to
+   be — a different typeface per OS, and rarely a brand-grade one.
+
+   The Latin face is listed FIRST on purpose. A browser resolves
+   font-family per character, so Latin letters and digits — 66, 2092,
+   94%, the readiness scores, "Longevity Escape Velocity" — keep
+   rendering in exactly the Geist and Source Serif 4 the English pages
+   use, and only the Japanese glyphs fall through to Noto. That is also
+   why the numerals need no per-element class.
+
+   The OS faces after Noto still matter: `display: swap` means they are
+   what a visitor reads for the first few hundred milliseconds — and they
+   are the whole stack on any route that has not defined the Noto
+   variables, since app/ja/page.tsx is the only place that loads them. */
+.font-ja {
+  font-family: var(--font-geist-sans), var(--font-noto-sans-jp),
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic",
+    Meiryo, system-ui, sans-serif;
+}
+
+.font-ja-serif {
+  font-family: var(--font-source-serif), var(--font-noto-serif-jp),
+    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, ui-serif, Georgia, serif;
+}
+
 /* Technology Readiness bar. The element's real `width` (set inline per
    instance) is the source of truth for the final size — the animation
    only scales that already-correctly-sized box from 0 to its full

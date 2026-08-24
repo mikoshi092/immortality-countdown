@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import Hero from "@/components/Hero";
@@ -6,6 +7,27 @@ import NewsCard from "@/components/NewsCard";
 import NewsSection from "@/components/NewsSection";
 import FieldsProgress from "@/components/FieldsProgress";
 import { newsItems } from "@/data/news";
+
+/**
+ * The root layout already sets `canonical: "/"`, but a page-level
+ * `alternates` object replaces the inherited one wholesale, so the
+ * canonical has to be restated alongside the languages.
+ *
+ * This pairing exists only between / and /ja, the only two URLs that are
+ * genuine translations of one another. /model, /fields and the rest still
+ * declare `canonical` and no `languages`, which is what keeps them from
+ * advertising Japanese versions that do not exist.
+ */
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      ja: "/ja",
+      "x-default": "/",
+    },
+  },
+};
 
 export default function Home() {
   const featuredItem = newsItems.find((item) => item.featured);
