@@ -382,10 +382,7 @@ export default function JapaneseLandingPage() {
             それが何百万人にも使える医療になるまでには、いくつもの巨大な障壁があります。
           </p>
 
-          <PipelineFlow
-            regulatoryScore={REGULATORY_READINESS.score}
-            lastReviewed={REGULATORY_READINESS.lastReviewed}
-          />
+          <PipelineFlow lastReviewed={REGULATORY_READINESS.lastReviewed} />
 
           <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {GATES.map((gate, index) => (
