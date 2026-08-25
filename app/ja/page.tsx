@@ -6,7 +6,7 @@ import HeroVisual from "@/components/ja/HeroVisual";
 import LevCrossingDiagram from "@/components/ja/LevCrossingDiagram";
 import PipelineFlow from "@/components/ja/PipelineFlow";
 import TechnologyMap from "@/components/ja/TechnologyMap";
-import { countdown, formatPercent } from "@/lib/countdown";
+import { countdown } from "@/lib/countdown";
 import { FIELD_IDS } from "@/lib/fields";
 import { FIELD_LABELS_JA, FIELD_SUMMARIES_JA } from "@/lib/ja";
 import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
@@ -134,27 +134,26 @@ function PullQuote({ children }: { children: React.ReactNode }) {
 const GATES = [
   {
     title: "臨床試験という迷宮",
-    body: "マウスや細胞で成功しても、人間で安全性と有効性を確認するには長い時間がかかります。老化研究では、そもそも何をエンドポイント（試験の合否を決める指標）として測るべきかという試験設計そのものが、まだ発展途上です。",
+    body: "マウスで成功しても、人間では数年かかる。老化研究は、何をもって「効いた」とするかという評価指標さえ未整備だ。試験設計の遅さが開発速度を削っている。",
   },
   {
-    title: "規制という障壁",
-    body: "老化そのものを対象とする治療には、まだ確立された承認ルートがありません。生物学的年齢や老化バイオマーカーが、臨床的に意味のある評価指標としてどこまで認められるか。それは各国の規制当局と研究者が現在進行形で議論している論点です。",
+    title: "規制という人工の壁",
+    body: "規制は自然法則ではない。人が作ったルールだ。安全性の審査は残す。それ以外の、老化研究を遅らせる時代遅れの規制は撤去すべきだ。老化を正面から治療対象として扱える承認経路を作る。",
   },
   {
     title: "スケールとコスト",
-    body: "数人だけが受けられる高度な治療では、人口レベルの健康寿命は大きく変わりません。製造、デリバリー、品質管理、価格。研究成果を「普通の医療」に変える工程も、まぎれもなくLEVの一部です。",
+    body: "量産できない治療は社会を変えない。製造、デリバリー、品質管理、価格を突破し、高度な実験治療を誰でも使える医療へ落とし込む。",
   },
   {
     title: "社会実装の壁",
-    body: "予防的な介入を、誰が、いつ、どの基準で受けるのか。保険、医療制度、診断基準、アクセスの設計次第で、優れた技術でも社会全体への普及速度は変わります。",
+    body: "届かない技術は存在しないのと同じだ。保険、診断基準、アクセスを未来の医療に合わせる。社会実装の速度が、そのまま寿命に跳ね返る。",
   },
 ];
 
 export default function JapaneseLandingPage() {
-  const years = countdown.years;
+  const earlyYears = Math.round(countdown.earlyYear - countdown.baseYear);
   const gain = countdown.currentGain;
   const draws = countdown.draws.toLocaleString("en-US");
-  const reachRate = formatPercent(countdown.probabilityReached);
 
   return (
     <main
@@ -221,67 +220,24 @@ export default function JapaneseLandingPage() {
                 死が「治療可能なバグ」に
                 <span className="whitespace-nowrap">なるまで、</span>
                 <span className="whitespace-nowrap">
-                  あと<span className="lining-nums tabular-nums">{years}</span>
+                  早ければあと
+                  <span className="lining-nums tabular-nums">{earlyYears}</span>
                   年。
                 </span>
               </h1>
 
               <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#17202a]/70 sm:text-lg sm:leading-9">
-                医学が老化をオーバーライドする日はいつ訪れるのか。
-                世界の最前線を追跡し、その到達距離を測る。
+                モデルの早期10%ラインは{countdown.earlyYear}年。
+                医学が老化をオーバーライドするまでの距離を、世界の研究とともに追う。
               </p>
             </div>
 
-            <HeroVisual medianYear={countdown.medianYear} />
+            <HeroVisual earlyYear={countdown.earlyYear} />
           </div>
 
-          {/* Three white cards read as a dashboard widget. Rules and
-              whitespace read as a magazine's data strip, which is what
-              these three numbers are. */}
-          <dl className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-0">
-            {[
-              {
-                label: "予測中央値",
-                value: `${countdown.medianYear}`,
-                unit: "年",
-              },
-              {
-                label: "80%予測区間",
-                value: `${countdown.earlyYear}–${countdown.lateYear}`,
-                unit: "年",
-              },
-              {
-                label: "シミュレーション到達率",
-                value: reachRate,
-                unit: null,
-              },
-            ].map((stat, index) => (
-              <div
-                key={stat.label}
-                className={
-                  index > 0
-                    ? "sm:border-l sm:border-black/12 sm:pl-7"
-                    : undefined
-                }
-              >
-                <dt className="text-[11px] font-medium text-[#17202a]/50">
-                  {stat.label}
-                </dt>
-                <dd className="font-ja-serif mt-2 text-[clamp(1.7rem,3.2vw,2.25rem)] font-medium leading-none tabular-nums text-[#17202a]">
-                  {stat.value}
-                  {stat.unit ? (
-                    <span className="ml-1.5 text-base font-normal text-[#17202a]/45">
-                      {stat.unit}
-                    </span>
-                  ) : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <p className="mt-4 max-w-2xl text-[13px] leading-6 text-[#17202a]/55">
-            {draws}回のモンテカルロ・シミュレーションから導いた暫定値。
-            これは予言ではなく、現在の前提から見た「現在地」を示すメトリクスです。
+          <p className="mt-8 max-w-2xl text-[13px] leading-6 text-[#17202a]/55">
+            早期10%ライン：<span className="font-semibold tabular-nums text-[#17202a]">{countdown.earlyYear}年</span>。
+            固定シードで{draws}回のモンテカルロ・シミュレーションを実行して算出した。
           </p>
         </div>
       </section>
@@ -296,32 +252,20 @@ export default function JapaneseLandingPage() {
           <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_26rem] lg:gap-14">
             <div className={`max-w-2xl space-y-5 ${BODY}`}>
               <p>
-                寿命脱出速度（Longevity Escape Velocity: LEV）とは、
                 <strong className="font-semibold text-[#17202a]">
-                  「人類が不死を手に入れるXデー」のことではありません。
+                  LEVとは、医療の進歩によって寿命が延び、次の医療技術発展の恩恵を継続的に獲得できる状況が生まれる臨界点のことである。
                 </strong>
               </p>
               <p>
-                1年という時間が過ぎる間に、医学の進歩によって「残りの健康寿命」が1年以上延びる状態。
-                それが、このサイトで追跡しているLEVです。
-              </p>
-              <p>
-                現在のモデルでは、1年経つ間に医学が取り戻す健康寿命を約
+                現在のモデルは
                 <span className="font-semibold tabular-nums text-[#17202a]">
                   {gain.toFixed(2)}
                 </span>
-                年と推定しています。まだ時間の流れの方が速い。
-              </p>
-              <p>
-                しかし、この値が
+                年/年。LEVは
                 <span className="font-semibold tabular-nums text-[#17202a]">
                   {countdown.levThreshold.toFixed(2)}
                 </span>
-                年/年に達すれば、少なくともモデル上は「1年老いる間に、1年以上の健康寿命を取り戻す」状態になります。
-              </p>
-              <p>
-                事故も感染症も、あらゆる死因が消えるわけではありません。LEVが意味するのは不死ではなく、
-                医療の進歩によって、寿命が延び、次の技術発展の恩恵を継続的に獲得できるということです。
+                年/年。今は時間が勝っている。1.00を超えた瞬間、医学が老化の時計を追い越す。
               </p>
             </div>
 
@@ -371,15 +315,14 @@ export default function JapaneseLandingPage() {
       >
         <div className="mx-auto max-w-7xl">
           <h2 className={SECTION_HEADING}>
-            なぜ「<span className="tabular-nums">{years}</span>
-            年」もかかるのか？
+            なぜ「<span className="tabular-nums">{earlyYears}</span>年」もかかるのか？
             <br className="hidden sm:block" />
-            壁は研究室の外にもある
+            科学を止める人工の壁がある
           </h2>
 
           <p className={`mt-6 max-w-2xl ${BODY}`}>
-            科学の進歩だけではLEVには届きません。研究室で有望な結果が出てから、
-            それが何百万人にも使える医療になるまでには、いくつもの巨大な障壁があります。
+            研究室で成功しても、患者に届かなければゼロだ。
+            LEVを遅らせるのは、臨床試験、規制、製造、社会実装という人間が作った摩擦である。
           </p>
 
           <PipelineFlow lastReviewed={REGULATORY_READINESS.lastReviewed} />
@@ -403,19 +346,15 @@ export default function JapaneseLandingPage() {
             ))}
           </dl>
 
-          <PullQuote>医療技術の発展だけでは、時計は縮まらない。</PullQuote>
+          <PullQuote>規制は自然法則ではない。人が作った壁なら、人が壊せる。</PullQuote>
 
-          <div className={`max-w-2xl space-y-5 ${BODY}`}>
+          <div className={`max-w-2xl ${BODY}`}>
             <p>
-              ですからImmortality Countdownでは、8つの研究分野とは別に
+              Immortality Countdownは、8つの研究分野とは別に
               <strong className="font-semibold text-[#17202a]">
                 「規制・社会実装の準備度」
               </strong>
-              を障壁として追跡しています。
-            </p>
-            <p>
-              どれほど強力な若返り技術でも、人間で検証され、製造され、承認され、広く届かなければ、
-              LEVを進展させる力は限定されてしまうのです。
+              を独立した障壁として追跡する。承認され、量産され、届かなければ、カウントダウンは縮まらない。
             </p>
           </div>
 
@@ -463,9 +402,8 @@ export default function JapaneseLandingPage() {
           <h2 className={SECTION_HEADING}>LEVを駆動する8つのエンジン</h2>
 
           <p className={`mt-6 max-w-2xl ${BODY}`}>
-            LEVは、ひとつの発明だけで到達する未来ではありません。
-            複数の技術領域が並行して進み、互いのボトルネックを外していく必要があります。
-            スコアは0〜100の暫定的なものであり、あくまで目安になります。完成度を保証するものではありません。
+            LEVは8つのエンジンが同時に回って初めて到来する。どれか一つが止まれば全体が遅れる。
+            スコアは各分野の現在地だ。
           </p>
 
           <TechnologyMap
@@ -474,7 +412,7 @@ export default function JapaneseLandingPage() {
               label: FIELD_LABELS_JA[id],
               score: getFieldModel(id).score,
             }))}
-            medianYear={countdown.medianYear}
+            earlyYear={countdown.earlyYear}
           />
 
           <ol className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -535,55 +473,28 @@ export default function JapaneseLandingPage() {
         className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
       >
         <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>いつ寿命脱出速度に到達するのか？</h2>
+          <h2 className={SECTION_HEADING}>最初の標的は、{countdown.earlyYear}年だ</h2>
 
           <div className={`mt-6 max-w-2xl space-y-5 ${BODY}`}>
             <p>
-              まだ確定していません。日々の技術革新や規制等により、刻一刻と変化しています。
-              このサイトでは、最新ニュースを追い、その期間を算出することを主眼においています。
+              この数字はAIの作文ではない。公開されたTypeScriptモデルが、固定シードで
+              {draws}個のシナリオを実行した結果だ。
             </p>
             <p>
-              今回のAIによる{draws}回のシミュレーションでは、
-              <span className="font-semibold tabular-nums text-[#17202a]">
-                {reachRate}
-              </span>
-              がLEVに到達することを示しました。そのシミュレーションで割り出された予測の中央値が
-              {countdown.medianYear}年です。
-            </p>
-            <p>
-              80%予測区間で見ると、一番早いのは{countdown.earlyYear}年、遅いと
-              {countdown.lateYear}年と
-              <strong className="font-semibold text-[#17202a]">
-                かなり広くなっています。
-              </strong>
-            </p>
-            <p>
-              なぜなら、この数字は未来を予言しているのではなく、現在わかっている研究速度、技術成熟度、
-              規制や社会実装の条件をひとつのモデルに入れた結果だからです。
-            </p>
-            <p>前提が変われば、数字も変わります。</p>
-            <ul className="space-y-2 border-l-2 border-[#2f766d]/30 pl-5 text-[15px] leading-8 text-[#17202a]/70 sm:text-base">
-              <li>新しい治療法が人間で再現される。</li>
-              <li>バイオマーカーが臨床試験を短縮する。</li>
-              <li>AIが創薬を高速化する。</li>
-              <li>規制のルールが変わる。</li>
-            </ul>
-            <p>
-              そんな変化が積み重なれば、
-              <span className="tabular-nums">{years}</span>
-              年は短くなるかもしれません。逆に、大きな分野が停滞すれば遠ざかります。
+              その早期10%ラインが{countdown.earlyYear}年、今から{earlyYears}年後である。
+              人間で効く治療、短い臨床試験、AI創薬、不要な規制の撤去。
+              これらが進めば{earlyYears}年は縮む。停滞すれば伸びる。
             </p>
           </div>
 
           <div className="mt-10 max-w-2xl border-t border-black/8 pt-8 sm:mt-12">
             <p className="font-ja-serif text-[clamp(1.3rem,3.6vw,1.95rem)] font-medium leading-[1.7] text-[#17202a]">
-              この<span className="tabular-nums">{years}</span>年が縮んでいくのか。
+              この<span className="tabular-nums">{earlyYears}</span>年を、30年、20年、10年へ。
               <br />
-              それとも、遠ざかるのか？
+              死を「治療可能なバグ」に変える時計を進める。
             </p>
             <p className={`mt-5 ${BODY}`}>
-              Immortality Countdownは、人類が老化を追い越すまでの距離と、
-              その数字を動かした理由を追い続けます。
+              Immortality Countdownは、数字を動かした研究と制度変化だけを追う。
             </p>
           </div>
 

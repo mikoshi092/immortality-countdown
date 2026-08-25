@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 type Props = {
-  medianYear: number;
+  earlyYear: number;
 };
 
 /**
@@ -23,7 +23,7 @@ type Props = {
  * so a hard edge would read as a pasted-in rectangle. The fade lets it
  * bleed into the page the way a printed feature does.
  */
-export default function HeroVisual({ medianYear }: Props) {
+export default function HeroVisual({ earlyYear }: Props) {
   return (
     <figure className="flex flex-col gap-5">
       {/* Stacked above the artwork rather than laid over its top-right
@@ -37,13 +37,13 @@ export default function HeroVisual({ medianYear }: Props) {
           median year in words. */}
       <figcaption className="hidden text-right lg:block">
         <p className="font-ja-serif text-[clamp(2.2rem,3.2vw,3.1rem)] font-medium leading-none tabular-nums text-[#2f766d]">
-          {medianYear}
+          {earlyYear}
         </p>
         <p
           lang="en"
           className="mt-2 text-[9px] font-semibold tracking-[0.18em] text-[#17202a]/45"
         >
-          MEDIAN YEAR OF LEV
+          EARLY 10% LEV YEAR
         </p>
       </figcaption>
 

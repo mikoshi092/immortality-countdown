@@ -6,7 +6,7 @@ type MapField = {
 
 type Props = {
   fields: MapField[];
-  medianYear: number;
+  earlyYear: number;
 };
 
 const CX = 430;
@@ -35,7 +35,7 @@ const ROWS = [54, 158, 262, 366];
  * beneath already carry the same names and the same scores, so nothing
  * is lost by leaving the map out there.
  */
-export default function TechnologyMap({ fields, medianYear }: Props) {
+export default function TechnologyMap({ fields, earlyYear }: Props) {
   return (
     <figure className="mt-10 hidden lg:block">
       <svg
@@ -139,12 +139,12 @@ export default function TechnologyMap({ fields, medianYear }: Props) {
           fontSize="12"
           className="tabular-nums"
         >
-          {medianYear}年
+          {earlyYear}年
         </text>
       </svg>
 
       <figcaption className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-5 text-[#17202a]/45">
-        線の塗られた長さが各分野の現在の成熟度スコアです。中央の年は予測中央値で、
+        線の塗られた長さが各分野の現在の成熟度スコアです。中央の年は早期10%ラインで、
         8分野の合計や平均ではありません。
       </figcaption>
     </figure>
