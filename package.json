@@ -10,6 +10,8 @@
     "model": "tsx lev/run.ts",
     "model:write": "tsx lev/run.ts --write",
     "test:model": "tsx --test lev/model.test.ts",
+    "test:ingest": "tsx --test automation/normalize.test.ts automation/rank.test.ts automation/validate.test.ts automation/pipeline.test.ts automation/fetch.test.ts",
+    "ingest:dry": "tsx automation/run.ts",
     "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {

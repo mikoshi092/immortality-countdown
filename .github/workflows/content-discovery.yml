@@ -1,0 +1,30 @@
+name: Content discovery
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run ingest:dry
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+          NCBI_TOOL: immortality-countdown
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: content-discovery-candidates
+          path: automation/output/candidates.json
+          if-no-files-found: warn

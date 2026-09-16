@@ -26,6 +26,10 @@ jobs:
       # headlines, and one field taxonomy across code, content and model.
       - run: npx tsx --test data/news.test.ts
 
+      # Phase 3.0 ingest guards: dedup, dates, evidence conservatism,
+      # source-URL matching, and the model-file write protection.
+      - run: npx tsx --test automation/normalize.test.ts automation/rank.test.ts automation/validate.test.ts automation/pipeline.test.ts automation/fetch.test.ts
+
       # The published number must match the published assumptions. If someone
       # edits params.json without regenerating, this fails instead of shipping
       # a countdown that disagrees with its own methodology page.
