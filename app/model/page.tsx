@@ -4,7 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import Byline from "@/components/Byline";
 import BetaBanner from "@/components/BetaBanner";
 import LevFanChart from "@/components/LevFanChart";
-import { countdown, probabilityBy, formatPercent } from "@/lib/countdown";
+import { countdown, probabilityBy, formatPercent, heroEarlyYears } from "@/lib/countdown";
 import { FOCUS_RING } from "@/lib/nav";
 import params from "@/lev/params.json";
 
@@ -118,6 +118,15 @@ export default function ModelPage() {
             <p>
               A single date implies a precision this evidence cannot support. The
               honest output is a distribution.
+            </p>
+            <p>
+              The homepage hero uses the early (P10) scenario:{" "}
+              <strong>{heroEarlyYears} years</strong> from the{" "}
+              {countdown.baseYear} base year, calendar {countdown.earlyYear}.
+              That figure is a quantile of the simulated draws, including those
+              that never reach LEV. It is not a claim that the real world has a
+              10% chance of arriving by then. The median remains{" "}
+              {countdown.years} years ({countdown.medianYear}).
             </p>
             <dl className="mt-2 grid gap-2 sm:grid-cols-3">
               {MILESTONES.map((year) => {
