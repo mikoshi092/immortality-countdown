@@ -19,7 +19,7 @@ jobs:
 
       # The model's own tests, including the editorial guardrail that fails
       # if a field score changed without a written rationale.
-      - run: npx tsx --test lev/model.test.ts
+      - run: npx tsx --test lev/model.test.ts lib/countdown.test.ts
 
       # Guards the news feed: required fields, at most one featured item,
       # unique ids/DOIs, sane dates, no placeholder sources or overclaiming

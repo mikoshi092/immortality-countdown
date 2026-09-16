@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { countdown } from "@/lib/countdown";
+import { heroEarlyYears } from "@/lib/countdown";
 
 // The target is no longer hardcoded — it comes from lev/forecast.json via
-// lib/countdown.ts, so the hero, the sr-only fallback, the methodology copy
-// and the OG image can never disagree about what the number is.
-const END = countdown.years;
+// lib/countdown.ts (`heroEarlyYears` = earlyYear − baseYear), so the hero
+// animation, the sr-only fallback, and the Japanese landing figure stay
+// on the same early-scenario basis. `countdown.years` remains the median.
+const END = heroEarlyYears;
 // Start one "order of magnitude" above the target so the roll-down reads as
 // a countdown at any target value, instead of the old fixed 99.
 const START = END < 90 ? Math.min(99, END + 40) : END + 40;

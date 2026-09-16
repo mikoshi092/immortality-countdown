@@ -46,7 +46,7 @@ export default function TechnologyMap({ fields, earlyYear }: Props) {
         aria-describedby="ja-tech-map-desc"
       >
         <title id="ja-tech-map-title">
-          8つの技術分野がLEVへ収束する関係図
+          8つの研究分野とLEVの関係図
         </title>
         <desc id="ja-tech-map-desc">
           左右に4分野ずつ並び、それぞれが中央のLEVへ線でつながっています。
@@ -144,7 +144,7 @@ export default function TechnologyMap({ fields, earlyYear }: Props) {
       </svg>
 
       <figcaption className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-5 text-[#17202a]/45">
-        線の塗られた長さが各分野の現在の成熟度スコアです。中央の年は早期10%ラインで、
+        線の塗られた長さが各分野の現在の成熟度スコアです。中央の年は早期シナリオで、
         8分野の合計や平均ではありません。
       </figcaption>
     </figure>
