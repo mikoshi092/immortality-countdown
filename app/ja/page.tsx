@@ -1,63 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import HeroVisual from "@/components/HeroVisual";
+import ArticleTeaser from "@/components/ArticleTeaser";
 import LevCrossingDiagram from "@/components/ja/LevCrossingDiagram";
 import PipelineFlow from "@/components/ja/PipelineFlow";
 import TechnologyMap from "@/components/ja/TechnologyMap";
+import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
 import { FIELD_IDS } from "@/lib/fields";
 import { FIELD_LABELS_JA, FIELD_SUMMARIES_JA } from "@/lib/ja";
 import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-
-/**
- * Japanese faces, loaded by this route and no other.
- *
- * They are declared here rather than in the root layout because a full
- * Japanese family is ~130 unicode-range @font-face blocks: putting them
- * in the shared layout stylesheet added 65 KB gzipped of render-blocking
- * CSS to every English page, which is exactly what "do not touch the
- * English pages" rules out. Imported from a page, the CSS lands in this
- * route's own chunk.
- *
- * `preload: false` with no `subsets` is the required combination. Google
- * publishes no named subset that covers Japanese, so asking for
- * `["latin"]` would preload Latin while still shipping the whole family;
- * omitting subsets keeps the full unicode-range coverage and next/font
- * then emits no <link rel="preload"> at all. The browser downloads a
- * Japanese chunk only when it has a glyph in that range to draw.
- *
- * `weight: "variable"` covers 400 through 600 from one file set instead
- * of one ~130-file set per static weight.
- */
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  weight: "variable",
-  display: "swap",
-  preload: false,
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
-  weight: "variable",
-  display: "swap",
-  preload: false,
-});
-
-/**
- * The variable classes above only reach what is inside <main>. <Footer />
- * is rendered by the root layout as a sibling of `children`, so on /ja it
- * would be the one Japanese block left in an OS fallback face. Publishing
- * the same two custom properties at :root closes that gap.
- *
- * React hoists a <style> carrying `href` + `precedence` into <head> and
- * dedupes it, and because this element is only rendered by this route,
- * English pages never receive it. The values are build-time constants
- * from next/font, not input.
- */
-const JA_FONT_VARS = `:root{--font-noto-sans-jp:${notoSansJP.style.fontFamily};--font-noto-serif-jp:${notoSerifJP.style.fontFamily}}`;
 
 const title =
   "寿命脱出速度（LEV）とは？不老長寿はいつ実現するのか | Immortality Countdown";
@@ -65,10 +19,9 @@ const description =
   "医療の進歩が老化の速度を追い越す「寿命脱出速度（LEV）」とは何か。長寿研究の進展を追い、Immortality Countdown独自モデルによる現在の到達予測を解説します。";
 
 /**
- * Only the English home and this page carry hreflang, because they are
- * the only pair that exists in both languages. /model, /fields and the
- * rest have no Japanese counterpart, so claiming one there would be a
- * false alternate.
+ * Landing-page hreflang remains / and /ja. News list and article pages
+ * declare their own pairs. /model, /fields and the rest still have no
+ * Japanese counterpart, so they must not claim one.
  *
  * Every URL here is written without a trailing slash: the site runs on
  * Next.js's default `trailingSlash: false`, where /ja/ redirects to /ja,
@@ -154,17 +107,14 @@ export default function JapaneseLandingPage() {
   const earlyYears = heroEarlyYears;
   const gain = countdown.currentGain;
   const draws = countdown.draws.toLocaleString("en-US");
+  const latest = listArticles().slice(0, 3);
 
   return (
     <main
       id="top"
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} font-ja min-h-screen bg-[#f7f5ef] text-[#17202a]`}
+      className="min-h-screen bg-[#f7f5ef] text-[#17202a]"
     >
-      <style href="ja-font-vars" precedence="high">
-        {JA_FONT_VARS}
-      </style>
-
       <SiteHeader />
 
       <div className="border-b border-white/10 bg-[#141413]">
@@ -470,6 +420,35 @@ export default function JapaneseLandingPage() {
       </section>
 
       <section
+        id="latest-research"
+        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
+      >
+        <div className="mx-auto max-w-7xl">
+          <h2 className={SECTION_HEADING}>最新研究</h2>
+          <p className={`mt-6 max-w-2xl ${BODY}`}>
+            {latest.length > 0
+              ? "長寿研究の更新を、日本語の記事として掲載しています。英語の見出しをそのまま出していません。"
+              : "公開中の研究記事はまだありません。一次資料を確認した記事から掲載します。"}
+          </p>
+          {latest.length > 0 ? (
+            <div className="mt-8 space-y-4">
+              {latest.map((article) => (
+                <ArticleTeaser key={article.id} article={article} locale="ja" />
+              ))}
+            </div>
+          ) : null}
+          <p className="mt-6">
+            <Link
+              href="/ja/news"
+              className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
+            >
+              最新研究の一覧を見る →
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <section
         id="when-lev"
         className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
       >
@@ -503,10 +482,10 @@ export default function JapaneseLandingPage() {
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
-              href="/#latest-news"
+              href="/ja/news"
               className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
             >
-              最新の研究アップデートを見る（英語）→
+              最新研究を読む →
             </Link>
             <Link
               href="/methodology"

@@ -48,7 +48,7 @@ body {
    The OS faces after Noto still matter: `display: swap` means they are
    what a visitor reads for the first few hundred milliseconds — and they
    are the whole stack on any route that has not defined the Noto
-   variables, since app/ja/page.tsx is the only place that loads them. */
+   variables. Japanese faces are loaded by app/ja/layout.tsx. */
 .font-ja {
   font-family: var(--font-geist-sans), var(--font-noto-sans-jp),
     "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic",

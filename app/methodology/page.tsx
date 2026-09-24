@@ -143,11 +143,10 @@ export default function MethodologyPage() {
           <Section title="Eight Fields of Progress">
             <p>
               The estimate draws on a provisional field taxonomy of eight
-              longevity-relevant research fields. Four are currently
-              tracked with provisional scores; the other four are
-              published as a provisional field taxonomy only — named and
-              scoped, but not yet scored. No score has been invented for
-              them.
+              longevity-relevant research fields. All eight currently
+              carry published readiness scores. Those scores are informed
+              judgements, not measurements, and they can move when the
+              evidence is reviewed.
             </p>
             <ul className="mt-2 list-disc space-y-1.5 pl-5">
               {fieldProgress.map((field) => (
@@ -158,7 +157,6 @@ export default function MethodologyPage() {
                   >
                     {field.name}
                   </Link>
-                  {field.status === "pending" ? " — Score pending" : ""}
                 </li>
               ))}
             </ul>

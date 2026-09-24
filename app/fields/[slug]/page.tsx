@@ -170,13 +170,7 @@ export default async function FieldDetailPage({
           </Section>
 
           <Section title="Reality Check">
-            <Paragraphs
-              text={
-                field.status === "pending"
-                  ? "This readiness score is a published model input, not a measurement or clinical forecast. It summarizes the field under the assumptions documented in the model and does not predict that any specific intervention will succeed. It should be treated as an evolving assessment, not a guaranteed roadmap."
-                  : field.limitations
-              }
-            />
+            <Paragraphs text={field.limitations} />
           </Section>
 
           <div className="mt-12 grid gap-3 border-t border-black/10 pt-6 sm:grid-cols-2">

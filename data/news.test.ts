@@ -53,6 +53,40 @@ describe("field taxonomy is consistent across the whole site", () => {
     }
   });
 
+  it("methodology copy describes all eight fields as scored", () => {
+    const src = readFileSync(join(here, "../app/methodology/page.tsx"), "utf8");
+    assert.equal(src.includes("Four are currently"), false);
+    assert.equal(src.includes("Score pending"), false);
+    assert.equal(src.includes("未採点"), false);
+    assert.match(src, /All eight currently\s+carry published readiness scores/);
+  });
+
+  it("public copy does not say fields are pending or that only four are scored", () => {
+    const files = [
+      join(here, "fields.ts"),
+      join(here, "articles.ts"),
+      join(here, "../app/methodology/page.tsx"),
+      join(here, "../app/fields/[slug]/page.tsx"),
+      join(here, "../app/fields/[slug]/opengraph-image.tsx"),
+      join(here, "../app/fields/page.tsx"),
+      join(here, "../components/FieldsProgress.tsx"),
+      join(here, "../components/ja/TechnologyMap.tsx"),
+    ];
+    for (const file of files) {
+      const src = readFileSync(file, "utf8");
+      assert.equal(src.includes("Score pending"), false, `${file} still contains Score pending`);
+      assert.equal(src.includes("未採点"), false, `${file} still contains 未採点`);
+      assert.equal(src.includes("Four are currently"), false, `${file} still contains Four are currently`);
+    }
+    for (const field of fieldProgress) {
+      assert.equal(field.status, "provisional", `${field.slug} is not marked provisional`);
+      assert.equal(typeof field.score, "number", `${field.slug} has no public score`);
+      const paramField = params.fields.find((f: { id: string }) => f.id === field.slug);
+      assert.ok(paramField, `${field.slug}: missing from params.json`);
+      assert.equal(field.score, paramField.score, `${field.slug}: fields.ts score drifted from params.json`);
+    }
+  });
+
   it("model snapshots match the published params for all eight fields", () => {
     for (const id of FIELD_IDS) {
       const snapshot = getFieldModel(id);
@@ -94,7 +128,9 @@ describe("news items", () => {
     each((item) => {
       for (const [name, value] of [
         ["id", item.id],
+        ["slug", item.slug],
         ["headline", item.headline],
+        ["dek", item.dek],
         ["whatHappened", item.whatHappened],
         ["whatItMeans", item.whatItMeans],
         ["sourceLabel", item.sourceLabel],

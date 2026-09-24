@@ -12,6 +12,9 @@
     "test:model": "tsx --test lev/model.test.ts",
     "test:ingest": "tsx --test automation/normalize.test.ts automation/rank.test.ts automation/validate.test.ts automation/pipeline.test.ts automation/fetch.test.ts",
     "ingest:dry": "tsx automation/run.ts",
+    "editorial:dry": "tsx automation/editorial/run.ts",
+    "news:publish": "tsx automation/publish/run.ts",
+    "model:review": "tsx automation/model-review/run.ts",
     "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {

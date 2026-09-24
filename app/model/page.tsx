@@ -6,6 +6,8 @@ import BetaBanner from "@/components/BetaBanner";
 import LevFanChart from "@/components/LevFanChart";
 import { countdown, probabilityBy, formatPercent, heroEarlyYears } from "@/lib/countdown";
 import { FOCUS_RING } from "@/lib/nav";
+import { serializeJsonLd } from "@/lib/json-ld";
+import { SITE_URL } from "@/lib/site";
 import params from "@/lev/params.json";
 
 export const metadata: Metadata = {
@@ -36,8 +38,33 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 }
 
 export default function ModelPage() {
+  const datasetJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": `${SITE_URL}/#dataset`,
+    name: "Longevity Escape Velocity readiness index",
+    description:
+      "Readiness scores across eight longevity research fields plus a regulatory-readiness gate, with a reproducible Monte Carlo forecast of when remaining healthy life expectancy grows by one year per calendar year.",
+    url: `${SITE_URL}/model`,
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    creator: { "@id": `${SITE_URL}/#publisher` },
+    version: countdown.paramsVersion,
+    isAccessibleForFree: true,
+    keywords: [
+      "longevity escape velocity",
+      "aging",
+      "healthspan",
+      "geroscience",
+      "technology readiness",
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(datasetJsonLd) }}
+      />
       <SiteHeader />
       <BetaBanner />
 

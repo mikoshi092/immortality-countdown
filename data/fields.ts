@@ -5,10 +5,9 @@
 //
 // Single source of truth for the "Eight Fields of Progress" taxonomy,
 // including the long-form content shown on each field's /fields/[slug]
-// page. Four fields carry provisional illustrative scores; the other
-// four are a provisional field taxonomy only — named and scoped, but
-// with no score assigned yet. Do not invent scores, studies, trials,
-// companies, or citations for any field.
+// page. All eight fields currently carry published readiness scores in
+// the model. Do not invent studies, trials, companies, or citations
+// for any field.
 
 import type { FieldId } from "@/lib/fields";
 
@@ -19,8 +18,9 @@ export type FieldProgress = {
   // so /fields/[slug] can never point at a field the model does not know.
   slug: FieldId;
   name: string;
-  // 0–100, PROVISIONAL — not an official/audited score. null while
-  // status is "pending" (no score has been assigned yet).
+  // 0–100, PROVISIONAL — not an official/audited score. null only if
+  // status is "pending" and the model has not yet assigned a score.
+  // All eight published fields currently have scores.
   score: number | null;
   status: FieldStatus;
   // One-line summary used in lists, cards, and previews.
@@ -178,8 +178,8 @@ export const fieldProgress: FieldProgress[] = [
   {
     slug: "ai-drug-discovery",
     name: "AI Drug Discovery",
-    score: null,
-    status: "pending",
+    score: 52,
+    status: "provisional",
     description:
       "AI-assisted target identification, molecular design, prediction, and trial optimization.",
     plainEnglish:
@@ -203,15 +203,15 @@ export const fieldProgress: FieldProgress[] = [
       "**Validation cost:** Confirming AI predictions still requires slow, expensive laboratory and clinical work.",
     ],
     scoringNote:
-      "The dashboard currently displays **Score pending** for AI Drug Discovery.\n\nThis field is part of the site’s provisional eight-field taxonomy, but the scoring criteria have not been finalized. Pending status means the assessment method is still incomplete. It does not mean that no research is happening, and it should not be read as a score of zero.",
+      "The dashboard currently displays a provisional score of **52 / 100** for AI Drug Discovery.\n\nThis number is an illustrative working baseline for the public beta. It is not the output of a validated, published, or independently audited scoring model. The score will be recalculated once the formal methodology has been completed.",
     limitations:
-      "This page does not estimate when AI will produce a longevity therapy, and the pending status should not be read as a score. It reflects incomplete assessment criteria, not an absence of work in the field.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
+      "This assessment does not estimate when AI will produce a longevity therapy. It is a provisional reading of the field’s overall research momentum, translational progress, and remaining barriers.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
   },
   {
     slug: "organ-replacement-biofabrication",
     name: "Organ Replacement & Biofabrication",
-    score: null,
-    status: "pending",
+    score: 38,
+    status: "provisional",
     description:
       "Engineered tissues, organoids, bioprinting, transplantation, and replacement of failing organs.",
     plainEnglish:
@@ -236,15 +236,15 @@ export const fieldProgress: FieldProgress[] = [
       "**Regulation:** Implantable engineered tissue faces long regulatory pathways.",
     ],
     scoringNote:
-      "The dashboard currently displays **Score pending** for Organ Replacement & Biofabrication.\n\nThis field is part of the site’s provisional eight-field taxonomy, but the scoring criteria have not been finalized. Pending status means the assessment method is still incomplete. It does not mean that no research is happening, and it should not be read as a score of zero.",
+      "The dashboard currently displays a provisional score of **38 / 100** for Organ Replacement & Biofabrication.\n\nThis number is an illustrative working baseline for the public beta. It is not the output of a validated, published, or independently audited scoring model. The score will be recalculated once the formal methodology has been completed.",
     limitations:
-      "This assessment does not predict when replacement organs or biofabricated tissue will become a routine clinical option. Pending status reflects an incomplete scoring method, not a judgment that the field lacks progress.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
+      "This assessment does not predict when replacement organs or biofabricated tissue will become a routine clinical option. It is a provisional reading of the field’s overall research momentum, translational progress, and remaining barriers.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
   },
   {
     slug: "immune-engineering-cancer-control",
     name: "Immune Engineering & Cancer Control",
-    score: null,
-    status: "pending",
+    score: 45,
+    status: "provisional",
     description:
       "Immune rejuvenation, chronic inflammation control, cancer prevention, and immune-based therapies.",
     plainEnglish:
@@ -269,15 +269,15 @@ export const fieldProgress: FieldProgress[] = [
       "**Individual variation:** The immune system ages differently from person to person.",
     ],
     scoringNote:
-      "The dashboard currently displays **Score pending** for Immune Engineering & Cancer Control.\n\nThis field is part of the site’s provisional eight-field taxonomy, but the scoring criteria have not been finalized. Pending status means the assessment method is still incomplete. It does not mean that no research is happening, and it should not be read as a score of zero.",
+      "The dashboard currently displays a provisional score of **45 / 100** for Immune Engineering & Cancer Control.\n\nThis number is an illustrative working baseline for the public beta. It is not the output of a validated, published, or independently audited scoring model. The score will be recalculated once the formal methodology has been completed.",
     limitations:
-      "This assessment does not predict whether immune engineering will prevent age-related disease or control cancer. Pending status reflects an incomplete scoring method, not a judgment that the field lacks progress.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
+      "This assessment does not predict whether immune engineering will prevent age-related disease or control cancer. It is a provisional reading of the field’s overall research momentum, translational progress, and remaining barriers.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
   },
   {
     slug: "enabling-technology-automation",
     name: "Enabling Technology & Automation",
-    score: null,
-    status: "pending",
+    score: 50,
+    status: "provisional",
     description:
       "Laboratory automation, robotics, high-throughput screening, computing, and scalable biomanufacturing.",
     plainEnglish:
@@ -302,8 +302,8 @@ export const fieldProgress: FieldProgress[] = [
       "**Standardization:** Platforms and laboratories still lack common standards.",
     ],
     scoringNote:
-      "The dashboard currently displays **Score pending** for Enabling Technology & Automation.\n\nThis field is part of the site’s provisional eight-field taxonomy, but the scoring criteria have not been finalized. Pending status means the assessment method is still incomplete. It does not mean that no research is happening, and it should not be read as a score of zero.",
+      "The dashboard currently displays a provisional score of **50 / 100** for Enabling Technology & Automation.\n\nThis number is an illustrative working baseline for the public beta. It is not the output of a validated, published, or independently audited scoring model. The score will be recalculated once the formal methodology has been completed.",
     limitations:
-      "This assessment does not predict how quickly infrastructure will compress research or manufacturing timelines. Pending status reflects an incomplete scoring method, not a judgment that the field lacks progress.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
+      "This assessment does not predict how quickly infrastructure will compress research or manufacturing timelines. It is a provisional reading of the field’s overall research momentum, translational progress, and remaining barriers.\n\nIt should be treated as an evolving signal, not a clinical forecast or guaranteed roadmap.",
   },
 ];

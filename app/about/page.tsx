@@ -4,6 +4,7 @@ import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import { PUBLISHER, SITE_URL } from "@/lib/site";
+import { serializeJsonLd } from "@/lib/json-ld";
 import { FOCUS_RING } from "@/lib/nav";
 import { countdown } from "@/lib/countdown";
 
@@ -57,7 +58,7 @@ export default function AboutPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <article className="px-5 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20">

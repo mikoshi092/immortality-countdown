@@ -368,4 +368,18 @@ describe("outcome scoring is conservative", () => {
     assert.ok(classified.notes.some((note) => /not classified as cells-only/i.test(note)));
     assert.ok(!classified.notes.some((note) => /cells-only experiment/i.test(note)));
   });
+
+  it("records GTEx autopsy tissue as deceased-donor-tissue, not living-people", () => {
+    const gtex = record({
+      title: "Histological aging signatures for monitoring tissue-specific aging and disease",
+      abstract:
+        "We analyzed 25,712 whole-slide histopathological images from 40 tissue types across 983 GTEx donors collected under a rapid autopsy protocol.",
+    });
+    const subjects = detectStudySubjects(gtex);
+    const classified = classifyEvidence(gtex);
+    assert.ok(subjects.includes("deceased-donor-tissue"));
+    assert.equal(subjects.includes("living-people"), false);
+    assert.equal(classified.evidence, "Evidence C");
+    assert.ok(classified.notes.some((note) => /not living-participant/i.test(note)));
+  });
 });

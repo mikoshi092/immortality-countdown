@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
+import { serializeJsonLd } from "@/lib/json-ld";
 import { SITE_URL, SITE_NAME, PUBLISHER } from "@/lib/site";
-import { countdown } from "@/lib/countdown";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -60,10 +60,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Dataset markup is the underused win here: this site publishes a
- * versioned, reproducible dataset (lev/params.json + forecast.json), which
- * makes it eligible for Google Dataset Search — a surface with almost no
- * competition in this topic. Person/publisher markup covers E-E-A-T.
+ * Dataset markup belongs on /model, the page whose URL it names.
+ * Person/publisher markup covers E-E-A-T sitewide.
  */
 const jsonLd = {
   "@context": "https://schema.org",
@@ -87,25 +85,6 @@ const jsonLd = {
       // "Taketoki Fujita" is just a string on a page.
       sameAs: PUBLISHER.sameAs,
     },
-    {
-      "@type": "Dataset",
-      "@id": `${siteUrl}/#dataset`,
-      name: "Longevity Escape Velocity readiness index",
-      description:
-        "Readiness scores across eight longevity research fields plus a regulatory-readiness gate, with a reproducible Monte Carlo forecast of when remaining healthy life expectancy grows by one year per calendar year.",
-      url: `${siteUrl}/model`,
-      license: "https://creativecommons.org/licenses/by/4.0/",
-      creator: { "@id": `${siteUrl}/#publisher` },
-      version: countdown.paramsVersion,
-      isAccessibleForFree: true,
-      keywords: [
-        "longevity escape velocity",
-        "aging",
-        "healthspan",
-        "geroscience",
-        "technology readiness",
-      ],
-    },
   ],
 };
 
@@ -122,7 +101,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
         {children}
         <Footer />

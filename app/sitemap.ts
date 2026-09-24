@@ -1,33 +1,28 @@
 import type { MetadataRoute } from "next";
+import { listArticles, articleSitemapDate } from "@/data/articles";
 import { fieldProgress } from "@/data/fields";
 import params from "@/lev/params.json";
-import { SITE_URL, CONTENT_UPDATED } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
+import { articleCanonical, newsIndexCanonical } from "@/lib/article-seo";
 
 /**
- * Two bugs fixed here:
+ * lastModified is omitted unless that specific URL has a dated source.
+ * Do not reuse one editorial constant across unrelated pages.
  *
- * 1. /methodology was missing entirely — the single most important page
- *    for a site whose whole pitch is transparency was not in the sitemap.
- * 2. No `lastModified`. Google largely ignores `priority` and
- *    `changeFrequency`, but it does use `lastmod` to schedule recrawls,
- *    so omitting it was the one field that actually mattered.
- *
- * `lastModified` is deliberately NOT `new Date()`: that would claim every
- * page changed on every deploy, which is a lie Google learns to discount.
- * Model-derived pages carry the params.json review date; the rest carry a
- * hand-maintained constant.
+ * - `/` and `/model` use the published model review date.
+ * - `/fields/[slug]` uses that field's lastReviewed date in params.json.
+ * - Published article URLs use sitePublishedAt / siteModifiedAt.
+ * - News indexes use the latest published article site date, if any.
+ * - Hand-written pages without a page-specific date omit lastModified.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const modelReviewed = new Date(params.publishedAt);
 
   const fieldReviewDate = (slug: string) => {
     const entry = params.fields.find((f) => f.id === slug);
-    return entry ? new Date(entry.lastReviewed) : modelReviewed;
+    return entry ? new Date(entry.lastReviewed) : undefined;
   };
 
-  // Only these two URLs are translations of each other, so only these two
-  // carry alternates. Listing a Japanese alternate for /model or /fields
-  // would point Google at pages that do not exist in Japanese.
   const localePair = {
     languages: {
       en: SITE_URL,
@@ -36,20 +31,68 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   };
 
+  const newsPair = {
+    languages: {
+      en: newsIndexCanonical("en"),
+      ja: newsIndexCanonical("ja"),
+      "x-default": newsIndexCanonical("en"),
+    },
+  };
+
+  const published = listArticles();
+  const newsUpdated = published
+    .map((article) => articleSitemapDate(article)?.getTime() ?? 0)
+    .reduce((latest, time) => Math.max(latest, time), 0);
+  const newsLastModified = newsUpdated > 0 ? new Date(newsUpdated) : undefined;
+
   return [
     { url: SITE_URL, lastModified: modelReviewed, alternates: localePair },
     {
       url: `${SITE_URL}/ja`,
-      lastModified: CONTENT_UPDATED,
       alternates: localePair,
     },
-    { url: `${SITE_URL}/methodology`, lastModified: modelReviewed },
+    { url: `${SITE_URL}/methodology` },
     { url: `${SITE_URL}/model`, lastModified: modelReviewed },
-    { url: `${SITE_URL}/fields`, lastModified: CONTENT_UPDATED },
-    { url: `${SITE_URL}/about`, lastModified: CONTENT_UPDATED },
-    ...fieldProgress.map((field) => ({
-      url: `${SITE_URL}/fields/${field.slug}`,
-      lastModified: fieldReviewDate(field.slug),
-    })),
+    { url: `${SITE_URL}/fields` },
+    { url: `${SITE_URL}/about` },
+    {
+      url: newsIndexCanonical("en"),
+      ...(newsLastModified ? { lastModified: newsLastModified } : {}),
+      alternates: newsPair,
+    },
+    {
+      url: newsIndexCanonical("ja"),
+      ...(newsLastModified ? { lastModified: newsLastModified } : {}),
+      alternates: newsPair,
+    },
+    ...published.flatMap((article) => {
+      const lastModified = articleSitemapDate(article);
+      const pair = {
+        languages: {
+          en: articleCanonical("en", article.slug),
+          ja: articleCanonical("ja", article.slug),
+          "x-default": articleCanonical("en", article.slug),
+        },
+      };
+      return [
+        {
+          url: articleCanonical("en", article.slug),
+          ...(lastModified ? { lastModified } : {}),
+          alternates: pair,
+        },
+        {
+          url: articleCanonical("ja", article.slug),
+          ...(lastModified ? { lastModified } : {}),
+          alternates: pair,
+        },
+      ];
+    }),
+    ...fieldProgress.map((field) => {
+      const lastModified = fieldReviewDate(field.slug);
+      return {
+        url: `${SITE_URL}/fields/${field.slug}`,
+        ...(lastModified ? { lastModified } : {}),
+      };
+    }),
   ];
 }
