@@ -17,6 +17,19 @@ jobs:
 
       - run: npm ci
 
+      - name: Guard automatic news PR paths
+        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'news/auto-')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t FILES < <(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files" --jq '.[].filename')
+          if [ "${#FILES[@]}" -eq 0 ]; then
+            echo "News PR has no files"
+            exit 1
+          fi
+          npx tsx automation/publish/check-paths.ts "${FILES[@]}"
+
       # The model's own tests, including the editorial guardrail that fails
       # if a field score changed without a written rationale.
       - run: npx tsx --test lev/model.test.ts lib/countdown.test.ts
@@ -24,7 +37,10 @@ jobs:
       # Guards the news feed: required fields, at most one featured item,
       # unique ids/DOIs, sane dates, no placeholder sources or overclaiming
       # headlines, and one field taxonomy across code, content and model.
-      - run: npx tsx --test data/news.test.ts
+      - run: npx tsx --test data/news.test.ts data/articles.test.ts lib/article-seo.test.ts lib/rss.test.ts lib/json-ld.test.ts app/sitemap.test.ts
+
+      # Phase 3.1 editorial and auto-publish guards.
+      - run: npx tsx --test automation/editorial/validate.test.ts automation/editorial/generate.test.ts automation/editorial/run.test.ts automation/noise.test.ts automation/publish/publish.test.ts automation/publish/open-pr-lock.test.ts
 
       # Phase 3.0 ingest guards: dedup, dates, evidence conservatism,
       # source-URL matching, and the model-file write protection.

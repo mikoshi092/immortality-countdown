@@ -43,7 +43,7 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
     <section id="latest-news" className="scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
-          Latest Verified Updates
+          Selected research updates
         </h2>
 
         {isEmpty ? (
@@ -52,7 +52,7 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
           // elsewhere. Say what is actually true instead.
           <div className="mt-5 rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-6">
             <p className="text-base leading-7 text-[#17202a]/70">
-              Verified research updates are being prepared. Every entry must
+              Selected research updates are being prepared. Every entry must
               link to a source that has been checked before it appears here.
             </p>
             <p className="mt-3 text-sm leading-6 text-[#17202a]/55">
@@ -98,6 +98,14 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
                 {filtered.map((item) => (
                   <NewsCard key={item.id} item={item} />
                 ))}
+                <p className="pt-2 text-sm">
+                  <Link
+                    href="/news"
+                    className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
+                  >
+                    Latest research →
+                  </Link>
+                </p>
               </div>
             ) : (
               <p className="mt-6 text-sm text-[#17202a]/45">

@@ -1,6 +1,6 @@
 # Phase 3.0 — Automation Spine
 
-PubMed と ClinicalTrials.gov から直近48時間の記録を集め、正規化・重複排除・分類評価・検証まで行う。記事生成と自動公開はまだしない。
+PubMed と ClinicalTrials.gov から直近48時間の記録を集め、正規化・重複排除・分類評価・検証まで行う。記事の自動公開は Phase 3.1 の `news:publish` と `.github/workflows/news-auto-publish.yml` が行い、この ingest 自体は `lev/params.json` と `lev/forecast.json` を書かない。
 
 ```
 npm run ingest:dry
@@ -138,17 +138,40 @@ Evidence は `data/news.ts` の定義を再利用する。タイトルだけで�
 - `NCBI_API_KEY` — 任意。E-utilities のレート上限を上げる
 - `NCBI_EMAIL` — 任意。NCBI が推奨する連絡先
 - `NCBI_TOOL` — 任意。未設定時は `immortality-countdown`
+- `OPENAI_API_KEY` — 記事生成（OpenAI）に必須
+- `EDITORIAL_MODEL` — 任意。未設定時は `gpt-4o-mini`
+- `EDITORIAL_PROVIDER` — 任意。`openai`（既定）またはテスト用 `mock`
+- `NEWS_PUBLISH_TOKEN` — fine-grained PAT。対象は immortality-countdown だけ。Contents は Read and write、Pull requests は Read and write、Metadata は Read。Administration なし。Actions の書き込みなし。rules bypass なし。有効期限あり。
 
 ## GitHub Actions
 
-`.github/workflows/content-discovery.yml` は 6 時間ごとと `workflow_dispatch` で `npm run ingest:dry` を Node 22 上で実行し、結果を artifact 保存する。リポジトリへ commit しない。
+`.github/workflows/news-auto-publish.yml` は 6 時間ごとと `workflow_dispatch` で、open PR の確認 → ingest → editorial → 公開ゲート → `data/articles.ts` だけを変更 → 記事専用ブランチと PR → required checks 成功後の auto-merge まで行う。`main` へ直接 push しない。同時実行は `concurrency: news-auto-publish` で防ぐ。`news/auto-*` または label `news-auto` の open PR があるあいだは次の PR を作らない。24時間を超えた自動ニュース PR は auto-merge せず、閉じられる。ブランチ名には `GITHUB_RUN_ID` と `GITHUB_RUN_ATTEMPT` を含める。checkout は `persist-credentials: false`。
+
+必要な GitHub secrets / vars:
+
+- `NCBI_API_KEY` / `NCBI_EMAIL` — PubMed
+- `OPENAI_API_KEY` / `EDITORIAL_MODEL` — 記事生成
+- `NEWS_PUBLISH_TOKEN` — fine-grained PAT。対象リポジトリは immortality-countdown のみ。Contents: Read and write。Pull requests: Read and write。Metadata: Read。Administration 権限なし。Actions の書き込み権限なし。rules bypass なし。有効期限あり。`GITHUB_TOKEN` の PR は checks を再トリガーしない。
+
+`production-deploy-notice.yml` のトリガーは GitHub の `deployment_status` だけである。`workflow_run` でも Vercel Check のポーリングでもない。このリポジトリの Vercel Production 失敗が実際にそのイベントへ届くかは検証未完了。自動 revert はしない。
+
+`.github/workflows/model-review.yml` は半年ごと（1月1日・7月1日 UTC）と手動。公開済み記事を根拠候補として出す。auto-merge しない。`lev/params.json` / `lev/forecast.json` は書かない。
 
 ## 既知の制約
 
 - 採点は文単位のルールであり、誤判定は残る。全文理解や LLM による判定ではない。
 - 取得途中のページ／バッチ失敗で、それまでの取得分を保持できない経路が残る。
-- 今回は候補収集の試運転のみ。記事の自動公開はしない。
+- 判定不能は held にし、AI の推測で埋めない。
+- `sitePublishedAt` は記事ファイル生成時の掲載予定時刻である。required checks と merge の遅延は許容する。
 
-## Phase 3.1 へ進む前に
+## Phase 3.1 — 日英記事と自動公開
 
-候補を数日観察して品質を確認してから、Phase 3.1 の記事ドラフト生成へ進む。今回のスコアと分類は初期ルールであり、観察なしに本文生成へ繋げない。
+```
+npm run ingest:dry
+npm run editorial:dry
+npm run news:publish
+```
+
+`editorial:dry` は記事ファイルを書かない。`news:publish` はゲートを通ったドラフトだけ `data/articles.ts` に足し、`sitePublishedAt` に掲載予定時刻を入れる。LEV ファイルは書かない。
+
+編集方針は `docs/editorial-policy.md`。ニュース更新と LEV モデル更新は分離する。

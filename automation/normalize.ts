@@ -179,5 +179,6 @@ export function toCandidate(
     urlOrigin: record.urlOrigin,
     mergedFrom: mergedFrom?.length ? mergedFrom : undefined,
     studySubjects: record.studySubjects?.length ? record.studySubjects : undefined,
+    hints: record.hints,
   };
 }

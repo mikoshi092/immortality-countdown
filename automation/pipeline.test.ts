@@ -12,6 +12,20 @@ import type { SourceDefinition } from "./types";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 
+function collectTs(dir: string): string[] {
+  const entries = readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+  for (const entry of entries) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory() && entry.name !== "output") {
+      files.push(...collectTs(path));
+    } else if (entry.isFile() && entry.name.endsWith(".ts") && !entry.name.endsWith(".test.ts")) {
+      files.push(path);
+    }
+  }
+  return files;
+}
+
 function sha(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
@@ -25,8 +39,8 @@ function jsonResponse(body: unknown, url: string): Response {
 
 describe("model files stay untouched", () => {
   it("automation source does not write lev/params.json or lev/forecast.json", () => {
-    const files = readdirSync(here).filter((name) => name.endsWith(".ts") && !name.endsWith(".test.ts"));
-    const combined = files.map((name) => readFileSync(join(here, name), "utf8")).join("\n");
+    const files = collectTs(here);
+    const combined = files.map((name) => readFileSync(name, "utf8")).join("\n");
     assert.equal(/writeFileSync\([^)]*lev\/(params|forecast)\.json/.test(combined), false);
     assert.equal(/writeFile\([^)]*lev\/(params|forecast)\.json/.test(combined), false);
   });

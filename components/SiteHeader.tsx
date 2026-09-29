@@ -7,9 +7,9 @@ import NavLink from "@/components/NavLink";
 import {
   NAV_LINKS,
   NAV_LINKS_JA,
-  LANGUAGE_SWITCH,
   FOCUS_RING,
   isJapanesePath,
+  languageSwitchFor,
 } from "@/lib/nav";
 
 /**
@@ -21,16 +21,18 @@ import {
  *
  * The locale is read from the path rather than passed as a prop so that
  * the header cannot disagree with the page it sits on. English pages get
- * the English nav plus a link to /ja; /ja gets the Japanese nav plus a
- * link back. Nothing here redirects.
+ * the English nav plus a link to the Japanese counterpart when one
+ * exists; Japanese pages get the Japanese nav plus a link back.
+ * Nothing here redirects.
  */
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const isJa = isJapanesePath(usePathname());
+  const pathname = usePathname();
+  const isJa = isJapanesePath(pathname);
 
   const links = isJa ? NAV_LINKS_JA : NAV_LINKS;
   const homeHref = isJa ? "/ja#top" : "/#top";
-  const switcher = isJa ? LANGUAGE_SWITCH.toEnglish : LANGUAGE_SWITCH.toJapanese;
+  const switcher = languageSwitchFor(pathname);
   const menuLabel = isJa
     ? { open: "メニューを閉じる", closed: "メニューを開く", nav: "メインメニュー" }
     : { open: "Close menu", closed: "Open menu", nav: "Primary" };

@@ -1,0 +1,41 @@
+name: Production deploy notice
+
+# Trigger: GitHub deployment_status only.
+# This is not workflow_run and not a Vercel Check API poll.
+# Whether the Vercel GitHub integration for this repository emits
+# Production failures on deployment_status has not been verified.
+# 検証未完了.
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+jobs:
+  record:
+    if: github.event.deployment_status.state == 'failure' || github.event.deployment_status.state == 'error'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record a production deploy failure
+        env:
+          DEPLOY_ENV: ${{ github.event.deployment.environment }}
+          DEPLOY_STATE: ${{ github.event.deployment_status.state }}
+          DEPLOY_URL: ${{ github.event.deployment_status.target_url }}
+          DEPLOY_DESCRIPTION: ${{ github.event.deployment_status.description }}
+        run: |
+          set -euo pipefail
+          ENV_NAME=$(printf '%s' "$DEPLOY_ENV" | tr '[:upper:]' '[:lower:]')
+          if [ "$ENV_NAME" != "production" ]; then
+            echo "Deployment failure is ${DEPLOY_ENV}, not Production. No revert."
+            exit 0
+          fi
+          {
+            echo "## Production deploy failed"
+            echo "Automatic revert is not performed."
+            echo "Environment: ${DEPLOY_ENV}"
+            echo "State: ${DEPLOY_STATE}"
+            echo "Target: ${DEPLOY_URL}"
+            echo "Description: ${DEPLOY_DESCRIPTION}"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 1

@@ -6,14 +6,6 @@ export const SITE_URL = "https://immortalitycountdown.com";
 export const SITE_NAME = "Immortality Countdown";
 
 /**
- * Bump this when the hand-written editorial content (field write-ups,
- * page copy) genuinely changes. Do NOT replace it with `new Date()` —
- * a sitemap that claims every page changed on every deploy trains Google
- * to ignore your lastmod entirely.
- */
-export const CONTENT_UPDATED = new Date("2026-08-19");
-
-/**
  * Author/publisher. E-E-A-T needs a named human, and Google needs to be
  * able to tie that name to profiles it already knows about — that is what
  * `sameAs` is for. Deliberately NO postal address or phone number: those

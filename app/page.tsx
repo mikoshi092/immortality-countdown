@@ -13,9 +13,9 @@ import { newsItems } from "@/data/news";
  * `alternates` object replaces the inherited one wholesale, so the
  * canonical has to be restated alongside the languages.
  *
- * This pairing exists only between / and /ja, the only two URLs that are
- * genuine translations of one another. /model, /fields and the rest still
- * declare `canonical` and no `languages`, which is what keeps them from
+ * This pairing exists between / and /ja. News list and article pages
+ * declare their own pairs. /model, /fields and the rest still declare
+ * `canonical` and no `languages`, which is what keeps them from
  * advertising Japanese versions that do not exist.
  */
 export const metadata: Metadata = {

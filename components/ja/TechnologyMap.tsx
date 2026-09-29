@@ -49,7 +49,7 @@ export default function TechnologyMap({ fields, earlyYear }: Props) {
           8つの研究分野とLEVの関係図
         </title>
         <desc id="ja-tech-map-desc">
-          左右に4分野ずつ並び、それぞれが中央のLEVへ線でつながっています。
+          8分野が左右に4つずつ並び、それぞれが中央のLEVへ線でつながっています。
           線の塗られている長さが、その分野の現在の成熟度スコアにあたります。
           {fields.map((f) => `${f.label}は${f.score}。`).join("")}
         </desc>

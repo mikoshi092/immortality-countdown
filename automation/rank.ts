@@ -177,6 +177,26 @@ const TISSUE_DONOR_ONLY_PATTERNS = [
   /\btissues? of .{0,60}patients?\b/i,
   /\bderived from .{0,40}patients?\b/i,
   /\bfrom pop patients\b/i,
+  /\bgtex\b/i,
+  /\bpost-?mortem\b/i,
+  /\bautops(?:y|ies)\b/i,
+  /\bdeceased donors?\b/i,
+  /\brapid autopsy\b/i,
+];
+
+const POSTMORTEM_TISSUE_PATTERNS = [
+  /\bgtex\b/i,
+  /\bpost-?mortem\b/i,
+  /\bautops(?:y|ies)\b/i,
+  /\bdeceased donors?\b/i,
+  /\brapid autopsy\b/i,
+];
+
+const HUMAN_TISSUE_PATTERNS = [
+  /\bhuman tissues?\b/i,
+  /\b\d+\s+tissue types\b/i,
+  /\bwhole-slide\b/i,
+  /\bhistopatholog/i,
 ];
 
 const REVIEW_TITLE_PATTERN =
@@ -216,6 +236,15 @@ export function detectStudySubjects(record: FetchedRecord): string[] {
   const text = haystack(record);
   const subjects: string[] = [];
   if (livingHumanSubjectHits(text).length > 0) subjects.push("living-people");
+  if (POSTMORTEM_TISSUE_PATTERNS.some((pattern) => pattern.test(text))) {
+    subjects.push("deceased-donor-tissue");
+  }
+  if (
+    HUMAN_TISSUE_PATTERNS.some((pattern) => pattern.test(text)) &&
+    !subjects.includes("deceased-donor-tissue")
+  ) {
+    subjects.push("human-tissue");
+  }
   if (CELL_ORGANOID_PATTERNS.some((pattern) => pattern.test(text))) subjects.push("cells-tissues-organoids");
   if (/\bmice\b|\bmouse\b|\bmurine\b/i.test(text)) subjects.push("mice");
   if (/\brats?\b/i.test(text)) subjects.push("rats");
@@ -233,6 +262,12 @@ function livingHumanSubjectHits(text: string): string[] {
   }
   const hits = listedMatches(text, LIVING_HUMAN_SUBJECT_PATTERNS);
   if (hits.length === 0) return [];
+  if (
+    POSTMORTEM_TISSUE_PATTERNS.some((pattern) => pattern.test(text)) &&
+    !/\bcohort study\b|\bnhanes\b|\buk biobank\b|\bwe enrolled\b|\bmedian follow-up\b/i.test(text)
+  ) {
+    return [];
+  }
   if (
     TISSUE_DONOR_ONLY_PATTERNS.some((pattern) => pattern.test(text)) &&
     !/\bparticipants\b|\bcohort study\b|\bnhanes\b|\bwe enrolled\b|\bmedian follow-up\b/i.test(text)
@@ -300,6 +335,16 @@ export function classifyEvidence(record: FetchedRecord): { evidence: EvidenceLev
 
   if (peopleHits.length > 0) {
     notes.push(`living people appear to be the study population (${peopleHits.slice(0, 3).join(", ")}), but design, size, and endpoints were not verified, so this is not graded as Evidence A or B`);
+    return { evidence: "Evidence C", notes };
+  }
+
+  if (
+    subjects.includes("deceased-donor-tissue") ||
+    subjects.includes("human-tissue")
+  ) {
+    notes.push(
+      "human tissue or postmortem samples, not living-participant research; observational human evidence, so not Evidence A or B",
+    );
     return { evidence: "Evidence C", notes };
   }
 

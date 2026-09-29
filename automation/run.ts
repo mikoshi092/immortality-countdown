@@ -4,7 +4,7 @@
  *   npm run ingest:dry
  *
  * Collects PubMed and ClinicalTrials.gov records from the last 48 hours,
- * normalizes, deduplicates, ranks, and validates them. Writes
+ * normalizes, deduplicates, ranks, excludes noise, and validates them. Writes
  * automation/output/candidates.json. Does not generate articles, publish,
  * or write lev/params.json / lev/forecast.json.
  */
@@ -14,6 +14,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { COUNT_DEFINITIONS, LOOKBACK_HOURS, RANK_THRESHOLDS, SCORE_DISCLAIMER, type IngestReport, type Rejection, type SourceDefinition, type SourceFetchResult } from "./types";
 import { fetchEnabledSources, type HttpGet, lookbackWindow } from "./fetch";
 import { enabledSources } from "./sources";
+import { exclusionReasons } from "./noise";
 import { deduplicate, toCandidate } from "./normalize";
 import { passesRankThresholds, rankRecord } from "./rank";
 import { contextFromFetched, validateCandidates } from "./validate";
@@ -45,6 +46,21 @@ export async function runIngest(options: RunIngestOptions = {}): Promise<IngestR
   const thresholdRejected: Rejection[] = [];
   const thresholdPassed = [];
   for (const record of ranked) {
+    const excluded = exclusionReasons(record);
+    if (excluded.length > 0) {
+      thresholdRejected.push({
+        recordId: record.recordId,
+        sourceId: record.sourceId,
+        title: record.title,
+        sourceUrl: record.sourceUrl,
+        reasons: excluded,
+        fieldId: record.fieldId,
+        evidence: record.evidence,
+        relevanceScore: record.relevanceScore,
+        significanceScore: record.significanceScore,
+      });
+      continue;
+    }
     if (!passesRankThresholds(record)) {
       const reasons: string[] = [];
       if (record.relevanceScore < RANK_THRESHOLDS.minRelevance) {

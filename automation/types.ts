@@ -130,6 +130,8 @@ export type Candidate = {
   urlOrigin: UrlOrigin;
   mergedFrom?: string[];
   studySubjects?: string[];
+  /** Copied from the normalized record when present. Do not invent values. */
+  hints?: StudyHints;
 };
 
 export type Rejection = {

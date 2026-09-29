@@ -1,0 +1,72 @@
+name: Semi-annual model review
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 1 1,7 *"
+
+concurrency:
+  group: model-review
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run model:review
+
+      - name: Confirm model files were not written
+        run: git diff --exit-code -- lev/params.json lev/forecast.json
+
+      - name: Open a draft evidence-candidate PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          STAMP=$(date -u +%Y%m%d)
+          BRANCH="model-review/$STAMP"
+          mkdir -p docs/model-review
+          cp automation/output/model-review.json "docs/model-review/$STAMP.json"
+          git checkout -b "$BRANCH"
+          git add "docs/model-review/$STAMP.json"
+          if git diff --cached --quiet; then
+            echo "No review file to commit"
+            exit 0
+          fi
+          BAD=$(git diff --cached --name-only | grep -v -E '^docs/model-review/[0-9]{8}\.json$' || true)
+          if [ -n "$BAD" ]; then
+            echo "Model review may only add the evidence-candidate JSON"
+            echo "$BAD"
+            exit 1
+          fi
+          git commit -m "Add model-review evidence candidates ($STAMP)"
+          git push -u origin "$BRANCH"
+          gh pr create --draft --base main --head "$BRANCH" \
+            --title "Model review evidence candidates $STAMP" \
+            --body-file automation/output/model-review-pr.md
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: model-review
+          path: |
+            automation/output/model-review.json
+            automation/output/model-review-pr.md
+          if-no-files-found: warn

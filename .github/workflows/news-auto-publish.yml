@@ -1,0 +1,171 @@
+name: News auto-publish
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+concurrency:
+  group: news-auto-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    env:
+      NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+      NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+      NCBI_TOOL: immortality-countdown
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      EDITORIAL_MODEL: ${{ vars.EDITORIAL_MODEL }}
+      GH_TOKEN: ${{ secrets.NEWS_PUBLISH_TOKEN }}
+    steps:
+      - name: Require publish credentials
+        run: |
+          set +x
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "NEWS_PUBLISH_TOKEN is not set. Bot PRs must use a fine-grained PAT so required checks still run."
+            exit 1
+          fi
+          echo "::add-mask::${GH_TOKEN}"
+          if [ -z "${OPENAI_API_KEY:-}" ]; then
+            echo "OPENAI_API_KEY is not set. Provider failure blocks publication."
+            exit 1
+          fi
+          echo "::add-mask::${OPENAI_API_KEY}"
+
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.NEWS_PUBLISH_TOKEN }}
+          fetch-depth: 0
+          ref: main
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lock while an automatic news PR is open
+        id: lock
+        run: npx tsx automation/publish/open-pr-lock.ts --apply
+
+      - name: Ingest
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: npm run ingest:dry
+
+      - name: Editorial generation
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: npm run editorial:dry
+
+      - name: Apply passing drafts
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: npm run news:publish
+
+      - name: Confirm model files are unchanged
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: git diff --exit-code -- lev/params.json lev/forecast.json
+
+      - name: Stop if there is nothing to publish
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('automation/output/publish-report.json', 'utf8'));
+            if (!report.decision.ok) {
+              console.log(report.decision.reason);
+              process.exit(report.decision.failWorkflow ? 1 : 0);
+            }
+            if (!report.apply || report.apply.added.length === 0) {
+              console.log('No articles to publish');
+              process.exit(0);
+            }
+          "
+
+      - name: Create article-only branch and PR
+        if: success() && steps.lock.outputs.proceed == 'true'
+        run: |
+          set -euo pipefail
+          set +x
+          cleanup_git_auth() {
+            git config --local --unset-all http.https://github.com/.extraheader >/dev/null 2>&1 || true
+          }
+          trap cleanup_git_auth EXIT
+          if [ ! -f automation/output/pr-body.md ]; then
+            echo "No PR body; skipping branch creation"
+            exit 0
+          fi
+          BRANCH=$(./node_modules/.bin/tsx automation/publish/open-pr-lock.ts --branch-name)
+          echo "Branch: $BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add data/articles.ts
+          git diff --cached --quiet && echo "No article changes" && exit 0
+          CHANGED=$(git diff --cached --name-only)
+          echo "Staged paths:"
+          echo "$CHANGED"
+          npx tsx automation/publish/check-paths.ts $CHANGED
+          git commit -m "Publish news articles (${GITHUB_RUN_ID})"
+          BRANCH_PATHS=$(git diff --name-only origin/main...HEAD)
+          echo "Branch paths versus main:"
+          echo "$BRANCH_PATHS"
+          npx tsx automation/publish/check-paths.ts $BRANCH_PATHS
+          AUTH_B64=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w 0)
+          git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ${AUTH_B64}"
+          unset AUTH_B64
+          git push -u origin "$BRANCH"
+          cleanup_git_auth
+          gh pr create --base main --head "$BRANCH" --title "Auto-publish news ${GITHUB_RUN_ID}" --body-file automation/output/pr-body.md
+          gh label create news-auto --description "Automatic news publish" --color 0E8A16 || true
+          gh pr edit --add-label news-auto || echo "Label news-auto was not applied. The news/auto- branch name still identifies this PR."
+
+          for _ in 1 2 3 4 5 6; do
+            STATE=$(gh pr view --json mergeable,mergeStateStatus --jq '[.mergeable, .mergeStateStatus] | @tsv')
+            echo "Merge state: $STATE"
+            MERGABLE=$(printf '%s' "$STATE" | awk '{print $1}')
+            STATUS=$(printf '%s' "$STATE" | awk '{print $2}')
+            if [ "$STATUS" = "DIRTY" ] || [ "$MERGABLE" = "CONFLICTING" ]; then
+              echo "Merge conflict; auto-merge is forbidden" | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 1
+            fi
+            if [ "$MERGABLE" = "true" ]; then
+              break
+            fi
+            sleep 5
+          done
+
+          npx tsx automation/publish/required-checks.ts main
+          gh pr merge --auto --squash --delete-branch
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: news-auto-publish
+          path: |
+            automation/output/candidates.json
+            automation/output/editorial-drafts.json
+            automation/output/publish-report.json
+            automation/output/pr-body.md
+          if-no-files-found: warn
+
+      - name: Note post-merge deploy visibility
+        if: always()
+        run: |
+          {
+            echo "## After this job"
+            echo "This workflow does not push to \`main\`. Auto-merge is enabled only for a new pull request that is under 24 hours old, and only after the required check \`verify\` succeeds."
+            echo "An open \`news/auto-*\` pull request, or one labeled \`news-auto\`, blocks another article branch."
+            echo "Pull requests older than 24 hours are marked expired, are not auto-merged, and are closed when that is safe."
+            echo "Production deploy notice listens for \`deployment_status\` only. Whether Vercel Production failures reach that event for this repository is 検証未完了."
+            echo "Automatic revert is not performed."
+          } >> "$GITHUB_STEP_SUMMARY"
