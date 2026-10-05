@@ -9,6 +9,8 @@ import { canonicalUrl, normalizeDoi } from "../fetch";
 import { hasLivingPeople, subjectKinds, type SubjectKind } from "../../lib/study-subjects";
 import { RANK_THRESHOLDS, type Candidate } from "../types";
 import type { EditorialDraft } from "./types";
+import { inferContentType } from "./from-candidate";
+import { isScienceNews } from "../science-news";
 
 const EVIDENCE_RANK: Record<EvidenceLevel, number> = {
   "Evidence A": 5,
@@ -255,6 +257,18 @@ export function validateDraft(
 ): { ok: true } | { ok: false; reasons: string[]; hold: boolean } {
   const reasons: string[] = [];
   let hold = false;
+  const scienceNews = isScienceNews(candidate);
+  if (draft.contentType !== inferContentType(candidate)) reasons.push("contentType does not match the candidate");
+  if (scienceNews) {
+    if (draft.evidence !== "Evidence E") reasons.push("science news must remain Evidence E");
+    if (!/science news report/i.test(draft.localizedFacts.en.studyDesign) || !/科学ニュース報道/.test(draft.localizedFacts.ja.studyDesign)) {
+      reasons.push("science-news label must be explicit in both languages");
+    }
+    if ((candidate.abstract?.trim().length ?? 0) < 160) {
+      hold = true;
+      reasons.push("science-news source summary is too short to support a bilingual brief");
+    }
+  }
 
   if (draft.sourceUrl !== candidate.sourceUrl) {
     reasons.push("sourceUrl does not exactly match the candidate");
@@ -346,6 +360,11 @@ export function validateDraft(
   }
 
   const source = sourceMaterials(candidate);
+  if (scienceNews && /\b(unknown|unexplained|not yet (?:known|determined|understood))\b/i.test(source)) {
+    if (!/\b(unknown|unexplained|not yet (?:known|determined|understood))\b/i.test(enDisplay) || !/未解明|不明|分かっていない|わかっていない/.test(jaDisplay)) {
+      reasons.push("source uncertainty must be preserved in both languages");
+    }
+  }
   const sourceQuantities = quantitySet(source);
   for (const item of extractQuantities(allDraftText(draft))) {
     if (!sourceQuantities.has(quantityKey(item))) {
@@ -472,7 +491,7 @@ export function validateDraft(
     reasons.push("no abstract; hold because the source cannot be checked");
   }
 
-  if ((candidate.studySubjects ?? []).length === 0) {
+  if (!scienceNews && (candidate.studySubjects ?? []).length === 0) {
     hold = true;
     reasons.push("study subjects could not be determined");
   }

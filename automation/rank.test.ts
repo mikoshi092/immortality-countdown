@@ -180,9 +180,9 @@ describe("evidence is conservative", () => {
 });
 
 describe("trial evidence is separate from trial significance", () => {
-  it("keeps the initial cutoffs unchanged", () => {
-    assert.equal(RANK_THRESHOLDS.minRelevance, 65);
-    assert.equal(RANK_THRESHOLDS.minSignificance, 40);
+  it("uses the broader discovery cutoffs", () => {
+    assert.equal(RANK_THRESHOLDS.minRelevance, 50);
+    assert.equal(RANK_THRESHOLDS.minSignificance, 30);
   });
 
   it("does not force an interventional Phase 2 registration below the significance cut", () => {
@@ -231,15 +231,27 @@ describe("trial evidence is separate from trial significance", () => {
 });
 
 describe("thresholds", () => {
-  it("keeps the initial cutoffs in one definition", () => {
-    assert.equal(RANK_THRESHOLDS.minRelevance, 65);
-    assert.equal(RANK_THRESHOLDS.minSignificance, 40);
+  it("keeps the broader cutoffs in one definition", () => {
+    assert.equal(RANK_THRESHOLDS.minRelevance, 50);
+    assert.equal(RANK_THRESHOLDS.minSignificance, 30);
   });
 
   it("rejects a weakly related paper", () => {
     const ranked = rankRecord(record({ title: "Hospital staffing patterns", abstract: "A survey of clinics." }));
     assert.equal(passesRankThresholds(ranked), false);
     assert.ok(ranked.relevanceScore < RANK_THRESHOLDS.minRelevance);
+  });
+
+  it("admits a cancer-treatment study while keeping it separate from aging outcomes", () => {
+    const ranked = rankRecord(record({
+      title: "CAR-T therapy for lymphoma",
+      abstract: "The treatment reduced tumor burden in mice compared with controls.",
+    }));
+    assert.equal(ranked.fieldId, "immune-engineering-cancer-control");
+    assert.equal(ranked.evidence, "Evidence D");
+    assert.equal(passesRankThresholds(ranked), true);
+    assert.ok(ranked.reason.includes("cancer outcome"));
+    assert.ok(!ranked.reason.includes("lifespan or survival change"));
   });
 });
 
@@ -292,7 +304,7 @@ describe("outcome scoring is conservative", () => {
     assert.ok(ranked.reason.includes("cell survival or viability is not scored as organism lifespan"));
   });
 
-  it("does not treat disease-specific survival as an aging lifespan result", () => {
+  it("scores cancer survival as cancer outcome, not organism lifespan", () => {
     const ranked = rankRecord(
       record({
         title: "Aging clocks and overall survival in cancer patients",
@@ -300,7 +312,7 @@ describe("outcome scoring is conservative", () => {
       }),
     );
     assert.ok(!ranked.reason.includes("(+18)"));
-    assert.ok(ranked.reason.includes("disease-specific survival"));
+    assert.ok(ranked.reason.includes("cancer outcome, not an organism lifespan change (+12)"));
   });
 
   it("does not score background citations, aims, or negative findings as demonstrated improvement", () => {

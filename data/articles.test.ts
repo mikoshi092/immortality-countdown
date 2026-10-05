@@ -12,16 +12,15 @@ import { FIXTURE_DOI, FIXTURE_SOURCE_URL } from "../automation/editorial/fixture
 const here = dirname(fileURLToPath(import.meta.url));
 
 describe("published bilingual articles", () => {
-  it("keeps the original three items", () => {
-    assert.equal(articles.length, 3);
-    assert.deepEqual(
-      articles.map((article) => article.id),
-      [
+  it("keeps the original reviewed items in the catalog", () => {
+    const originalIds = [
         "2026-08-14-histological-aging-signatures",
         "2026-08-14-physical-activity-ovarian-aging",
         "2026-08-11-tnfr1-intestinal-stem-cell-aging",
-      ],
-    );
+    ];
+    for (const id of originalIds) {
+      assert.ok(articles.some((article) => article.id === id), `missing ${id}`);
+    }
   });
 
   it("gives English and Japanese the same locked identifiers", () => {

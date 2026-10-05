@@ -1,6 +1,7 @@
 import type { EvidenceLevel } from "../data/news";
 import { FIELD_IDS, type FieldId } from "../lib/fields";
 import { RANK_THRESHOLDS, type RankedRecord, type FetchedRecord } from "./types";
+import { isRelevantDevelopment, isScienceNews } from "./science-news";
 
 /**
  * Explainable keyword rules. Hits are counted; nothing is inferred about
@@ -25,6 +26,9 @@ const AGING_CORE = [
   "cellular reprogramming",
   "rejuvenation",
 ];
+
+const CANCER_TREATMENT = /\b(cancer|neoplasm|tumou?r|lymphoma|leuk[ae]mia|melanoma|carcinoma|myeloma|sarcoma)\b/i;
+const CANCER_THERAPY = /\b(treatment|therapy|therapeutic|immunotherapy|chemotherapy|radiotherapy|car[- ]?t|checkpoint inhibitor)\b/i;
 
 const FIELD_KEYWORDS: Record<FieldId, string[]> = {
   "rejuvenation-regeneration": [
@@ -417,6 +421,11 @@ export function scoreRelevance(record: FetchedRecord, fieldHits: string[]): { sc
     notes.push("no field-specific terms; assigned the generic geroscience bucket");
   }
 
+  if (CANCER_TREATMENT.test(`${title} ${abstract}`) && CANCER_THERAPY.test(`${title} ${abstract}`)) {
+    score += 25;
+    notes.push("cancer treatment or therapeutic research in title/abstract (+25)");
+  }
+
   if (record.sourceId === "clinicaltrials" && (record.hints?.phases ?? []).some((phase) => /PHASE[34]/.test(phase))) {
     score += 5;
     notes.push("late-phase registered trial");
@@ -454,6 +463,8 @@ export function scoreSignificance(record: FetchedRecord): { score: number; notes
 const LIFESPAN_ENDPOINT = /\b(?:median\s+|mean\s+|maximum\s+)?(?:lifespan|healthspan)\b/i;
 const FUNCTION_ENDPOINT =
   /\b(?:grip strength|rotarod|frailty index|physical function|walking speed|endurance|motor function)\b/i;
+const CANCER_ENDPOINT =
+  /\b(?:objective response|tumou?r response|tumou?r regression|tumou?r (?:growth|volume|burden)|metastasis)\b/i;
 const MARKER_ENDPOINT =
   /\b(?:biological age|epigenetic age|aging clock|ageing clock|clock score|p16|sa-β-gal|cellular senescence)\b/i;
 const CHANGE_VERB =
@@ -461,7 +472,7 @@ const CHANGE_VERB =
 const INTERVENTION_APPLIED =
   /\b(?:treated with|administered|dosed with|received (?:vehicle|drug|compound)|overexpression|knockout|knock-in|senolytic treatment)\b/i;
 
-type OutcomeKind = "lifespan" | "function" | "marker";
+type OutcomeKind = "lifespan" | "function" | "marker" | "cancer";
 
 function splitSentences(text: string): string[] {
   return text
@@ -519,8 +530,9 @@ function sentenceHasChangeVerb(sentence: string): boolean {
 function classifySentenceOutcome(sentence: string): { kind?: OutcomeKind; skip?: string } | undefined {
   if (isCellSurvivalContext(sentence)) return { skip: "cell-survival" };
   if (isDiseaseSurvivalContext(sentence) && !/\b(?:lifespan|healthspan)\b/i.test(sentence)) {
-    return { skip: "disease-survival" };
+    return { kind: "cancer" };
   }
+  if (CANCER_ENDPOINT.test(sentence)) return { kind: "cancer" };
   if (isOrganismLifespanContext(sentence) || LIFESPAN_ENDPOINT.test(sentence)) return { kind: "lifespan" };
   if (/\bsurvival\b/i.test(sentence)) return { skip: "ambiguous-survival" };
   if (FUNCTION_ENDPOINT.test(sentence)) return { kind: "function" };
@@ -567,8 +579,8 @@ function scoreReportedOutcomes(text: string): { kind?: OutcomeKind; notes: strin
       continue;
     }
     if (!sentenceHasChangeVerb(sentence)) continue;
-    const rank = { lifespan: 3, function: 2, marker: 1 }[classified.kind];
-    const current = awarded ? { lifespan: 3, function: 2, marker: 1 }[awarded] : 0;
+    const rank = { lifespan: 3, function: 2, cancer: 2, marker: 1 }[classified.kind];
+    const current = awarded ? { lifespan: 3, function: 2, cancer: 2, marker: 1 }[awarded] : 0;
     if (rank > current) awarded = classified.kind;
   }
 
@@ -576,6 +588,8 @@ function scoreReportedOutcomes(text: string): { kind?: OutcomeKind; notes: strin
     notes.push("reported a lifespan or survival change, not merely the word lifespan (+18)");
   } else if (awarded === "function") {
     notes.push("reported an organism-level function change (+12)");
+  } else if (awarded === "cancer") {
+    notes.push("reported a cancer outcome, not an organism lifespan change (+12)");
   } else if (awarded === "marker") {
     notes.push("reported an aging-marker or cellular-senescence change, not lifespan or function (+3)");
   } else if (withheld) {
@@ -619,6 +633,7 @@ function scorePaperSignificance(record: FetchedRecord): { score: number; notes: 
   if (outcomes.kind === "lifespan") score += 18;
   else if (outcomes.kind === "function") score += 12;
   else if (outcomes.kind === "marker") score += 3;
+  else if (outcomes.kind === "cancer") score += 12;
 
   if (/\b(?:randomized|randomised|placebo-controlled)\b/i.test(text)) {
     score += 8;
@@ -703,6 +718,16 @@ function scoreTrialSignificance(record: FetchedRecord): { score: number; notes: 
 }
 
 export function rankRecord(record: FetchedRecord): RankedRecord {
+  if (isScienceNews(record)) {
+    const relevant = isRelevantDevelopment(`${record.title} ${record.abstract ?? ""}`);
+    const field = classifyField(record);
+    return {
+      ...record, studySubjects: [], fieldId: field.hits.length ? field.fieldId : "enabling-technology-automation",
+      evidence: "Evidence E", relevanceScore: relevant ? 50 : 0,
+      significanceScore: relevant ? 30 : 0,
+      reason: "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+    };
+  }
   const field = classifyField(record);
   const evidence = classifyEvidence(record);
   const relevance = scoreRelevance(record, field.hits);

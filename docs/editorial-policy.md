@@ -41,7 +41,7 @@ Required checks and merge can complete after `sitePublishedAt`. That delay is al
 
 An article is published only when all of the following are determined and pass. If a check cannot be determined, the item is `held`, recorded with reasons in `editorial-drafts.json` / `publish-report.json` and the Job Summary, and is not published. Missing facts are not filled in by model guesswork.
 
-- `relevance` and `significance` at or above the current ingest thresholds (65 and 40)
+- `relevance` and `significance` at or above the current ingest thresholds (50 and 30). These are discovery filters, not measures of evidence quality.
 - URL, DOI, and source ID match the candidate
 - URL or DOI is not a duplicate of an existing article
 - Evidence is not upgraded from the ranked candidate
@@ -71,6 +71,18 @@ The following are excluded automatically and are not published:
 - Literature records whose DOI or primary source cannot be confirmed
 
 The words “anti-aging”, “longevity”, or “human” are not enough to adopt a record or to raise Evidence to C.
+
+Cancer-treatment research is in scope when the title or abstract identifies both a cancer and a treatment approach. Trial registrations may be reported as trial activity (Evidence E); they must never be described as evidence that the treatment works. Animal and cell results must stay labeled as preclinical.
+
+### Science news and early discoveries
+
+Newsworthiness includes AI-assisted biological discoveries, new research laboratories and experimental platforms, gene-editing tools, regeneration, and new cancer-treatment developments. Demonstrated human lifespan extension is not a prerequisite. Describe the concrete novelty and explain why it is interesting, without implying clinical availability or changing the countdown.
+
+The `science-news` route currently collects Nature News (`d41586` article URLs) through Nature's RSS feed in the same 48-hour window. It is labeled **Science news report / 科学ニュース報道**, remains Evidence E, and carries `countdownImpact: none`. It may report a laboratory opening or an early discovery without a clinical study population or a DOI. The exceptions to the primary-research and subject requirements apply only to this source-validated route; all other article types keep those requirements.
+
+The source feed summary is the supplied material, not an assumed full-text paper. A summary shorter than 160 characters is held. Missing experimental details must be identified as unavailable. Company claims must be attributed, and reported unknown functions must remain unknown in both languages. A CRISPR-like repeat pattern must not become a demonstrated gene-editing tool or an available therapy. No full-article reproduction or invented longevity connection is allowed. RSS transport or parsing failure stops publication with an explicit source failure.
+
+This expands prospective discovery only: older examples outside the 48-hour window are not automatically backfilled. Additional company or university feeds require their own source adapter; arbitrary social posts are not accepted as verified sources.
 
 ## Held items
 

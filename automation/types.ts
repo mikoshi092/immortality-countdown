@@ -6,18 +6,18 @@ import type { EvidenceLevel } from "../data/news";
  * filters for the ingest dry-run, not a calibrated scientific index.
  */
 export const RANK_THRESHOLDS = {
-  minRelevance: 65,
-  minSignificance: 40,
+  minRelevance: 50,
+  minSignificance: 30,
 } as const;
 
 export const LOOKBACK_HOURS = 48;
 
-export type SourceType = "literature" | "trial-registry";
+export type SourceType = "literature" | "trial-registry" | "science-news";
 
 /** Higher number = more editorial caution required, not a quality score. */
 export type TrustTier = 1 | 2 | 3;
 
-export type SourceApiKind = "pubmed-eutils" | "ctgov-studies";
+export type SourceApiKind = "pubmed-eutils" | "ctgov-studies" | "nature-rss";
 
 export type SourceApi = {
   kind: SourceApiKind;
@@ -36,7 +36,7 @@ export type SourceDefinition = {
 };
 
 export type UrlOrigin = {
-  kind: "constructed-from-id";
+  kind: "constructed-from-id" | "source-feed";
   rule: string;
   id: string;
 };
@@ -193,7 +193,7 @@ export const COUNT_DEFINITIONS: CountDefinitions = {
   deduplicated:
     "Unique records after merging by DOI (preferred) then canonical source URL, including the case where only one copy has a DOI. Provenance from merged records is retained. Conflicting DOIs on the same URL are not silently merged.",
   relevant:
-    "Deduplicated records that passed validation and the ranking thresholds (relevance >= 65 and significance >= 40). These scores are not a scientifically calibrated index.",
+    "Deduplicated records that passed validation and the ranking thresholds (relevance >= 50 and significance >= 30). These scores are not a scientifically calibrated index.",
   rejected:
     "Deduplicated records that did not become relevant, including threshold misses and validation failures. See each item's reasons.",
 };

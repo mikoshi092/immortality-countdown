@@ -17,7 +17,7 @@ import type { EvidenceLevel } from "@/lib/evidence";
 export const COUNTDOWN_IMPACTS = ["none", "watch"] as const;
 export type CountdownImpact = (typeof COUNTDOWN_IMPACTS)[number];
 
-export const CONTENT_TYPES = ["paper", "trial-registration", "review"] as const;
+export const CONTENT_TYPES = ["paper", "trial-registration", "review", "science-news"] as const;
 export type ContentType = (typeof CONTENT_TYPES)[number];
 
 export type ArticleFacts = {
