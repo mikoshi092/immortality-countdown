@@ -96,6 +96,6 @@ describe("source registry", () => {
     assert.equal(results.some((result) => result.sourceId === "pubmed"), false);
     assert.equal(results.some((result) => result.sourceId === "clinicaltrials"), true);
     assert.equal(requested.some((url) => url.includes("eutils.ncbi.nlm.nih.gov")), false);
-    assert.ok(requested.every((url) => url.startsWith(SOURCES.find((source) => source.id === "clinicaltrials")?.api.baseUrl ?? "missing")));
+    assert.ok(requested.every((url) => pubmedOff.some(source => source.enabled && url.startsWith(source.api.baseUrl))));
   });
 });

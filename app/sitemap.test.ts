@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { articles } from "../data/articles";
+import { listArticles } from "../data/articles";
 import { articleCanonical, newsIndexCanonical } from "../lib/article-seo";
 import { SITE_URL } from "../lib/site";
 import params from "../lev/params.json";
@@ -38,8 +39,22 @@ describe("sitemap article dates", () => {
 
     const newsEn = entries.find((item) => item.url === newsIndexCanonical("en"));
     const newsJa = entries.find((item) => item.url === newsIndexCanonical("ja"));
-    assert.equal(newsEn?.lastModified, undefined);
-    assert.equal(newsJa?.lastModified, undefined);
+    const latestPublishedDate = listArticles()
+      .map((article) => Date.parse(article.siteModifiedAt ?? article.sitePublishedAt ?? ""))
+      .reduce((latest, date) => Math.max(latest, date), 0);
+    const expectedNewsDate = latestPublishedDate > 0 ? latestPublishedDate : undefined;
+    assert.equal(
+      newsEn?.lastModified === undefined
+        ? undefined
+        : new Date(newsEn.lastModified as Date | string).getTime(),
+      expectedNewsDate,
+    );
+    assert.equal(
+      newsJa?.lastModified === undefined
+        ? undefined
+        : new Date(newsJa.lastModified as Date | string).getTime(),
+      expectedNewsDate,
+    );
   });
 
   it("does not apply one blanket lastModified across unrelated pages", () => {

@@ -1,4 +1,5 @@
 import type { RankedRecord } from "./types";
+import { isScienceNews } from "./science-news";
 
 const BIOLOGY_AGING =
   /\b(senescen|senolytic|geroscience|healthspan|lifespan|epigenetic clock|biological age|rejuvenation|rapamycin|metformin|organoid|crispr|biomarker|histopatholog|parabiosis)\b/i;
@@ -12,6 +13,7 @@ export function exclusionReasons(record: RankedRecord): string[] {
   const abstract = (record.abstract ?? "").toLowerCase();
   const text = `${title}\n${abstract}`;
   const reasons: string[] = [];
+  const scienceNews = isScienceNews(record);
 
   if (
     /\b(celebrity|celebrities|gossip|tabloid|hollywood|kardashian|influencer gossip)\b/i.test(
@@ -58,7 +60,7 @@ export function exclusionReasons(record: RankedRecord): string[] {
     /\b(press release|editorial|commentary|letter to the editor|opinion piece)\b/i.test(
       `${record.title} ${pubTypes.join(" ")}`,
     );
-  if (opinion) {
+  if (opinion && !scienceNews) {
     reasons.push("editorial, opinion, or press release without primary research");
   }
 
@@ -79,6 +81,7 @@ export function exclusionReasons(record: RankedRecord): string[] {
   );
   if (
     agingTokens.length > 0 &&
+    !scienceNews &&
     distinctive.length === 0 &&
     !BIOLOGY_AGING.test(text)
   ) {
@@ -103,6 +106,7 @@ export function exclusionReasons(record: RankedRecord): string[] {
   const subjects = record.studySubjects ?? [];
   if (
     (record.evidence === "Evidence D" || record.evidence === "Evidence E") &&
+    !scienceNews &&
     subjects.length === 0
   ) {
     reasons.push("animal or cell species could not be identified for preclinical work");

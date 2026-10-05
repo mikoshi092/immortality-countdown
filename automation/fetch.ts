@@ -1,4 +1,5 @@
 import { enabledSources, sourceById } from "./sources";
+import { fetchNatureNews } from "./science-news";
 import {
   LOOKBACK_HOURS,
   type DatedValue,
@@ -26,10 +27,10 @@ const PUBMED_MAX_IDS = 10_000;
 const CTGOV_PAGE_SIZE = 100;
 
 const PUBMED_QUERY =
-  '(aging OR ageing OR senescence OR longevity OR geroscience OR healthspan OR "biological age" OR senolytic OR "epigenetic clock" OR "cellular reprogramming" OR rejuvenation)';
+  '((aging OR ageing OR senescence OR longevity OR geroscience OR healthspan OR "biological age" OR senolytic OR "epigenetic clock" OR "cellular reprogramming" OR rejuvenation) OR ((cancer OR neoplasm OR tumor OR tumour OR lymphoma OR leukemia OR leukaemia OR melanoma OR carcinoma OR myeloma OR sarcoma) AND (treatment OR therapy OR therapeutic OR immunotherapy OR chemotherapy OR radiotherapy OR "CAR T" OR "checkpoint inhibitor")))';
 
 const CTGOV_QUERY =
-  '(aging OR ageing OR senescence OR longevity OR geroscience OR healthspan OR "biological age" OR senolytic OR rejuvenation)';
+  '((aging OR ageing OR senescence OR longevity OR geroscience OR healthspan OR "biological age" OR senolytic OR rejuvenation) OR ((cancer OR neoplasm OR tumor OR tumour OR lymphoma OR leukemia OR leukaemia OR melanoma OR carcinoma OR myeloma OR sarcoma) AND (treatment OR therapy OR therapeutic OR immunotherapy OR chemotherapy OR radiotherapy OR "CAR T" OR "checkpoint inhibitor")))';
 
 export function pubmedApiBase(source?: SourceDefinition): string {
   return source?.api.baseUrl ?? sourceById("pubmed")?.api.baseUrl ?? "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
@@ -862,7 +863,9 @@ export async function fetchEnabledSources(
 ): Promise<SourceFetchResult[]> {
   const results: SourceFetchResult[] = [];
   for (const source of sources.filter((item) => item.enabled)) {
-    if (source.api.kind === "pubmed-eutils") {
+    if (source.api.kind === "nature-rss") {
+      results.push(await fetchNatureNews(window, httpGet));
+    } else if (source.api.kind === "pubmed-eutils") {
       results.push(await fetchPubmed(window, httpGet, source));
     } else if (source.api.kind === "ctgov-studies") {
       results.push(await fetchClinicalTrials(window, httpGet, source));

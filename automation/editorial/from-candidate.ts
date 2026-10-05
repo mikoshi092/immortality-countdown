@@ -1,6 +1,7 @@
 import type { ContentType } from "../../data/articles";
 import type { Candidate, DateFieldValue } from "../types";
 import type { EditorialPromptInput } from "./types";
+import { isScienceNews } from "../science-news";
 
 function datedIso(value: DateFieldValue | undefined): string | undefined {
   if (!value) return undefined;
@@ -8,6 +9,7 @@ function datedIso(value: DateFieldValue | undefined): string | undefined {
 }
 
 export function inferContentType(candidate: Candidate): ContentType {
+  if (isScienceNews(candidate)) return "science-news";
   const url = candidate.sourceUrl.toLowerCase();
   const title = candidate.title.toLowerCase();
   if (

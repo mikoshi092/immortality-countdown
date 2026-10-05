@@ -246,10 +246,10 @@ describe("sitePublishedAt is required for public surfaces", () => {
   });
 });
 
-describe("existing three articles", () => {
+describe("existing articles", () => {
   it("runs the same publish gate and keeps articles unpublished when they fail", () => {
     const results = gateExistingArticles();
-    assert.equal(results.length, 3);
+    assert.equal(results.length, articles.length);
     for (const result of results) {
       if (!result.ok) {
         assert.ok(result.reasons.length > 0, `${result.articleId} failed without reasons`);
@@ -284,6 +284,7 @@ describe("mock end-to-end does not touch the model", () => {
     writeFileSync(articlesPath, "[]\n");
 
     const httpGet = async (url: string) => {
+      if (url === "https://www.nature.com/nature.rss") return new Response("<rss><channel></channel></rss>");
       if (url.includes("esearch.fcgi")) {
         return new Response(JSON.stringify({ esearchresult: { count: "1", idlist: ["99900001"] } }), {
           status: 200,
