@@ -49,6 +49,9 @@ An article is published only when all of the following are determined and pass. 
 - English and Japanese numbers match each other and appear in the source materials
 - Negation, non-significance, aims, hypotheses, and planned work are not written as results
 - ClinicalTrials.gov registration is not written as an efficacy result
+- A trial whose only in-window date is `LastUpdatePostDate` is held unless the fetch includes a verified change description. The article and source record can remain stored without `sitePublishedAt`
+- A trial with no posted results is labeled “Trial registration and research plan” / 「試験登録・研究計画」 in both languages. Its purpose is not written as an outcome, and the registry status is stated rather than replaced
+- The science-news label is not applied to a trial registration
 - `hasResults=false` is not written as posted results
 - Observational findings are not written as human causal outcomes
 - Cell, tissue, or animal work is not written as a living-participant result

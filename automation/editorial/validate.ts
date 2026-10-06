@@ -249,6 +249,79 @@ function populationText(draft: EditorialDraft): string {
   ].join("\n");
 }
 
+const REGISTRY_STATUS: Record<
+  string,
+  { en: RegExp; ja: RegExp; forbidEn?: RegExp; forbidJa?: RegExp }
+> = {
+  RECRUITING: {
+    en: /\brecruiting\b/i,
+    ja: /募集中/,
+    forbidEn: /\b(not yet recruiting|terminated|suspended|completed the trial)\b/i,
+    forbidJa: /未募集|中止|中断|試験は完了/,
+  },
+  NOT_YET_RECRUITING: {
+    en: /not yet recruiting/i,
+    ja: /未募集/,
+    forbidEn: /\b(is recruiting|are recruiting)\b/i,
+    forbidJa: /募集中/,
+  },
+  ENROLLING_BY_INVITATION: {
+    en: /enrolling by invitation/i,
+    ja: /招待による登録/,
+    forbidEn: /\brecruiting\b/i,
+    forbidJa: /募集中/,
+  },
+  ACTIVE_NOT_RECRUITING: {
+    en: /active, not recruiting/i,
+    ja: /実施中で募集は終了/,
+    forbidJa: /募集中/,
+  },
+  COMPLETED: {
+    en: /\bcompleted\b/i,
+    ja: /完了/,
+    forbidEn: /\brecruiting\b/i,
+    forbidJa: /募集中/,
+  },
+  TERMINATED: {
+    en: /\bterminated\b/i,
+    ja: /中止/,
+    forbidEn: /\brecruiting\b/i,
+    forbidJa: /募集中/,
+  },
+  SUSPENDED: {
+    en: /\bsuspended\b/i,
+    ja: /中断/,
+    forbidEn: /\brecruiting\b/i,
+    forbidJa: /募集中/,
+  },
+};
+
+/** A last-update hit is not publishable until the change itself is known. */
+export function trialUpdateMissingChange(candidate: Candidate): boolean {
+  if (inferContentType(candidate) !== "trial-registration") return false;
+  const matched = candidate.windowMatch?.matchedFields ?? [];
+  if (!matched.includes("lastUpdatePostDate") || matched.includes("studyFirstPostDate")) {
+    return false;
+  }
+  return !(candidate.hints?.registryChange ?? "").trim();
+}
+
+function assertRegistryStatus(
+  status: string | undefined,
+  enDisplay: string,
+  jaDisplay: string,
+  reasons: string[],
+): void {
+  const rule = REGISTRY_STATUS[(status ?? "").toUpperCase()];
+  if (!rule) return;
+  if (!rule.en.test(enDisplay) || !rule.ja.test(jaDisplay)) {
+    reasons.push("trial status was not stated in both languages");
+  }
+  if (rule.forbidEn?.test(enDisplay) || rule.forbidJa?.test(jaDisplay)) {
+    reasons.push("trial status was written beyond the registry value");
+  }
+}
+
 export function validateDraft(
   draft: EditorialDraft,
   candidate: Candidate,
@@ -402,7 +475,22 @@ export function validateDraft(
   }
 
   if (draft.contentType === "trial-registration") {
+    if (trialUpdateMissingChange(candidate)) {
+      hold = true;
+      reasons.push("registry update has no verified change description");
+    }
     const text = allDraftText(draft).toLowerCase();
+    if (
+      /science news report|科学ニュース報道/.test(allDraftText(draft))
+    ) {
+      reasons.push("trial registration was labeled as a science news report");
+    }
+    if (!/trial registration and research plan/i.test(draft.localizedFacts.en.studyDesign)) {
+      reasons.push("trial registration must be labeled as a research plan in English");
+    }
+    if (!draft.localizedFacts.ja.studyDesign.includes("試験登録・研究計画")) {
+      reasons.push("trial registration must be labeled as a research plan in Japanese");
+    }
     if (
       /efficac|was effective|were effective|improved survival|significantly improved|有効性が示|治療に成功/.test(
         text,
@@ -410,6 +498,7 @@ export function validateDraft(
     ) {
       reasons.push("trial registration was written as an efficacy result");
     }
+    assertRegistryStatus(candidate.hints?.overallStatus, enDisplay, jaDisplay, reasons);
     if (candidate.hints?.hasResults === false) {
       if (
         /posted results|results showed|results demonstrated|結果が示された|結果を報告した/.test(
@@ -417,6 +506,18 @@ export function validateDraft(
         )
       ) {
         reasons.push("hasResults=false was written as if results were posted");
+      }
+      const planLabel = `${draft.localizedFacts.en.resultStatus}\n${draft.localizedFacts.en.studyDesign}`;
+      const planLabelJa = `${draft.localizedFacts.ja.resultStatus}\n${draft.localizedFacts.ja.studyDesign}`;
+      if (!/no results posted/i.test(planLabel) || !planLabelJa.includes("結果は未掲載")) {
+        reasons.push("hasResults=false must be stated as no results posted in both languages");
+      }
+      if (
+        /\b(showed|demonstrated|improved|was effective|reduced|increased)\b|結果が示|有意に改善|効果があった/.test(
+          `${draft.localizedFacts.en.outcomes}\n${draft.localizedFacts.ja.outcomes}`,
+        )
+      ) {
+        reasons.push("a trial without posted results wrote its purpose as an outcome");
       }
     }
     const status = (candidate.hints?.overallStatus ?? "").toUpperCase();

@@ -430,4 +430,89 @@ describe("editorial draft validation", () => {
       );
     }
   });
+
+  it("holds a trial when only the last update is inside the window", () => {
+    const trial = fixtureCandidate({
+      sourceId: "clinicaltrials",
+      sourceUrl: "https://clinicaltrials.gov/study/NCT02522611",
+      doi: undefined,
+      title: "An older trial record",
+      abstract: "Participants may enroll. No results are posted.",
+      studySubjects: ["living-people"],
+      evidence: "Evidence E",
+      windowMatch: { inWindow: true, matchedFields: ["lastUpdatePostDate"] },
+      dateFields: {
+        studyFirstPostDate: { raw: "2015-08-13", iso: "2015-08-13", precision: "day" },
+        lastUpdatePostDate: { raw: "2026-10-05", iso: "2026-10-05", precision: "day" },
+      },
+      hints: { overallStatus: "NOT_YET_RECRUITING", hasResults: false, studyType: "INTERVENTIONAL" },
+    });
+    const draft = compliantTrialDraft(trial);
+    const result = validateDraft(draft, trial, slugs);
+    assert.equal(result.ok, false);
+    if (!result.ok) {
+      assert.equal(result.hold, true);
+      assert.ok(result.reasons.some((reason) => reason.includes("no verified change description")));
+    }
+  });
+
+  it("accepts a first-posted trial that stays a plan and matches its status", () => {
+    const trial = fixtureCandidate({
+      sourceId: "clinicaltrials",
+      sourceUrl: "https://clinicaltrials.gov/study/NCT07859046",
+      doi: undefined,
+      title: "FES PET/CT planning study",
+      abstract: "Participants will undergo FES PET/CT scans. The purpose is to see how the scans can help. No results are posted.",
+      studySubjects: ["living-people"],
+      evidence: "Evidence E",
+      relevanceScore: 75,
+      significanceScore: 41,
+      windowMatch: { inWindow: true, matchedFields: ["studyFirstPostDate", "lastUpdatePostDate"] },
+      hints: { overallStatus: "ENROLLING_BY_INVITATION", hasResults: false, studyType: "OBSERVATIONAL" },
+    });
+    const result = validateDraft(compliantTrialDraft(trial), trial, slugs);
+    assert.equal(result.ok, true, result.ok ? "" : result.reasons.join("; "));
+  });
 });
+
+function compliantTrialDraft(trial: ReturnType<typeof fixtureCandidate>) {
+  return validMouseDraft(trial, {
+    sourceUrl: trial.sourceUrl,
+    doi: undefined,
+    evidence: "Evidence E",
+    studySubjects: ["living-people"],
+    contentType: "trial-registration",
+    localizedFacts: {
+      en: {
+        studyDesign:
+          "Trial registration and research plan. Observational study. Overall status: enrolling by invitation. No results posted.",
+        populationOrModel: "Participants named in the registry record.",
+        outcomes: "No results are posted.",
+        limitations: "The registration does not report a measured treatment effect.",
+        resultStatus: "Trial registration and research plan. No results posted.",
+      },
+      ja: {
+        studyDesign: "試験登録・研究計画。観察研究。全体の状態は招待による登録。結果は未掲載。",
+        populationOrModel: "登録に記載された参加者。",
+        outcomes: "結果は未掲載である。",
+        limitations: "この登録は測定された治療効果を報告していない。",
+        resultStatus: "試験登録・研究計画。結果は未掲載。",
+      },
+    },
+    en: {
+      headline: "Registry lists an imaging study",
+      dek: "An observational registration is enrolling by invitation. No results are posted.",
+      whatHappened:
+        "Participants are listed in a newly posted observational registration. The overall status is enrolling by invitation.",
+      whyItMatters: "The record states a plan. It does not show that the scan changes care.",
+      realityCheck: "No results are posted. Enrolling by invitation is not a completed study.",
+    },
+    ja: {
+      headline: "画像検査の試験登録が公開された",
+      dek: "観察研究の登録が公開され、状態は招待による登録である。結果は未掲載である。",
+      whatHappened: "参加者を含む観察研究の登録が公開された。全体の状態は招待による登録である。",
+      whyItMatters: "この記録は計画を示している。検査が診療を変えるかは示していない。",
+      realityCheck: "結果は未掲載である。招待による登録は完了した研究ではない。",
+    },
+  });
+}

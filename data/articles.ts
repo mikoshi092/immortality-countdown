@@ -342,8 +342,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "NOT_YET_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2019-10-08-understanding-autoimmunity-in-cancer-treatments",
@@ -434,8 +433,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2020-02-13-exploring-immunotherapy-s-role-in-non-small-cell-lung-cancer-treatment",
@@ -533,8 +531,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2020-09-25-evaluating-cord-blood-derived-mscs-for-covid-19-ards-treatment",
@@ -631,8 +628,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2021-09-05-study-examines-oxygen-utilization-in-her2-positive-breast-cancer-patient",
@@ -723,8 +719,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2023-01-09-new-phase-iii-trial-evaluates-immunotherapy-for-hodgkin-lymphoma",
@@ -820,8 +815,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2023-10-24-new-trial-compares-chemotherapy-plus-immunotherapy-in-lung-cancer",
@@ -917,8 +911,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2023-11-14-exploring-combined-immunotherapy-for-metastatic-cancer",
@@ -1014,8 +1007,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2024-03-27-investigating-immune-checkpoint-inhibitors-impact-on-heart-health",
@@ -1108,8 +1100,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2024-08-23-exploring-safety-of-telisotuzumab-vedotin-for-lung-cancer",
@@ -1207,8 +1198,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-01-13-exploring-pembrolizumab-with-radiation-therapy-in-bladder-cancer",
@@ -1306,8 +1296,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-02-11-comparative-study-of-new-anti-cancer-drug-combination-in-ewing-sarcoma-p",
@@ -1404,8 +1393,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "TERMINATED"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-03-14-exploring-new-combination-therapy-for-ras-mutated-multiple-myeloma",
@@ -1502,8 +1490,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "SUSPENDED"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-03-30-gender-differences-in-gastric-cancer-treatment-under-scrutiny-in-germany",
@@ -1594,8 +1581,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "COMPLETED"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-09-29-trial-examines-adding-chemo-to-surgery-for-advanced-head-and-neck-cancer",
@@ -1691,8 +1677,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2025-10-31-research-highlights-the-need-for-cardio-oncology-in-prostate-cancer-pati",
@@ -1790,8 +1775,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-02-06-comparing-hormone-therapy-and-ribociclib-to-chemotherapy-for-high-stage-",
@@ -1889,8 +1873,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-03-24-new-registry-aims-to-gather-data-on-very-rare-childhood-cancers",
@@ -1983,8 +1966,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-04-13-tailored-stem-cell-transplantation-protocol-for-runx1-mutation-related-b",
@@ -2080,8 +2062,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "NOT_YET_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-05-08-new-vaccine-and-n-803-drug-combo-tested-for-early-stage-prostate-cancer",
@@ -2179,8 +2160,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "NOT_YET_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-09-01-examining-nemtabrutinib-s-potential-for-treatment-resistant-cll-sll",
@@ -2276,8 +2256,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "NOT_YET_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-09-30-exploring-new-combination-therapy-for-advanced-biliary-tract-cancer",
@@ -2377,8 +2356,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+    }
   },
   {
     "id": "2026-10-05-fes-pet-ct-imaging-seek-to-guide-er-positive-breast-cancer-treatment",
@@ -2397,35 +2375,35 @@ export const articles: Article[] = [
     "countdownImpact": "none",
     "localizedFacts": {
       "en": {
-        "studyDesign": "Observational study; Science news report",
-        "populationOrModel": "Not assessed in this news report",
-        "outcomes": "Evaluate how well FES PET/CT helps to diagnose ER-positive breast cancer, plan treatment, and assess treatment response.",
-        "limitations": "Details on study population and findings are unavailable.",
-        "resultStatus": "No results available",
-        "intervention": "FES PET/CT imaging"
+        "studyDesign": "Trial registration and research plan. Observational study. Overall status: enrolling by invitation. No results posted.",
+        "populationOrModel": "Participants named in the registry record. The record does not state a sample size.",
+        "intervention": "FES PET/CT imaging",
+        "outcomes": "No results are posted.",
+        "limitations": "This is a first public registration, not a completed study. Enrolling by invitation is not an open call for participants. No treatment effect is reported.",
+        "resultStatus": "Trial registration and research plan. No results posted."
       },
       "ja": {
-        "studyDesign": "観察研究; 科学ニュース報道",
-        "populationOrModel": "本報道では研究対象を検証していない",
-        "outcomes": "ER 陽性乳がんの診断、治療計画、治療反応の評価における FES PET/CT の有用性を評価する。",
-        "limitations": "研究対象や結果に関する詳細は利用できません。",
-        "resultStatus": "結果は利用できません",
-        "intervention": "FES PET/CT イメージング"
+        "studyDesign": "試験登録・研究計画。観察研究。全体の状態は招待による登録。結果は未掲載。",
+        "populationOrModel": "登録に記載された参加者。登録上、人数は示されていない。",
+        "intervention": "FES PET/CT イメージング",
+        "outcomes": "結果は未掲載である。",
+        "limitations": "これは完了した研究ではなく、初回公開された試験登録である。招待による登録は、広く参加者を募る状態ではない。治療効果は報告されていない。",
+        "resultStatus": "試験登録・研究計画。結果は未掲載。"
       }
     },
     "en": {
-      "headline": "FES PET/CT Imaging Seek to Guide ER-Positive Breast Cancer Treatment",
-      "dek": "A study intends to assess the effectiveness of FES PET/CT scans in diagnosing and managing ER-positive breast cancer.",
-      "whatHappened": "Researchers are evaluating the impact of FES PET/CT imaging on diagnosing and assessing treatment in patients with estrogen receptor-positive breast cancer. This involves participants undergoing scans as part of standard care.",
-      "whyItMatters": "Determining how effectively FES PET/CT aids in the management of ER-positive breast cancer may enhance treatment planning for patients.",
-      "realityCheck": "This study is in the enrolling phase and does not yet provide outcome results. It does not imply an established treatment for patients."
+      "headline": "Registry Lists an FES PET/CT Study for ER-Positive Breast Cancer",
+      "dek": "ClinicalTrials.gov posted an observational registration that is enrolling by invitation. No results are posted.",
+      "whatHappened": "Registry record NCT07859046 is an observational study of FES PET/CT in estrogen receptor-positive breast cancer. The record says its purpose is to see how the scans can help doctors diagnose that cancer, plan treatment, and check treatment response. Participants undergo the scans as part of regular cancer care or study procedures. The overall status is enrolling by invitation.",
+      "whyItMatters": "A first public registration shows what the study plans to ask. It does not show whether the imaging changes care.",
+      "realityCheck": "No results are posted. Enrolling by invitation is not an open call for participants, and the registration is not a completed study or an established treatment."
     },
     "ja": {
-      "headline": "ER陽性乳がん治療のための FES PET/CT イメージングの効果を探る",
-      "dek": "FES PET/CT スキャンが ER 陽性乳がんの診断と管理にどのように寄与するかを評価する研究が進行中です。",
-      "whatHappened": "研究者たちは、エストロゲン受容体陽性乳がん患者における診断および治療評価のための FES PET/CT イメージングの影響を評価しています。参加者は標準的なケアの一環としてスキャンを受けることになります。",
-      "whyItMatters": "FES PET/CT が ER 陽性乳がんの管理にどれだけ効果的であるかを決定することは、患者の治療計画を改善する可能性があります。",
-      "realityCheck": "この研究は参加者募集中であり、まだ結果は提供されていません。患者への確立された治療法を示唆するものではありません。"
+      "headline": "ER陽性乳がんを対象にした FES PET/CT の試験登録が公開された",
+      "dek": "ClinicalTrials.gov に観察研究の登録が公開され、状態は招待による登録である。結果は未掲載である。",
+      "whatHappened": "登録 NCT07859046 は、エストロゲン受容体陽性の乳がんを対象に FES PET/CT を用いる観察研究である。診断、治療の計画、治療反応の確認にスキャンがどう役立つかを見る、という目的が記されている。参加者は通常の診療または試験手順の一環でスキャンを受ける。全体の状態は招待による登録である。",
+      "whyItMatters": "初回の公開登録は、研究が何を問う予定かを示す。画像検査が診療を変えるかは示していない。",
+      "realityCheck": "結果は未掲載である。招待による登録は広く参加者を募る状態ではなく、完了した研究でも確立した治療でもない。"
     },
     "sourceCheck": {
       "sourceId": "clinicaltrials",
