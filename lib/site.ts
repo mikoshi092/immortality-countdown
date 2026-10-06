@@ -14,7 +14,7 @@ export const SITE_NAME = "Immortality Countdown";
  * on an independent research site.
  */
 export const PUBLISHER = {
-  name: "Taketoki Fujita",
+  name: "Jonney Wang",
   url: `${SITE_URL}/about`,
   jobTitle: "Strategic investor",
   /** Identity signals. Keep these in sync with the live profiles. */
@@ -23,8 +23,7 @@ export const PUBLISHER = {
   xHandle: "@fruitescake",
   github: "https://github.com/mikoshi092",
   /** Kept out of the nav and out of any heading; see /about. */
-  email: "cstaketoki@outlook.com",
+  email: "techevangelist2030@gmail.com",
   /** Preferred channel: public, logged, and consistent with the site's ethos. */
   issues: "https://github.com/mikoshi092/immortality-countdown/issues",
-  photo: "/taketoki-fujita.webp",
 } as const;
