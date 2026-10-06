@@ -79,10 +79,9 @@ const jsonLd = {
       "@id": `${siteUrl}/#publisher`,
       name: PUBLISHER.name,
       url: PUBLISHER.url,
-      image: `${siteUrl}${PUBLISHER.photo}`,
       jobTitle: PUBLISHER.jobTitle,
       // Ties this name to profiles Google has already indexed. Without it,
-      // "Taketoki Fujita" is just a string on a page.
+      // the publisher name is just a string on a page.
       sameAs: PUBLISHER.sameAs,
     },
   ],
