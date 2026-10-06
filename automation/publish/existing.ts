@@ -3,7 +3,7 @@ import { matchWindow } from "../fetch";
 import { toCandidate } from "../normalize";
 import { rankRecord } from "../rank";
 import { exclusionReasons } from "../noise";
-import { type FetchedRecord } from "../types";
+import { type Candidate, type FetchedRecord, type RankedRecord } from "../types";
 import { validateDraft } from "../editorial/validate";
 import type { EditorialDraft } from "../editorial/types";
 
@@ -116,6 +116,96 @@ function articleToDraft(article: Article, recordId: string): EditorialDraft {
   };
 }
 
+const NO_SOURCE_BASIS = "no verified source excerpt; hold because the source cannot be checked";
+
+function savedCandidate(article: Article): Candidate | undefined {
+  const saved = article.sourceCheck;
+  if (!saved?.recordId || !saved.sourceUrl || !saved.title || !saved.fieldId || !saved.evidence) {
+    return undefined;
+  }
+  return saved;
+}
+
+function rankedFromSaved(saved: Candidate): RankedRecord {
+  return {
+    sourceId: saved.sourceId,
+    sourceName: saved.sourceId,
+    recordId: saved.recordId,
+    title: saved.title,
+    sourceUrl: saved.sourceUrl,
+    urlOrigin: saved.urlOrigin,
+    publishedAt: saved.publishedAt,
+    fetchedAt: saved.fetchedAt,
+    dateFields: saved.dateFields,
+    windowMatch: saved.windowMatch,
+    doi: saved.doi,
+    abstract: saved.abstract,
+    authors: saved.authors,
+    hints: saved.hints,
+    studySubjects: saved.studySubjects,
+    fieldId: saved.fieldId,
+    evidence: saved.evidence,
+    relevanceScore: saved.relevanceScore,
+    significanceScore: saved.significanceScore,
+    reason: saved.reason,
+  };
+}
+
+function gateFromSavedSource(
+  article: Article,
+  catalog: readonly Article[],
+): ExistingGateResult {
+  const saved = savedCandidate(article);
+  if (!saved) {
+    return {
+      articleId: article.id,
+      ok: false,
+      hold: true,
+      reasons: [NO_SOURCE_BASIS],
+    };
+  }
+  const excluded = exclusionReasons(rankedFromSaved(saved));
+  if (excluded.length > 0) {
+    return {
+      articleId: article.id,
+      ok: false,
+      hold: false,
+      reasons: excluded,
+      excluded,
+      relevanceScore: saved.relevanceScore,
+      significanceScore: saved.significanceScore,
+      evidence: saved.evidence,
+    };
+  }
+  const others = catalog.filter((entry) => entry.slug !== article.slug);
+  const result = validateDraft(
+    articleToDraft(article, saved.recordId),
+    saved,
+    new Set(),
+    others,
+  );
+  if (result.ok) {
+    return {
+      articleId: article.id,
+      ok: true,
+      hold: false,
+      reasons: [],
+      relevanceScore: saved.relevanceScore,
+      significanceScore: saved.significanceScore,
+      evidence: saved.evidence,
+    };
+  }
+  return {
+    articleId: article.id,
+    ok: false,
+    hold: result.hold,
+    reasons: result.reasons,
+    relevanceScore: saved.relevanceScore,
+    significanceScore: saved.significanceScore,
+    evidence: saved.evidence,
+  };
+}
+
 export function gateExistingArticles(
   catalog: readonly Article[] = articles,
 ): ExistingGateResult[] {
@@ -123,14 +213,7 @@ export function gateExistingArticles(
     const fetched = EXISTING_SOURCE_EXCERPTS.find(
       (record) => record.doi === article.doi || record.sourceUrl === article.sourceUrl,
     );
-    if (!fetched) {
-      return {
-        articleId: article.id,
-        ok: false,
-        hold: true,
-        reasons: ["no verified source excerpt; hold because the source cannot be checked"],
-      };
-    }
+    if (!fetched) return gateFromSavedSource(article, catalog);
     const ranked = rankRecord(fetched);
     const excluded = exclusionReasons(ranked);
     if (excluded.length > 0) {

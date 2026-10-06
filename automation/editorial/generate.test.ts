@@ -99,6 +99,7 @@ describe("editorial generation", () => {
     );
     assert.equal(report.drafts.length, 1);
     assert.equal(report.drafts[0].candidateRecordId, second.recordId);
+    assert.equal(report.drafts[0].sourceCheck, second);
     assert.equal(report.rejectedDrafts.length, 1);
     assert.equal(report.rejectedDrafts[0].status, "held");
     assert.equal(report.rejectedDrafts[0].recordId, first.recordId);

@@ -1,5 +1,6 @@
 import type { FieldId } from "@/lib/fields";
 import type { EvidenceLevel } from "@/lib/evidence";
+import type { Candidate } from "../automation/types";
 
 /**
  * Bilingual research articles.
@@ -84,6 +85,13 @@ export type Article = {
   ja: ArticleCopy;
   /** At most one article may be featured. Enforced in data/articles.test.ts. */
   featured?: boolean;
+  /**
+   * Candidate snapshot that passed the publish gate. Automatic articles
+   * are re-checked against this record. It is not public article copy.
+   * The original catalog articles use a separate checked excerpt list
+   * and do not carry this field.
+   */
+  sourceCheck?: Candidate;
 };
 
 // Internal review note (not rendered): Nature Medicine body reports

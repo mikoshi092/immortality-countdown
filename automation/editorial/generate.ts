@@ -86,6 +86,7 @@ export async function generateDrafts(
       candidateRecordId: candidate.recordId,
       relevanceScore: candidate.relevanceScore,
       significanceScore: candidate.significanceScore,
+      sourceCheck: candidate,
     };
 
     const result = validateDraft(draft, candidate, existingSlugs, articles);
