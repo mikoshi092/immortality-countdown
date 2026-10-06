@@ -5,14 +5,14 @@ import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { articles, isPublishedArticle, listArticles } from "../../data/articles";
+import { articles, isPublishedArticle, listArticles, type Article } from "../../data/articles";
 import { fixtureCandidate, validMouseDraft } from "../editorial/fixtures";
 import { validateDraft } from "../editorial/validate";
 import { generateDrafts } from "../editorial/generate";
 import { MockEditorialProvider } from "../editorial/mock-provider";
 import { runIngest } from "../run";
-import type { IngestReport } from "../types";
-import type { EditorialReport } from "../editorial/types";
+import type { Candidate, IngestReport } from "../types";
+import type { EditorialDraft, EditorialReport } from "../editorial/types";
 import { applyDraftsToArticles } from "./apply";
 import { assertAutoPublishPaths } from "./check-paths";
 import { decidePublish } from "./policy";
@@ -269,6 +269,87 @@ describe("existing articles", () => {
         );
       }
     }
+  });
+});
+
+function listedFromDraft(draft: EditorialDraft, sourceCheck?: Candidate): Article {
+  const { candidateRecordId: _candidateRecordId, relevanceScore: _relevanceScore, significanceScore: _significanceScore, ...rest } = draft;
+  void _candidateRecordId;
+  void _relevanceScore;
+  void _significanceScore;
+  return {
+    ...rest,
+    sourceCheck,
+    draftCreatedAt: "2026-10-05T08:09:57.494Z",
+    sitePublishedAt: "2026-10-05T08:09:57.494Z",
+  };
+}
+
+describe("automatic articles are checked against their saved source", () => {
+  const candidate = fixtureCandidate({
+    recordId: "pmid-42828712",
+    sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/42828712/",
+    doi: "10.1007/s10522-026-10515-z",
+    title: "Exploring the mtDNA-cGAS-STING Signaling Imitations in Cellular Senescence",
+  });
+  const draft = validMouseDraft(candidate, {
+    id: "2026-10-05-mtdna-cgas-sting",
+    slug: "2026-10-05-mtdna-cgas-sting",
+    sourceUrl: candidate.sourceUrl,
+    doi: candidate.doi,
+    candidateRecordId: candidate.recordId,
+  });
+
+  it("reproduces the verify failure when a new listing has no saved source", () => {
+    const article = listedFromDraft(draft);
+    const result = gateExistingArticles([...articles, article]).find((item) => item.articleId === article.id);
+    assert.ok(result);
+    assert.equal(result.ok, false);
+    assert.match(result.reasons.join("; "), /no verified source excerpt/);
+    assert.notEqual(article.sitePublishedAt, undefined);
+  });
+
+  it("accepts a later automatic article only when the saved source still passes the gate", () => {
+    const article = listedFromDraft(draft, candidate);
+    const result = gateExistingArticles([...articles, article]).find((item) => item.articleId === article.id);
+    assert.ok(result);
+    assert.equal(result.ok, true, result.reasons.join("; "));
+    assert.ok(article.sitePublishedAt);
+
+    const upgraded = listedFromDraft({ ...draft, evidence: "Evidence C" }, candidate);
+    const rejected = gateExistingArticles([...articles, upgraded]).find((item) => item.articleId === upgraded.id);
+    assert.ok(rejected);
+    assert.equal(rejected.ok, false);
+    assert.match(rejected.reasons.join("; "), /Evidence was upgraded/);
+
+    const gossip = {
+      ...candidate,
+      title: "Celebrity gossip about a longevity cream",
+      abstract: "Hollywood celebrity gossip and a tabloid interview.",
+    };
+    const excluded = listedFromDraft(draft, gossip);
+    const noise = gateExistingArticles([...articles, excluded]).find((item) => item.articleId === excluded.id);
+    assert.ok(noise);
+    assert.equal(noise.ok, false);
+    assert.match(noise.reasons.join("; "), /celebrity or gossip/);
+  });
+
+  it("writes the saved source onto the article file for the next catalog check", () => {
+    const dir = mkdtempSync(join(tmpdir(), "publish-source-"));
+    const path = join(dir, "articles.json");
+    writeFileSync(path, "[]\n");
+    const applied = applyDraftsToArticles(
+      [{ ...draft, sourceCheck: candidate }],
+      new Date("2026-10-05T08:09:57.494Z"),
+      { articlesPath: path, existing: [] },
+    );
+    assert.equal(applied.added.length, 1);
+    assert.equal(applied.added[0].sourceCheck?.recordId, candidate.recordId);
+    assert.equal(applied.added[0].sourceCheck?.abstract, candidate.abstract);
+    const again = gateExistingArticles([...articles, applied.added[0]]).find(
+      (item) => item.articleId === applied.added[0].id,
+    );
+    assert.equal(again?.ok, true, again?.reasons.join("; "));
   });
 });
 
