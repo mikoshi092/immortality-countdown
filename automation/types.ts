@@ -82,6 +82,11 @@ export type StudyHints = {
   phases?: string[];
   hasResults?: boolean;
   overallStatus?: string;
+  /**
+   * Verified description of what changed on a registry update.
+   * Absent means the fetch did not identify the change.
+   */
+  registryChange?: string;
 };
 
 export type FetchedRecord = {

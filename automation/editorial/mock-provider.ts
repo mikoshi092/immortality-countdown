@@ -38,16 +38,17 @@ export class MockEditorialProvider implements EditorialProvider {
         ? "実験は動物、細胞、または組織試料であり、生きている参加者のアウトカム試験ではない。"
         : "この要約を過大に読んではいけない。デザインと限界は出典を当たること。";
 
+    const statusLine = trialStatusLine(input.overallStatus);
     const factsEn = {
       studyDesign: isTrial
-        ? "Trial registration. Not a completed efficacy study."
+        ? `Trial registration and research plan. ${statusLine.en} No results posted.`
         : "As stated in the provided title and abstract.",
       populationOrModel: subjects,
       ...(sample ? { sampleSize: sample } : {}),
-      outcomes: abstract.slice(0, 400),
+      outcomes: isTrial ? "No results are posted." : abstract.slice(0, 400),
       limitations: realityEn,
       resultStatus: isTrial
-        ? "Registration or status update only."
+        ? "Trial registration and research plan. No results posted."
         : "As stated in the provided abstract.",
     };
 
@@ -56,14 +57,14 @@ export class MockEditorialProvider implements EditorialProvider {
         en: factsEn,
         ja: {
           studyDesign: isTrial
-            ? "試験登録。有効性を示した完了試験ではない。"
+            ? `試験登録・研究計画。${statusLine.ja}結果は未掲載。`
             : "提供されたタイトルと抄録に記されたとおり。",
           populationOrModel: subjects,
           ...(sample ? { sampleSize: sample } : {}),
-          outcomes: abstract.slice(0, 400),
+          outcomes: isTrial ? "結果は未掲載である。" : abstract.slice(0, 400),
           limitations: realityJa,
           resultStatus: isTrial
-            ? "登録または状態の更新のみ。"
+            ? "試験登録・研究計画。結果は未掲載。"
             : "提供された抄録に記されたとおり。",
         },
       },
@@ -85,6 +86,27 @@ export class MockEditorialProvider implements EditorialProvider {
       },
       countdownImpact: "none",
     };
+  }
+}
+
+function trialStatusLine(status: string | undefined): { en: string; ja: string } {
+  switch ((status ?? "").toUpperCase()) {
+    case "RECRUITING":
+      return { en: "Overall status: recruiting.", ja: "全体の状態は募集中。" };
+    case "NOT_YET_RECRUITING":
+      return { en: "Overall status: not yet recruiting.", ja: "全体の状態は未募集。" };
+    case "ENROLLING_BY_INVITATION":
+      return { en: "Overall status: enrolling by invitation.", ja: "全体の状態は招待による登録。" };
+    case "ACTIVE_NOT_RECRUITING":
+      return { en: "Overall status: active, not recruiting.", ja: "全体の状態は実施中で募集は終了。" };
+    case "COMPLETED":
+      return { en: "Overall status: completed.", ja: "全体の状態は完了。" };
+    case "TERMINATED":
+      return { en: "Overall status: terminated.", ja: "全体の状態は中止。" };
+    case "SUSPENDED":
+      return { en: "Overall status: suspended.", ja: "全体の状態は中断。" };
+    default:
+      return { en: "", ja: "" };
   }
 }
 

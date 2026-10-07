@@ -57,7 +57,7 @@ PubMed ESearch は一致件数の先頭 10,000 件まで。超えた場合は `t
 - 日付: Essie の `AREA[StudyFirstPostDate]RANGE[from,to]` と `AREA[LastUpdatePostDate]RANGE[from,to]` を別検索する。
 - フィールド例: `NCTId`, `BriefTitle`, `StudyFirstPostDate`, `LastUpdatePostDate`, `OverallStatus`, `BriefSummary`, `StudyType`, `Phase`, `HasResults`
 
-試験日付は YYYY-MM-DD のカレンダー日付で、時刻はない。48時間は UTC の直近2カレンダー日として検索し、`studyFirstPostDate` と `lastUpdatePostDate` を別々に判定する。初回公開日が古く、更新日だけがウィンドウ内、という場合は更新日ヒットとして残し、`publishedAt` は初回公開日のままにする。
+試験日付は YYYY-MM-DD のカレンダー日付で、時刻はない。48時間は UTC の直近2カレンダー日として検索し、`studyFirstPostDate` と `lastUpdatePostDate` を別々に判定する。初回公開日が古く、更新日だけがウィンドウ内、という場合も記録は残るが、変更内容（`hints.registryChange`）が無いときは掲載せず保留する。`publishedAt` は初回公開日のままにします。結果未掲載の試験は日英で「試験登録・研究計画」と書き、目的を成果にせず、レジストリの募集・中止・完了状態と一致させます。
 
 レコード URL は NCT ID から `https://clinicaltrials.gov/study/{nctId}` をアダプター内だけで構成する。
 
@@ -96,6 +96,7 @@ Evidence は `data/news.ts` の定義を再利用する。タイトルだけで�
 
 - 更新日だけでは「段階移行」と書かない。API の1回のスナップショットには以前の相がない
 - 初回公開がウィンドウ外で、status が RECRUITING なだけでは「この48時間に募集開始」と書かない
+- 更新日だけがウィンドウ内で、変更内容を確認できない記録は掲載しない
 
 新規に公開された介入試験（とくに Phase 2 以降）は、登録だからという理由だけで必ず閾値未満にはしない。ただし Evidence は E のまま。
 
