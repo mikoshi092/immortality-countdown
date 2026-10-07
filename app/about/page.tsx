@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
 import BetaBanner from "@/components/BetaBanner";
 import { PUBLISHER, SITE_URL } from "@/lib/site";
@@ -11,7 +10,7 @@ import { countdown } from "@/lib/countdown";
 export const metadata: Metadata = {
   title: "About | Immortality Countdown",
   description:
-    "Who is behind the countdown: Taketoki Fujita, a strategic investor rather than a biologist, and why an outsider's question about the ten-years-to-immortality claim turned into a published model.",
+    "Who is behind the countdown: Jonney Wang, a strategic investor rather than a biologist, and why an outsider's question about the ten-years-to-immortality claim turned into a published model.",
   alternates: { canonical: "/about" },
 };
 
@@ -29,7 +28,6 @@ const jsonLd = {
     "@id": `${SITE_URL}/#publisher`,
     name: PUBLISHER.name,
     url: PUBLISHER.url,
-    image: `${SITE_URL}${PUBLISHER.photo}`,
     jobTitle: PUBLISHER.jobTitle,
     sameAs: PUBLISHER.sameAs,
     knowsAbout: [
@@ -78,40 +76,29 @@ export default function AboutPage() {
             Who is behind this number
           </h1>
 
-          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
-            <Image
-              src={PUBLISHER.photo}
-              alt={PUBLISHER.name}
-              width={800}
-              height={800}
-              sizes="(min-width: 640px) 9rem, 7rem"
-              priority
-              className="h-28 w-28 shrink-0 rounded-full object-cover shadow-sm ring-1 ring-black/10 sm:h-36 sm:w-36"
-            />
-            <div className="min-w-0">
-              <p className="text-lg leading-8 text-[#17202a]/75">
-                I&apos;m <strong className="font-semibold text-[#17202a]">{PUBLISHER.name}</strong>.
-                I&apos;m a strategic investor, not a biologist — and this site began as my own
-                suspicion.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-                <a
-                  href={PUBLISHER.x}
-                  rel="me noopener"
-                  target="_blank"
-                  className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
-                >
-                  {PUBLISHER.xHandle} on X →
-                </a>
-                <a
-                  href={PUBLISHER.github}
-                  rel="me noopener"
-                  target="_blank"
-                  className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
-                >
-                  GitHub →
-                </a>
-              </div>
+          <div className="mt-8">
+            <p className="text-lg leading-8 text-[#17202a]/75">
+              I&apos;m <strong className="font-semibold text-[#17202a]">{PUBLISHER.name}</strong>.
+              I&apos;m a strategic investor, not a biologist — and this site began as my own
+              suspicion.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <a
+                href={PUBLISHER.x}
+                rel="me noopener"
+                target="_blank"
+                className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
+              >
+                {PUBLISHER.xHandle} on X →
+              </a>
+              <a
+                href={PUBLISHER.github}
+                rel="me noopener"
+                target="_blank"
+                className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
+              >
+                GitHub →
+              </a>
             </div>
           </div>
 

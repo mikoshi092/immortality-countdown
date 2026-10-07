@@ -2452,6 +2452,1933 @@ export const articles: Article[] = [
       }
     },
     "sitePublishedAt": "2026-10-06T01:38:29.620Z"
+  },
+  {
+    "id": "2019-11-29-new-phase-iii-trial-evaluates-osimertinib-with-bevacizumab-for-lung-canc",
+    "slug": "2019-11-29-new-phase-iii-trial-evaluates-osimertinib-with-bevacizumab-for-lung-canc",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT04181060",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2019-11-29T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Investigating the effect on cancer control and overall survival",
+        "limitations": "Details about study population and outcomes are unavailable",
+        "resultStatus": "Results not posted",
+        "intervention": "Combination of osimertinib and bevacizumab vs. osimertinib alone",
+        "trialPhase": "PHASE3"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "がんの制御と全体的な生存への影響を調査中",
+        "limitations": "研究対象や結果に関する詳細は不明",
+        "resultStatus": "結果は未掲載",
+        "intervention": "オシメルチニブとベバシズマブの併用 vs. オシメルチニブ単独",
+        "trialPhase": "PHASE3"
+      }
+    },
+    "en": {
+      "headline": "New Phase III Trial Evaluates Osimertinib with Bevacizumab for Lung Cancer",
+      "dek": "Study assesses potential benefits of combining an EGFR inhibitor with an anti-angiogenic agent.",
+      "whatHappened": "A phase III trial is currently recruiting to compare osimertinib combined with bevacizumab against osimertinib alone in patients with EGFR-mutant lung cancer.",
+      "whyItMatters": "This research aims to explore whether the combination treatment can enhance cancer control and potentially improve survival.",
+      "realityCheck": "While the study is focused on cancer treatment, it is still in the recruitment phase and results are not yet available."
+    },
+    "ja": {
+      "headline": "新しいフェーズIII試験が肺癌に対するオシメルチニブとベバシズマブの併用を評価",
+      "dek": "EGFR阻害剤と抗血管新生薬の併用の潜在的利益を調査しています。",
+      "whatHappened": "フェーズIII試験が現在、EGFR変異肺癌患者においてオシメルチニブとベバシズマブの併用をオシメルチニブ単独と比較するために被験者を募集中です。",
+      "whyItMatters": "この研究は、併用療法ががんの制御を強化し、潜在的に生存率を改善できるかどうかを探求することを目的としています。",
+      "realityCheck": "この研究はがん治療に焦点を当てているものの、まだ募集段階であり、結果は現在利用できません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT04181060",
+      "title": "Osimertinib With or Without Bevacizumab as Initial Treatment for Patients With EGFR-Mutant Lung Cancer",
+      "publishedAt": "2019-11-29T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This phase III trial compares the effect of bevacizumab and osimertinib combination vs. osimertinib alone for the treatment of non-small cell lung cancer that has spread outside of the lungs (stage IIIB-IV) and has a change (mutation) in a gene called EGFR. The EGFR protein is involved in cell signaling pathways that control cell division and survival. Sometimes, mutations in the EGFR gene cause EGFR proteins to be made in higher than normal amounts on some types of cancer cells. This causes cancer cells to divide more rapidly. Osimertinib may stop the growth of tumor cells by blocking EGFR that is needed for cell growth in this type of cancer. Bevacizumab is in a class of medications called antiangiogenic agents. It works by stopping the formation of blood vessels that bring oxygen and nutrients to tumor. This may slow the growth and spread of tumor. Giving osimertinib with bevacizumab may control cancer for longer and help patients live longer as compared to osimertinib alone.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 55,
+      "significanceScore": 55,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); late-phase registered trial; interventional Phase 3/4 from the registry snapshot; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT04181060",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2019-11-29",
+          "iso": "2019-11-29",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT04181060"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2020-03-19-national-cancer-institute-launches-cancer-moonshot-biobank-for-research",
+    "slug": "2020-03-19-national-cancer-institute-launches-cancer-moonshot-biobank-for-research",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT04314401",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2020-03-19T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Longitudinal study",
+        "populationOrModel": "living-people",
+        "outcomes": "Not assessed in this news report",
+        "limitations": "Details on specific outcomes or analyses are unavailable.",
+        "resultStatus": "Science news report",
+        "intervention": "none"
+      },
+      "ja": {
+        "studyDesign": "縦断的研究",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "本報道では研究結果を検証していない",
+        "limitations": "具体的な結果や分析に関する詳細は利用できません。",
+        "resultStatus": "科学ニュース報道",
+        "intervention": "なし"
+      }
+    },
+    "en": {
+      "headline": "National Cancer Institute Launches Cancer Moonshot Biobank for Research",
+      "dek": "A longitudinal study collecting samples to understand cancer progression.",
+      "whatHappened": "The National Cancer Institute has initiated the Cancer Moonshot Biobank, a longitudinal study aiming to collect tissue and blood samples from cancer patients alongside their medical information.",
+      "whyItMatters": "This biobank aims to enhance understanding of how cancer develops and changes over time, which could inform better treatment strategies, although specific outcomes from this study have not yet been reported.",
+      "realityCheck": "While this initiative is noteworthy for advancing cancer research, it does not offer immediate benefits or results related to treatment or longevity."
+    },
+    "ja": {
+      "headline": "国立がん研究所ががんムーンショットバイオバンクを立ち上げ",
+      "dek": "がんの進行を理解するための縦断的研究を実施。",
+      "whatHappened": "国立がん研究所は、がん患者からの組織および血液サンプルに加えて医療情報を収集することを目的としたがんムーンショットバイオバンクという縦断的研究を開始した。",
+      "whyItMatters": "このバイオバンクは、がんの進展と変化を理解することで、より良い治療戦略を情報提供することを目的としているが、具体的な研究結果はまだ報告されていない。",
+      "realityCheck": "この取り組みはがん研究を進める上で注目に値するが、治療や長寿に関連する即座の利点や結果を提供するものではない。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT04314401",
+      "title": "National Cancer Institute \"Cancer Moonshot Biobank\"",
+      "publishedAt": "2020-03-19T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This trial collects multiple tissue and blood samples, along with medical information, from cancer patients. The \"Cancer Moonshot Biobank\" is a longitudinal study. This means it collects and stores samples and information over time, throughout the course of a patient's cancer treatment. By looking at samples and information collected from the same people over time, researchers hope to better understand how cancer changes over time and over the course of medical treatments.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 36,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); observational registry record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus=ACTIVE_NOT_RECRUITING; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT04314401",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2020-03-19",
+          "iso": "2020-03-19",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT04314401"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "OBSERVATIONAL",
+        "hasResults": false,
+        "overallStatus": "ACTIVE_NOT_RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2021-02-12-new-educational-materials-for-genetic-testing-under-development-for-dive",
+    "slug": "2021-02-12-new-educational-materials-for-genetic-testing-under-development-for-dive",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT04751435",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2021-02-12T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Participants' feedback on educational materials will be used for improvement.",
+        "limitations": "Details on specific participant demographics and their responses are unavailable.",
+        "resultStatus": "No results available",
+        "intervention": "Developing new educational materials about genetic testing"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "参加者のフィードバックを利用して教育資料の改善を行う。",
+        "limitations": "具体的な参加者の人口統計や彼らの回答に関する詳細は入手できない。",
+        "resultStatus": "結果は利用できない",
+        "intervention": "遺伝子検査に関する新しい教育資料の開発"
+      }
+    },
+    "en": {
+      "headline": "New Educational Materials for Genetic Testing Under Development for Diverse Cancer Patient Groups",
+      "dek": "Researchers aim to create culturally relevant resources regarding genetic testing for cancer patients.",
+      "whatHappened": "A study is being conducted to develop educational materials about genetic testing, focusing on diverse linguistic and cultural groups.",
+      "whyItMatters": "This initiative seeks to improve understanding of genetic testing options among cancer patients, potentially impacting treatment choices.",
+      "realityCheck": "The development of educational materials does not imply any treatment or outcomes related to longevity."
+    },
+    "ja": {
+      "headline": "多様な癌患者グループのための遺伝子検査に関する教育資料が開発中",
+      "dek": "研究者は、癌患者向けの遺伝子検査に関する文化的に関連したリソースを作成することを目指しています。",
+      "whatHappened": "遺伝子検査に関する教育資料を開発するための研究が行われており、多様な言語と文化のグループに焦点を当てています。",
+      "whyItMatters": "この取り組みは、癌患者に対する遺伝子検査オプションの理解を深め、治療の選択に影響を与える可能性があります。",
+      "realityCheck": "教育資料の開発は、寿命に関連する治療や結果を示唆するものではありません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT04751435",
+      "title": "Developing New Educational Materials About Genetic Testing for a Diverse Group of Cancer Patients",
+      "publishedAt": "2021-02-12T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "Genetic testing is a type of test that detects changes to the genes-the DNA instructions that are passed on from the mother and father. The results of a genetic test can confirm whether the participant has a genetic disorder, which is a disease caused in whole or in part by changes to the genes. Genetic testing can also help determine a person's chance of getting or passing on a genetic disorder. Genetic tests use a sample of blood, hair, skin, or other tissue, and they can look at one gene or multiple genes at the same time. Genetic testing may change the options for treating people with certain types of cancer. For example, some medications are more helpful for the treatment of cancer in people with certain gene changes (mutations).\n\nThe researchers are doing this study to develop new educational materials about genetic testing for people who speak different languages and have diverse cultural and educational backgrounds. During the study, the staff will interview participants with diverse cultural and educational backgrounds and ask them to review a sample of the educational materials that have been developed so far. Participants will give their opinions on these materials, and the researchers will use participants' feedback to improve the materials.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT04751435",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2021-02-12",
+          "iso": "2021-02-12",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT04751435"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2023-02-22-effects-of-jing-si-herbal-tea-on-bladder-cancer-symptoms-under-investiga",
+    "slug": "2023-02-22-effects-of-jing-si-herbal-tea-on-bladder-cancer-symptoms-under-investiga",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT05739071",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2023-02-22T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Interventional trial registration; Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Effects on lower urinary tract symptoms after intravesical therapy in bladder cancer patients",
+        "limitations": "No results available; details on sample size and specific conditions not provided.",
+        "resultStatus": "Results not yet available",
+        "intervention": "JING SI HERBAL TEA"
+      },
+      "ja": {
+        "studyDesign": "介入試験の登録; 科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "膀胱癌患者における膀胱内治療後の下部尿路症状への影響",
+        "limitations": "結果は未発表; サンプルサイズや具体的な病状に関する詳細は提供されていない。",
+        "resultStatus": "結果はまだ入手できていない",
+        "intervention": "JING SI HERBAL TEA"
+      }
+    },
+    "en": {
+      "headline": "Effects of JING SI HERBAL TEA on Bladder Cancer Symptoms Under Investigation",
+      "dek": "A new trial explores how herbal tea influences urinary tract symptoms post-intravesical therapy in bladder cancer patients.",
+      "whatHappened": "The study is registered to evaluate the impact of JING SI HERBAL TEA on urinary tract symptoms after treatment in bladder cancer patients, but results have not yet been reported.",
+      "whyItMatters": "Investigating herbal remedies like JING SI HERBAL TEA could provide insights into adjunct treatments for managing symptoms in cancer patients.",
+      "realityCheck": "No verified results are available yet, and the effects of JING SI HERBAL TEA on urinary issues remain uncertain."
+    },
+    "ja": {
+      "headline": "膀胱癌の症状に対するJING SI HERBAL TEAの効果が調査中",
+      "dek": "新しい試験が、膀胱癌患者における膀胱内治療後の尿路症状に対するハーブティーの影響を探る。",
+      "whatHappened": "この研究は、膀胱癌患者の治療後の尿路症状に対するJING SI HERBAL TEAの影響を評価するために登録されていますが、結果はまだ報告されていません。",
+      "whyItMatters": "JING SI HERBAL TEAのようなハーブ療法の調査は、癌患者の症状管理における補助的治療への洞察を提供する可能性があります。",
+      "realityCheck": "信頼できる結果はまだ得られておらず、JING SI HERBAL TEAが尿路の問題に与える影響は不確かです。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT05739071",
+      "title": "JING SI HERBAL TEA and Urinary Tract Symptoms in Bladder Cancer",
+      "publishedAt": "2023-02-22T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "To identify the effects of JING SI HERBAL TEA in the treatment of lower urinary tract symptoms after intravesical therapy in patients with bladder cancer.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus=ENROLLING_BY_INVITATION; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT05739071",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2023-02-22",
+          "iso": "2023-02-22",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT05739071"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "ENROLLING_BY_INVITATION"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2023-05-06-reflexion-pet-ct-imaging-performance-compared-to-standard-imaging-in-can",
+    "slug": "2023-05-06-reflexion-pet-ct-imaging-performance-compared-to-standard-imaging-in-can",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT05844306",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2023-05-06T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Improvement of PET-CT imaging on the RefleXion system",
+        "limitations": "Details about specific patient population and outcomes are not provided",
+        "resultStatus": "No results available",
+        "intervention": "RefleXion Medical Radiotherapy System (RMRS) imaging compared to standard PET-CT imaging"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "RefleXionシステムにおけるPET-CT imagingの改善",
+        "limitations": "特定の患者集団と結果に関する詳細は提供されていない",
+        "resultStatus": "結果は利用できません",
+        "intervention": "RefleXion Medical Radiotherapy System (RMRS) imagingと標準PET-CT imagingの比較"
+      }
+    },
+    "en": {
+      "headline": "RefleXion PET/CT Imaging Performance Compared to Standard Imaging in Cancer Patients",
+      "dek": "A study evaluates the imaging capabilities of the RefleXion system against standard PET-CT methods.",
+      "whatHappened": "The clinical trial investigates how the RefleXion Medical Radiotherapy System (RMRS) imaging compares to standard fludeoxyglucose F-18 PET-CT imaging across various malignancies.",
+      "whyItMatters": "Improving PET-CT imaging could enhance the delivery of radiotherapy by facilitating real-time targeting of tumors.",
+      "realityCheck": "While the study explores improvements in imaging, no specific outcomes or patient data have been verified yet."
+    },
+    "ja": {
+      "headline": "がん患者におけるRefleXion PET/CT imaging性能の標準画像診断との比較",
+      "dek": "RefleXionシステムの画像診断能力が標準PET-CT手法とどのように比較されるかを評価する研究。",
+      "whatHappened": "この臨床試験は、さまざまな悪性腫瘍における標準フルデオキシグルコースF-18 PET-CT imagingと比較して、RefleXion Medical Radiotherapy System (RMRS) imagingを調査します。",
+      "whyItMatters": "PET-CT imagingの改善は、腫瘍をリアルタイムでターゲットにすることが可能になり、放射線療法の実施を向上させる可能性があります。",
+      "realityCheck": "この研究は画像診断の改善を探求しているものの、具体的な結果や患者データはまだ確認されていません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT05844306",
+      "title": "RefleXion PET/CT Imaging Performance in Patients With Various Malignancies",
+      "publishedAt": "2023-05-06T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This clinical trial examines RefleXion Medical Radiotherapy System (RMRS) imaging to the standard of care (SOC) fludeoxyglucose F-18 (\\[18F\\]-FDG)- positron emission tomography (PET)-computed tomography (CT) imaging in patients with various cancers (malignancies). PET is an established imaging technique that utilizes small amounts of radioactivity attached to very minimal amounts of tracer, in the case of this research, \\[18F\\]-FDG. Because some cancers take up \\[18F\\]-FDG, cancer cells can be seen with PET. CT utilizes x-rays that traverse body from the outside. CT images provide an exact outline of organs and potential inflammatory tissue where it occurs in patient's body. The RefleXion system is designed to facilitate delivery of biology-guided radiotherapy (BgRT). The RMRS uses PET emissions to guide radiotherapy delivery in real-time and has been studied for use with FDG (which is an agent used in standard PET-CT scans that targets glucose). Information gathered from this study may help researchers to improve PET-CT imaging on the RefleXion system. This information will be used in the future to improve planning and delivery of radiotherapy that will target (in real time) the signal released from the \\[18F\\]-FDG-PET-CT tracer. Comparing the imaging from the standard of care \\[18F\\]-FDG-PET-CT with the \\[18F\\]-FDG imaging from RMRS may help improve the quality of the imaging captured and determine if imaging can be done on the RMRS at the same time as planning for radiation therapy, which would reduce the number of scans needed to plan for radiation for cancer.",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 85,
+      "significanceScore": 40,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; aging/longevity terms in title: aging; field terms in abstract: clinical trial; cancer treatment or therapeutic research in title/abstract (+25); interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus=ACTIVE_NOT_RECRUITING; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT05844306",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2023-05-06",
+          "iso": "2023-05-06",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT05844306"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "ACTIVE_NOT_RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2023-09-28-new-trial-investigates-adding-durvalumab-to-chemotherapy-for-breast-canc",
+    "slug": "2023-09-28-new-trial-investigates-adding-durvalumab-to-chemotherapy-for-breast-canc",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT06058377",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2023-09-28T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Phase III trial; Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Preventing cancer recurrence in patients with MP2 stage II-III hormone receptor positive, HER2 negative breast cancer",
+        "limitations": "Details on sample size and specific results not available",
+        "resultStatus": "No results reported yet",
+        "intervention": "Adding durvalumab to usual chemotherapy"
+      },
+      "ja": {
+        "studyDesign": "フェーズIII試験；科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "MP2ステージII-IIIホルモン受容体陽性、HER2陰性乳癌患者における癌再発予防",
+        "limitations": "サンプルサイズや具体的な結果に関する詳細は不明",
+        "resultStatus": "結果はまだ報告されていない",
+        "intervention": "通常の化学療法にdurvalumabを追加する"
+      }
+    },
+    "en": {
+      "headline": "New Trial Investigates Adding Durvalumab to Chemotherapy for Breast Cancer",
+      "dek": "Researchers are testing whether combining an immunotherapy drug with standard chemotherapy will improve outcomes for patients with certain breast cancer types.",
+      "whatHappened": "A phase III trial aims to compare the effectiveness of standard chemotherapy alone against chemotherapy combined with durvalumab in treating patients with hormone receptor positive, HER2 negative breast cancer.",
+      "whyItMatters": "This research could potentially lead to new treatment strategies for patients with specific cancer profiles, enhancing the effectiveness of current therapies.",
+      "realityCheck": "This study is still recruiting participants and has yet to report any results, leaving the effectiveness of this treatment combination unverified."
+    },
+    "ja": {
+      "headline": "乳癌治療における化学療法の追加治療としてのDurvalumabの研究開始",
+      "dek": "研究者たちは、標準化学療法と免疫療法薬の併用が特定の乳癌患者の治療結果を改善するかどうかをテストしています。",
+      "whatHappened": "フェーズIII試験が、ホルモン受容体陽性、HER2陰性乳癌患者における通常の化学療法とdurvalumabを併用した治療の効果を比較することを目的としています。",
+      "whyItMatters": "この研究は、特定の癌プロファイルを持つ患者に対する新しい治療戦略の可能性を示唆し、現在の治療法の有効性を高めることが期待されます。",
+      "realityCheck": "この研究はまだ参加者を募集しており、結果は未報告のため、この治療の効果は確認されていません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT06058377",
+      "title": "Adding an Immunotherapy Drug, MEDI4736 (Durvalumab), to the Usual Chemotherapy Treatment (Paclitaxel, Cyclophosphamide, and Doxorubicin) for Stage II-III Breast Cancer",
+      "publishedAt": "2023-09-28T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This phase III trial compares the addition of an immunotherapy drug (durvalumab) to usual chemotherapy versus usual chemotherapy alone in treating patients with MammaPrint High 2 Risk (MP2) stage II-III hormone receptor positive, HER2 negative breast cancer. Immunotherapy with monoclonal antibodies, such as durvalumab, may help the body's immune system attack the cancer, and may interfere with the ability of tumor cells to grow and spread. Chemotherapy drugs, such as paclitaxel, doxorubicin, and cyclophosphamide work in different ways to stop the growth of tumor cells, either by killing the cells, by stopping them from dividing, or by stopping them from spreading. There is some evidence from previous clinical trials that people who have a MammaPrint High 2 Risk result may be more likely to respond to chemotherapy and immunotherapy. Adding durvalumab to usual chemotherapy may be able to prevent the cancer from returning for patients with MP2 stage II-III hormone receptor positive, HER2 negative breast cancer.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 55,
+      "significanceScore": 55,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); late-phase registered trial; interventional Phase 3/4 from the registry snapshot; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT06058377",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2023-09-28",
+          "iso": "2023-09-28",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT06058377"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2023-11-18-investigating-cryocompression-s-role-in-alleviating-chemo-induced-neurop",
+    "slug": "2023-11-18-investigating-cryocompression-s-role-in-alleviating-chemo-induced-neurop",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT06139458",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2023-11-18T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Noninferiority design for an interventional trial",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Incidence and degree of chemotherapy-induced peripheral neuropathy, patient tolerability, and satisfaction",
+        "limitations": "Details on the study population and sample size are unavailable",
+        "resultStatus": "Science news report",
+        "intervention": "Cryotherapy wraps plus compression therapy (cryocompression) versus cryotherapy wraps alone"
+      },
+      "ja": {
+        "studyDesign": "非劣性デザインの介入試験",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "化学療法誘発性末梢神経障害の発生率と程度、患者の忍耐性、スタッフの満足度",
+        "limitations": "研究対象やサンプルサイズに関する詳細は入手できません",
+        "resultStatus": "科学ニュース報道",
+        "intervention": "冷凍療法ラップと圧迫療法（クリオ圧迫療法）対冷凍療法ラップ単独"
+      }
+    },
+    "en": {
+      "headline": "Investigating Cryocompression's Role in Alleviating Chemo-Induced Neuropathy",
+      "dek": "New trial explores the impact of combined cryotherapy and compression on cancer patients.",
+      "whatHappened": "Researchers are launching a trial to assess the benefits of cryocompression compared to cryotherapy alone for managing peripheral neuropathy caused by chemotherapy in gynecologic cancer patients.",
+      "whyItMatters": "Understanding effective supportive therapies in cancer treatment can enhance patient care and satisfaction.",
+      "realityCheck": "This is a trial currently recruiting participants, with results not yet available. The safety and effectiveness of the interventions have not been demonstrated."
+    },
+    "ja": {
+      "headline": "クリオ圧迫療法が化学療法誘発性神経障害の緩和に及ぼす影響を調査",
+      "dek": "新しい試験が癌患者における冷凍療法と圧迫療法の効果を探求する。",
+      "whatHappened": "研究者たちは、婦人科癌患者において化学療法による末梢神経障害の管理に対する冷凍療法と圧迫療法の効果を評価する試験を開始する。",
+      "whyItMatters": "癌治療における有効な支援療法を理解することは、患者ケアと満足度を向上させることに繋がる。",
+      "realityCheck": "これは現在参加者を募集している試験であり、結果はまだ得られていません。介入の安全性と効果はまだ確認されていません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT06139458",
+      "title": "Cryocompression to Reduce Chemotherapy-induced Peripheral Neuropathy in Gynecologic Cancer - COHORT 2",
+      "publishedAt": "2023-11-18T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "The investigators aim to determine the effect of cryotherapy wraps plus compression therapy (henceforth referred to as cryocompression) versus cryotherapy wraps alone on the incidence and degree of chemotherapy-induced peripheral neuropathy in patients with gynecologic cancer using a noninferiority design. The investigators also aim to determine the effect of cryocompression versus cryotherapy on patient tolerability and patient and staff satisfaction.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT06139458",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2023-11-18",
+          "iso": "2023-11-18",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT06139458"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2024-02-23-study-on-urolithin-a-s-impact-on-insulin-in-older-adults-underway",
+    "slug": "2024-02-23-study-on-urolithin-a-s-impact-on-insulin-in-older-adults-underway",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT06274749",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2024-02-23T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Randomized triple-masked controlled clinical trial; Science news report",
+        "populationOrModel": "Individuals aged 55 or older with a BMI of 27 or higher",
+        "outcomes": "Insulin levels and other hormones involved in glucose regulation",
+        "limitations": "No results available yet; limited information on detailed outcomes",
+        "resultStatus": "No results available",
+        "intervention": "UA gelcaps taken daily, with a placebo control"
+      },
+      "ja": {
+        "studyDesign": "無作為三重盲検対照臨床試験; 科学ニュース報道",
+        "populationOrModel": "55歳以上、BMI27以上の個人",
+        "outcomes": "血糖調節に関与するインスリンレベルなどのホルモン",
+        "limitations": "まだ結果が利用できず、詳細な結果については限られた情報のみ",
+        "resultStatus": "結果は利用できず",
+        "intervention": "日常的に使用されるUAゲルカプセルとプラセボ対照"
+      }
+    },
+    "en": {
+      "headline": "Study on Urolithin A's Impact on Insulin in Older Adults Underway",
+      "dek": "A new clinical trial aims to test the effects of Urolithin A supplementation on glucose metabolism in older adults.",
+      "whatHappened": "A randomized controlled trial is currently recruiting participants to investigate whether Urolithin A can improve insulin levels and glucose regulation in adults aged 55 and older.",
+      "whyItMatters": "Understanding how Urolithin A influences insulin could lead to better management of glucose levels in aging populations, though the implications for diabetes treatment remain unclear.",
+      "realityCheck": "While this trial is in progress, no results are yet available, making it vital to avoid assumptions about the effectiveness of Urolithin A for improving health outcomes."
+    },
+    "ja": {
+      "headline": "Urolithin Aのインスリンへの影響に関する研究が進行中",
+      "dek": "新しい臨床試験が高齢者におけるUrolithin Aの補充効果をテストすることを目指している。",
+      "whatHappened": "無作為対照試験が現在参加者を募集しており、55歳以上の成人におけるUrolithin Aがインスリンレベルと血糖調節に与える影響を調査する。",
+      "whyItMatters": "Urolithin Aがインスリンに及ぼす影響を理解することは、高齢者の血糖レベル管理に役立つ可能性があるが、糖尿病治療への影響は不透明である。",
+      "realityCheck": "この試験は進行中であり、結果はまだ利用できないため、Urolithin Aが健康結果を改善するという仮定を避けることが重要である。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT06274749",
+      "title": "Effects of Urolithin A Supplementation on Glucose Metabolism in Healthy Adults 55 >= Years Old: A Randomized Triple-Masked Controlled Clinical Trial",
+      "publishedAt": "2024-02-23T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "Background:\n\nAs people age, the cells in the pancreas that produce insulin begin to release less of this hormone, and levels of blood glucose (sugar) rise. This can lead to illnesses such as diabetes. Urolithin A (UA) is a natural nutritional supplement that may improve how the body controls blood glucose.\n\nObjective:\n\nTo learn if UA improves levels of insulin and other hormones that help control blood glucose.\n\nEligibility:\n\nPeople aged 55 years and older with a body mass index of 27 or higher.\n\nDesign:\n\nParticipants will have 6 clinic visits over 8 weeks.\n\nParticipants will be screened. They will have a physical exam with blood and urine tests and a test of their heart function.\n\nUA gelcaps are taken by mouth every morning at home. Half of participants will take UA. The other half will take a placebo. The placebo looks like the study drug but does not contain any medicine. Participants will not know which they are taking.\n\nParticipants will have tests during the study including:\n\nOral glucose tolerance: Participants will drink a sweet liquid. Blood will be drawn at intervals over the next 3 hours.\n\nContinuous glucose monitor: A sensor with a needle that goes just under the skin will be placed on the upper arm. Participants will wear this sensor throughout the study.\n\nExercise. Participants will walk on a treadmill while their heart rate, hearth rhythm, and blood pressure are monitored. They will walk in a hallway at normal and fast paces.\n\nImaging scans of the thigh; scans of the brain are optional....",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; aging/longevity terms in abstract: aging; field terms in title: clinical trial, randomized; interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT06274749",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2024-02-23",
+          "iso": "2024-02-23",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT06274749"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2025-06-11-evaluating-sustainable-diet-and-exercise-for-older-women-s-metabolic-hea",
+    "slug": "2025-06-11-evaluating-sustainable-diet-and-exercise-for-older-women-s-metabolic-hea",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07015307",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2025-06-11T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Interventional trial registration; aims to evaluate the impact of sustainable diet and exercise programs.",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Monitoring of body composition, functional capacity, strength, fatigue perception, sleep quality, and emotional well-being.",
+        "limitations": "Details on effectiveness and specific outcomes remain unavailable at this stage.",
+        "resultStatus": "Science news report",
+        "intervention": "Participants assigned to supervised physical training, personalized dietary guidance based on the Mediterranean diet, or both."
+      },
+      "ja": {
+        "studyDesign": "介入試験の登録；持続可能な食事および運動プログラムの影響を評価することを目的としています。",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "体組成、機能的能力、筋力、疲労感、睡眠の質、感情的健康のモニタリング。",
+        "limitations": "有効性や具体的な結果に関する詳細は、この段階では利用できません。",
+        "resultStatus": "科学ニュース報道",
+        "intervention": "参加者は、監視下の身体トレーニング、地中海食に基づく個別の食事指導、またはその両方に割り当てられます。"
+      }
+    },
+    "en": {
+      "headline": "Evaluating Sustainable Diet and Exercise for Older Women's Metabolic Health",
+      "dek": "A trial seeks to measure the impact of tailored programs on health outcomes.",
+      "whatHappened": "A new interventional trial will assess how supervised physical training and dietary guidance affect older women’s metabolic health over several weeks.",
+      "whyItMatters": "This initiative explores a holistic approach to improving health conditions among older women, particularly concerning metabolic disorders.",
+      "realityCheck": "While the study aims to provide insights into sustainable interventions for older women, results are not yet available, and the overall effectiveness remains uncertain."
+    },
+    "ja": {
+      "headline": "高齢女性の代謝健康のための持続可能な食事と運動プログラムの評価",
+      "dek": "プログラムの健康結果に対する影響を測定する試みです。",
+      "whatHappened": "新しい介入試験が、監視下の身体トレーニングと食事指導が高齢女性の代謝健康に与える影響を数週間にわたって評価します。",
+      "whyItMatters": "この取り組みは、高齢女性の健康状態、特に代謝障害の改善に向けた包括的アプローチを探ります。",
+      "realityCheck": "この研究は高齢女性のための持続可能な介入についての洞察を提供することを目指していますが、結果はまだ利用できず、全体的な有効性は不明です。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07015307",
+      "title": "Sustainable Exercise and Nutrition Programs for Managing Metabolic Disorders in Older Women",
+      "publishedAt": "2025-06-11T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This study aims to evaluate the impact of sustainable diet and exercise programs on metabolic health and quality of life in older women. Participants will be assigned to different intervention groups including supervised physical training, personalized dietary guidance based on the Mediterranean dietary pattern, or a combination of both. The programs will be implemented over several weeks, with continuous monitoring of variables such as body composition, functional capacity, strength, fatigue perception, sleep quality, and emotional well-being. The project also includes the development of a digital platform to support remote engagement and long-term health behavior change.",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; aging/longevity terms in title: aging; no field-specific terms; assigned the generic geroscience bucket; interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus=ACTIVE_NOT_RECRUITING; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07015307",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2025-06-11",
+          "iso": "2025-06-11",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07015307"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "ACTIVE_NOT_RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2025-09-23-exploring-dose-escalated-radiotherapy-for-ewing-sarcoma-the-bear-trial",
+    "slug": "2025-09-23-exploring-dose-escalated-radiotherapy-for-ewing-sarcoma-the-bear-trial",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07188532",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2025-09-23T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "biomarkers-diagnostics",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Potential improved disease control for patients with large tumors and unfavorable characteristics.",
+        "limitations": "Details on specific outcomes and biomarkers related to treatment effectiveness are unavailable.",
+        "resultStatus": "Results not posted yet.",
+        "intervention": "Biologically-adapted, dose-escalated radiotherapy"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "大きな腫瘍や好ましくない特徴を持つ患者における病気の制御が向上する可能性。",
+        "limitations": "治療効果に関連する特定の成果やバイオマーカーに関する詳細は不明。",
+        "resultStatus": "結果はまだ公表されていない。",
+        "intervention": "生物学的適応を受けた、高用量放射線療法"
+      }
+    },
+    "en": {
+      "headline": "Exploring Dose-Escalated Radiotherapy for Ewing Sarcoma: The BEAR Trial",
+      "dek": "This trial investigates a targeted radiotherapy approach potentially enhancing outcomes for patients with Ewing sarcoma.",
+      "whatHappened": "The BEAR Trial is currently recruiting participants to evaluate the effects of biologically-adapted, dose-escalated radiotherapy on Ewing sarcoma, focusing on dosing based on tumor size and characteristics.",
+      "whyItMatters": "This approach may offer insights into personalized treatment strategies in oncology by tailoring radiation therapy to specific tumor profiles.",
+      "realityCheck": "While the trial aims for improved disease management, the effectiveness of this radiotherapy approach remains to be established in future results."
+    },
+    "ja": {
+      "headline": "ユーイング肉腫のための高用量放射線療法の探求：BEAR試験",
+      "dek": "この試験では、ユーイング肉腫患者の結果を向上させる可能性のある放射線治療アプローチを調査しています。",
+      "whatHappened": "BEAR試験は、腫瘍サイズや特徴に基づいた生物学的適応型高用量放射線療法の効果を評価するために参加者を募集中です。",
+      "whyItMatters": "このアプローチは、特定の腫瘍特性に基づいて放射線療法を調整することで、オンクロジーにおける個別化治療戦略への洞察を提供する可能性があります。",
+      "realityCheck": "試験は病気管理の改善を目指していますが、この放射線療法アプローチの有効性は将来の結果で確立される必要があります。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07188532",
+      "title": "Biologically-Adapted, Dose-Escalated Radiotherapy for the Treatment of Ewing Sarcoma, BEAR Trial",
+      "publishedAt": "2025-09-23T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This clinical trial evaluates the effect of radiotherapy doses based on tumor size and tumor-specific characteristics (biologically-adapted) in treating patients with Ewing sarcoma. Radiotherapy uses high energy x-rays, particles, or radioactive seeds to kill tumor cells and shrink tumors. Conventional radiotherapy uses minimal imaging support to determine the positioning of radiotherapy. Hypofractionated radiotherapy delivers higher doses of radiotherapy over a shorter period of time and may kill more tumor cells and have fewer side effects. Dose-escalated radiotherapy uses doses that are higher than those used in conventional radiotherapy. Larger tumor sizes and other tumor-specific characteristics have been shown to be related to poorer outcomes. In addition, after dose-escalated radiotherapy, patients with larger tumors have demonstrated improved control of the disease at the primary tumor site. Giving biologically-adapted, dose-escalated radiotherapy may reduce the return of the cancer at the primary tumor site in patients with Ewing sarcoma with large tumors and other unfavorable characteristics. This clinical trial also evaluates the role of biomarkers in patients with Ewing sarcoma. Studying samples of blood and tumor tissue from patients with Ewing sarcoma in the laboratory may help doctors learn more about predicting the amount of disease and the likelihood of the cancer coming back.",
+      "fieldId": "biomarkers-diagnostics",
+      "evidence": "Evidence E",
+      "relevanceScore": 60,
+      "significanceScore": 40,
+      "reason": "field=biomarkers-diagnostics; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; aging/longevity terms in abstract: aging; field terms in abstract: biomarker; cancer treatment or therapeutic research in title/abstract (+25); interventional trial; phase not specified in the fetched record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07188532",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2025-09-23",
+          "iso": "2025-09-23",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07188532"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2025-09-25-metastatic-lung-cancer-study-explores-body-composition-relation-to-immun",
+    "slug": "2025-09-25-metastatic-lung-cancer-study-explores-body-composition-relation-to-immun",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07192926",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2025-09-25T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Retrospective, single-center observational cohort study",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Progression-free survival (PFS) and overall survival (OS) assessed using Cox proportional hazards regression models",
+        "limitations": "Details on associations of baseline CTI and CXI are not fully specified and require further study.",
+        "resultStatus": "Science news report",
+        "intervention": "Immune checkpoint inhibitor (ICI)-based therapy"
+      },
+      "ja": {
+        "studyDesign": "後ろ向き単施設観察コホート研究",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "コックス比例ハザード回帰モデルを使用して評価された無増悪生存期間（PFS）および全生存期間（OS）",
+        "limitations": "ベースラインのCTIおよびCXIとの関連性の詳細は完全に特定されておらず、さらなる研究が必要である。",
+        "resultStatus": "科学ニュース報道",
+        "intervention": "免疫チェックポイント阻害剤（ICI）ベースの治療"
+      }
+    },
+    "en": {
+      "headline": "Metastatic Lung Cancer Study Explores Body Composition Relation to Immunotherapy Outcomes",
+      "dek": "New findings from a cohort study examine how body composition markers correlate with survival in patients undergoing immune therapy.",
+      "whatHappened": "The study evaluated the relationship between inflammatory-metabolic indices and survival rates in patients with metastatic non-small cell lung cancer treated with immune checkpoint inhibitors, focusing on various computed tomography-derived body composition metrics.",
+      "whyItMatters": "Understanding the impact of body composition on treatment outcomes could provide insights into personalized care approaches for lung cancer patients.",
+      "realityCheck": "This study is observational and does not confirm effective treatment strategies; findings must be validated in further research."
+    },
+    "ja": {
+      "headline": "転移性肺癌研究、免疫療法の成果に対する体組成との関連を探る",
+      "dek": "コホート研究からの新たな発見が、免疫療法を受ける患者の生存に体組成マーカーがどのように関連するかを調べる。",
+      "whatHappened": "この研究は、免疫チェックポイント阻害剤による治療を受けた転移性非小細胞肺癌患者の生存率と炎症代謝指数との関係を調査し、各種のCT由来の体組成指標に焦点を当てました。",
+      "whyItMatters": "体組成が治療結果に与える影響を理解することは、肺癌患者への個別化医療アプローチについての洞察を提供する可能性があります。",
+      "realityCheck": "この研究は観察的であり、効果的な治療戦略を確認するものではなく、結果はさらなる研究で検証される必要があります。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07192926",
+      "title": "Body Composition and Inflammatory-Metabolic Indices in Immunotherapy-Treated Metastatic Non-Small Cell Lung Cancer: The SARC-CTI Study",
+      "publishedAt": "2025-09-25T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This retrospective, single-center observational cohort study evaluates inflammatory-metabolic, cachexia-related, and computed tomography (CT)-derived body-composition markers in patients with metastatic non-small cell lung cancer (mNSCLC) treated with immune checkpoint inhibitor (ICI)-based therapy.\n\nThe study includes 155 consecutive adult patients who initiated ICI-based therapy at Ankara Etlik City Hospital between December 2022 and March 2025. Baseline assessments include the C-reactive protein-triglyceride glucose index (CTI), cachexia index (CXI), CT-derived skeletal muscle index (SMI), skeletal muscle attenuation, sarcopenia status, body weight, and clinical characteristics.\n\nThe principal survival outcomes are progression-free survival (PFS) and overall survival (OS). Associations of baseline CTI and CXI with PFS and OS are evaluated using Cox proportional hazards regression models. The incremental prognostic performance of CTI and CXI beyond conventional clinical factors is further explored using discrimination, calibration, and decision-curve analyses.\n\nEarly longitudinal changes in CT-derived body composition and body weight are evaluated in a landmark cohort of 140 patients with an eligible follow-up CT performed 8-12 weeks after ICI initiation. Associations of early skeletal muscle and body-weight changes with subsequent PFS and OS are assessed using landmark survival analyses.\n\nThe survival data cutoff is June 11, 2026.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 36,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); observational registry record; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus=COMPLETED; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07192926",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2025-09-25",
+          "iso": "2025-09-25",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07192926"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "OBSERVATIONAL",
+        "hasResults": false,
+        "overallStatus": "COMPLETED"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-02-17-exploring-nk-cell-therapy-for-colorectal-cancer-spread-the-chip-crc-tria",
+    "slug": "2026-02-17-exploring-nk-cell-therapy-for-colorectal-cancer-spread-the-chip-crc-tria",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07411599",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2026-02-17T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Interventional trial registration; Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Determination of the highest safe dose of NK cells for administration",
+        "limitations": "No verified study population or results outlined",
+        "resultStatus": "No results available for this trial registration",
+        "intervention": "Combination of NK cells administered intravenously and intraperitoneally with cetuximab",
+        "trialPhase": "Phase 1/2"
+      },
+      "ja": {
+        "studyDesign": "介入試験登録; 科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "NK細胞の投与における最高安全用量の決定",
+        "limitations": "検証された研究対象や結果は示されていない",
+        "resultStatus": "この試験登録に対する結果は利用可能ではない",
+        "intervention": "セツキシマブと併用した静脈内および腹腔内投与のNK細胞",
+        "trialPhase": "第1/2相"
+      }
+    },
+    "en": {
+      "headline": "Exploring NK Cell Therapy for Colorectal Cancer Spread: The Chip-CRC Trial",
+      "dek": "The Chip-CRC trial aims to identify the optimal use of NK cells with cetuximab for colorectal cancer that has spread to the peritoneum.",
+      "whatHappened": "Researchers are investigating a combination therapy using NK cells and cetuximab for patients with colorectal cancer-related peritoneal carcinomatosis.",
+      "whyItMatters": "This trial may provide insight into the safe dosage of NK cell therapy, which could contribute to future cancer treatment strategies.",
+      "realityCheck": "Currently, there are no results available, and the effectiveness and safety of this combination therapy remain unverified."
+    },
+    "ja": {
+      "headline": "大腸癌転移に対するNK細胞治療の探求: Chip-CRC試験",
+      "dek": "Chip-CRC試験は、腹膜に転移した大腸癌患者に対してセツキシマブとのNK細胞の最適使用を特定することを目指しています。",
+      "whatHappened": "研究者たちは、大腸癌に関連する腹膜癌症に対してNK細胞とセツキシマブを併用する治療法を調査しています。",
+      "whyItMatters": "この試験は、NK細胞治療の安全な用量に関する洞察を提供する可能性があり、将来の癌治療戦略に寄与することが期待されます。",
+      "realityCheck": "現時点では結果は出ておらず、この併用療法の有効性と安全性は検証されていません。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07411599",
+      "title": "Dual Administration Of Intraperitoneal And Intravenous TROP2-Directed CAR-NK With TGF-Beta Receptor 2 (TGFBR2) Knock Out (KO) Therapy For Colorectal Cancer-Related Peritoneal Carcinomatosis: A Phase 1/2 Trial (\"Chip-CRC Trial\")",
+      "publishedAt": "2026-02-17T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "To find the highest dose of NK cells that can be given by vein and intraperitoneally (given directly into the abdominal cavity) in combination with cetuximab to patients with colorectal cancer that has spread to the peritoneum.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 48,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); interventional Phase 2 from the registry snapshot; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07411599",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2026-02-17",
+          "iso": "2026-02-17",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07411599"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-04-23-ruxolitinib-and-azacitidine-a-new-approach-for-aml-patients-post-transpl",
+    "slug": "2026-04-23-ruxolitinib-and-azacitidine-a-new-approach-for-aml-patients-post-transpl",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07548983",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2026-04-23T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Phase I trial; Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "To assess the side effects, best dose, safety, tolerability, and effectiveness in treating AML patients undergoing alloHSCT",
+        "limitations": "Details on specific outcomes and results are unavailable as this is a trial registry entry.",
+        "resultStatus": "No results posted",
+        "intervention": "Ruxolitinib monotherapy followed by Rux plus azacitidine maintenance therapy"
+      },
+      "ja": {
+        "studyDesign": "第I相試験; 科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "alloHSCTを受けるAML患者における副作用、最適用量、安全性、忍容性、有効性を評価すること",
+        "limitations": "具体的な結果や成果に関する詳細は不明であり、これは試験登録情報です。",
+        "resultStatus": "結果は提示されていない",
+        "intervention": "Ruxolitinib単独療法からRuxとazacitidine維持療法を併用"
+      }
+    },
+    "en": {
+      "headline": "Ruxolitinib and Azacitidine: A New Approach for AML Patients Post-Transplant",
+      "dek": "A phase I trial explores a novel therapy for acute myeloid leukemia patients undergoing stem cell transplantation.",
+      "whatHappened": "This trial investigates the effects of ruxolitinib followed by maintenance therapy with azacitidine in AML patients post-allogeneic stem cell transplantation.",
+      "whyItMatters": "Finding effective post-transplant treatments for AML is critical, given the high risk of complications like graft-versus-host disease.",
+      "realityCheck": "This research has not yet provided results, emphasizing the need for caution when interpreting preliminary findings."
+    },
+    "ja": {
+      "headline": "RuxolitinibとAzacitidine：移植後のAML患者への新しいアプローチ",
+      "dek": "第I相試験が急性骨髄性白血病患者の幹細胞移植後の新しい治療法を探る。",
+      "whatHappened": "この試験では、Ruxolitinibとその後のazacitidine維持療法が、合併症リスクの高いAML患者に与える影響を調査しています。",
+      "whyItMatters": "AMLの移植後治療としての有効な選択肢を見つけることは、細胞移植後の合併症リスクを考えると重要です。",
+      "realityCheck": "この研究は結果をまだ提供しておらず、初期の結果を解釈する際には注意が必要です。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07548983",
+      "title": "Ruxolitinib With Azacitidine Maintenance for the Treatment of Patients With Acute Myeloid Leukemia Undergoing Reduced Intensity Allogeneic Stem Cell Transplantation",
+      "publishedAt": "2026-04-23T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This phase I trial studies the side effects and best dose of ruxolitinib (Rux) therapy alone (monotherapy) followed by Rux plus azacitidine (AZA) maintenance therapy and to see how well it works in treating patients with acute myeloid leukemia (AML) who are undergoing reduced intensity allogeneic hematopoietic stem cell transplantation (alloHSCT). AlloHSCT provides the only chance for cure for many patients with AML. AlloHSCT is a procedure in which a person receives blood-forming stem cells (cells from which all blood cells develop) from a genetically similar, but not identical, donor. This is often a sister or brother, but could be an unrelated donor. One of the common reasons for death after an alloHSCT is graft versus host disease (GVHD), which occurs when the transplanted cells from the donor attacks the recipient's normal cells. Ruxolitinib is in a class of medications called kinase inhibitors. It works to treat GVHD by blocking the signals of the cells that cause GVHD. Azacitidine is in a class of medications called demethylation agents. It works by helping the bone marrow to produce normal blood cells and by killing abnormal cells in the bone marrow. Giving Rux after the transplant may stop GVHD from occurring. Maintenance therapy with AZA, may help prevent or delay cancer from coming back. Giving Rux monotherapy followed by Rux plus AZA maintenance therapy may be safe, tolerable, and/or effective in treating patients with AML who are undergoing alloHSCT.",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 42,
+      "reason": "field=rejuvenation-regeneration; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: stem cell; cancer treatment or therapeutic research in title/abstract (+25); interventional Phase 1 from the registry snapshot; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07548983",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2026-04-23",
+          "iso": "2026-04-23",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07548983"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-07-15-dce-mri-makes-strides-in-assessing-treatment-for-pancreatic-cancer",
+    "slug": "2026-07-15-dce-mri-makes-strides-in-assessing-treatment-for-pancreatic-cancer",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07705919",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2026-07-15T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Assessment of treatment response for borderline resectable pancreatic cancer",
+        "limitations": "Details on the effectiveness of DCE-MRI are unavailable.",
+        "resultStatus": "No results posted.",
+        "intervention": "DCE-MRI with standard clinical evaluation"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "境界切除可能な膵臓癌における治療反応の評価",
+        "limitations": "DCE-MRIの有効性に関する詳細は不明です。",
+        "resultStatus": "結果は未投稿。",
+        "intervention": "標準臨床評価とともに行われるDCE-MRI"
+      }
+    },
+    "en": {
+      "headline": "DCE-MRI Makes Strides in Assessing Treatment for Pancreatic Cancer",
+      "dek": "Dynamic contrast enhanced MRI aims to improve treatment response evaluation for patients with borderline resectable pancreatic cancer.",
+      "whatHappened": "A new clinical trial is testing how effective dynamic contrast enhanced magnetic resonance imaging (DCE-MRI) is for assessing the treatment response of patients with borderline resectable pancreatic cancer.",
+      "whyItMatters": "DCE-MRI could lead to better treatment evaluations, potentially improving the management of patients whose cancer is still operable with the right pre-surgical treatment.",
+      "realityCheck": "It's crucial to note that the study is still in the recruiting phase, and results have not been posted yet, meaning claims about effectiveness remain unverified."
+    },
+    "ja": {
+      "headline": "膵臓癌の治療評価におけるDCE-MRIの進展",
+      "dek": "動的コントラスト強調MRIが境界切除可能な膵臓癌患者に対する治療反応評価の改善を目指しています。",
+      "whatHappened": "新しい臨床試験が、境界切除可能な膵臓癌患者の治療反応を評価するための動的コントラスト強調磁気共鳴イメージング（DCE-MRI）の効果をテストしています。",
+      "whyItMatters": "DCE-MRIは治療評価を改善する可能性があり、適切な手術前治療が行われる患者の管理に貢献できるかもしれません。",
+      "realityCheck": "この研究はまだ参加者を募集中であり、結果は未投稿のため、有効性に関する主張は未検証であることに注意が必要です。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07705919",
+      "title": "DCE-MRI for Neoadjuvant Treatment Assessment in Patients With Borderline Resectable Pancreatic Cancer",
+      "publishedAt": "2026-07-15T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This clinical trial tests how well dynamic contrast enhanced magnetic resonance imaging (DCE-MRI) with standard clinical evaluation works to assess treatment response for patients with pancreatic cancer that may be able to be removed by surgery (borderline resectable). Borderline resectable pancreatic cancer (BRPC) is a certain type of pancreatic cancer that involves the arteries or veins near the pancreas. With the right treatment before surgery, it can be removed (resected) successfully. An MRI (magnetic resonance imaging) scan creates clear images of the structures inside the body using a large magnet, radio waves, and a computer. DCE-MRI can be used to calculate the blood perfusion. Blood perfusion can show disease status. Using DCE-MRI as part of standard clinical evaluation may provide a more accurate treatment response assessment for patients with BRPC.",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 60,
+      "significanceScore": 48,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; aging/longevity terms in abstract: aging; field terms in abstract: clinical trial; cancer treatment or therapeutic research in title/abstract (+25); interventional Phase 2 from the registry snapshot; LastUpdatePostDate is in-window but first posted date is older; this snapshot does not identify what changed and is not treated as a phase transition; OverallStatus is currently RECRUITING; without a first-posted-in-window date this is not recorded as a recruitment start; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07705919",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2026-07-15",
+          "iso": "2026-07-15",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07705919"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-10-05-study-on-radiotherapy-techniques-in-advanced-esophageal-cancer",
+    "slug": "2026-10-05-study-on-radiotherapy-techniques-in-advanced-esophageal-cancer",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07858630",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourcePublishedAt": "2026-10-05T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [
+      "living-people"
+    ],
+    "contentType": "trial-registration",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Prospective observational cohort study; Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Locoregional tumor control, recurrence patterns, survival, treatment-related toxicity, lymphocyte reduction, completion of immunotherapy",
+        "limitations": "Participants receive treatment based on routine clinical practice, not a controlled trial",
+        "resultStatus": "No results published",
+        "intervention": "Not assigned to specific radiotherapy strategy; treatment according to routine clinical practice"
+      },
+      "ja": {
+        "studyDesign": "前向き観察コホート研究; 科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "局所腫瘍コントロール、再発パターン、生存率、治療関連の毒性、リンパ球減少、免疫療法の完了",
+        "limitations": "参加者はコントロール試験ではなく、日常の臨床実践に基づいて治療を受ける",
+        "resultStatus": "結果は未発表",
+        "intervention": "特定の放射線治療戦略には割り当てられない; 日常の臨床実践に基づいた治療"
+      }
+    },
+    "en": {
+      "headline": "Study on Radiotherapy Techniques in Advanced Esophageal Cancer",
+      "dek": "Research aims to evaluate radiotherapy strategies in conjunction with immunotherapy for esophageal cancer.",
+      "whatHappened": "This observational study plans to assess various radiotherapy target volume delineation patterns in patients undergoing treatment.",
+      "whyItMatters": "The findings may lead to improved treatment approaches that effectively control tumors while minimizing radiation exposure.",
+      "realityCheck": "Current results are not available, and the study is still in the recruitment phase."
+    },
+    "ja": {
+      "headline": "進行食道癌における放射線治療技術の研究",
+      "dek": "研究は、食道癌の免疫療法と併せた放射線治療戦略を評価することを目指しています。",
+      "whatHappened": "この観察研究は、治療を受ける患者におけるさまざまな放射線治療ターゲットボリュームの定義パターンを評価する予定です。",
+      "whyItMatters": "この調査結果は、腫瘍を効果的にコントロールしつつ、放射線被ばくを最小限に抑える治療アプローチの改善につながる可能性があります。",
+      "realityCheck": "現在の結果は利用できず、研究はまだ募集段階です。"
+    },
+    "sourceCheck": {
+      "sourceId": "clinicaltrials",
+      "sourceUrl": "https://clinicaltrials.gov/study/NCT07858630",
+      "title": "Radiotherapy Target Volume Delineation in Locally Advanced Esophageal Cancer in the Immunotherapy Era",
+      "publishedAt": "2026-10-05T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "abstract": "This prospective observational cohort study will evaluate different radiotherapy target volume delineation patterns in patients with locally advanced esophageal squamous cell carcinoma receiving radiotherapy combined with immunotherapy.\n\nIn routine clinical practice, physicians may use different margins around the primary tumor and different approaches to regional lymph node irradiation. The study will not assign participants to a specific radiotherapy strategy. Instead, participants will receive treatment according to routine clinical practice, and the actual radiotherapy plans will be recorded and analyzed.\n\nThe study will compare locoregional tumor control, recurrence patterns, survival, treatment-related toxicity, lymphocyte reduction, and completion of immunotherapy among patients receiving different target volume strategies. The main objective is to evaluate 2-year locoregional recurrence-free survival and to identify radiotherapy approaches that may achieve effective tumor control while reducing unnecessary radiation exposure and treatment-related toxicity.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence E; trial registration or update only; not evidence that an intervention works in humans; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); observational registry record; StudyFirstPostDate is inside the lookback window (new public registration); OverallStatus is RECRUITING on a record first posted in-window; significance here is trial-activity triage, not evidence of human efficacy; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "NCT07858630",
+      "dateFields": {
+        "studyFirstPostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        },
+        "lastUpdatePostDate": {
+          "raw": "2026-10-05",
+          "iso": "2026-10-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "studyFirstPostDate",
+          "lastUpdatePostDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the ClinicalTrials.gov adapter from NCT ID using the current study record URL https://clinicaltrials.gov/study/{nctId}. The Studies API returns NCTId but not a public page URL.",
+        "id": "NCT07858630"
+      },
+      "studySubjects": [
+        "living-people"
+      ],
+      "hints": {
+        "studyType": "OBSERVATIONAL",
+        "hasResults": false,
+        "overallStatus": "RECRUITING"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-10-05-study-highlights-neuroprotection-of-black-rice-wine-in-aging-mice",
+    "slug": "2026-10-05-study-highlights-neuroprotection-of-black-rice-wine-in-aging-mice",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42758096/",
+    "sourceLabel": "PubMed",
+    "doi": "10.1039/d6fo02522f",
+    "sourcePublishedAt": "2026-10-05T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence D",
+    "studySubjects": [
+      "mice"
+    ],
+    "contentType": "paper",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "BRW improved cognitive performance, ameliorated gut dysbiosis, reduced systemic LPS, and preserved hippocampal neurons.",
+        "limitations": "Details about sample size and study population are unavailable.",
+        "resultStatus": "Findings demonstrate that BRW provides neuroprotection via microbiota-gut-brain axis modulation.",
+        "intervention": "Black rice wine (BRW) compared with vitamin C (VC), aleurone-removed BRW (AR-BRW), and 12% ethanol"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "BRWは認知機能を改善し、腸内のディスバイオシスを軽減し、全身のLPSを減少させ、海馬ニューロンを保護した。",
+        "limitations": "サンプルサイズや研究対象に関する詳細は利用できない。",
+        "resultStatus": "BRWが腸-脳軸を介した神経保護を提供することを示す結果。",
+        "intervention": "黒米ワイン（BRW）をビタミンC（VC）、アレウローヌを除去したBRW（AR-BRW）、および12%エタノールと比較"
+      }
+    },
+    "en": {
+      "headline": "Study Highlights Neuroprotection of Black Rice Wine in Aging Mice",
+      "dek": "Black rice wine may modulate the microbiota-gut-brain axis, potentially mitigating cognitive decline.",
+      "whatHappened": "Research indicates that black rice wine, through its unique chemical profile, improved cognitive function in a mouse model of aging, contrasting with other interventions.",
+      "whyItMatters": "Understanding how dietary components like black rice wine influence cognitive health could inform future nutritional strategies in aging populations.",
+      "realityCheck": "This study is based on a mouse model and does not imply any direct effects on human cognitive decline or a ready treatment."
+    },
+    "ja": {
+      "headline": "黒米ワインの老化マウスにおける神経保護作用を示す研究",
+      "dek": "黒米ワインは腸-脳軸を調整し、認知機能の低下を緩和する可能性がある。",
+      "whatHappened": "研究によると、黒米ワインは独自の化学特性により老化マウスモデルで認知機能を改善したとされている。",
+      "whyItMatters": "黒米ワインのような食事成分が認知の健康に与える影響を理解することは、高齢者の栄養戦略に情報を提供する可能性がある。",
+      "realityCheck": "この研究はマウスモデルに基づいており、人間の認知機能の低下に対する直接的な効果や治療法を示唆するものではない。"
+    },
+    "sourceCheck": {
+      "sourceId": "pubmed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42758096/",
+      "title": "Black rice wine attenuates cognitive decline via modulation of the microbiota-gut-brain axis in D-galactose-induced aging mice",
+      "publishedAt": "2026-10-05T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "doi": "10.1039/d6fo02522f",
+      "abstract": "Gut microbiota dysbiosis contributes to cognitive decline and is modifiable through dietary interventions. Black rice wine (BRW), a traditional Chinese fermented alcoholic beverage enriched with phenolics and containing ethanol, raises the question of whether its complex matrix confers neuroprotection. To address this, we investigated the effect of BRW on cognitive decline and microbiota-gut-brain axis (MGBA) mechanisms in a D-galactose-induced aging mouse model, using vitamin C (VC), aleurone-removed BRW (AR-BRW), and 12% ethanol as comparator groups. Metabolomic profiling revealed distinct flavonoid enrichment in BRW compared with AR-BRW. Following a 10-week treatment, BRW ameliorated gut dysbiosis, including suppression of lipopolysaccharide (LPS)-associated Desulfovibrio enrichment of acetate-producing Blautia , leading to increased SCFAs and reduced systemic LPS, which in turn restored intestinal barrier integrity. Notably, BRW preferentially enriched known flavonoid-metabolizing taxa, including Eubacterium_oxidoreducens_group and Lachnospiraceae_UCG-010 , compared with AR-BRW. Concurrently, BRW attenuated microglial activation and astrocytic reactivity, preserved hippocampal neurons, and improved cognitive performance. Hierarchical clustering revealed a marked separation. For behavioral parameters, BRW and VC clustered with the control group, whereas AR-BRW and ethanol aligned with the D-galactose model. Importantly, for microbiota-metabolite-barrier indices, only BRW retained this alignment with the control group. In contrast, despite its behavioral efficacy, VC aligned with AR-BRW, whereas ethanol remained associated with the D-galactose model. Collectively, BRW exerted ethanol-independent neuroprotection superior to that of AR-BRW via an MGBA mechanism distinct from that of VC. This effect can be attributed to its unique phytochemical profile, highlighting its potential as a dietary strategy to attenuate age-related cognitive decline by targeting the MGBA.",
+      "authors": [
+        "Tan S",
+        "Peng B"
+      ],
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence D",
+      "relevanceScore": 50,
+      "significanceScore": 31,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence D; study subjects recorded: mice; animal experiment (mice, mouse); mentions of human relevance do not upgrade this; aging/longevity terms in title: aging; no field-specific terms; assigned the generic geroscience bucket; base 20; not set from Evidence letter; title focuses on aging biology, senescence, or an aging clock (+6); text reports a control comparison (+5); no effect size, novelty, or causality is inferred beyond the wording above; significance is triage of reported content, not a calibrated scientific index; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "42758096",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026 Oct 5",
+          "iso": "2026-10-05",
+          "precision": "day"
+        },
+        "entrezDate": {
+          "raw": "2026/09/18 10:43",
+          "iso": "2026-09-18T10:43:00Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the PubMed adapter from PMID using the current PubMed record URL (pubmed.ncbi.nlm.nih.gov). NCBI E-utilities documents the PubMed web interface at pubmed.ncbi.nlm.nih.gov; NCBI Web Link Help also documents https://www.ncbi.nlm.nih.gov/pubmed/{pmid} as an equivalent record link.",
+        "id": "42758096"
+      },
+      "studySubjects": [
+        "mice"
+      ],
+      "hints": {
+        "pubTypes": [
+          "Journal Article"
+        ],
+        "journal": "Food & function"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-10-05-oncolytic-virus-enhances-t-cell-response-in-breast-cancer-model",
+    "slug": "2026-10-05-oncolytic-virus-enhances-t-cell-response-in-breast-cancer-model",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42830336/",
+    "sourceLabel": "PubMed",
+    "doi": "10.1186/s43556-026-00570-w",
+    "sourcePublishedAt": "2026-10-05T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence D",
+    "studySubjects": [
+      "mice"
+    ],
+    "contentType": "paper",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Enhanced T-cell responses, tumor growth delay, improved survival in tumor-bearing mice.",
+        "limitations": "Details on specific sample sizes or statistical analysis methods were not provided.",
+        "resultStatus": "Preliminary findings suggest potential for TNBC immunotherapy.",
+        "intervention": "rAd.DCN.CD40L oncolytic adenovirus"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "T細胞応答の強化、腫瘍成長の遅延、腫瘍を有するマウスにおける生存率の改善。",
+        "limitations": "特定のサンプルサイズや統計分析手法に関する詳細は提供されていなかった。",
+        "resultStatus": "TNBC免疫療法の可能性を示唆する予備的な結果。",
+        "intervention": "rAd.DCN.CD40L腫瘍溶菌ウイルス"
+      }
+    },
+    "en": {
+      "headline": "Oncolytic Virus Enhances T-Cell Response in Breast Cancer Model",
+      "dek": "New findings reveal a combination of decorin and CD40 ligand in an oncolytic adenovirus boosts immune activation against aggressive breast cancer.",
+      "whatHappened": "The study explored the efficacy of rAd.DCN.CD40L, an oncolytic adenovirus co-delivering decorin and CD40 ligand, in enhancing antitumor activity against triple-negative breast cancer (TNBC).",
+      "whyItMatters": "This research highlights the potential of combinatorial immunotherapy strategies in addressing the aggressive nature of TNBC and activating T-cell responses for improved cancer treatment.",
+      "realityCheck": "The exact mechanisms behind the observed phenomena are not yet completely understood, and further research is needed to confirm the findings in clinical settings."
+    },
+    "ja": {
+      "headline": "腫瘍溶菌ウイルスが乳がんモデルにおけるT細胞応答を強化",
+      "dek": "新たな発見は、腫瘍溶菌ウイルスにデコリンおよびCD40リガンドを組み合わせることで、攻撃的な乳がんに対する免疫活性化を促すことを示唆している。",
+      "whatHappened": "この研究では、デコリンとCD40リガンドを共配信する腫瘍溶菌ウイルスrAd.DCN.CD40Lが、三重陰性乳がん（TNBC）に対する抗腫瘍活性を高める効果を検証した。",
+      "whyItMatters": "この研究は、TNBCの攻撃的な性質に対処し、T細胞応答を活性化するための併用免疫療法戦略の可能性を強調している。",
+      "realityCheck": "観察された現象の背後にある正確なメカニズムはまだ完全には理解されておらず、臨床的状況で結果を確認するためのさらなる研究が必要です。"
+    },
+    "sourceCheck": {
+      "sourceId": "pubmed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42830336/",
+      "title": "Oncolytic virus encoding decorin and the CD40 ligand boosts T-cell response and achieves a durable antitumor response during breast cancer treatment",
+      "publishedAt": "2026-10-05T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "doi": "10.1186/s43556-026-00570-w",
+      "abstract": "Triple-negative breast cancer (TNBC) remains an aggressive disease with limited treatment options. Oncolytic adenoviruses represent a promising platform, but their efficacy as single agents is often insufficient. This study examined whether an oncolytic adenovirus co-delivering decorin (DCN) and CD40 ligand (CD40L), designated rAd.DCN.CD40L, could enhance antitumor activity and immune activation against TNBC. Recombinant adenoviruses expressing DCN (rAd.DCN), CD40L (rAd.CD40L), or both proteins were constructed and evaluated in breast cancer cells using cell viability, apoptosis, migration, invasion, and damage-associated molecular pattern (DAMP) release assays. Compared with rAd.DCN or rAd.CD40L alone, rAd.DCN.CD40L triggered greater apoptosis and tumor cell death and elicited more pronounced DAMP release. Co-culture experiments also revealed enhanced dendritic cell function following rAd.DCN.CD40L treatment. For in vivo evaluation, syngeneic 4T1 and EMT-6 subcutaneous tumor models and a 4T1 lung metastasis model were employed. rAd.DCN.CD40L substantially delayed tumor growth and improved survival in tumor-bearing mice. Flow cytometric and histological analyses further confirmed enhanced local and systemic T-cell responses, elevated CD8⁺ T-cell activity, and modulated inflammatory macrophage phenotypes. Mechanistically, western blot analysis showed that rAd.DCN.CD40L may contribute to extracellular matrix remodeling and the down-regulation of the expression of epithelial-mesenchymal transition (EMT)-associated genes. Notably, CD8⁺ T-cell depletion markedly attenuated the therapeutic efficacy of rAd.DCN.CD40L, demonstrating that CD8⁺ T cells are critical functional effectors of tumor control. Collectively, these findings indicate that a DCN- and CD40L-armed oncolytic adenovirus represents a promising combinatorial strategy for TNBC immunotherapy, and warrants further preclinical and clinical investigation.",
+      "authors": [
+        "Ning Y",
+        "Rong Y",
+        "Meng H",
+        "Lin Y",
+        "Chen W",
+        "Shi Q",
+        "Zhang S",
+        "Li H",
+        "Yang Y"
+      ],
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence D",
+      "relevanceScore": 50,
+      "significanceScore": 37,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence D; study subjects recorded: mice; animal experiment (mice); mentions of human relevance do not upgrade this; field terms in title: cancer; cancer treatment or therapeutic research in title/abstract (+25); base 20; not set from Evidence letter; cell survival or viability is not scored as organism lifespan; reported a cancer outcome, not an organism lifespan change (+12); text reports a control comparison (+5); no effect size, novelty, or causality is inferred beyond the wording above; significance is triage of reported content, not a calibrated scientific index; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "42830336",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026 Oct 5",
+          "iso": "2026-10-05",
+          "precision": "day"
+        },
+        "entrezDate": {
+          "raw": "2026/10/04 23:51",
+          "iso": "2026-10-04T23:51:00Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate",
+          "entrezDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the PubMed adapter from PMID using the current PubMed record URL (pubmed.ncbi.nlm.nih.gov). NCBI E-utilities documents the PubMed web interface at pubmed.ncbi.nlm.nih.gov; NCBI Web Link Help also documents https://www.ncbi.nlm.nih.gov/pubmed/{pmid} as an equivalent record link.",
+        "id": "42830336"
+      },
+      "studySubjects": [
+        "mice"
+      ],
+      "hints": {
+        "pubTypes": [
+          "Journal Article"
+        ],
+        "journal": "Molecular biomedicine"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-10-05-unexpected-discoveries-in-induced-treg-cell-generation-and-functionality",
+    "slug": "2026-10-05-unexpected-discoveries-in-induced-treg-cell-generation-and-functionality",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42831457/",
+    "sourceLabel": "PubMed",
+    "doi": "10.1002/2211-5463.70349",
+    "sourcePublishedAt": "2026-10-05T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence D",
+    "studySubjects": [
+      "cells-tissues-organoids"
+    ],
+    "contentType": "paper",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Age-related differences in the generation of induced Treg cells were investigated; no differences were found in Foxp3 + CD4 + cells between age groups. The cytokine TGF-β did not influence Foxp3 expression levels or suppressive activity.",
+        "limitations": "The low frequency of Treg cells in human peripheral blood limits extensive study.",
+        "resultStatus": "Preliminary findings suggest that Foxp3 alone does not define bona fide iTreg cells."
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "誘導型Treg細胞の生成における年齢に関連する差異を調査したが、年齢群間でFoxp3 + CD4 +細胞に差異は見られなかった。サイトカインTGF-βがFoxp3の発現レベルや抑制活性に影響を及ぼさなかったことが驚きである。",
+        "limitations": "ヒト末梢血中のTreg細胞の低頻度が、広範な研究を制限している。",
+        "resultStatus": "初期の発見は、Foxp3単独では真正なiTreg細胞を定義しない可能性を示唆している。"
+      }
+    },
+    "en": {
+      "headline": "Unexpected Discoveries in Induced Treg Cell Generation and Functionality",
+      "dek": "Recent investigations reveal surprising findings about Treg cell characteristics in different age groups.",
+      "whatHappened": "Research into the generation of induced regulatory T cells (iTreg) has highlighted that age does not influence the production of these immune cells as previously thought. Factors expected to play a role, such as TGF-β, showed no impact on the resulting cell characteristics.",
+      "whyItMatters": "Understanding the behavior and characteristics of Treg cells is crucial for immune system research and potential therapies. The surprising lack of age-related differences could reshape how these cells are understood in the context of immune aging.",
+      "realityCheck": "Despite the findings, significant gaps remain in understanding how Treg cells function in older individuals, as well as the implications for human health and disease."
+    },
+    "ja": {
+      "headline": "誘導型Treg細胞生成の予期せぬ発見",
+      "dek": "最近の調査は、異なる年齢層におけるTreg細胞の特徴について驚くべき結果を明らかにした。",
+      "whatHappened": "誘導型制御T細胞 (iTreg) の生成に関する研究は、年齢がこれらの免疫細胞の産生に影響を与えないことを強調している。TGF-βなど、予想される要因は結果として得られる細胞の特性に影響を与えなかった。",
+      "whyItMatters": "Treg細胞の行動と特性を理解することは、免疫系研究や潜在的な治療法にとって重要である。年齢関連の差異がないことの驚きは、これらの細胞が免疫老化の文脈でどのように理解されるかを再考させるかもしれない。",
+      "realityCheck": "発見にもかかわらず、高齢者におけるTreg細胞の機能や人間の健康および疾患における影響に関する理解には依然として重要なギャップが残っている。"
+    },
+    "sourceCheck": {
+      "sourceId": "pubmed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42831457/",
+      "title": "In vitro generation of regulatory T cells: A challenging tool for studying immune aging in humans",
+      "publishedAt": "2026-10-05T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "doi": "10.1002/2211-5463.70349",
+      "abstract": "Regulatory T (Treg) cells play a key role in immune tolerance and homeostasis. They prevent exaggerated immune responses, autoimmunity, and are crucial in graft-versus-host responses. On the other hand, their presence in many tumors is associated with a poor prognosis. In aged individuals, Treg populations are modified with a strong bias toward an effector phenotype and a reduced number of naïve Treg cells, but little is known about the functionality of human Treg cells in old age. The low frequency of Treg cells in human peripheral blood is the main limitation to studying them. Therefore, the development of induced Treg (iTreg) cells has become a valuable tool for in vitro research on peripheral Treg cells. Following a gold-standard protocol to generate iTreg in vitro, we aimed to investigate age-related differences in the generation of iTreg cells. However, we detected some unexpected results regarding Foxp3 induction and iTreg functionality. We found no differences in Foxp3 + CD4 + generated cells between young and older individuals. Surprisingly, the presence of the cytokine TGF-β did not play a role in either Foxp3 expression levels or in the suppressive activity of the resulting cells, regardless of the age of the donors. Therefore, we hypothesize that Foxp3 alone does not adequately define bona fide iTreg cells, and the presence of TGF-β is not essential for the in vitro differentiation of human conventional CD4 + T cells into suppressive Foxp3 + cells.",
+      "authors": [
+        "Muller L",
+        "Bleher J",
+        "Weinberger B",
+        "Rocamora-Reverte L"
+      ],
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence D",
+      "relevanceScore": 75,
+      "significanceScore": 31,
+      "reason": "field=immune-engineering-cancer-control; evidence=Evidence D; study subjects recorded: cells-tissues-organoids; cell, tissue, in-vitro, or organoid experiment (in vitro); human-derived material is not a study in living people; aging/longevity terms in title: aging; field terms in title: immune; base 20; not set from Evidence letter; title focuses on aging biology, senescence, or an aging clock (+6); text reports a control comparison (+5); no effect size, novelty, or causality is inferred beyond the wording above; significance is triage of reported content, not a calibrated scientific index; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "42831457",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026 Oct 5",
+          "iso": "2026-10-05",
+          "precision": "day"
+        },
+        "entrezDate": {
+          "raw": "2026/10/05 06:53",
+          "iso": "2026-10-05T06:53:00Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate",
+          "entrezDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the PubMed adapter from PMID using the current PubMed record URL (pubmed.ncbi.nlm.nih.gov). NCBI E-utilities documents the PubMed web interface at pubmed.ncbi.nlm.nih.gov; NCBI Web Link Help also documents https://www.ncbi.nlm.nih.gov/pubmed/{pmid} as an equivalent record link.",
+        "id": "42831457"
+      },
+      "studySubjects": [
+        "cells-tissues-organoids"
+      ],
+      "hints": {
+        "pubTypes": [
+          "Journal Article"
+        ],
+        "journal": "FEBS open bio"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+  },
+  {
+    "id": "2026-10-05-unraveling-genomic-determinants-of-blinatumomab-response-in-adult-b-all",
+    "slug": "2026-10-05-unraveling-genomic-determinants-of-blinatumomab-response-in-adult-b-all",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42832396/",
+    "sourceLabel": "PubMed",
+    "doi": "10.1182/blood.2026033793",
+    "sourcePublishedAt": "2026-10-05T00:00:00Z",
+    "draftCreatedAt": "2026-10-06T04:32:51.964Z",
+    "discoveredAt": "2026-10-06T04:09:00.675Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence D",
+    "studySubjects": [
+      "cells-tissues-organoids"
+    ],
+    "contentType": "paper",
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Identified genomic determinants associated with response to treatment in B-ALL.",
+        "limitations": "Small sample sizes for several subtypes require confirmation.",
+        "resultStatus": "Findings highlight genomic subtypes that influence blinatumomab efficacy.",
+        "intervention": "Addition of blinatumomab to chemotherapy"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "B-ALLにおける治療反応に関連するゲノム決定因子を特定。",
+        "limitations": "いくつかのサブタイプのサンプルサイズが小さいため確認が必要。",
+        "resultStatus": "blinatumomabの有効性に影響を与えるゲノムサブタイプに関する発見。",
+        "intervention": "化学療法へのblinatumomabの追加"
+      }
+    },
+    "en": {
+      "headline": "Unraveling Genomic Determinants of Blinatumomab Response in Adult B-ALL",
+      "dek": "A study analyzes genomic data of 569 adults to identify molecular subtypes related to treatment response.",
+      "whatHappened": "The ECOG-ACRIN E1910 study has revealed 23 molecular subtypes linked to the efficacy of blinatumomab plus chemotherapy in adults with B-cell acute lymphoblastic leukemia.",
+      "whyItMatters": "Understanding these genomic subtypes could help tailor therapies and improve outcomes for patients with B-ALL.",
+      "realityCheck": "While the findings suggest interesting associations, they do not confirm any treatment efficacy or readiness for clinical application."
+    },
+    "ja": {
+      "headline": "成人B-ALLにおけるblinatumomab反応のゲノム決定因子を解明",
+      "dek": "569人の成人のゲノムデータを分析し、治療反応に関連する分子サブタイプを特定。",
+      "whatHappened": "ECOG-ACRIN E1910研究により、成人のB細胞急性リンパ芽球性白血病において、化学療法と併用したblinatumomabの有効性に関連する23の分子サブタイプが明らかになった。",
+      "whyItMatters": "これらのゲノムサブタイプを理解することで、B-ALL患者に対する治療法の調整と結果の改善が期待できる。",
+      "realityCheck": "研究結果は興味深い関連性を示唆しているが、治療効果や臨床応用の準備が整っていることは確認されていない。"
+    },
+    "sourceCheck": {
+      "sourceId": "pubmed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42832396/",
+      "title": "Genomic drivers of leukemia and blinatumomab response in adult acute lymphoblastic leukemia - the ECOG-ACRIN E1910 study",
+      "publishedAt": "2026-10-05T00:00:00Z",
+      "fetchedAt": "2026-10-06T04:09:00.675Z",
+      "doi": "10.1182/blood.2026033793",
+      "abstract": "The bispecific CD19/CD3 T-cell engaging antibody blinatumomab is efficacious in front-line therapy in B-cell acute lymphoblastic leukemia (B-ALL) but the biological determinants of response and resistance are incompletely understood. To examine the genomic determinants of outcome, we analyzed genomic and clinical data of 569 adults registered to the ECOG-ACRIN E1910 study of blinatumomab in BCR::ABL1-negative B-ALL (ClinicalTrials.gov NCT02003222). We identified 23 molecular subtypes including the high-risk subtypes BCR::ABL1 (20%), BCR::ABL1-like (18%), low hypodiploid (14%) and KMT2A-R (12%), and 267 putative driver genes. We identified a subtype characterized by CEBPA overexpression or elevated CEBPB expression due to chromosomal translocation-mediated enhancer hijacking, or insertions downstream of CEBPA that generate neoenhancers. Attainment of MRD-negativity patients after induction and intensification chemotherapy was more common in PAX5alt, TCF3::PBX1 and ZNF384-R B-ALL, and less common in BCR::ABL1-like and KMT2A-R B-ALL. Integration of genomic and clinical data suggested that the addition of blinatumomab to chemotherapy was associated with improved relapse-free and overall survival for several B-ALL subtypes, including hyperdiploid, PAX5alt, PAX5 P80R, BCR::ABL1-like JAK-STAT and KMT2A-R B-ALL, although small sample sizes for several subtypes indicate that confirmation is required. Alteration of TP53 or mutations associated with myeloid clonal hematopoiesis of indeterminate potential (CHIP) were identified in 15.3% and 9.8% of patients, respectively. The presence of these mutations was associated with older age at diagnosis and inferior outcome to chemotherapy. In summary, we define the landscape of genomic alterations of adult B-ALL, and identify genomic subtypes that may influence the efficacy of blinatumomab when combined with chemotherapy.",
+      "authors": [
+        "Zhong X",
+        "Roberts KG",
+        "Wei H",
+        "Sun Z",
+        "Montefiori LE",
+        "Kumar A",
+        "Iacobucci I",
+        "Baviskar P",
+        "Gao Q",
+        "Pölönen P",
+        "Pruett-Miller SM",
+        "Schreiber RM",
+        "Chang TC",
+        "Zhang W",
+        "Lei S",
+        "Rampersaud E",
+        "Fan Y",
+        "Wu G",
+        "Mattison RJ",
+        "Zhang Y",
+        "Racevskis J",
+        "Lazarus HM",
+        "Rowe JM",
+        "Arber DA",
+        "Wieduwilt MJ",
+        "Abou Mourad Y",
+        "Shami PJ",
+        "Baer MR",
+        "Asch AS",
+        "O'Dwyer KM",
+        "Hall A",
+        "Liedtke M",
+        "Bergeron J",
+        "Wood BL",
+        "Pratz KW",
+        "Dinner SN",
+        "Frey NV",
+        "Gore SD",
+        "Bhatnagar B",
+        "Atallah EL",
+        "Uy GL",
+        "Jeyakumar D",
+        "Lin TL",
+        "Willman CL",
+        "Podoltsev NA",
+        "DeAngelo DJ",
+        "Patel S",
+        "Elliott MA",
+        "Advani AS",
+        "Tzachanis D",
+        "Vachhani P",
+        "Bhave RR",
+        "Sharon E",
+        "Little RF",
+        "Erba HP",
+        "Stone RM",
+        "Tallman MS",
+        "Yang JJ",
+        "Luger SM",
+        "Paietta E",
+        "Litzow MR",
+        "Mullighan CG"
+      ],
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence D",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "field=geroscience-drugs-trials; evidence=Evidence D; study subjects recorded: cells-tissues-organoids; cell, tissue, in-vitro, or organoid experiment (overexpression); human-derived material is not a study in living people; aging/longevity terms in abstract: aging; no field-specific terms; assigned the generic geroscience bucket; cancer treatment or therapeutic research in title/abstract (+25); base 20; not set from Evidence letter; abstract reports an intervention applied in this study (+8); reported a cancer outcome, not an organism lifespan change (+12); no effect size, novelty, or causality is inferred beyond the wording above; significance is triage of reported content, not a calibrated scientific index; thresholds: relevance>=50, significance>=30; Scores are rule-based triage, not a calibrated scientific index.",
+      "recordId": "42832396",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026 Oct 5",
+          "iso": "2026-10-05",
+          "precision": "day"
+        },
+        "entrezDate": {
+          "raw": "2026/10/05 13:14",
+          "iso": "2026-10-05T13:14:00Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate",
+          "entrezDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "constructed-from-id",
+        "rule": "Constructed in the PubMed adapter from PMID using the current PubMed record URL (pubmed.ncbi.nlm.nih.gov). NCBI E-utilities documents the PubMed web interface at pubmed.ncbi.nlm.nih.gov; NCBI Web Link Help also documents https://www.ncbi.nlm.nih.gov/pubmed/{pmid} as an equivalent record link.",
+        "id": "42832396"
+      },
+      "studySubjects": [
+        "cells-tissues-organoids"
+      ],
+      "hints": {
+        "pubTypes": [
+          "Journal Article"
+        ],
+        "journal": "Blood"
+      }
+    },
+    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
   }
 ] as Article[];
 
