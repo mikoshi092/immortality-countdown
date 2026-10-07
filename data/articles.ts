@@ -2549,8 +2549,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2020-03-19-national-cancer-institute-launches-cancer-moonshot-biobank-for-research",
@@ -2643,8 +2642,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2021-02-12-new-educational-materials-for-genetic-testing-under-development-for-dive",
@@ -2740,8 +2738,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2023-02-22-effects-of-jing-si-herbal-tea-on-bladder-cancer-symptoms-under-investiga",
@@ -2837,8 +2834,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ENROLLING_BY_INVITATION"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2023-05-06-reflexion-pet-ct-imaging-performance-compared-to-standard-imaging-in-can",
@@ -2934,8 +2930,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2023-09-28-new-trial-investigates-adding-durvalumab-to-chemotherapy-for-breast-canc",
@@ -3031,8 +3026,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2023-11-18-investigating-cryocompression-s-role-in-alleviating-chemo-induced-neurop",
@@ -3128,8 +3122,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2024-02-23-study-on-urolithin-a-s-impact-on-insulin-in-older-adults-underway",
@@ -3225,8 +3218,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2025-06-11-evaluating-sustainable-diet-and-exercise-for-older-women-s-metabolic-hea",
@@ -3322,8 +3314,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "ACTIVE_NOT_RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2025-09-23-exploring-dose-escalated-radiotherapy-for-ewing-sarcoma-the-bear-trial",
@@ -3419,8 +3410,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2025-09-25-metastatic-lung-cancer-study-explores-body-composition-relation-to-immun",
@@ -3513,8 +3503,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "COMPLETED"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-02-17-exploring-nk-cell-therapy-for-colorectal-cancer-spread-the-chip-crc-tria",
@@ -3613,8 +3602,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-04-23-ruxolitinib-and-azacitidine-a-new-approach-for-aml-patients-post-transpl",
@@ -3710,8 +3698,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-07-15-dce-mri-makes-strides-in-assessing-treatment-for-pancreatic-cancer",
@@ -3808,8 +3795,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-10-05-study-on-radiotherapy-techniques-in-advanced-esophageal-cancer",
@@ -3903,8 +3889,7 @@ export const articles: Article[] = [
         "hasResults": false,
         "overallStatus": "RECRUITING"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-10-05-study-highlights-neuroprotection-of-black-rice-wine-in-aging-mice",
@@ -4004,8 +3989,7 @@ export const articles: Article[] = [
         ],
         "journal": "Food & function"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-10-05-oncolytic-virus-enhances-t-cell-response-in-breast-cancer-model",
@@ -4113,8 +4097,7 @@ export const articles: Article[] = [
         ],
         "journal": "Molecular biomedicine"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-10-05-unexpected-discoveries-in-induced-treg-cell-generation-and-functionality",
@@ -4215,8 +4198,7 @@ export const articles: Article[] = [
         ],
         "journal": "FEBS open bio"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   },
   {
     "id": "2026-10-05-unraveling-genomic-determinants-of-blinatumomab-response-in-adult-b-all",
@@ -4377,8 +4359,7 @@ export const articles: Article[] = [
         ],
         "journal": "Blood"
       }
-    },
-    "sitePublishedAt": "2026-10-06T04:32:51.964Z"
+    }
   }
 ] as Article[];
 

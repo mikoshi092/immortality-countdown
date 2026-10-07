@@ -168,6 +168,32 @@ describe("editorial draft validation", () => {
     }
   });
 
+  it("rejects a paper written with the science-news label and population placeholder", () => {
+    const facts = validMouseDraft(candidate).localizedFacts;
+    const draft = validMouseDraft(candidate, {
+      localizedFacts: {
+        en: {
+          ...facts.en,
+          studyDesign: "Science news report",
+          populationOrModel: "Not assessed in this news report",
+        },
+        ja: {
+          ...facts.ja,
+          studyDesign: "科学ニュース報道",
+          populationOrModel: "本報道では研究対象を検証していない",
+        },
+      },
+    });
+    const result = validateDraft(draft, candidate, slugs);
+    assert.equal(result.ok, false);
+    if (!result.ok) {
+      assert.ok(result.reasons.includes("paper was labeled as a science news report"));
+      assert.ok(
+        result.reasons.includes("paper used the news-report placeholder instead of its study population"),
+      );
+    }
+  });
+
   it("rejects a trial registration written as an efficacy result", () => {
     const trial = fixtureCandidate({
       sourceUrl: "https://clinicaltrials.gov/study/NCT99999999",

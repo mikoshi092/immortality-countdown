@@ -12,6 +12,16 @@ import type { EditorialDraft } from "./types";
 import { inferContentType } from "./from-candidate";
 import { isScienceNews } from "../science-news";
 
+const CONTENT_LABEL: Record<Article["contentType"], string> = {
+  paper: "paper",
+  review: "review",
+  "trial-registration": "trial registration",
+  "science-news": "science news",
+};
+
+const SCIENCE_NEWS_LABEL = /science news report|科学ニュース報道/i;
+const NEWS_POPULATION_PLACEHOLDER = /not assessed in this news report|本報道では研究対象を検証していない/i;
+
 const EVIDENCE_RANK: Record<EvidenceLevel, number> = {
   "Evidence A": 5,
   "Evidence B": 4,
@@ -341,6 +351,18 @@ export function validateDraft(
       hold = true;
       reasons.push("science-news source summary is too short to support a bilingual brief");
     }
+  } else {
+    const label = CONTENT_LABEL[draft.contentType];
+    if (SCIENCE_NEWS_LABEL.test(allDraftText(draft))) {
+      reasons.push(`${label} was labeled as a science news report`);
+    }
+    if (
+      NEWS_POPULATION_PLACEHOLDER.test(
+        `${draft.localizedFacts.en.populationOrModel}\n${draft.localizedFacts.ja.populationOrModel}`,
+      )
+    ) {
+      reasons.push(`${label} used the news-report placeholder instead of its study population`);
+    }
   }
 
   if (draft.sourceUrl !== candidate.sourceUrl) {
@@ -480,11 +502,6 @@ export function validateDraft(
       reasons.push("registry update has no verified change description");
     }
     const text = allDraftText(draft).toLowerCase();
-    if (
-      /science news report|科学ニュース報道/.test(allDraftText(draft))
-    ) {
-      reasons.push("trial registration was labeled as a science news report");
-    }
     if (!/trial registration and research plan/i.test(draft.localizedFacts.en.studyDesign)) {
       reasons.push("trial registration must be labeled as a research plan in English");
     }
