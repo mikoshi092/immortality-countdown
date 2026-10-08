@@ -10,7 +10,7 @@ import { countdown } from "@/lib/countdown";
 export const metadata: Metadata = {
   title: "About | Immortality Countdown",
   description:
-    "Who is behind the countdown: Jonney Wang, a strategic investor rather than a biologist, and why an outsider's question about the ten-years-to-immortality claim turned into a published model.",
+    "Who is behind the countdown: Johnny Wang, a strategic investor rather than a biologist, and why an outsider's question about the ten-years-to-immortality claim turned into a published model.",
   alternates: { canonical: "/about" },
 };
 
