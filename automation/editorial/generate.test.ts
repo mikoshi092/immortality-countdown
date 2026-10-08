@@ -143,7 +143,36 @@ describe("editorial generation", () => {
         [fixtureCandidate()],
         new MockEditorialProvider(),
       );
-      assert.ok(report.drafts.length + report.rejectedDrafts.length === 1);
+      assert.equal(report.drafts.length, 1, report.rejectedDrafts[0]?.reasons.join("; "));
+      assert.match(report.drafts[0].ja.headline, /[\u3040-\u30ff\u3400-\u9fff]/);
+      assert.equal(report.drafts[0].localizedFacts.ja.populationOrModel, "マウス");
+
+      const trial = fixtureCandidate({
+        sourceId: "clinicaltrials",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT07859999",
+        doi: undefined,
+        title: "FES PET/CT planning study",
+        abstract: "Participants will undergo FES PET/CT scans. No results are posted.",
+        studySubjects: ["living-people"],
+        evidence: "Evidence E",
+        windowMatch: {
+          inWindow: true,
+          matchedFields: ["studyFirstPostDate", "lastUpdatePostDate"],
+        },
+        hints: {
+          overallStatus: "ENROLLING_BY_INVITATION",
+          hasResults: false,
+          studyType: "OBSERVATIONAL",
+        },
+      });
+      const trialReport = await generateDrafts([trial], new MockEditorialProvider());
+      assert.equal(
+        trialReport.drafts.length,
+        1,
+        trialReport.rejectedDrafts[0]?.reasons.join("; "),
+      );
+      assert.match(trialReport.drafts[0].ja.whatHappened, /参加者/);
+      assert.equal(trialReport.drafts[0].localizedFacts.ja.populationOrModel.includes("living-people"), false);
     } finally {
       globalThis.fetch = previous;
     }

@@ -482,6 +482,123 @@ describe("editorial draft validation", () => {
     }
   });
 
+  it("does not treat the word 登録 alone as a living-people mention", () => {
+    const trial = fixtureCandidate({
+      sourceId: "clinicaltrials",
+      sourceUrl: "https://clinicaltrials.gov/study/NCT07859047",
+      doi: undefined,
+      title: "FES PET/CT planning study",
+      abstract: "Participants will undergo FES PET/CT scans. No results are posted.",
+      studySubjects: ["living-people"],
+      evidence: "Evidence E",
+      windowMatch: { inWindow: true, matchedFields: ["studyFirstPostDate", "lastUpdatePostDate"] },
+      hints: { overallStatus: "ENROLLING_BY_INVITATION", hasResults: false, studyType: "OBSERVATIONAL" },
+    });
+    const base = compliantTrialDraft(trial);
+    const draft = validMouseDraft(trial, {
+      ...base,
+      localizedFacts: {
+        en: base.localizedFacts.en,
+        ja: {
+          ...base.localizedFacts.ja,
+          populationOrModel: "登録に記載された対象。人数は示されていない。",
+        },
+      },
+      ja: {
+        ...base.ja,
+        whatHappened: "観察研究の試験登録が公開された。全体の状態は招待による登録である。",
+      },
+    });
+    const result = validateDraft(draft, trial, slugs);
+    assert.equal(result.ok, false);
+    if (!result.ok) {
+      assert.ok(
+        result.reasons.includes("locked subject living people is missing from Japanese copy or facts"),
+      );
+    }
+  });
+
+  it("rejects Japanese copy left in English or written as an internal identifier", () => {
+    const leftover = validMouseDraft(candidate, {
+      ja: {
+        ...validMouseDraft(candidate).ja,
+        headline: "Exercise was not significant for lifespan in mice",
+      },
+    });
+    const leftoverResult = validateDraft(leftover, candidate, slugs);
+    assert.equal(leftoverResult.ok, false);
+    if (!leftoverResult.ok) {
+      assert.ok(leftoverResult.reasons.includes("Japanese headline is not written in Japanese"));
+    }
+
+    const identified = validMouseDraft(candidate, {
+      localizedFacts: {
+        en: validMouseDraft(candidate).localizedFacts.en,
+        ja: {
+          ...validMouseDraft(candidate).localizedFacts.ja,
+          populationOrModel: "living-people",
+        },
+      },
+    });
+    const identifiedResult = validateDraft(identified, candidate, slugs);
+    assert.equal(identifiedResult.ok, false);
+    if (!identifiedResult.ok) {
+      assert.ok(
+        identifiedResult.reasons.includes("Japanese populationOrModel used an internal identifier"),
+      );
+    }
+  });
+
+  it("accepts Japanese copy that keeps gene names, drug names, and abbreviations", () => {
+    const paper = fixtureCandidate({
+      title: "Osimertinib and BRCA1 in cells",
+      abstract:
+        "Osimertinib and BRCA1 were tested in cells with FES PET/CT. The change was not significant (n=48).",
+      studySubjects: ["cells-tissues-organoids"],
+    });
+    const draft = validMouseDraft(paper, {
+      studySubjects: ["cells-tissues-organoids"],
+      localizedFacts: {
+        en: {
+          studyDesign: "In vitro cell experiment. Not a human trial.",
+          populationOrModel: "cells",
+          sampleSize: "n=48",
+          intervention: "Osimertinib",
+          outcomes: "BRCA1 change was not significant in cells.",
+          limitations: "Cell experiment only.",
+          resultStatus: "not significant in cells",
+        },
+        ja: {
+          studyDesign: "in vitro の細胞実験。人の試験ではない。",
+          populationOrModel: "細胞",
+          sampleSize: "n=48",
+          intervention: "Osimertinib",
+          outcomes: "細胞では BRCA1 の変化は有意ではなかった。",
+          limitations: "細胞実験のみ。",
+          resultStatus: "細胞で有意ではない",
+        },
+      },
+      en: {
+        headline: "Osimertinib did not change BRCA1 in cells",
+        dek: "An in vitro study (n=48) used FES PET/CT and Osimertinib.",
+        whatHappened:
+          "In cells (n=48), Osimertinib and BRCA1 were tested with FES PET/CT and the change was not significant.",
+        whyItMatters: "A negative cell result is a caution, not a therapy.",
+        realityCheck: "This is a cell experiment. It does not show an effect on human lifespan.",
+      },
+      ja: {
+        headline: "細胞で Osimertinib は BRCA1 を変えなかった",
+        dek: "in vitro の細胞実験（n=48）で FES PET/CT と Osimertinib を用いた。",
+        whatHappened:
+          "細胞（n=48）で Osimertinib と BRCA1 を FES PET/CT とともに調べ、変化は有意ではなかった。",
+        whyItMatters: "細胞での否定的な結果は注意として意味がある。人の治療ではない。",
+        realityCheck: "細胞の実験である。人の寿命への効果は示されていない。",
+      },
+    });
+    const result = validateDraft(draft, paper, slugs);
+    assert.equal(result.ok, true, result.ok ? "" : result.reasons.join("; "));
+  });
+
   it("accepts a first-posted trial that stays a plan and matches its status", () => {
     const trial = fixtureCandidate({
       sourceId: "clinicaltrials",
