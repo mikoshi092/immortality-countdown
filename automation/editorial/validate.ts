@@ -6,7 +6,12 @@ import {
   type ArticleFacts,
 } from "../../data/articles";
 import { canonicalUrl, normalizeDoi } from "../fetch";
-import { hasLivingPeople, subjectKinds, type SubjectKind } from "../../lib/study-subjects";
+import {
+  STUDY_SUBJECT_LABELS,
+  hasLivingPeople,
+  subjectKinds,
+  type SubjectKind,
+} from "../../lib/study-subjects";
 import { RANK_THRESHOLDS, type Candidate } from "../types";
 import type { EditorialDraft } from "./types";
 import { inferContentType } from "./from-candidate";
@@ -80,7 +85,7 @@ const SUBJECT_MENTIONS: Record<
   "living-people": {
     label: "living people",
     en: /\b(participants?|patients?|enrolled|cohort)\b/i,
-    ja: /参加者|患者|登録/,
+    ja: /参加者|患者|被験者|対象者|コホート/,
   },
   mice: { label: "mice", en: /\b(mice|mouse|murine)\b/i, ja: /マウス/ },
   rats: { label: "rats", en: /\brats?\b/i, ja: /ラット/ },
@@ -117,6 +122,46 @@ function copyText(copy: ArticleCopy): string {
 
 function languageDisplayText(copy: ArticleCopy, facts: ArticleFacts): string {
   return `${copyText(copy)}\n${factValues(facts).join("\n")}`;
+}
+
+const JA_SCRIPT = /[\u3040-\u30ff\u3400-\u9fff]/;
+const HYPHENATED_IDENTIFIER =
+  /\b(?:living-people|human-tissue|deceased-donor-tissue|cells-tissues-organoids|trial-registration|science-news)\b/i;
+
+function japaneseReadableText(text: string): string {
+  return text.replace(/「[^」]*」/g, " ").replace(/"[^"]*"/g, " ");
+}
+
+function usesInternalIdentifier(value: string): boolean {
+  const trimmed = value.trim();
+  return (
+    HYPHENATED_IDENTIFIER.test(trimmed) ||
+    (STUDY_SUBJECT_LABELS as readonly string[]).includes(trimmed)
+  );
+}
+
+function assertJapaneseFields(draft: EditorialDraft, reasons: string[]): void {
+  const fields: Array<[string, string]> = [
+    ["headline", draft.ja.headline],
+    ["dek", draft.ja.dek],
+    ["whatHappened", draft.ja.whatHappened],
+    ["whyItMatters", draft.ja.whyItMatters],
+    ["realityCheck", draft.ja.realityCheck],
+    ["studyDesign", draft.localizedFacts.ja.studyDesign],
+    ["populationOrModel", draft.localizedFacts.ja.populationOrModel],
+    ["outcomes", draft.localizedFacts.ja.outcomes],
+    ["limitations", draft.localizedFacts.ja.limitations],
+    ["resultStatus", draft.localizedFacts.ja.resultStatus],
+  ];
+  for (const [label, value] of fields) {
+    if (usesInternalIdentifier(value)) {
+      reasons.push(`Japanese ${label} used an internal identifier`);
+      continue;
+    }
+    if (!JA_SCRIPT.test(japaneseReadableText(value))) {
+      reasons.push(`Japanese ${label} is not written in Japanese`);
+    }
+  }
 }
 
 export function allDraftText(
@@ -389,6 +434,8 @@ export function validateDraft(
 
   if (!isNonEmptyCopy(draft.en) || !isNonEmptyCopy(draft.ja)) {
     reasons.push("both English and Japanese copy are required");
+  } else {
+    assertJapaneseFields(draft, reasons);
   }
 
   if (existingSlugs.has(draft.slug)) {

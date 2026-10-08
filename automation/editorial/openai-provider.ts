@@ -92,7 +92,7 @@ Rules:
 - Explain why a development is interesting for biology or medicine without inventing a connection to longevity or a date for a treatment.
 - Do not invent a source URL, DOI, Evidence level, field, or study species.
 - Do not upgrade the provided Evidence.
-- Write Japanese from the same locked numbers and identifiers, not as a literal translation of the English sentences.
+- Write Japanese from the same locked numbers and identifiers, not as a literal translation of the English sentences. Japanese fields must be written in Japanese. Do not leave English headlines or dek, and do not paste internal labels such as living-people or mice. Gene names, drug names, and abbreviations may stay in English.
 - Keep numbers and units identical in English and Japanese, and only if they appear in the provided materials.
 - Preserve negations (not significant, no association, failed, 有意差なし).
 - Do not treat a trial registration as an efficacy result.
