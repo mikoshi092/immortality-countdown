@@ -14,7 +14,7 @@ export const SITE_NAME = "Immortality Countdown";
  * on an independent research site.
  */
 export const PUBLISHER = {
-  name: "Jonney Wang",
+  name: "Johnny Wang",
   url: `${SITE_URL}/about`,
   jobTitle: "Strategic investor",
   /** Identity signals. Keep these in sync with the live profiles. */
