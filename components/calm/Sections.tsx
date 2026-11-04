@@ -112,34 +112,129 @@ export function LevGauge({
 
 export type MilestoneStep = { gain: string; when: string; state: "done" | "next" | "final" };
 
+/**
+ * A turning-point event in the wider world, pinned to the milestone
+ * axis at `left` (the five steps sit at 10/30/50/70/90% of the row).
+ * Events are NOT model output: they render as filled pills in a band
+ * above the axis — a large coral pill for the headline event, a smaller
+ * navy pill for a secondary one — visually separate from the stepper's
+ * outline circles, each with a short tick down toward its point. A
+ * "small" event has no step of its own, so it also gets a filled dot
+ * on the axis line itself. Owner decision, 2026-11-04.
+ */
+export type TimelineEvent = {
+  label: string;
+  /** Optional year shown inside a small marker (e.g. "2030"). */
+  year?: string;
+  /** Position on the stepper axis, as a CSS left value (e.g. "30%"). */
+  left: string;
+  size: "large" | "small";
+};
+
 /** Five-step milestone stepper keyed to the early scenario. */
-export function Milestones({ steps }: { steps: MilestoneStep[] }) {
+export function Milestones({
+  steps,
+  events,
+  eventsCaption,
+}: {
+  steps: MilestoneStep[];
+  events?: TimelineEvent[];
+  eventsCaption?: string;
+}) {
+  const largeEvents = events?.filter((event) => event.size === "large") ?? [];
+  const smallEvents = events?.filter((event) => event.size === "small") ?? [];
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
-      <div
-        aria-hidden="true"
-        className="absolute left-[6%] right-[6%] top-[46px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)]"
-      />
-      <div className="relative flex">
-        {steps.map((step) => (
-          <div key={step.gain} className="flex-1 px-0.5 text-center">
-            <div
-              className={`mx-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] bg-white text-[1.05rem] ${
-                step.state === "done"
-                  ? "border-[#00a8a8] bg-[#e6fbfb]"
-                  : step.state === "final"
-                    ? "border-[#e8502f] bg-[#ffe9e2]"
-                    : "border-[#c9d4e8]"
-              }`}
-            >
-              {step.state === "done" ? "✅" : step.state === "final" ? "🚀" : "→"}
-            </div>
-            <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold">{step.gain}</div>
-            <div className="mt-0.5 text-[0.78rem] font-bold leading-[1.5] text-[#4a5878]">
-              {step.when}
-            </div>
+      {events && events.length > 0 ? (
+        <>
+          {eventsCaption ? (
+            <p className="flex items-center gap-1.5 text-[0.75rem] font-bold text-[#4a5878]">
+              <span
+                aria-hidden="true"
+                className="inline-block h-[10px] w-[10px] rounded-full bg-[#e8502f]"
+              />
+              <span
+                aria-hidden="true"
+                className="inline-block h-[10px] w-[10px] rounded-full bg-[#233252]"
+              />
+              {eventsCaption}
+            </p>
+          ) : null}
+          <div className="relative h-[118px]">
+            {smallEvents.map((event) => (
+              <span
+                key={event.label}
+                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
+                style={{ left: event.left }}
+              >
+                {event.year ? (
+                  <span className="mr-1.5 font-extrabold">{event.year}</span>
+                ) : null}
+                {event.label}
+              </span>
+            ))}
+            {smallEvents.map((event) => (
+              <span
+                key={`tick-${event.label}`}
+                aria-hidden="true"
+                className="absolute top-[34px] h-[8px] w-[3px] -translate-x-1/2 rounded bg-[#233252]/40"
+                style={{ left: event.left }}
+              />
+            ))}
+            {largeEvents.map((event) => (
+              <span
+                key={event.label}
+                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)]"
+                style={{ left: event.left }}
+              >
+                {event.label}
+              </span>
+            ))}
+            {largeEvents.map((event) => (
+              <span
+                key={`tick-${event.label}`}
+                aria-hidden="true"
+                className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50"
+                style={{ left: event.left }}
+              />
+            ))}
           </div>
+        </>
+      ) : null}
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="absolute left-[6%] right-[6%] top-[16px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)]"
+        />
+        {smallEvents.map((event) => (
+          <span
+            key={`dot-${event.label}`}
+            aria-hidden="true"
+            className="absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-[#233252] shadow-[0_1px_4px_rgba(35,50,82,0.3)]"
+            style={{ left: event.left }}
+          />
         ))}
+        <div className="relative flex">
+          {steps.map((step) => (
+            <div key={step.gain} className="flex-1 px-0.5 text-center">
+              <div
+                className={`mx-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] bg-white text-[1.05rem] ${
+                  step.state === "done"
+                    ? "border-[#00a8a8] bg-[#e6fbfb]"
+                    : step.state === "final"
+                      ? "border-[#e8502f] bg-[#ffe9e2]"
+                      : "border-[#c9d4e8]"
+                }`}
+              >
+                {step.state === "done" ? "✅" : step.state === "final" ? "🚀" : "→"}
+              </div>
+              <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold">{step.gain}</div>
+              <div className="mt-0.5 text-[0.78rem] font-bold leading-[1.5] text-[#4a5878]">
+                {step.when}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

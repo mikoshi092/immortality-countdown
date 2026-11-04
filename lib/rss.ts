@@ -25,7 +25,7 @@ export function buildNewsRss(locale: SiteLocale, articles: Article[]): string {
   const published = visible.filter(isPublishedArticle);
   const title =
     locale === "ja"
-      ? `${SITE_NAME} 最新研究`
+      ? `${SITE_NAME} 最新ニュース`
       : `${SITE_NAME} Latest News`;
   const description =
     locale === "ja"

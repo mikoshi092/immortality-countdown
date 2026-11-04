@@ -59,7 +59,7 @@ export const ARTICLE_UI = {
     modelNote:
       "LEVモデルは原則として半年ごとに再評価します。重大な出来事がある場合のみ臨時審査します。通常の研究記事では予測年数を変えません。",
     readSource: "一次出典を読む",
-    backToList: "最新研究の一覧",
+    backToList: "最新ニュースの一覧",
     otherLanguage: "Read in English",
     studyDesign: "研究デザイン",
     population: "対象・モデル",
@@ -69,7 +69,7 @@ export const ARTICLE_UI = {
     limitations: "限界",
     trialPhase: "試験相",
     resultStatus: "結果の位置づけ",
-    listTitle: "最新研究",
+    listTitle: "最新ニュース",
     listDek:
       "長寿研究の更新情報を、要点と限界に分けて紹介します。詳細は各記事末尾の一次資料をご確認ください。",
     listEmpty: "現在、公開基準を満たす新しい研究情報はありません。",

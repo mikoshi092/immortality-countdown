@@ -25,7 +25,7 @@ export const NAV_LINKS_JA = [
   { label: "LEVとは", href: "/ja#lev-toha" },
   { label: "なぜこの年数か", href: "/ja#why-now" },
   { label: "8つの技術", href: "/ja#eight-fields" },
-  { label: "最新研究", href: "/ja/news" },
+  { label: "最新ニュース", href: "/ja/news" },
 ] as const;
 
 /** /ja is a single page today; the prefix check keeps room for /ja/*. */
