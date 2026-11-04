@@ -12,6 +12,16 @@ import type { SourceDefinition } from "./types";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 
+// Fetcher-behaviour tests below exercise the PubMed and
+// ClinicalTrials.gov adapters directly. Both are disabled in the
+// production registry (the public feed is general media only), so
+// these tests enable them explicitly and disable everything else.
+const academicSources: SourceDefinition[] = SOURCES.map((source) =>
+  source.id === "pubmed" || source.id === "clinicaltrials"
+    ? { ...source, enabled: true }
+    : { ...source, enabled: false },
+);
+
 function collectTs(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
   const files: string[] = [];
@@ -125,6 +135,7 @@ describe("model files stay untouched", () => {
       httpGet,
       outputPath,
       write: true,
+      sources: academicSources,
     });
 
     assert.ok(report.candidates.length >= 1);
@@ -149,6 +160,7 @@ describe("fetch failures are not silent zeros", () => {
       now: new Date("2026-09-16T02:00:00Z"),
       httpGet,
       write: false,
+      sources: academicSources,
     });
     const pubmed = report.sourceResults.find((source) => source.sourceId === "pubmed");
     assert.equal(pubmed?.ok, false);
@@ -191,6 +203,7 @@ describe("fetch failures are not silent zeros", () => {
       now: new Date("2026-09-16T02:00:00Z"),
       httpGet,
       write: false,
+      sources: academicSources,
     });
     const pubmed = report.sourceResults.find((source) => source.sourceId === "pubmed");
     assert.equal(pubmed?.status, "partial");
@@ -237,6 +250,7 @@ describe("fetch failures are not silent zeros", () => {
       now: new Date("2026-09-16T02:00:00Z"),
       httpGet,
       write: false,
+      sources: academicSources,
     });
     const pubmed = report.sourceResults.find((source) => source.sourceId === "pubmed");
     assert.equal(pubmed?.status, "ok");

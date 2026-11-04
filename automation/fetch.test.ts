@@ -83,8 +83,14 @@ describe("abstract document parsing", () => {
 describe("source registry", () => {
   it("does not HTTP-request a disabled source and uses registry API URLs", async () => {
     const requested: string[] = [];
+    // ClinicalTrials.gov is disabled in the production registry; this
+    // test enables it explicitly to check the disabled-source contract.
     const pubmedOff: SourceDefinition[] = SOURCES.map((source) =>
-      source.id === "pubmed" ? { ...source, enabled: false } : source,
+      source.id === "pubmed"
+        ? { ...source, enabled: false }
+        : source.id === "clinicaltrials"
+          ? { ...source, enabled: true }
+          : source,
     );
     const httpGet = async (url: string) => {
       requested.push(url);

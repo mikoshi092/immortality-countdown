@@ -3,10 +3,13 @@
  *
  *   npm run ingest:dry
  *
- * Collects PubMed and ClinicalTrials.gov records from the last 48 hours,
- * normalizes, deduplicates, ranks, excludes noise, and validates them. Writes
- * automation/output/candidates.json. Does not generate articles, publish,
- * or write lev/params.json / lev/forecast.json.
+ * Collects general-media science-news records (Nature News and other
+ * media RSS feeds registered in automation/sources.ts) from the last
+ * 48 hours, normalizes, deduplicates, ranks, excludes noise, and
+ * validates them. PubMed and ClinicalTrials.gov are registered but
+ * disabled as news sources. Writes automation/output/candidates.json.
+ * Does not generate articles, publish, or write lev/params.json /
+ * lev/forecast.json.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";

@@ -1,7 +1,7 @@
 import type { EvidenceLevel } from "../data/news";
 import { FIELD_IDS, type FieldId } from "../lib/fields";
 import { RANK_THRESHOLDS, type RankedRecord, type FetchedRecord } from "./types";
-import { isRelevantDevelopment, isScienceNews } from "./science-news";
+import { detectReportedStage, isRelevantDevelopment, isScienceNews } from "./science-news";
 
 /**
  * Explainable keyword rules. Hits are counted; nothing is inferred about
@@ -717,14 +717,46 @@ function scoreTrialSignificance(record: FetchedRecord): { score: number; notes: 
   return { score: clampScore(score), notes };
 }
 
+/**
+ * Attention band (注目度) for headline-list display, banded from the
+ * significance score into up to four levels, rendered as that many
+ * hearts (❤ to ❤❤❤❤): 4 = major development, 3 = big, 2 = notable,
+ * 1 = worth a look. Presentation banding only — the underlying score
+ * is unchanged. Deterministic, so validation can lock a draft's band
+ * to the candidate scores it was generated from.
+ */
+export function attentionLevelFor(significanceScore: number): 1 | 2 | 3 | 4 {
+  if (significanceScore >= 70) return 4;
+  if (significanceScore >= 55) return 3;
+  if (significanceScore >= 45) return 2;
+  return 1;
+}
+
 export function rankRecord(record: FetchedRecord): RankedRecord {
   if (isScienceNews(record)) {
-    const relevant = isRelevantDevelopment(`${record.title} ${record.abstract ?? ""}`);
+    const text = `${record.title} ${record.abstract ?? ""}`;
+    const relevant = isRelevantDevelopment(text);
     const field = classifyField(record);
+    let significanceScore = 0;
+    if (relevant) {
+      // Flat triage base for a relevant report, graded by signals the
+      // report itself states: a human or approved stage outranks an
+      // animal stage, and a core ageing or cancer-treatment focus
+      // outranks a general enabling-technology report. The grading
+      // only orders the feed (and bands the attention level); it is
+      // not a judgement of study quality.
+      significanceScore = 30;
+      const stage = detectReportedStage(text);
+      if (stage === "human-study" || stage === "approved") significanceScore += 25;
+      else if (stage === "animals") significanceScore += 10;
+      if (countHits(text.toLowerCase(), AGING_CORE).length > 0) significanceScore += 15;
+      if (CANCER_TREATMENT.test(text) && CANCER_THERAPY.test(text)) significanceScore += 10;
+      significanceScore = clampScore(significanceScore);
+    }
     return {
       ...record, studySubjects: [], fieldId: field.hits.length ? field.fieldId : "enabling-technology-automation",
       evidence: "Evidence E", relevanceScore: relevant ? 50 : 0,
-      significanceScore: relevant ? 30 : 0,
+      significanceScore,
       reason: "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
     };
   }

@@ -13,9 +13,10 @@ import {
   type SubjectKind,
 } from "../../lib/study-subjects";
 import { RANK_THRESHOLDS, type Candidate } from "../types";
+import { attentionLevelFor } from "../rank";
 import type { EditorialDraft } from "./types";
 import { inferContentType } from "./from-candidate";
-import { isScienceNews } from "../science-news";
+import { detectReportedStage, isScienceNews } from "../science-news";
 
 const CONTENT_LABEL: Record<Article["contentType"], string> = {
   paper: "paper",
@@ -78,6 +79,17 @@ const LIVING_CLAIM_EN =
   /\b(patients?|participants?|we enrolled|enrolled \d+)\b/i;
 const LIVING_CLAIM_JA = /患者|参加者|ヒトの老化|人の寿命を|人で遅らせ|人で改善/;
 
+// Headline-specific stage guards for science news. The pop headline
+// links straight to the original report, so a headline must not
+// present a cell or animal report as a human result, and must not
+// claim approval or availability the source does not state.
+const HEADLINE_HUMAN_CLAIM_EN =
+  /\b(in patients|in people|in humans|extends human life|human lifespan)\b/i;
+const HEADLINE_HUMAN_CLAIM_JA = /患者で|患者に効果|人で効果|人で改善|人の寿命|ヒトで効果/;
+const HEADLINE_APPROVAL_CLAIM_EN =
+  /\b(fda[-\s]?approved|approved by|approved for (use|treatment)|now available|on the market|cleared for use)\b/i;
+const HEADLINE_APPROVAL_CLAIM_JA = /承認された|承認を取得|承認済み|発売開始|発売された/;
+
 const SUBJECT_MENTIONS: Record<
   string,
   { label: string; en: RegExp; ja: RegExp }
@@ -117,7 +129,7 @@ function factValues(facts: ArticleFacts): string[] {
 }
 
 function copyText(copy: ArticleCopy): string {
-  return `${copy.headline}\n${copy.dek}\n${copy.whatHappened}\n${copy.whyItMatters}\n${copy.realityCheck}`;
+  return `${copy.headline}\n${copy.dek}\n${copy.whatHappened}\n${copy.whyItMatters}\n${copy.realityCheck}\n${copy.popHeadline ?? ""}`;
 }
 
 function languageDisplayText(copy: ArticleCopy, facts: ArticleFacts): string {
@@ -153,6 +165,9 @@ function assertJapaneseFields(draft: EditorialDraft, reasons: string[]): void {
     ["limitations", draft.localizedFacts.ja.limitations],
     ["resultStatus", draft.localizedFacts.ja.resultStatus],
   ];
+  if (draft.ja.popHeadline !== undefined) {
+    fields.push(["popHeadline", draft.ja.popHeadline]);
+  }
   for (const [label, value] of fields) {
     if (usesInternalIdentifier(value)) {
       reasons.push(`Japanese ${label} used an internal identifier`);
@@ -396,6 +411,34 @@ export function validateDraft(
       hold = true;
       reasons.push("science-news source summary is too short to support a bilingual brief");
     }
+    if (!(draft.ja.popHeadline ?? "").trim()) {
+      reasons.push("science news requires a Japanese pop headline");
+    }
+    if (draft.attentionLevel !== attentionLevelFor(candidate.significanceScore)) {
+      reasons.push("attentionLevel does not match the candidate significance score");
+    }
+    const reportedStage = detectReportedStage(
+      `${candidate.title} ${candidate.abstract ?? ""}`,
+    );
+    const headlineText = [
+      draft.en.headline,
+      draft.en.popHeadline ?? "",
+      draft.ja.headline,
+      draft.ja.popHeadline ?? "",
+    ].join("\n");
+    if (
+      reportedStage !== "human-study" &&
+      reportedStage !== "approved" &&
+      (HEADLINE_HUMAN_CLAIM_EN.test(headlineText) || HEADLINE_HUMAN_CLAIM_JA.test(headlineText))
+    ) {
+      reasons.push("headline presents the report as a human result beyond the stage the source states");
+    }
+    if (
+      reportedStage !== "approved" &&
+      (HEADLINE_APPROVAL_CLAIM_EN.test(headlineText) || HEADLINE_APPROVAL_CLAIM_JA.test(headlineText))
+    ) {
+      reasons.push("headline claims approval or availability the source does not state");
+    }
   } else {
     const label = CONTENT_LABEL[draft.contentType];
     if (SCIENCE_NEWS_LABEL.test(allDraftText(draft))) {
@@ -407,6 +450,12 @@ export function validateDraft(
       )
     ) {
       reasons.push(`${label} used the news-report placeholder instead of its study population`);
+    }
+    if (draft.en.popHeadline || draft.ja.popHeadline) {
+      reasons.push("pop headline is only for science-news items");
+    }
+    if (draft.attentionLevel !== undefined) {
+      reasons.push("attentionLevel is only set for science-news items");
     }
   }
 

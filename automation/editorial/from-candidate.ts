@@ -53,6 +53,11 @@ export function sourceLabelFromUrl(sourceUrl: string): string {
   if (host.includes("clinicaltrials.gov")) return "ClinicalTrials.gov";
   if (host.includes("pubmed.ncbi.nlm.nih.gov")) return "PubMed";
   if (host.includes("nature.com")) return "Nature";
+  if (host.includes("sciencedaily.com")) return "ScienceDaily";
+  if (host.includes("newatlas.com")) return "New Atlas";
+  if (host.includes("genengnews.com")) return "GEN";
+  if (host.includes("fiercebiotech.com")) return "Fierce Biotech";
+  if (host.includes("fightaging.org")) return "Fight Aging!";
   return host;
 }
 

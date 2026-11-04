@@ -2,7 +2,9 @@
 
 収集元に Nature News RSS を追加。AI×生命科学、新研究施設、遺伝子編集、再生医療、がん治療の具体的な動きを `science-news` として扱う。論文とは別に Evidence E・科学ニュース報道と明記し、人体での効果や寿命延長を掲載の必須条件にしない。RSS要約が短すぎる場合は held。元記事の未解明事項を日英で維持し、カウントダウンへの影響は none。過去48時間より古い記事の自動遡及掲載はしない。
 
-PubMed と ClinicalTrials.gov から直近48時間の記録を集め、正規化・重複排除・分類評価・検証まで行う。記事の自動公開は Phase 3.1 の `news:publish` と `.github/workflows/news-auto-publish.yml` が行い、この ingest 自体は `lev/params.json` と `lev/forecast.json` を書かない。
+収集元は一般メディアの RSS に一本化した（オーナー判断）。論文抄録や登録情報は一般読者には読みにくいため、PubMed と ClinicalTrials.gov はニュース取得元として無効化し（`enabled: false`）、アダプターとテストは残す。有効な取得元は Nature News、ScienceDaily（Healthy Aging）、New Atlas（Medical）、GEN、Fierce Biotech、Fight Aging! で、いずれも `science-news` として扱う。Nature News は論文ではなく報道なので有効のまま（オーナーが外す判断も可能）。
+
+メディア各紙から直近48時間の記録を集め、正規化・重複排除・分類評価・検証まで行う。記事の自動公開は Phase 3.1 の `news:publish` と `.github/workflows/news-auto-publish.yml` が行い、この ingest 自体は `lev/params.json` と `lev/forecast.json` を書かない。
 
 ```
 npm run ingest:dry
@@ -30,7 +32,17 @@ npm run ingest:dry
 - month / year だけでは期間内と確定しない。
 - 存在しない暦日（例: 2月31日）は拒否する。
 
-### PubMed（NCBI E-utilities）
+### 一般メディア RSS（science-news）
+
+`automation/science-news.ts` の共通 RSS アダプターが担う。取得元ごとに Source Registry の `api.baseUrl`（フィード URL）と `api.linkPattern`（記事 URL の形）を持ち、パターンに合うリンクだけをレコードにする（セクションや著者ページは取り込まない）。パースは厳格なままで、DOCTYPE/ENTITY を含む文書や欠けた item はソース失敗にする。日付は精度を保持し、Fierce Biotech の `Nov 3, 2026 5:05am` のような緩い表記は、時・分の精度を落とさない範囲で正規化してから解釈する。タイムゾーン表記の無い日時は UTC として扱う。
+
+関連判定（`isRelevantDevelopment`）はメディア向けに拡張し、老化・加齢疾患の語彙自体を関連シグナルとする（出来事を表す語は必須）。ランキングでは、報道が明示する段階（承認・人での試験 > 動物）と老化/がん治療の焦点で significance に傾斜を付け（30〜最大90）、編集段階で significance から注目度 `attentionLevel`（1〜4、表示は ❤ の数）を決めて検証で固定する。
+
+編集では science-news に限り `popHeadline`（一般読者向け見出し）を日英で生成し、日本語版を必須とする。見出しリスト表示ではこの日本語見出し自体が元記事へのリンクになるため、検証では「報道が示す段階」を機械判定し（`detectReportedStage`）、見出しが段階を引き上げていないか（細胞・動物の報道を人の結果として書く、承認・発売をうたう）を落とす。研究段階そのものは表示用フィールドとして保存しない。
+
+### PubMed（NCBI E-utilities）※現在は無効
+
+ニュース取得元としては無効化済み。以下はアダプターの仕様として残す。
 
 公式ベース URL は Source Registry（`automation/sources.ts`）の `api.baseUrl` に置く。`fetchEnabledSources` は `enabledSources()` だけを呼ぶ。無効な取得元には HTTP リクエストを送らない。
 
@@ -48,7 +60,9 @@ PubMed ESearch は一致件数の先頭 10,000 件まで。超えた場合は `t
 
 レコード URL は API が記事ページを返さないため、PubMed アダプター内だけで PMID から `https://pubmed.ncbi.nlm.nih.gov/{pmid}/` を構成する。由来は `urlOrigin` に残す。評価処理では URL も DOI も作らない。
 
-### ClinicalTrials.gov Data API v2
+### ClinicalTrials.gov Data API v2 ※現在は無効
+
+ニュース取得元としては無効化済み。以下はアダプターの仕様として残す。
 
 公式ベース URL は Source Registry の `api.baseUrl`（`https://clinicaltrials.gov/api/v2/studies`）。
 
