@@ -185,11 +185,11 @@ export default function Home() {
           />
           <Milestones
             steps={[
-              { gain: currentGain.toFixed(2), when: `${baseYear} · you are here`, state: "done" },
-              { gain: "0.30", when: "around 2028", state: "next" },
-              { gain: "0.50", when: "around 2042 · halfway", state: "next" },
-              { gain: "0.75", when: "around 2052", state: "next" },
-              { gain: "1.00", when: `${earlyYear} · LEV reached`, state: "final" },
+              { gain: currentGain.toFixed(2), when: `${baseYear}`, note: "you are here", state: "done" },
+              { gain: "0.30", when: "2028", note: "around", state: "next" },
+              { gain: "0.50", when: "2042", note: "around · halfway", state: "next" },
+              { gain: "0.75", when: "2052", note: "around", state: "next" },
+              { gain: "1.00", when: `${earlyYear}`, note: "LEV reached", state: "final" },
             ]}
             eventsCaption="Turning points in the wider world"
             events={[
