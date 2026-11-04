@@ -130,7 +130,7 @@ export default function Home() {
           <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
             Until <span className="text-[#e8502f]">ageless longevity</span>
           </h1>
-          <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)]">
+          <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
             Living one more year starts to buy you more than one extra year of life. This site
             estimates when that point may arrive, from how longevity research is progressing around
             the world.
@@ -153,7 +153,13 @@ export default function Home() {
 
           <RangeBar
             points={[
-              { year: earlyYear, tag: "Earliest · the endpoint", left: "4%", highlight: true },
+              {
+                year: earlyYear,
+                tag: "Earliest · the endpoint",
+                left: "4%",
+                highlight: true,
+                wrapTagOnMobile: true,
+              },
               { year: medianYear, tag: "Standard pace", left: "46%" },
               { year: lateYear, tag: "Latest", left: "96%" },
             ]}

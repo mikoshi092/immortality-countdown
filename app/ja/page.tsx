@@ -11,6 +11,7 @@ import {
   FieldCards,
   LevGauge,
   Milestones,
+  Phrases,
   RangeBar,
   SectionHeading,
   type FieldCardData,
@@ -121,8 +122,18 @@ export default function JapaneseLandingPage() {
           <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
             不老長寿まで
           </h1>
-          <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)]">
-            1年生きるあいだに、寿命が1年以上延びるようになる——そんな地点の到来を、世界の長寿研究の進み方から見積もっています。
+          <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
+            <Phrases
+              parts={[
+                "1年生きるあいだに、",
+                "寿命が1年以上",
+                "延びるようになる——",
+                "そんな地点の到来を、",
+                "世界の長寿研究の",
+                "進み方から",
+                "見積もっています。",
+              ]}
+            />
           </p>
 
           <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border-[3px] border-[#7d97bd] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
@@ -153,15 +164,37 @@ export default function JapaneseLandingPage() {
               { year: medianYear, tag: "標準ペース", left: "46%" },
               { year: lateYear, tag: "遅ければ", left: "96%" },
             ]}
-            note={`このページの「あと何年」は、3つの見通しのうち、いちばん早い到達（${earlyYear}年）を終着点にしています。`}
+            note={
+              <Phrases
+                parts={[
+                  "このページの",
+                  "「あと何年」は、",
+                  "3つの見通しのうち、",
+                  "いちばん早い到達",
+                  `（${earlyYear}年）を`,
+                  "終着点にしています。",
+                ]}
+              />
+            }
           />
         </section>
 
         {/* LEV in one sentence */}
         <section id="lev-toha" className="scroll-mt-6 pt-[52px]">
           <SectionHeading
-            title="「寿命脱出速度（LEV）」を、ひとことで"
-            sub="ロケットの「脱出速度」と同じ発想です。追い越しが始まる速さ——それがLEVです。"
+            title={<Phrases parts={["「寿命脱出速度（LEV）」を、", "ひとことで"]} />}
+            sub={
+              <Phrases
+                parts={[
+                  "ロケットの",
+                  "「脱出速度」と",
+                  "同じ発想です。",
+                  "追い越しが",
+                  "始まる速さ——",
+                  "それがLEVです。",
+                ]}
+              />
+            }
           />
           <LevGauge
             nowLabel="🌱 いま"
@@ -177,7 +210,17 @@ export default function JapaneseLandingPage() {
         <section className="pt-[52px]">
           <SectionHeading
             title="到達までのマイルストーン"
-            sub="「伸び率」がどこまで上がれば、いつ到達するか。早ければの到達に向けた道筋です。"
+            sub={
+              <Phrases
+                parts={[
+                  "「伸び率」が",
+                  "どこまで上がれば、",
+                  "いつ到達するか。",
+                  "早ければの到達に",
+                  "向けた道筋です。",
+                ]}
+              />
+            }
           />
           <Milestones
             steps={[
@@ -202,7 +245,17 @@ export default function JapaneseLandingPage() {
         <section className="pt-[52px]">
           <SectionHeading
             title="📰 不老長寿ニュース"
-            sub="世界中の研究ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクになっています。"
+            sub={
+              <Phrases
+                parts={[
+                  "世界中の研究ニュースを、",
+                  "日本語の見出しで。",
+                  "見出しがそのまま",
+                  "元の記事への",
+                  "リンクになっています。",
+                ]}
+              />
+            }
           />
           <div className="mt-6">
             <RtNewsList
@@ -234,8 +287,12 @@ export default function JapaneseLandingPage() {
         {/* Age calculator */}
         <section className="pt-[52px]">
           <SectionHeading
-            title="あなたは何歳になっていますか"
-            sub="到達の年を、自分の人生に引き寄せてみてください。"
+            title={<Phrases parts={["あなたは", "何歳になっていますか"]} />}
+            sub={
+              <Phrases
+                parts={["到達の年を、", "自分の人生に", "引き寄せてみてください。"]}
+              />
+            }
           />
           <AgeCalculator
             locale="ja"
@@ -254,7 +311,18 @@ export default function JapaneseLandingPage() {
         <section id="eight-fields" className="scroll-mt-6 pt-[52px]">
           <SectionHeading
             title="8つの分野が、同時に進んでいます"
-            sub="老化への挑戦は、ひとつの技術では届きません。8分野の足並みがそろうほど、到達は近づきます。"
+            sub={
+              <Phrases
+                parts={[
+                  "老化への挑戦は、",
+                  "ひとつの技術では",
+                  "届きません。",
+                  "8分野の足並みが",
+                  "そろうほど、",
+                  "到達は近づきます。",
+                ]}
+              />
+            }
           />
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -284,7 +352,9 @@ export default function JapaneseLandingPage() {
 
         {/* The honest wall: delivery */}
         <section id="why-now" className="scroll-mt-6 pt-[52px]">
-          <SectionHeading title="一番大きな壁は「届けること」" />
+          <SectionHeading
+            title={<Phrases parts={["一番大きな壁は", "「届けること」"]} />}
+          />
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
               研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れと、いくつも壁があります。
@@ -311,7 +381,9 @@ export default function JapaneseLandingPage() {
         </section>
 
         <Closing
-          heading="「死はバグである」未来を、数字で追いかけます。"
+          heading={
+            <Phrases parts={["「死はバグである」", "未来を、", "数字で追いかけます。"]} />
+          }
           primaryLabel="最新ニュースを見る"
           primaryHref="/ja/news"
           secondaryLabel="数字の出し方（モデルについて）"
