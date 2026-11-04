@@ -26,9 +26,12 @@ export default function TopStoriesStrip({
       <span className="calm-blink inline-block text-[0.92rem] font-extrabold text-[#e8502f]">
         {locale === "ja" ? "📣 本日の注目ニュース" : "📣 Today's top stories"}
       </span>
-      <ul className="mt-2 list-none space-y-1 p-0">
+      <ul className="mt-2.5 list-none space-y-2 p-0">
         {rows.map((row) => (
-          <li key={row.key} className="flex items-baseline gap-2 text-[1.02rem] font-bold">
+          <li
+            key={row.key}
+            className="flex items-baseline gap-2 rounded-[10px] border border-[#dbe4f2] bg-[#f8fafd] px-3.5 py-2.5 text-[1.02rem] font-bold shadow-[0_1px_3px_rgba(35,50,82,0.05)]"
+          >
             <span aria-hidden="true" className="shrink-0 text-[0.85rem]">
               🔥
             </span>

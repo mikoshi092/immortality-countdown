@@ -3,8 +3,9 @@ import type { NewsRowData } from "@/lib/news-rows";
 import type { SiteLocale } from "@/lib/locale";
 
 /**
- * The white card that wraps realtime-chart-style rows on the calm pages.
- * An optional footnote sits under the rows (the mock's badge/bar legend).
+ * A vertical stack of framed news cards (each row is its own card; see
+ * NewsRow). An optional footnote sits under the cards (the mock's
+ * badge/bar legend).
  */
 export default function RtNewsList({
   rows,
@@ -16,11 +17,11 @@ export default function RtNewsList({
   note?: string;
 }) {
   return (
-    <div className="rounded-[18px] bg-white px-5 py-[10px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="flex flex-col gap-3">
       {rows.map((row) => (
         <NewsRow key={row.key} row={row} locale={locale} />
       ))}
-      {note ? <p className="py-3 text-[0.8rem] text-[#4a5878]">{note}</p> : null}
+      {note ? <p className="px-1 pt-1 text-[0.8rem] text-[#4a5878]">{note}</p> : null}
     </div>
   );
 }
