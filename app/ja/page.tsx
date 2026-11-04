@@ -183,6 +183,11 @@ export default function JapaneseLandingPage() {
               { gain: "0.75", when: "2052年ごろ", state: "next" },
               { gain: "1.00", when: `${earlyYear}年・LEV到達`, state: "final" },
             ]}
+            eventsCaption="世の中の転換点"
+            events={[
+              { label: "シンギュラリティ", left: "30%", size: "large" },
+              { label: "量子コンピューターの普及", year: "2030", left: "40%", size: "small" },
+            ]}
           />
         </section>
 
@@ -192,7 +197,7 @@ export default function JapaneseLandingPage() {
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
-            title="📰 長寿研究ニュース"
+            title="📰 不老長寿ニュース"
             sub="世界中の研究ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクになっています。"
           />
           <div className="mt-6">
@@ -217,7 +222,7 @@ export default function JapaneseLandingPage() {
               href="/ja/news"
               className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              長寿研究ニュースは準備中です →
+              不老長寿ニュースは準備中です →
             </Link>
           </section>
         )}
@@ -291,7 +296,7 @@ export default function JapaneseLandingPage() {
 
         <Closing
           heading="「死はバグである」未来を、数字で追いかけます。"
-          primaryLabel="最新研究を見る"
+          primaryLabel="最新ニュースを見る"
           primaryHref="/ja/news"
           secondaryLabel="数字の出し方（モデルについて）"
           secondaryHref="/model"

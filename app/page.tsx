@@ -168,6 +168,11 @@ export default function Home() {
               { gain: "0.75", when: "around 2052", state: "next" },
               { gain: "1.00", when: `${earlyYear} · LEV reached`, state: "final" },
             ]}
+            eventsCaption="Turning points in the wider world"
+            events={[
+              { label: "Singularity", left: "30%", size: "large" },
+              { label: "Quantum computers spread", year: "2030", left: "40%", size: "small" },
+            ]}
           />
         </section>
 

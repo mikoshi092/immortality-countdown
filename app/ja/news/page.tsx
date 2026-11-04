@@ -10,7 +10,7 @@ import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
 import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const title = "長寿研究ニュース | Immortality Countdown";
+const title = "不老長寿ニュース | Immortality Countdown";
 const description =
   "長寿研究の更新情報を、要点と限界に分けて紹介します。詳細は各記事末尾の一次資料をご確認ください。";
 
@@ -53,9 +53,9 @@ export default function JapaneseNewsIndexPage() {
     <main lang="ja" className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
       <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
-        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 長寿研究ニュース一覧</h1>
+        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 不老長寿ニュース一覧</h1>
         <p className="mt-1 text-[0.95rem] text-[#4a5878]">
-          世界中の長寿研究ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクです。
+          世界中の不老長寿ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクです。
         </p>
         <p className="mt-1 text-[0.9rem]">
           <Link href={newsRssPath("ja")} className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}>
