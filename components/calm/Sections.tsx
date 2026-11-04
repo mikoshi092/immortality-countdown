@@ -111,7 +111,14 @@ export function LevGauge({
   );
 }
 
-export type MilestoneStep = { gain: string; when: string; state: "done" | "next" | "final" };
+export type MilestoneStep = {
+  gain: string;
+  /** Year line, e.g. "2026年" — rendered on its own line, never wraps. */
+  when: string;
+  /** Note line under the year, e.g. "いまここ" — its own line, never wraps. */
+  note: string;
+  state: "done" | "next" | "final";
+};
 
 /**
  * A turning-point event in the wider world, pinned to the milestone
@@ -122,6 +129,11 @@ export type MilestoneStep = { gain: string; when: string; state: "done" | "next"
  * outline circles, each with a short tick down toward its point. A
  * "small" event has no step of its own, so it also gets a filled dot
  * on the axis line itself. Owner decision, 2026-11-04.
+ *
+ * On mobile (below sm) the absolute layout collapses, so the band
+ * becomes a centered stack instead: caption, then the large pill,
+ * then the small pill — chronological order, no ticks. The pills are
+ * static there and the axis dot stays as-is. Owner report, 2026-11-04.
  */
 export type TimelineEvent = {
   label: string;
@@ -149,7 +161,7 @@ export function Milestones({
       {events && events.length > 0 ? (
         <>
           {eventsCaption ? (
-            <p className="flex items-center gap-1.5 text-[0.75rem] font-bold text-[#4a5878]">
+            <p className="flex items-center gap-1.5 text-[0.75rem] font-bold text-[#4a5878] max-sm:justify-center">
               <span
                 aria-hidden="true"
                 className="inline-block h-[10px] w-[10px] rounded-full bg-[#e8502f]"
@@ -161,11 +173,11 @@ export function Milestones({
               {eventsCaption}
             </p>
           ) : null}
-          <div className="relative h-[118px]">
+          <div className="relative h-[118px] max-sm:mt-3 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-3">
             {smallEvents.map((event) => (
               <span
                 key={event.label}
-                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
+                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:static max-sm:order-2 max-sm:translate-x-0"
                 style={{ left: event.left }}
               >
                 {event.year ? (
@@ -178,14 +190,14 @@ export function Milestones({
               <span
                 key={`tick-${event.label}`}
                 aria-hidden="true"
-                className="absolute top-[34px] h-[8px] w-[3px] -translate-x-1/2 rounded bg-[#233252]/40"
+                className="absolute top-[34px] h-[8px] w-[3px] -translate-x-1/2 rounded bg-[#233252]/40 max-sm:hidden"
                 style={{ left: event.left }}
               />
             ))}
             {largeEvents.map((event) => (
               <span
                 key={event.label}
-                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)]"
+                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0"
                 style={{ left: event.left }}
               >
                 {event.label}
@@ -195,7 +207,7 @@ export function Milestones({
               <span
                 key={`tick-${event.label}`}
                 aria-hidden="true"
-                className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50"
+                className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50 max-sm:hidden"
                 style={{ left: event.left }}
               />
             ))}
@@ -230,8 +242,11 @@ export function Milestones({
                 {step.state === "done" ? "✅" : step.state === "final" ? "🚀" : "→"}
               </div>
               <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold">{step.gain}</div>
-              <div className="mt-0.5 text-[0.78rem] font-bold leading-[1.5] text-[#4a5878]">
-                {step.when}
+              <div className="mt-0.5 font-bold leading-[1.5] text-[#4a5878]">
+                <div className="whitespace-nowrap text-[0.78rem]">{step.when}</div>
+                <div className="whitespace-nowrap text-[clamp(0.38rem,1.85vw,0.78rem)]">
+                  {step.note}
+                </div>
               </div>
             </div>
           ))}

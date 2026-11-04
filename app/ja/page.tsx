@@ -181,11 +181,11 @@ export default function JapaneseLandingPage() {
           />
           <Milestones
             steps={[
-              { gain: currentGain.toFixed(2), when: `${baseYear}年・いまここ`, state: "done" },
-              { gain: "0.30", when: "2028年ごろ", state: "next" },
-              { gain: "0.50", when: "2042年ごろ・折り返し", state: "next" },
-              { gain: "0.75", when: "2052年ごろ", state: "next" },
-              { gain: "1.00", when: `${earlyYear}年・LEV到達`, state: "final" },
+              { gain: currentGain.toFixed(2), when: `${baseYear}年`, note: "いまここ", state: "done" },
+              { gain: "0.30", when: "2028年", note: "ごろ", state: "next" },
+              { gain: "0.50", when: "2042年", note: "ごろ・折り返し", state: "next" },
+              { gain: "0.75", when: "2052年", note: "ごろ", state: "next" },
+              { gain: "1.00", when: `${earlyYear}年`, note: "LEV到達", state: "final" },
             ]}
             eventsCaption="世の中の転換点"
             events={[
