@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { FaqItem } from "@/lib/faq";
 import { FOCUS_RING } from "@/lib/nav";
 import type { SiteLocale } from "@/lib/locale";
@@ -16,15 +17,38 @@ export const CALM_SOFT = "#4a5878";
 export const CALM_CORAL = "#e8502f";
 export const CALM_TEAL = "#00a8a8";
 
-export function SectionHeading({ title, sub }: { title: string; sub?: string }) {
+export function SectionHeading({ title, sub }: { title: ReactNode; sub?: ReactNode }) {
   return (
     <>
-      <h2 className="text-center text-[clamp(1.4rem,4vw,1.9rem)] font-extrabold leading-[1.4] text-[#233252]">
+      <h2 className="text-center text-[clamp(1.4rem,4vw,1.9rem)] font-extrabold leading-[1.4] text-[#233252] [word-break:auto-phrase]">
         {title}
       </h2>
       {sub ? (
-        <p className="mt-2 text-center text-[clamp(0.92rem,2.6vw,1rem)] text-[#4a5878]">{sub}</p>
+        <p className="mt-2 text-center text-[clamp(0.92rem,2.6vw,1rem)] text-[#4a5878] [word-break:auto-phrase]">
+          {sub}
+        </p>
       ) : null}
+    </>
+  );
+}
+
+/**
+ * Phrase-unit spans for Japanese copy: each part renders as a
+ * whitespace-nowrap inline span, so a line break can only fall
+ * BETWEEN parts — never mid-phrase (「延びるようにな／る」). Browsers
+ * with `word-break: auto-phrase` get the same policy from the
+ * container class; the spans carry it where that is unsupported
+ * (notably iOS Safari). Parts concatenate to the exact original
+ * string — no copy change. Owner report, 2026-11-04.
+ */
+export function Phrases({ parts }: { parts: string[] }) {
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index} className="whitespace-nowrap">
+          {part}
+        </span>
+      ))}
     </>
   );
 }
@@ -37,36 +61,74 @@ export type RangePoint = {
   /** Suppress the year label above the dot when the page already states
    *  that year as the hero's standalone arrival line (JA hero: 2061). */
   hideYear?: boolean;
+  /** The end tag is too long to sit beside the middle tag on one
+   *  mobile line (EN "Earliest · the endpoint"): let it wrap onto a
+   *  second line below sm instead of colliding. The note below the
+   *  bar then takes extra mobile margin to clear the taller tag. */
+  wrapTagOnMobile?: boolean;
 };
 
-/** Scenario range bar: earliest (the endpoint) / standard pace / latest. */
-export function RangeBar({ points, note }: { points: RangePoint[]; note: string }) {
+/**
+ * Scenario range bar: earliest (the endpoint) / standard pace /
+ * latest. Labels center on their dot — except on mobile, where the
+ * first point's labels anchor to the dot's left edge and the last
+ * point's to its right edge: centered, the end labels overflowed the
+ * screen (the JA left tag lost its first characters). Dots stay at
+ * their data positions and the middle label stays centered; ≥sm
+ * rendering is unchanged. Owner report, 2026-11-04.
+ */
+export function RangeBar({ points, note }: { points: RangePoint[]; note: ReactNode }) {
+  const anyWrappedTag = points.some((point) => point.wrapTagOnMobile);
   return (
     <>
       <div className="relative mx-auto my-[38px] max-w-[680px]">
         <div className="h-2 rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a_45%,#b8c4de)]" />
-        {points.map((point) => (
-          <div
-            key={point.year}
-            className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white ${
-              point.highlight
-                ? "h-[26px] w-[26px] border-4 border-[#e8502f] bg-[#ffe9e2]"
-                : "h-[18px] w-[18px] border-4 border-[#4a5878]"
-            }`}
-            style={{ left: point.left }}
-          >
-            {point.hideYear ? null : (
-              <span className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.95rem] font-extrabold text-[#233252]">
-                {point.year}
+        {points.map((point, index) => {
+          const align =
+            index === 0 ? "start" : index === points.length - 1 ? "end" : "center";
+          const alignClass =
+            align === "start"
+              ? "max-sm:left-0 max-sm:translate-x-0"
+              : align === "end"
+                ? "max-sm:left-auto max-sm:right-0 max-sm:translate-x-0"
+                : "";
+          return (
+            <div
+              key={point.year}
+              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white ${
+                point.highlight
+                  ? "h-[26px] w-[26px] border-4 border-[#e8502f] bg-[#ffe9e2]"
+                  : "h-[18px] w-[18px] border-4 border-[#4a5878]"
+              }`}
+              style={{ left: point.left }}
+            >
+              {point.hideYear ? null : (
+                <span
+                  className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.95rem] font-extrabold text-[#233252] ${alignClass}`}
+                >
+                  {point.year}
+                </span>
+              )}
+              <span
+                className={`absolute left-1/2 top-[calc(100%+8px)] -translate-x-1/2 whitespace-nowrap text-[0.8rem] font-bold text-[#4a5878] ${alignClass} ${
+                  point.wrapTagOnMobile
+                    ? "max-sm:w-[104px] max-sm:whitespace-normal max-sm:text-left max-sm:leading-[1.35]"
+                    : ""
+                }`}
+              >
+                {point.tag}
               </span>
-            )}
-            <span className="absolute left-1/2 top-[calc(100%+8px)] -translate-x-1/2 whitespace-nowrap text-[0.8rem] font-bold text-[#4a5878]">
-              {point.tag}
-            </span>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
-      <p className="mx-auto mt-11 max-w-[620px] text-center text-[0.95rem]">{note}</p>
+      <p
+        className={`mx-auto mt-11 max-w-[620px] text-center text-[0.95rem] [word-break:auto-phrase] ${
+          anyWrappedTag ? "max-sm:mt-[60px]" : ""
+        }`}
+      >
+        {note}
+      </p>
     </>
   );
 }
@@ -134,6 +196,13 @@ export type MilestoneStep = {
  * becomes a centered stack instead: caption, then the large pill,
  * then the small pill — chronological order, no ticks. The pills are
  * static there and the axis dot stays as-is. Owner report, 2026-11-04.
+ * The stacked panel then read too large on phones, so below sm the
+ * panel also compacts: tighter padding and band gaps, smaller pills,
+ * 34px step circles (axis line and event dot re-centered to match),
+ * and one-notch-smaller gain and year lines. The note line keeps the
+ * fit-driven size from the two-line structure — the longest notes
+ * ("around · halfway") have no slack to give at 360px. ≥sm sizes are
+ * untouched. Owner report, 2026-11-04.
  */
 export type TimelineEvent = {
   label: string;
@@ -157,7 +226,7 @@ export function Milestones({
   const largeEvents = events?.filter((event) => event.size === "large") ?? [];
   const smallEvents = events?.filter((event) => event.size === "small") ?? [];
   return (
-    <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
       {events && events.length > 0 ? (
         <>
           {eventsCaption ? (
@@ -173,11 +242,11 @@ export function Milestones({
               {eventsCaption}
             </p>
           ) : null}
-          <div className="relative h-[118px] max-sm:mt-3 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-3">
+          <div className="relative h-[118px] max-sm:mt-2 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-2">
             {smallEvents.map((event) => (
               <span
                 key={event.label}
-                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:static max-sm:order-2 max-sm:translate-x-0"
+                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:static max-sm:order-2 max-sm:translate-x-0 max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.64rem]"
                 style={{ left: event.left }}
               >
                 {event.year ? (
@@ -197,7 +266,7 @@ export function Milestones({
             {largeEvents.map((event) => (
               <span
                 key={event.label}
-                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0"
+                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.1rem]"
                 style={{ left: event.left }}
               >
                 {event.label}
@@ -217,13 +286,13 @@ export function Milestones({
       <div className="relative">
         <div
           aria-hidden="true"
-          className="absolute left-[6%] right-[6%] top-[16px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)]"
+          className="absolute left-[6%] right-[6%] top-[16px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)] max-sm:top-[14px]"
         />
         {smallEvents.map((event) => (
           <span
             key={`dot-${event.label}`}
             aria-hidden="true"
-            className="absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-[#233252] shadow-[0_1px_4px_rgba(35,50,82,0.3)]"
+            className="absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-[#233252] shadow-[0_1px_4px_rgba(35,50,82,0.3)] max-sm:top-[17px]"
             style={{ left: event.left }}
           />
         ))}
@@ -231,7 +300,7 @@ export function Milestones({
           {steps.map((step) => (
             <div key={step.gain} className="flex-1 px-0.5 text-center">
               <div
-                className={`mx-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] bg-white text-[1.05rem] ${
+                className={`mx-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] bg-white text-[1.05rem] max-sm:h-[34px] max-sm:w-[34px] max-sm:text-[0.95rem] ${
                   step.state === "done"
                     ? "border-[#00a8a8] bg-[#e6fbfb]"
                     : step.state === "final"
@@ -241,9 +310,13 @@ export function Milestones({
               >
                 {step.state === "done" ? "✅" : step.state === "final" ? "🚀" : "→"}
               </div>
-              <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold">{step.gain}</div>
+              <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold max-sm:mt-1.5 max-sm:text-[0.95rem]">
+                {step.gain}
+              </div>
               <div className="mt-0.5 font-bold leading-[1.5] text-[#4a5878]">
-                <div className="whitespace-nowrap text-[0.78rem]">{step.when}</div>
+                <div className="whitespace-nowrap text-[0.78rem] max-sm:text-[0.74rem]">
+                  {step.when}
+                </div>
                 <div className="whitespace-nowrap text-[clamp(0.38rem,1.85vw,0.78rem)]">
                   {step.note}
                 </div>
@@ -356,7 +429,7 @@ export function Closing({
   finePrint,
   locale,
 }: {
-  heading: string;
+  heading: ReactNode;
   primaryLabel: string;
   primaryHref: string;
   secondaryLabel: string;
