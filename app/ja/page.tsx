@@ -94,6 +94,10 @@ export default function JapaneseLandingPage() {
     blurb: FIELD_BLURBS_JA[id],
     score: getFieldModel(id).score,
   }));
+  // League-table order (design review, 2026-11-04): leaders first,
+  // foundations last, so the grid reads as progress ranking. Sorted from
+  // the data, not a hardcoded order.
+  const fieldCardsByScore = [...fieldCards].sort((a, b) => b.score - a.score);
   const averageScore = Math.round(
     fieldCards.reduce((sum, field) => sum + field.score, 0) / fieldCards.length,
   );
@@ -135,11 +139,17 @@ export default function JapaneseLandingPage() {
 
           <RangeBar
             points={[
-              { year: earlyYear, tag: "早ければ・終着点", left: "4%", highlight: true },
+              {
+                year: earlyYear,
+                tag: "早ければ・終着点",
+                left: "4%",
+                highlight: true,
+                hideYear: true,
+              },
               { year: medianYear, tag: "標準ペース", left: "46%" },
               { year: lateYear, tag: "遅ければ", left: "96%" },
             ]}
-            note="進み方が速ければ早ければで到達し、標準のペースなら標準ペースの年に、遅れればもっと先になります。このページの「あと何年」は、いちばん早い到達（早ければ）を終着点にしています。"
+            note={`このページの「あと何年」は、3つの見通しのうち、いちばん早い到達（${earlyYear}年）を終着点にしています。`}
           />
         </section>
 
@@ -176,8 +186,9 @@ export default function JapaneseLandingPage() {
           />
         </section>
 
-        {/* News — the strip above already hides itself when empty; the
-            latest-news section does the same (no empty shells). */}
+        {/* News — the strip above hides itself when empty; the section
+            below swaps its empty shelf for one quiet signpost line so a
+            first-time visitor still learns the site has news. */}
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
@@ -200,7 +211,16 @@ export default function JapaneseLandingPage() {
             </Link>
           </div>
         </section>
-        ) : null}
+        ) : (
+          <section className="pt-[52px] text-center">
+            <Link
+              href="/ja/news"
+              className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
+            >
+              長寿研究ニュースは準備中です →
+            </Link>
+          </section>
+        )}
 
         {/* Age calculator */}
         <section className="pt-[52px]">
@@ -241,12 +261,12 @@ export default function JapaneseLandingPage() {
                 style={{ width: `${averageScore}%` }}
               />
             </div>
+            <p className="mt-2 text-[0.8rem] text-[#4a5878]">100% = 治療として実際に使える状態</p>
             <p className="mt-[10px] text-[0.9rem]">
               全体はまだ半分に届いていません。伸びている分野と、これからの分野があります。
             </p>
-            <p className="mt-2 text-[0.8rem] text-[#4a5878]">100% = 治療として実際に使える状態</p>
           </div>
-          <FieldCards fields={fieldCards} locale="ja" />
+          <FieldCards fields={fieldCardsByScore} locale="ja" />
           <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
             スコアは各分野の「現在地」を示す目安です（{reviewedLabel}
             時点の評価）。分野名の横の色は、スコア帯による進み具合の目安表示です。
@@ -275,7 +295,11 @@ export default function JapaneseLandingPage() {
           primaryHref="/ja/news"
           secondaryLabel="数字の出し方（モデルについて）"
           secondaryHref="/model"
-          finePrint={`このページの「あと${heroEarlyYears}年」は、公開中のモデルが置く「早ければ」の到達年（${earlyYear}年）を基準にした目安です。「標準ペース」では${medianYear}年、「遅ければ」${lateYear}年です。いずれも、科学の進み方によって前後します。将来の約束ではなく、現在地を測るための物差しとしてご覧ください。`}
+          locale="ja"
+          finePrint={[
+            `このページの「あと${heroEarlyYears}年」は、公開中のモデルが置く「早ければ」の到達年（${earlyYear}年）を基準にした目安です。「標準ペース」では${medianYear}年、「遅ければ」${lateYear}年です。`,
+            "いずれも、科学の進み方によって前後します。将来の約束ではなく、現在地を測るための物差しとしてご覧ください。",
+          ]}
         />
       </div>
     </main>
