@@ -1,7 +1,17 @@
 import { countdown, heroEarlyYears } from "@/lib/countdown";
 import type { SiteLocale } from "@/lib/locale";
 
-export type FaqItem = { question: string; answer: string };
+export type FaqItem = {
+  question: string;
+  /** Canonical plain-text answer — the only form the FAQPage JSON-LD
+   *  ever sees. */
+  answer: string;
+  /** JA only: the same answer split into phrase units, rendered as
+   *  nowrap spans so lines break between phrases, never mid-phrase
+   *  (a single-character orphan showed up in the LEV answer). The
+   *  parts concatenate to `answer` byte-for-byte. */
+  answerParts?: string[];
+};
 
 /**
  * Top-page FAQ: the "when?" questions people actually search with,
@@ -22,14 +32,51 @@ export function faqItems(locale: SiteLocale): FaqItem[] {
       {
         question: "不老不死はいつ実現するの？",
         answer: `早ければ${earlyYear}年、あと${heroEarlyYears}年ほどです。長寿研究の進み具合をもとにした当サイトの計算では、標準のペースで${medianYear}年、遅れれば${lateYear}年という幅があります。`,
+        answerParts: [
+          `早ければ${earlyYear}年、`,
+          `あと${heroEarlyYears}年ほどです。`,
+          "長寿研究の進み具合を",
+          "もとにした",
+          "当サイトの計算では、",
+          `標準のペースで${medianYear}年、`,
+          `遅れれば${lateYear}年という`,
+          "幅があります。",
+        ],
       },
       {
         question: "永遠の命はいつ手に入る？",
         answer: `鍵は「寿命脱出速度（LEV）」に届くことです。そこを過ぎると、生きているあいだに寿命の延びが老化に追いつくようになります。その到達が、早ければ${earlyYear}年です。`,
+        answerParts: [
+          "鍵は",
+          "「寿命脱出速度（LEV）」に",
+          "届くことです。",
+          "そこを過ぎると、",
+          "生きているあいだに",
+          "寿命の延びが",
+          "老化に追いつくように",
+          "なります。",
+          "その到達が、",
+          `早ければ${earlyYear}年です。`,
+        ],
       },
       {
         question: "寿命脱出速度とは？いつ到達するの？",
         answer: `1年生きるあいだに、寿命が1年以上延びるようになる転換点のことです。「寿命回避速度」と呼ばれることもあります。いまの伸びは1年で約${gain}年分。この伸びが1.00に届いたときが到達で、早ければ${earlyYear}年です。`,
+        answerParts: [
+          "1年生きるあいだに、",
+          "寿命が1年以上",
+          "延びるようになる",
+          "転換点のことです。",
+          "「寿命回避速度」と",
+          "呼ばれることも",
+          "あります。",
+          "いまの伸びは",
+          `1年で約${gain}年分。`,
+          "この伸びが",
+          "1.00に届いたときが",
+          "到達で、",
+          `早ければ${earlyYear}年です。`,
+        ],
       },
     ];
   }

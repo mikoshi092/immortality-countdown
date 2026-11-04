@@ -175,10 +175,16 @@ export function LevGauge({
 
 export type MilestoneStep = {
   gain: string;
-  /** Year line, e.g. "2026年" — rendered on its own line, never wraps. */
-  when: string;
-  /** Note line under the year, e.g. "いまここ" — its own line, never wraps. */
-  note: string;
+  /** Year line, e.g. "2026年" — rendered on its own line, never wraps.
+   *  Only the first ("now") and last (arrival) steps carry one: the
+   *  intermediate steps' crossing years are model internals, not
+   *  milestones (owner decision, 2026-11-04), so they stay pure scale
+   *  ticks. A missing line renders as a blank line, keeping the
+   *  two-line slot — and the row's alignment — identical. */
+  when?: string;
+  /** Note line under the year, e.g. "いまここ" — its own line, never
+   *  wraps. The halfway step keeps its note with no year above it. */
+  note?: string;
   state: "done" | "next" | "final";
 };
 
@@ -186,16 +192,18 @@ export type MilestoneStep = {
  * A turning-point event in the wider world, pinned to the milestone
  * axis at `left` (the five steps sit at 10/30/50/70/90% of the row).
  * Events are NOT model output: they render as filled pills in a band
- * above the axis — a large coral pill for the headline event, a smaller
- * navy pill for a secondary one — visually separate from the stepper's
- * outline circles, each with a short tick down toward its point. A
- * "small" event has no step of its own, so it also gets a filled dot
- * on the axis line itself. Owner decision, 2026-11-04.
+ * above the axis — a large coral pill for the headline event, smaller
+ * pills for the secondary ones (navy, deep teal) — visually separate
+ * from the stepper's outline circles, each with a short tick down
+ * toward its point. A "small" event has no step of its own, so it
+ * also gets a filled dot on the axis line itself. A small event can
+ * sit on the lower row (`row: "lower"`, level with the large pill)
+ * when the top row would crowd. Owner decision, 2026-11-04.
  *
  * On mobile (below sm) the absolute layout collapses, so the band
  * becomes a centered stack instead: caption, then the large pill,
- * then the small pill — chronological order, no ticks. The pills are
- * static there and the axis dot stays as-is. Owner report, 2026-11-04.
+ * then the small pills in chronological order — no ticks. The pills
+ * are static there and the axis dot stays as-is. Owner report, 2026-11-04.
  * The stacked panel then read too large on phones, so below sm the
  * panel also compacts: tighter padding and band gaps, smaller pills,
  * 34px step circles (axis line and event dot re-centered to match),
@@ -211,7 +219,20 @@ export type TimelineEvent = {
   /** Position on the stepper axis, as a CSS left value (e.g. "30%"). */
   left: string;
   size: "large" | "small";
+  /** Small-pill colorway (default "navy"). */
+  tone?: "navy" | "teal";
+  /** Desktop band row for a small pill: "upper" (default, top row) or
+   *  "lower" (level with the large pill). Mobile stacks regardless. */
+  row?: "upper" | "lower";
 };
+
+/** Small-pill colorways: navy for the technology event, deep teal
+ *  (#2f7d6a, life-science register) for the cell event. The large
+ *  headline pill is always coral. */
+const SMALL_EVENT_TONES = {
+  navy: { pill: "bg-[#233252]", tick: "bg-[#233252]/40", dot: "bg-[#233252]" },
+  teal: { pill: "bg-[#2f7d6a]", tick: "bg-[#2f7d6a]/40", dot: "bg-[#2f7d6a]" },
+} as const;
 
 /** Five-step milestone stepper keyed to the early scenario. */
 export function Milestones({
@@ -235,38 +256,49 @@ export function Milestones({
                 aria-hidden="true"
                 className="inline-block h-[10px] w-[10px] rounded-full bg-[#e8502f]"
               />
-              <span
-                aria-hidden="true"
-                className="inline-block h-[10px] w-[10px] rounded-full bg-[#233252]"
-              />
+              {smallEvents.map((event) => (
+                <span
+                  key={`caption-${event.label}`}
+                  aria-hidden="true"
+                  className={`inline-block h-[10px] w-[10px] rounded-full ${SMALL_EVENT_TONES[event.tone ?? "navy"].dot}`}
+                />
+              ))}
               {eventsCaption}
             </p>
           ) : null}
           <div className="relative h-[118px] max-sm:mt-2 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-2">
-            {smallEvents.map((event) => (
-              <span
-                key={event.label}
-                className="absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#233252] px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:static max-sm:order-2 max-sm:translate-x-0 max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.64rem]"
-                style={{ left: event.left }}
-              >
-                {event.year ? (
-                  <span className="mr-1.5 font-extrabold">{event.year}</span>
-                ) : null}
-                {event.label}
-              </span>
-            ))}
-            {smallEvents.map((event) => (
-              <span
-                key={`tick-${event.label}`}
-                aria-hidden="true"
-                className="absolute top-[34px] h-[8px] w-[3px] -translate-x-1/2 rounded bg-[#233252]/40 max-sm:hidden"
-                style={{ left: event.left }}
-              />
-            ))}
+            {smallEvents.map((event) => {
+              const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
+              const lower = event.row === "lower";
+              return (
+                <span
+                  key={event.label}
+                  className={`absolute -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] ${tone.pill} ${lower ? "top-[48px]" : "top-0"} max-sm:static max-sm:order-2 max-sm:translate-x-0 max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem]`}
+                  style={{ left: event.left }}
+                >
+                  {event.year ? (
+                    <span className="mr-1.5 font-extrabold">{event.year}</span>
+                  ) : null}
+                  {event.label}
+                </span>
+              );
+            })}
+            {smallEvents.map((event) => {
+              const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
+              const lower = event.row === "lower";
+              return (
+                <span
+                  key={`tick-${event.label}`}
+                  aria-hidden="true"
+                  className={`absolute w-[3px] -translate-x-1/2 rounded ${tone.tick} ${lower ? "top-[84px] h-[34px]" : "top-[34px] h-[8px]"} max-sm:hidden`}
+                  style={{ left: event.left }}
+                />
+              );
+            })}
             {largeEvents.map((event) => (
               <span
                 key={event.label}
-                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.1rem]"
+                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
                 style={{ left: event.left }}
               >
                 {event.label}
@@ -292,7 +324,7 @@ export function Milestones({
           <span
             key={`dot-${event.label}`}
             aria-hidden="true"
-            className="absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-[#233252] shadow-[0_1px_4px_rgba(35,50,82,0.3)] max-sm:top-[17px]"
+            className={`absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white shadow-[0_1px_4px_rgba(35,50,82,0.3)] ${SMALL_EVENT_TONES[event.tone ?? "navy"].dot} max-sm:top-[17px]`}
             style={{ left: event.left }}
           />
         ))}
@@ -315,10 +347,10 @@ export function Milestones({
               </div>
               <div className="mt-0.5 font-bold leading-[1.5] text-[#4a5878]">
                 <div className="whitespace-nowrap text-[0.78rem] max-sm:text-[0.74rem]">
-                  {step.when}
+                  {step.when ?? " "}
                 </div>
                 <div className="whitespace-nowrap text-[clamp(0.38rem,1.85vw,0.78rem)]">
-                  {step.note}
+                  {step.note ?? " "}
                 </div>
               </div>
             </div>
@@ -409,7 +441,9 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
             className={index > 0 ? "mt-6 border-t border-[#e3eaf5] pt-6" : undefined}
           >
             <dt className="font-extrabold">{item.question}</dt>
-            <dd className="mt-2">{item.answer}</dd>
+            <dd className="mt-2 [word-break:auto-phrase]">
+              {item.answerParts ? <Phrases parts={item.answerParts} /> : item.answer}
+            </dd>
           </div>
         ))}
       </dl>
