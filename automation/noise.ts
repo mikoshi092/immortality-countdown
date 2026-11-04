@@ -46,7 +46,19 @@ export function exclusionReasons(record: RankedRecord): string[] {
     reasons.push("supplement sales copy");
   }
 
-  if (/\bretract(?:ed|ion notice|ion of)\b/i.test(text)) {
+  // The two sales exclusions above, mirrored for Japanese copy: a
+  // purchase call-to-action plus a cosmetic or supplement product
+  // noun. News reports in the Japanese feeds do not carry purchase
+  // calls-to-action, so this only fires on commerce copy.
+  const JP_SALES_CALL = /(?:今すぐ購入|購入はこちら|ご購入は|注文する|送料無料|期間限定セール|割引クーポン)/;
+  if (JP_SALES_CALL.test(text) && /(?:化粧品|美容液|スキンケア|アンチエイジング|化粧水)/.test(text)) {
+    reasons.push("cosmetic or beauty-product promotion");
+  }
+  if (JP_SALES_CALL.test(text) && /(?:サプリメント|サプリ|レスベラトロール)/.test(text)) {
+    reasons.push("supplement sales copy");
+  }
+
+  if (/\bretract(?:ed|ion notice|ion of)\b/i.test(text) || /撤回/.test(text)) {
     reasons.push("retracted article");
   }
 

@@ -103,7 +103,7 @@ describe("general media sources", () => {
   it("enables only media sources; PubMed and ClinicalTrials.gov stay registered but disabled", () => {
     assert.deepEqual(
       enabledSources().map((source) => source.id),
-      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging"],
+      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging", "gigazine", "nazology-health"],
     );
     assert.equal(sourceById("pubmed")?.enabled, false);
     assert.equal(sourceById("clinicaltrials")?.enabled, false);
@@ -131,6 +131,24 @@ describe("general media sources", () => {
     assert.equal(records.length, 1);
     assert.equal(records[0].title, "Aging drug maker reports phase 2 results");
     assert.equal(isScienceNews(records[0]), true);
+  });
+
+  it("admits Japanese pop-science article links and excludes non-article links", () => {
+    // GIGAZINE encodes hyphens in feed links as &#45;; the parser's
+    // plain-text decoding restores them before the pattern is applied.
+    assert.equal(
+      isScienceNews({ sourceId: "gigazine", sourceUrl: "https://gigazine.net/news/20261026-old-blood-cells-young-brain-cells/" }),
+      true,
+    );
+    assert.equal(isScienceNews({ sourceId: "gigazine", sourceUrl: "https://gigazine.net/" }), false);
+    assert.equal(
+      isScienceNews({ sourceId: "nazology-health", sourceUrl: "https://nazology.kusuguru.co.jp/archives/205151" }),
+      true,
+    );
+    assert.equal(
+      isScienceNews({ sourceId: "nazology-health", sourceUrl: "https://nazology.kusuguru.co.jp/archives/category/life/health" }),
+      false,
+    );
   });
 
   it("detects the stage a report states, in priority order", () => {
@@ -189,5 +207,90 @@ describe("general media sources", () => {
     if (!missingResult.ok) {
       assert.ok(missingResult.reasons.includes("science news requires a Japanese pop headline"));
     }
+  });
+});
+
+// Real items captured verbatim (title, link, date, description) from
+// the live Nazology health feed on 2026-11-04: an aged-rat liver
+// rejuvenation report (positive) and a trolley-problem psychology
+// item from the same feed (negative). Channel boilerplate is trimmed
+// the same way as the ScienceDaily fixture above.
+const nazoWindow = lookbackWindow(new Date("2026-11-04T06:00:00Z"));
+const nazoRss = `<rss version="2.0"><channel><title>ナゾロジー</title>`
+  + `<item><title>老いたラットの肝臓を若返らせたら悪玉コレステロールまで下がった</title><link>https://nazology.kusuguru.co.jp/archives/204272</link><pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate><description><![CDATA[肝臓は、血液に混じった不要な物を取り除く、体の掃除係のような臓器です。 年をとると、この掃除の力の一部が衰えることが、これまでの観察から分かってきました。 片付けきれずに血液に残る物の一つが、アルツハイマー病で脳にたまる物質です。 論文によると、アルツハイマー病の治療は、2004年以降、臨床試験の98%で失敗に終わっています。 100回挑んで、成功はわずか2回ほどという計算です。 そこで研究チームは、脳ではなく肝臓に目を向けました。 年老いたラットに、肝臓の血管を若い状態に戻すねらいの薬を、2週間与えたのです。 肝臓が若返ると、血液の中の何が、どこまで変わるのでしょうか？ 研究の詳細は、米南カリフォルニア大学らにより、2026年9月26日付で学術誌『Journal of Biological Chemistry』に掲載されました。]]></description></item>`
+  + `<item><title>トロッコ問題は頭の中だけの話ではなかった、本物のお金で検証</title><link>https://nazology.kusuguru.co.jp/archives/205151</link><pubDate>Wed, 04 Nov 2026 01:30:00 +0000</pubDate><description><![CDATA[7人のグループの中で、あなたともう1人だけが1ドルずつもらい、残りの5人は何ももらっていません。 ここでスイッチを入れると、もう1人の1ドルが取り上げられ、5人に1ドルずつ配られます。 あなた自身の1ドルは、スイッチを入れても入れなくてもそのままです。 これは、1人を犠牲にして5人を救うかを問う有名な思考実験「トロッコ問題」を、お金に置き換えたものです。 ただし、誰も死なず、想像の話でもなく、動くお金は本物です。 ある研究チームは、この選択を実際に米国の大人たちに迫りました。 しかもその17か月前、同じ人たちには、考え方のくせや推論の力を測るテストを受けてもらっていました。 1年半近く前のテストの成績は、本物のお金を前にした選択と結びついているのでしょうか？ そして、「みんなの幸せを大事にする」と答える人は、本当にスイッチを入れるのでしょうか？ 研究の詳細は、学術誌『Judgment a…]]></description></item>`
+  + `</channel></rss>`;
+
+// Real items captured verbatim from the live GIGAZINE feed on
+// 2026-11-04: an IT development announcement and a general-health
+// running item. Both carry event words （開発/発表/報告） and must
+// still fail the relevance branches.
+const gigaRss = `<rss version="2.0"><channel><title>GIGAZINE</title>`
+  + `<item><title>OpenAIがGitで超大規模リポジトリを運用するためのバックエンド「Pando」を開発</title><link>https://gigazine.net/news/20261104&#45;openai&#45;git&#45;pando/</link><pubDate>Wed, 04 Nov 2026 13:31:00 +0900</pubDate><description><![CDATA[OpenAIがバージョン管理システム「Git」を大規模モノレポに対応させるための社内バックエンド「Pando」を開発したことを発表しました。<p><b><a href="https://gigazine.net/news/20261104&#45;openai&#45;git&#45;pando/">続きを読む...</a></b></p>]]></description></item>`
+  + `<item><title>歩くのと同じくらいゆっくりなランニングでも気分が良くなって認知機能が向上する</title><link>https://gigazine.net/news/20261103&#45;very&#45;slow&#45;running&#45;benefit&#45;brain/</link><pubDate>Tue, 03 Nov 2026 22:00:00 +0900</pubDate><description><![CDATA[ランニングは手軽に取り入れやすい運動のひとつですが、「すぐに疲れてしまうのでゆっくりでしか走れない」という悩みを抱えている人もいるはず。ところが、筑波大学などの研究チームが行った実験では、歩くのと同じくらいゆっくりなランニングであっても、メンタルヘルスや脳に良い影響が生じるとの結果が報告されています。<p><b><a href="https://gigazine.net/news/20261103&#45;very&#45;slow&#45;running&#45;benefit&#45;brain/">続きを読む...</a></b></p>]]></description></item>`
+  + `</channel></rss>`;
+
+describe("Japanese media gates", () => {
+  it("admits a real Japanese rejuvenation report and ranks it on the same scale", () => {
+    const source = sourceById("nazology-health")!;
+    const records = parseRssFeed(source, nazoRss, nazoWindow);
+    // Only the rat rejuvenation item survives; the trolley-problem
+    // item from the same feed is off-topic and stays out.
+    assert.equal(records.length, 1, JSON.stringify(records.map((record) => record.title)));
+    const [record] = records;
+    assert.equal(record.recordId, "204272");
+    assert.equal(isScienceNews(record), true);
+
+    // The summary cites past 臨床試験 failure rates as background for
+    // an animal finding; the stated stage stays animals, not human.
+    assert.equal(detectReportedStage(`${record.title} ${record.abstract ?? ""}`), "animals");
+
+    const ranked = rankRecord(record);
+    assert.equal(ranked.relevanceScore, 50);
+    // 30 base + 10 animal stage + 15 ageing-core focus, as in English.
+    assert.equal(ranked.significanceScore, 55);
+    assert.equal(ranked.fieldId, "rejuvenation-regeneration");
+    assert.equal(passesRankThresholds(ranked), true);
+    assert.deepEqual(exclusionReasons(ranked), []);
+  });
+
+  it("connects a Japanese feed to the regular ingest pipeline", async () => {
+    const report = await runIngest({ now: nazoWindow.to, write: false, sources: SOURCES.filter((s) => s.id === "nazology-health"), httpGet: async () => new Response(nazoRss) });
+    assert.equal(report.sourceResults[0].status, "ok");
+    assert.equal(report.candidates.length, 1, JSON.stringify(report.rejected));
+    assert.equal(report.candidates[0].relevanceScore, 50);
+    assert.equal(report.candidates[0].significanceScore, 55);
+  });
+
+  it("rejects real off-topic Japanese items: IT news and general health", () => {
+    const source = sourceById("gigazine")!;
+    assert.equal(parseRssFeed(source, gigaRss, nazoWindow).length, 0);
+    assert.equal(
+      isRelevantDevelopment("OpenAIがGitで超大規模リポジトリを運用するためのバックエンド「Pando」を開発 OpenAIがバージョン管理システム「Git」を大規模モノレポに対応させるための社内バックエンド「Pando」を開発したことを発表しました。"),
+      false,
+    );
+    assert.equal(
+      isRelevantDevelopment("歩くのと同じくらいゆっくりなランニングでも気分が良くなって認知機能が向上する ゆっくりなランニングであっても、メンタルヘルスや脳に良い影響が生じるとの結果が報告されています。"),
+      false,
+    );
+    assert.equal(
+      isRelevantDevelopment("トロッコ問題は頭の中だけの話ではなかった、本物のお金で検証 ある研究チームは、この選択を実際に米国の大人たちに迫りました。"),
+      false,
+    );
+  });
+
+  it("detects the stage a Japanese report states", () => {
+    assert.equal(detectReportedStage("同社はその薬についてFDA承認を取得したと発表した"), "approved");
+    assert.equal(detectReportedStage("セノリティクス薬の臨床試験で、被験者の歩行速度が改善した"), "human-study");
+    assert.equal(detectReportedStage("培養細胞に化合物を加えたところ、老化細胞の割合が減った"), "cells");
+    // A background mention of past clinical trials must not promote
+    // an animal finding to the human stage.
+    assert.equal(
+      detectReportedStage("アルツハイマー病の治療は、2004年以降、臨床試験の98%で失敗に終わっています。そこで研究チームは、年老いたラットに薬を与えました。"),
+      "animals",
+    );
+    // サルコペニア (sarcopenia) is not a monkey experiment.
+    assert.equal(detectReportedStage("サルコペニアの予防には運動とタンパク質が有効とされる"), "not-stated");
+    assert.equal(detectReportedStage("同社は新しいオフィスと提携を発表した"), "not-stated");
   });
 });

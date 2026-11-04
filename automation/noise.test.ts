@@ -115,6 +115,48 @@ describe("noise exclusion", () => {
     assert.ok(reasons.some((reason) => /retracted/i.test(reason)));
   });
 
+  it("excludes Japanese supplement sales copy", () => {
+    const reasons = exclusionReasons(
+      ranked({
+        sourceId: "gigazine",
+        sourceName: "GIGAZINE",
+        sourceUrl: "https://gigazine.net/news/20261104-fixture-supplement/",
+        doi: undefined,
+        title: "若返りサプリメントを通販で販売、期間限定セール実施中",
+        abstract: "老化が気になる方向けのサプリメントです。今すぐ購入で送料無料。",
+      }),
+    );
+    assert.ok(reasons.some((reason) => /supplement/i.test(reason)));
+  });
+
+  it("excludes Japanese cosmetic product promotion", () => {
+    const reasons = exclusionReasons(
+      ranked({
+        sourceId: "gigazine",
+        sourceName: "GIGAZINE",
+        sourceUrl: "https://gigazine.net/news/20261104-fixture-cosmetic/",
+        doi: undefined,
+        title: "アンチエイジング美容液の新商品、今すぐ購入で割引クーポン",
+        abstract: "化粧品ブランドのスキンケア商品です。送料無料でお届けします。",
+      }),
+    );
+    assert.ok(reasons.some((reason) => /cosmetic/i.test(reason)));
+  });
+
+  it("excludes a retracted Japanese article", () => {
+    const reasons = exclusionReasons(
+      ranked({
+        sourceId: "nazology-health",
+        sourceName: "ナゾロジー",
+        sourceUrl: "https://nazology.kusuguru.co.jp/archives/999999",
+        doi: undefined,
+        title: "老化細胞に関する論文が撤回された",
+        abstract: "学術誌は論文の撤回を発表した。",
+      }),
+    );
+    assert.ok(reasons.some((reason) => /retracted/i.test(reason)));
+  });
+
   it("excludes a pubmed record with no DOI", () => {
     const reasons = exclusionReasons(ranked({ doi: undefined }));
     assert.ok(reasons.some((reason) => /DOI missing/i.test(reason)));

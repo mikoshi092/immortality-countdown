@@ -2,7 +2,7 @@
 
 収集元に Nature News RSS を追加。AI×生命科学、新研究施設、遺伝子編集、再生医療、がん治療の具体的な動きを `science-news` として扱う。論文とは別に Evidence E・科学ニュース報道と明記し、人体での効果や寿命延長を掲載の必須条件にしない。RSS要約が短すぎる場合は held。元記事の未解明事項を日英で維持し、カウントダウンへの影響は none。過去48時間より古い記事の自動遡及掲載はしない。
 
-収集元は一般メディアの RSS に一本化した（オーナー判断）。論文抄録や登録情報は一般読者には読みにくいため、PubMed と ClinicalTrials.gov はニュース取得元として無効化し（`enabled: false`）、アダプターとテストは残す。有効な取得元は Nature News、ScienceDaily（Healthy Aging）、New Atlas（Medical）、GEN、Fierce Biotech、Fight Aging! で、いずれも `science-news` として扱う。Nature News は論文ではなく報道なので有効のまま（オーナーが外す判断も可能）。
+収集元は一般メディアの RSS に一本化した（オーナー判断）。論文抄録や登録情報は一般読者には読みにくいため、PubMed と ClinicalTrials.gov はニュース取得元として無効化し（`enabled: false`）、アダプターとテストは残す。有効な取得元は Nature News、ScienceDaily（Healthy Aging）、New Atlas（Medical）、GEN、Fierce Biotech、Fight Aging!、GIGAZINE、ナゾロジー（健康カテゴリ）で、いずれも `science-news` として扱う。Nature News は論文ではなく報道なので有効のまま（オーナーが外す判断も可能）。GIGAZINE とナゾロジーは、ポップな一般向け報道を歓迎するという同じオーナー判断で追加した日本語メディア。関連性ゲート・段階判定・分野分類の語彙には日本語の等価語（老化、若返り、寿命、老化細胞、セノリティクス等）を追加済みで、日本語記事も英語記事と同じゲート・同じ閾値で判定される（健康や医療のような広い語だけでは通過しない）。日本語の段階判定では、過去の臨床試験への言及など背景情報で動物実験の報道を人の段階に引き上げないよう、臨床試験は実施文脈でのみ人の段階とする。
 
 メディア各紙から直近48時間の記録を集め、正規化・重複排除・分類評価・検証まで行う。記事の自動公開は Phase 3.1 の `news:publish` と `.github/workflows/news-auto-publish.yml` が行い、この ingest 自体は `lev/params.json` と `lev/forecast.json` を書かない。
 

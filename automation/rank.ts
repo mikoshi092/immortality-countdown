@@ -25,11 +25,34 @@ const AGING_CORE = [
   "senolytic",
   "cellular reprogramming",
   "rejuvenation",
+  // Japanese equivalents, matched as substrings against the lowercased
+  // haystack (lowercasing leaves Japanese script unchanged). 若返 is
+  // the verb stem, covering 若返り/若返る/若返らせ.
+  "老化",
+  "細胞老化",
+  "老化細胞",
+  "長寿",
+  "寿命",
+  "健康寿命",
+  "生物学的年齢",
+  "エピジェネティッククロック",
+  "老化クロック",
+  "セノリティクス",
+  "セノライティクス",
+  "細胞リプログラミング",
+  "ジェロサイエンス",
+  "若返",
+  "エイジング",
 ];
 
-const CANCER_TREATMENT = /\b(cancer|neoplasm|tumou?r|lymphoma|leuk[ae]mia|melanoma|carcinoma|myeloma|sarcoma)\b/i;
-const CANCER_THERAPY = /\b(treatment|therapy|therapeutic|immunotherapy|chemotherapy|radiotherapy|car[- ]?t|checkpoint inhibitor)\b/i;
+// The Japanese alternations match as substrings (no word boundaries in
+// Japanese); the pair is still AND-gated exactly like the English pair.
+const CANCER_TREATMENT = /\b(cancer|neoplasm|tumou?r|lymphoma|leuk[ae]mia|melanoma|carcinoma|myeloma|sarcoma)\b|がん|癌|腫瘍|リンパ腫|白血病|黒色腫|肉腫/i;
+const CANCER_THERAPY = /\b(treatment|therapy|therapeutic|immunotherapy|chemotherapy|radiotherapy|car[- ]?t|checkpoint inhibitor)\b|治療|療法/i;
 
+// Each field also lists Japanese equivalents of its English terms,
+// matched as substrings the same way (the haystack is lowercased,
+// which leaves Japanese script unchanged).
 const FIELD_KEYWORDS: Record<FieldId, string[]> = {
   "rejuvenation-regeneration": [
     "senolytic",
@@ -42,6 +65,15 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "oskm",
     "yap",
     "tissue repair",
+    "セノリティクス",
+    "セノライティクス",
+    "老化細胞",
+    "細胞老化",
+    "リプログラミング",
+    "若返",
+    "再生医療",
+    "幹細胞",
+    "組織修復",
   ],
   "biomarkers-diagnostics": [
     "biomarker",
@@ -52,6 +84,12 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "proteomic clock",
     "diagnostic",
     "surrogate endpoint",
+    "バイオマーカー",
+    "エピジェネティッククロック",
+    "老化クロック",
+    "生物学的年齢",
+    "DNAメチル化",
+    "診断",
   ],
   "geroscience-drugs-trials": [
     "rapamycin",
@@ -65,6 +103,15 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "nad+",
     "nmn",
     "sglt2",
+    "ラパマイシン",
+    "シロリムス",
+    "メトホルミン",
+    "セノリティクス",
+    "セノライティクス",
+    "臨床試験",
+    "治験",
+    "ランダム化",
+    "無作為化",
   ],
   "gene-therapy-delivery": [
     "gene therapy",
@@ -75,6 +122,11 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "base editing",
     "prime editing",
     "lnp delivery",
+    "遺伝子治療",
+    "遺伝子編集",
+    "ウイルスベクター",
+    "塩基編集",
+    "プライム編集",
   ],
   "ai-drug-discovery": [
     "machine learning",
@@ -84,6 +136,12 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "generative model",
     "in silico",
     "drug discovery",
+    "機械学習",
+    "深層学習",
+    "人工知能",
+    "生成モデル",
+    "AI創薬",
+    "創薬",
   ],
   "organ-replacement-biofabrication": [
     "organoid",
@@ -93,6 +151,12 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "xenotransplant",
     "organ replacement",
     "transplantation",
+    "オルガノイド",
+    "バイオプリント",
+    "組織工学",
+    "異種移植",
+    "臓器移植",
+    "人工臓器",
   ],
   "immune-engineering-cancer-control": [
     "immune",
@@ -103,6 +167,13 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "car-t",
     "checkpoint",
     "tnf",
+    "免疫",
+    "免疫老化",
+    "慢性炎症",
+    "炎症",
+    "がん",
+    "癌",
+    "チェックポイント阻害",
   ],
   "enabling-technology-automation": [
     "high-throughput",
@@ -111,6 +182,10 @@ const FIELD_KEYWORDS: Record<FieldId, string[]> = {
     "biomanufacturing",
     "screening platform",
     "lab automation",
+    "ハイスループット",
+    "実験自動化",
+    "ロボット",
+    "スクリーニング",
   ],
 };
 

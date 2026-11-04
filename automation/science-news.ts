@@ -14,26 +14,35 @@ export const NATURE_NEWS_FEED = "https://www.nature.com/nature.rss";
  */
 export type ReportedStage = "cells" | "animals" | "human-study" | "approved" | "not-stated";
 
+/**
+ * Japanese stage vocabulary, matched as substrings (Japanese has no
+ * word boundaries). The human-study patterns deliberately require the
+ * trial to be the report's own subject — 臨床試験で/において/を実施/
+ * を開始/の結果, 治験, 被験者, 患者に投与 — because Japanese reports
+ * routinely cite past 臨床試験 (for example their failure rates) as
+ * background for an animal finding, and a bare 臨床試験 mention must
+ * not promote that finding to a human stage.
+ */
 const STAGE_PATTERNS: { stage: Exclude<ReportedStage, "not-stated">; pattern: RegExp }[] = [
   {
     stage: "approved",
     pattern:
-      /\b(fda[-\s]?approved|approved by (the )?(fda|ema|regulators?)|regulatory approval|marketing authori[sz]ation|received (fda )?approval|granted approval|approval (was|has been) granted|cleared by (the )?fda)\b/i,
+      /\b(fda[-\s]?approved|approved by (the )?(fda|ema|regulators?)|regulatory approval|marketing authori[sz]ation|received (fda )?approval|granted approval|approval (was|has been) granted|cleared by (the )?fda)\b|(?:薬事承認|製造販売承認|承認を取得|承認が下り|承認済み|承認され)/i,
   },
   {
     stage: "human-study",
     pattern:
-      /\b(clinical trials?|phase\s?[123]\b|phase\s?(i{1,3}|iv)\b|first[-\s]in[-\s]human|trial (in|of) (patients|people|adults|volunteers)|\d+\s+(patients|participants|volunteers|adults|people)\b|patients (received|were given|showed|responded)|volunteers (received|were given))\b/i,
+      /\b(clinical trials?|phase\s?[123]\b|phase\s?(i{1,3}|iv)\b|first[-\s]in[-\s]human|trial (in|of) (patients|people|adults|volunteers)|\d+\s+(patients|participants|volunteers|adults|people)\b|patients (received|were given|showed|responded)|volunteers (received|were given))\b|(?:治験|臨床試験で|臨床試験において|臨床試験を実施|臨床試験が開始|臨床試験を開始|臨床試験の結果|人を対象とした|ヒトを対象とした|被験者|患者に投与|患者を対象|第[1234]相|第[ⅠⅡⅢⅣ]相|フェーズ[1234])/i,
   },
   {
     stage: "animals",
     pattern:
-      /\b(mice|mouse|murine|rats?|rabbits?|minipigs?|pigs?|swine|monkeys?|macaques?|primates?|zebrafish|drosophila|fruit flies|nematodes?|c\.?\s?elegans|in animals|animal (models?|stud(y|ies)|trials?))\b/i,
+      /\b(mice|mouse|murine|rats?|rabbits?|minipigs?|pigs?|swine|monkeys?|macaques?|primates?|zebrafish|drosophila|fruit flies|nematodes?|c\.?\s?elegans|in animals|animal (models?|stud(y|ies)|trials?))\b|(?:マウス|ラット|ウサギ|サル(?!コ|痘)|霊長類|ゼブラフィッシュ|ショウジョウバエ|線虫|ミニブタ|動物実験|動物モデル)/i,
   },
   {
     stage: "cells",
     pattern:
-      /\b(in vitro|cell cultures?|cultured cells?|cell lines?|organoids?|petri dish|lab-grown cells?)\b/i,
+      /\b(in vitro|cell cultures?|cultured cells?|cell lines?|organoids?|petri dish|lab-grown cells?)\b|(?:細胞培養|培養細胞|細胞株|オルガノイド|試験管内|培養皿|シャーレ)/i,
   },
 ];
 
@@ -67,15 +76,30 @@ export function isScienceNews(record: { sourceId: string; sourceUrl: string }): 
   return pattern ? pattern.test(record.sourceUrl) : false;
 }
 
+/**
+ * Japanese equivalents of the branch vocabularies in
+ * isRelevantDevelopment, matched as substrings because Japanese has
+ * no word boundaries. Precision comes from the same branch structure:
+ * an event word is always required, and broad words such as 健康 or
+ * 医療 alone are deliberately absent, so general health coverage and
+ * IT news still fail. 若返 is the verb stem, covering 若返り/若返る/
+ * 若返らせ the way the English patterns truncate rejuvenat*.
+ */
+const JP_BIOLOGY = /(?:生物学|ゲノム|タンパク質|酵素|遺伝子|創薬)/;
+const JP_AI = /(?:人工知能|機械学習|深層学習|ロボット|自動化|\bAI\b)/;
+const JP_THERAPY = /(?:がん|癌|腫瘍|リンパ腫|白血病|黒色腫|肉腫|再生医療|遺伝子編集|遺伝子治療|セノリティクス|セノライティクス|若返|オルガノイド|異種移植)/;
+const JP_AGEING = /(?:老化|長寿|寿命|生物学的年齢|エピジェネティッククロック|老化クロック|若返|アルツハイマー|認知症|パーキンソン|フレイル|サルコペニア|ラパマイシン|メトホルミン|セノリティクス|セノライティクス|エイジング)/;
+const JP_EVENT = /(?:発見|開発|報告|発表|開始|成功|示し|明らか|延び|延長|改善|確認|実証|証明|試験|承認|公表|掲載)/;
+
 export function isRelevantDevelopment(text: string): boolean {
-  const biology = /\b(biology|biological|biolab|genom\w*|protein\w*|enzyme\w*|dna|rna|crispr|drug\w*|medicin\w*)\b/i.test(text);
-  const ai = /\b(ai|artificial intelligence|machine learning|robot\w*|automat\w*|wet lab)\b/i.test(text);
-  const therapy = /\b(cancer|tumou?r|lymphoma|leuk[ae]mia|regenerat\w*|gene editing|gene therapy|senolytic\w*|rejuvenat\w*|organoid\w*|xenotransplant\w*)\b/i.test(text);
+  const biology = /\b(biology|biological|biolab|genom\w*|protein\w*|enzyme\w*|dna|rna|crispr|drug\w*|medicin\w*)\b/i.test(text) || JP_BIOLOGY.test(text);
+  const ai = /\b(ai|artificial intelligence|machine learning|robot\w*|automat\w*|wet lab)\b/i.test(text) || JP_AI.test(text);
+  const therapy = /\b(cancer|tumou?r|lymphoma|leuk[ae]mia|regenerat\w*|gene editing|gene therapy|senolytic\w*|rejuvenat\w*|organoid\w*|xenotransplant\w*)\b/i.test(text) || JP_THERAPY.test(text);
   // Media reports usually lead with the ageing angle itself rather than
   // with method terms, so ageing and age-related-disease vocabulary is
   // a relevance branch of its own (still gated on an event word).
-  const ageing = /\b(aging|ageing|senescence|senolytic\w*|longevity|healthspan|lifespan|biological age|epigenetic clock|rejuvenat\w*|alzheimer\w*|dementia|parkinson\w*|frailty|sarcopenia|rapamycin|metformin)\b/i.test(text);
-  const event = /\b(discover\w*|finds?|found|identif\w*|launch\w*|establish\w*|opens?|opened|develop\w*|trial\w*|approv\w*|test\w*|design\w*|report\w*|shows?|extend\w*|reveal\w*|publish\w*|demonstrat\w*)\b/i.test(text);
+  const ageing = /\b(aging|ageing|senescence|senolytic\w*|longevity|healthspan|lifespan|biological age|epigenetic clock|rejuvenat\w*|alzheimer\w*|dementia|parkinson\w*|frailty|sarcopenia|rapamycin|metformin)\b/i.test(text) || JP_AGEING.test(text);
+  const event = /\b(discover\w*|finds?|found|identif\w*|launch\w*|establish\w*|opens?|opened|develop\w*|trial\w*|approv\w*|test\w*|design\w*|report\w*|shows?|extend\w*|reveal\w*|publish\w*|demonstrat\w*)\b/i.test(text) || JP_EVENT.test(text);
   return event && ((biology && ai) || therapy || ageing);
 }
 
