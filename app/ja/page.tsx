@@ -106,7 +106,6 @@ const GATES = [
 export default function JapaneseLandingPage() {
   const earlyYears = heroEarlyYears;
   const gain = countdown.currentGain;
-  const draws = countdown.draws.toLocaleString("en-US");
   const latest = listArticles().slice(0, 3);
 
   return (
@@ -459,8 +458,8 @@ export default function JapaneseLandingPage() {
 
           <div className={`mt-6 max-w-2xl space-y-5 ${BODY}`}>
             <p>
-              この数字はAIの作文ではない。公開されたTypeScriptモデルが、固定シードで
-              {draws}個のシナリオを走らせた結果だ。
+              この数字は、公開されたモデルの計算結果だ。入力と前提はすべて公開していて、
+              研究の進展に合わせて見直している。
             </p>
             <p>
               基準年{countdown.baseYear}年から数えて{earlyYears}年。
