@@ -23,7 +23,7 @@ export default function TopStoriesStrip({
   const rows = topStoryRows(articles, locale, now, 3);
   if (rows.length === 0) return null;
   return (
-    <div className="mt-[18px] rounded-[18px] bg-white px-5 py-[14px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="mt-[18px] rounded-[18px] border-[3px] border-[#7d97bd] bg-white px-5 py-[14px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <span className="calm-blink inline-block text-[0.92rem] font-extrabold text-[#e8502f]">
         {locale === "ja" ? "📣 本日の注目ニュース" : "📣 Today's top stories"}
       </span>
@@ -31,7 +31,7 @@ export default function TopStoriesStrip({
         {rows.map((row) => (
           <li
             key={row.key}
-            className="flex items-baseline gap-2 rounded-[10px] border-2 border-[#c9d4e8] bg-[#f8fafd] px-3.5 py-2.5 text-[1.02rem] font-bold shadow-[0_1px_3px_rgba(35,50,82,0.05)]"
+            className="flex items-baseline gap-2 rounded-[10px] border-[3px] border-[#7d97bd] bg-[#f8fafd] px-3.5 py-2.5 text-[1.02rem] font-bold shadow-[0_1px_3px_rgba(35,50,82,0.05)]"
           >
             <span aria-hidden="true" className="shrink-0 text-[0.85rem]">
               🔥

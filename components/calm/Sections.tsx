@@ -87,7 +87,7 @@ export function LevGauge({
   note: string;
 }) {
   return (
-    <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-[0.95rem] font-bold">
         <span>{nowLabel}</span>
         <span>{nowValueText}</span>
@@ -115,7 +115,7 @@ export type MilestoneStep = { gain: string; when: string; state: "done" | "next"
 /** Five-step milestone stepper keyed to the early scenario. */
 export function Milestones({ steps }: { steps: MilestoneStep[] }) {
   return (
-    <div className="relative mt-[30px] rounded-[14px] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <div
         aria-hidden="true"
         className="absolute left-[6%] right-[6%] top-[46px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)]"
@@ -175,7 +175,7 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
         return (
           <div
             key={field.key}
-            className="rounded-[14px] bg-white p-5 shadow-[0_1px_6px_rgba(35,50,82,0.06)]"
+            className="rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-5 shadow-[0_1px_6px_rgba(35,50,82,0.06)]"
           >
             <div className="text-[1.15rem]" aria-hidden="true">
               {field.emoji}
@@ -248,13 +248,13 @@ export function Closing({
           </Link>
           <Link
             href={secondaryHref}
-            className={`inline-block rounded-full border-2 border-[#c9d4e8] bg-white px-[24px] py-[11px] font-extrabold text-[#233252] transition-colors hover:border-[#57b8ff] ${FOCUS_RING}`}
+            className={`inline-block rounded-full border-[3px] border-[#7d97bd] bg-white px-[24px] py-[11px] font-extrabold text-[#233252] transition-colors hover:border-[#57b8ff] ${FOCUS_RING}`}
           >
             {secondaryLabel}
           </Link>
         </div>
       </section>
-      <div className="mb-10 mt-10 rounded-xl border border-dashed border-[#c9d4e8] bg-white px-5 py-4 text-[0.8rem] leading-[1.8] text-[#4a5878]">
+      <div className="mb-10 mt-10 rounded-xl border-2 border-dashed border-[#7d97bd] bg-white px-5 py-4 text-[0.8rem] leading-[1.8] text-[#4a5878]">
         {finePrint.map((paragraph, index) => (
           <p key={index} className={index > 0 ? "mt-2" : undefined}>
             {paragraph}

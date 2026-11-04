@@ -38,7 +38,7 @@ export default function AgeCalculator({
   };
 
   return (
-    <div className="mx-auto mt-[22px] max-w-[560px] rounded-[14px] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <div className="mx-auto mt-[22px] max-w-[560px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <label className="flex flex-wrap items-center justify-center gap-[10px] text-[1.05rem] font-bold">
         {ja ? "今の年齢" : "Your age now"}
         <input
@@ -52,7 +52,7 @@ export default function AgeCalculator({
             if (event.key === "Enter") calculate();
           }}
           aria-label={ja ? "今の年齢" : "Your age now"}
-          className="w-[90px] rounded-[10px] border-2 border-[#c9d4e8] px-2 py-[9px] text-center text-[1.1rem] font-extrabold text-[#233252] focus:border-[#57b8ff] focus:outline-none"
+          className="w-[90px] rounded-[10px] border-2 border-[#7d97bd] px-2 py-[9px] text-center text-[1.1rem] font-extrabold text-[#233252] focus:border-[#57b8ff] focus:outline-none"
         />
         {ja ? "歳" : ""}
         <button

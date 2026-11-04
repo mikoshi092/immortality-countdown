@@ -12,7 +12,7 @@ import type { SiteLocale } from "@/lib/locale";
 export default function NewsRow({ row, locale }: { row: NewsRowData; locale: SiteLocale }) {
   const relativeTime = locale === "ja" ? relativeTimeJa(row.hours) : relativeTimeEn(row.hours);
   return (
-    <div className="flex gap-3 rounded-[10px] border-2 border-[#c9d4e8] bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(35,50,82,0.05)]">
+    <div className="flex gap-3 rounded-[10px] border-[3px] border-[#7d97bd] bg-white px-4 py-3.5 shadow-[0_1px_3px_rgba(35,50,82,0.05)]">
       <div className="w-[46px] shrink-0 self-start overflow-hidden rounded-lg bg-[#7d8194] text-center text-[0.6rem] font-extrabold leading-[1.3] text-white">
         <span className="block pt-1">{row.isNew ? "NEW!" : "NEWS"}</span>
         <b

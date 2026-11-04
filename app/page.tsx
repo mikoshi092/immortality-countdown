@@ -113,7 +113,7 @@ export default function Home() {
             the world.
           </p>
 
-          <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border border-[#dfe6f0] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border-[3px] border-[#7d97bd] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="text-[clamp(2.8rem,9vw,4.4rem)] font-extrabold leading-[1.15]">
               <span className="text-[#e8502f]">
                 <CountUp target={heroEarlyYears} />
@@ -229,7 +229,7 @@ export default function Home() {
             title="Eight fields, advancing at the same time"
             sub="Aging will not be beaten by a single technology. The closer the eight fields march together, the nearer arrival comes."
           />
-          <div className="mt-6 rounded-[14px] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <span className="font-bold">🌍 All eight fields (average)</span>
               <b className="text-[1.3rem]">
@@ -260,7 +260,7 @@ export default function Home() {
         {/* The honest wall: delivery */}
         <section className="pt-[52px]">
           <SectionHeading title="The biggest wall is delivery" />
-          <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
               Even as research advances, a treatment still has several walls to clear before it
               reaches people: safety checks, clinical trials, approval, manufacturing, and

@@ -41,7 +41,7 @@ export default function VideoRail({ locale }: { locale: SiteLocale }) {
   const ja = locale === "ja";
 
   return (
-    <aside className="rounded-[18px] bg-white p-[18px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+    <aside className="rounded-[18px] border-[3px] border-[#7d97bd] bg-white p-[18px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <h2 className="mb-[14px] text-[1.05rem] font-extrabold text-[#233252]">
         {ja ? "🎬 関連動画（再生数の多い定番）" : "🎬 Related videos (most-watched classics)"}
       </h2>
