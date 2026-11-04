@@ -7,6 +7,7 @@ import RtNewsList from "@/components/calm/RtNewsList";
 import TopStoriesStrip from "@/components/calm/TopStoriesStrip";
 import {
   Closing,
+  FaqSection,
   FieldCards,
   LevGauge,
   Milestones,
@@ -16,10 +17,13 @@ import {
 } from "@/components/calm/Sections";
 import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
+import { faqItems, faqPageJsonLd } from "@/lib/faq";
 import { FIELD_IDS, FIELD_LABELS, type FieldId } from "@/lib/fields";
 import { getFieldModel } from "@/lib/model-snapshot";
+import { serializeJsonLd } from "@/lib/json-ld";
 import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { FOCUS_RING } from "@/lib/nav";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 /**
  * The root layout already sets `canonical: "/"`, but a page-level
@@ -31,7 +35,18 @@ import { FOCUS_RING } from "@/lib/nav";
  * `canonical` and no `languages`, which is what keeps them from
  * advertising Japanese versions that do not exist.
  */
+/**
+ * The top page carries its own description: it opens with the question
+ * the page exists to answer, then keeps the layout's conservative
+ * framing word for word. The title stays the layout's site title.
+ * openGraph is restated with the same description so social cards do
+ * not fall back to the layout's older one (the /ja page does the same).
+ */
+const description =
+  "When will humans live forever? A conservative, evidence-based estimate of when medical technology may begin to outrun aging, with transparent methodology and longevity research updates.";
+
 export const metadata: Metadata = {
+  description,
   alternates: {
     canonical: "/",
     languages: {
@@ -39,6 +54,13 @@ export const metadata: Metadata = {
       ja: "/ja",
       "x-default": "/",
     },
+  },
+  openGraph: {
+    title: "Immortality Countdown | Tracking Longevity Escape Velocity",
+    description,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    type: "website",
   },
 };
 
@@ -78,6 +100,7 @@ export default function Home() {
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
   const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "en", now);
+  const faq = faqItems("en");
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
@@ -282,6 +305,18 @@ export default function Home() {
               a treatment is still at the starting stage.
             </p>
           </div>
+        </section>
+
+        {/* FAQ — the "when?" questions this page exists to answer,
+            stated plainly before the closing. The JSON-LD is generated
+            from the same array the section renders. */}
+        <section className="pt-[52px]">
+          <SectionHeading title="Frequently asked questions" />
+          <FaqSection items={faq} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqPageJsonLd(faq)) }}
+          />
         </section>
 
         <Closing

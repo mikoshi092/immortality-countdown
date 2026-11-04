@@ -7,6 +7,7 @@ import RtNewsList from "@/components/calm/RtNewsList";
 import TopStoriesStrip from "@/components/calm/TopStoriesStrip";
 import {
   Closing,
+  FaqSection,
   FieldCards,
   LevGauge,
   Milestones,
@@ -16,9 +17,11 @@ import {
 } from "@/components/calm/Sections";
 import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
+import { faqItems, faqPageJsonLd } from "@/lib/faq";
 import { FIELD_IDS, type FieldId } from "@/lib/fields";
 import { FIELD_LABELS_JA } from "@/lib/ja";
 import { getFieldModel } from "@/lib/model-snapshot";
+import { serializeJsonLd } from "@/lib/json-ld";
 import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -26,7 +29,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 const title =
   "寿命脱出速度（LEV）とは？不老長寿はいつ実現するのか | Immortality Countdown";
 const description =
-  "医療の進歩が老化の速度を追い越す「寿命脱出速度（LEV）」とは何か。長寿研究の進展を追い、Immortality Countdown独自モデルによる現在の到達予測を解説します。";
+  "不老不死はいつ実現するのか。医療の進歩が老化の速度を追い越す「寿命脱出速度（LEV）」とは何か。長寿研究の進展を追い、Immortality Countdown独自モデルによる現在の到達予測を解説します。";
 
 /**
  * Landing-page hreflang remains / and /ja. News list and article pages
@@ -86,6 +89,7 @@ export default function JapaneseLandingPage() {
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
   const latestRows = toNewsRows(newsFaceArticles(articles, "ja").slice(0, 5), "ja", now);
+  const faq = faqItems("ja");
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
@@ -292,6 +296,18 @@ export default function JapaneseLandingPage() {
               治療として届ける準備は、研究の進み具合に比べて、まだ入口の段階です。
             </p>
           </div>
+        </section>
+
+        {/* FAQ — the "when?" questions this page exists to answer,
+            stated plainly before the closing. The JSON-LD is generated
+            from the same array the section renders. */}
+        <section className="pt-[52px]">
+          <SectionHeading title="よくある質問" />
+          <FaqSection items={faq} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqPageJsonLd(faq)) }}
+          />
         </section>
 
         <Closing

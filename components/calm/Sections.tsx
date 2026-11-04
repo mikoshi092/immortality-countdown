@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { FaqItem } from "@/lib/faq";
 import { FOCUS_RING } from "@/lib/nav";
 import type { SiteLocale } from "@/lib/locale";
 
@@ -301,6 +302,29 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * FAQ panel: the "when?" questions, answered in the open. Items come
+ * from lib/faq.ts, the same array that feeds the page's FAQPage
+ * JSON-LD, so what search engines read is what visitors read.
+ */
+export function FaqSection({ items }: { items: FaqItem[] }) {
+  return (
+    <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+      <dl>
+        {items.map((item, index) => (
+          <div
+            key={item.question}
+            className={index > 0 ? "mt-6 border-t border-[#e3eaf5] pt-6" : undefined}
+          >
+            <dt className="font-extrabold">{item.question}</dt>
+            <dd className="mt-2">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }
