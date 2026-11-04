@@ -121,7 +121,7 @@ export default function JapaneseLandingPage() {
             1年生きるあいだに、寿命が1年以上延びるようになる——そんな地点の到来を、世界の長寿研究の進み方から見積もっています。
           </p>
 
-          <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border border-[#dfe6f0] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border-[3px] border-[#7d97bd] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="text-[clamp(2.8rem,9vw,4.4rem)] font-extrabold leading-[1.15]">
               あと{" "}
               <span className="text-[#e8502f]">
@@ -247,7 +247,7 @@ export default function JapaneseLandingPage() {
             title="8つの分野が、同時に進んでいます"
             sub="老化への挑戦は、ひとつの技術では届きません。8分野の足並みがそろうほど、到達は近づきます。"
           />
-          <div className="mt-6 rounded-[14px] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <span className="font-bold">🌍 8分野全体の進み具合（平均）</span>
               <b className="text-[1.3rem]">
@@ -276,7 +276,7 @@ export default function JapaneseLandingPage() {
         {/* The honest wall: delivery */}
         <section id="why-now" className="scroll-mt-6 pt-[52px]">
           <SectionHeading title="一番大きな壁は「届けること」" />
-          <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+          <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
               研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れと、いくつも壁があります。
             </p>
