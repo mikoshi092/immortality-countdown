@@ -232,7 +232,7 @@ export default function JapaneseLandingPage() {
             ]}
             eventsCaption="世の中の転換点"
             events={[
-              { label: "シンギュラリティ", left: "30%", size: "large" },
+              { label: "シンギュラリティ", year: "2028", left: "30%", size: "large" },
               { label: "量子コンピューターの普及", year: "2030", left: "40%", size: "small" },
               { label: "全細胞の解析終了", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
             ]}

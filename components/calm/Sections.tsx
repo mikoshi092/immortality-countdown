@@ -214,7 +214,8 @@ export type MilestoneStep = {
  */
 export type TimelineEvent = {
   label: string;
-  /** Optional year shown inside a small marker (e.g. "2030"). */
+  /** Optional year shown inside the marker, before the label
+   *  (e.g. "2030" on the small pills, "2028" on the large pill). */
   year?: string;
   /** Position on the stepper axis, as a CSS left value (e.g. "30%"). */
   left: string;
@@ -301,6 +302,9 @@ export function Milestones({
                 className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
                 style={{ left: event.left }}
               >
+                {event.year ? (
+                  <span className="mr-1.5 font-extrabold">{event.year}</span>
+                ) : null}
                 {event.label}
               </span>
             ))}
