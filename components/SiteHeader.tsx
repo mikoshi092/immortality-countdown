@@ -13,16 +13,18 @@ import {
 } from "@/lib/nav";
 
 /**
- * Was MobileHeader, and it behaved like one at every breakpoint: the nav
- * lived inside `<nav hidden={!open}>`, so desktop visitors also got a
- * hamburger and had to click before they could see that the site has a
- * methodology or eight field pages. Now the links sit inline from `sm` up
- * and the collapsible panel is mobile-only.
+ * Site header: a light-blue band (calm redesign, owner-approved
+ * 2026-11-04) wrapping only the header — the wordmark row and the nav.
+ * The wordmark is text-only by owner decision (no logo mark); Japanese
+ * pages add the subtitle 「長寿研究のいまを追う」 beneath it. The
+ * 本日の注目ニュース strip is a separate light card rendered by the
+ * pages below the band, never inside it.
  *
- * The locale is read from the path rather than passed as a prop so that
- * the header cannot disagree with the page it sits on. English pages get
- * the English nav plus a link to the Japanese counterpart when one
- * exists; Japanese pages get the Japanese nav plus a link back.
+ * The collapsible panel is mobile-only; from `sm` up the links sit
+ * inline. The locale is read from the path rather than passed as a prop
+ * so that the header cannot disagree with the page it sits on. English
+ * pages get the English nav plus a link to the Japanese counterpart when
+ * one exists; Japanese pages get the Japanese nav plus a link back.
  * Nothing here redirects.
  */
 export default function SiteHeader() {
@@ -38,7 +40,7 @@ export default function SiteHeader() {
     : { open: "Close menu", closed: "Open menu", nav: "Primary" };
 
   // Kana and kanji have far more strokes per em than Latin letters, so at
-  // 14px on a dark background Noto Sans JP 400 reads thinner than Geist
+  // 14px on a light background Noto Sans JP 400 reads thinner than Geist
   // 400 next to it. 500 restores the match; the English nav is untouched.
   const navWeight = isJa ? "font-medium" : "";
 
@@ -54,37 +56,17 @@ export default function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="bg-[#141413]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 sm:px-6 sm:py-4">
-        <NavLink href={homeHref} className={`flex items-center gap-2.5 ${FOCUS_RING}`}>
-          {/* Same mark/path as app/icon.svg (the site favicon), reused
-              here without its black square backing — the header's own
-              near-black background already provides that contrast, and
-              the stroke is already white, so no color inversion is
-              needed. The favicon file itself is untouched. */}
-          <svg
-            aria-hidden="true"
-            width="24"
-            height="24"
-            viewBox="0 0 64 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="shrink-0"
-          >
-            <path
-              d="M10 32
-                 C10 18 24 18 32 32
-                 C40 46 54 46 54 32
-                 C54 18 40 18 32 32
-                 C24 46 10 46 10 32"
-              stroke="#ffffff"
-              strokeWidth="6"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span className="text-[13px] leading-none text-white/90 sm:text-sm">
-            immortality countdown
+    <header className="bg-[linear-gradient(180deg,#4a7fb5,#5f97c6)]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-[18px] sm:px-6 sm:py-5">
+        <NavLink href={homeHref} className={`flex flex-col justify-center ${FOCUS_RING}`}>
+          <span className="whitespace-nowrap text-[1.15rem] font-extrabold leading-tight tracking-[0.02em] text-white">
+            Immortality Countdown
           </span>
+          {isJa ? (
+            <span className="text-[0.72rem] font-medium leading-tight text-[#dcecfb]">
+              長寿研究のいまを追う
+            </span>
+          ) : null}
         </NavLink>
 
         {/* Desktop: always-visible inline navigation. */}
@@ -94,7 +76,7 @@ export default function SiteHeader() {
               <li key={link.href}>
                 <NavLink
                   href={link.href}
-                  className={`block whitespace-nowrap py-1 text-sm ${navWeight} text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
+                  className={`block whitespace-nowrap py-1 text-sm ${navWeight} text-white/85 transition-colors hover:text-white ${FOCUS_RING}`}
                 >
                   {link.label}
                 </NavLink>
@@ -112,7 +94,7 @@ export default function SiteHeader() {
             hrefLang={switcher.hrefLang}
             lang={switcher.hrefLang}
             aria-label={switcher.ariaLabel}
-            className={`whitespace-nowrap rounded-full border border-white/25 px-2.5 py-1 text-xs font-medium text-white/80 transition-colors hover:border-white/50 hover:text-white ${FOCUS_RING}`}
+            className={`whitespace-nowrap rounded-full border border-white/40 px-2.5 py-1 text-xs font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white ${FOCUS_RING}`}
           >
             {switcher.label}
           </Link>
@@ -123,7 +105,7 @@ export default function SiteHeader() {
             aria-expanded={open}
             aria-controls="primary-nav-menu"
             onClick={() => setOpen((value) => !value)}
-            className={`flex h-7 w-7 shrink-0 items-center justify-center text-white/85 sm:hidden ${FOCUS_RING}`}
+            className={`flex h-7 w-7 shrink-0 items-center justify-center text-white/90 sm:hidden ${FOCUS_RING}`}
           >
             <svg
               aria-hidden="true"
@@ -154,7 +136,7 @@ export default function SiteHeader() {
       <nav
         id="primary-nav-menu"
         aria-label={menuLabel.nav}
-        className={`border-t border-white/10 sm:hidden ${open ? "block" : "hidden"}`}
+        className={`border-t border-white/20 sm:hidden ${open ? "block" : "hidden"}`}
       >
         <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3">
           {links.map((link) => (
@@ -162,7 +144,7 @@ export default function SiteHeader() {
               <NavLink
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`block py-1.5 text-sm ${navWeight} text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
+                className={`block py-1.5 text-sm ${navWeight} text-white/85 transition-colors hover:text-white ${FOCUS_RING}`}
               >
                 {link.label}
               </NavLink>

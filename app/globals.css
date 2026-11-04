@@ -226,3 +226,26 @@ body {
     animation: none;
   }
 }
+
+/* Calm redesign (2026-11-04): the 本日の注目ニュース strip label blinks
+   gently, per the approved mock. Pure CSS — no client JS — and static
+   under reduced motion. */
+.calm-blink {
+  animation: calm-blink 1.8s ease-in-out infinite;
+}
+
+@keyframes calm-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calm-blink {
+    animation: none;
+  }
+}
