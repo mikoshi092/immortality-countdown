@@ -7,7 +7,7 @@ import { listArticles } from "@/data/articles";
 import { ARTICLE_UI } from "@/lib/article-copy";
 import { FOCUS_RING } from "@/lib/nav";
 import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
-import { toNewsRows } from "@/lib/news-rows";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = "最新研究 | Immortality Countdown";
@@ -38,13 +38,14 @@ export const metadata: Metadata = {
  * Calm news index (2026-11-04, owner-approved mock): realtime-chart-style
  * rows — headline links to the original article, badge counts hours since
  * it appeared, bar is an attention guide — with a fixed related-videos
- * rail. Up to the 100 most recent published articles. The model is a
+ * rail. Up to the 100 most recent published general-media articles
+ * (news-face display policy: lib/news-rows.ts). The model is a
  * list-first aggregator: this page deliberately does not editorialize the
  * rows beyond the headline the pipeline wrote.
  */
 export default function JapaneseNewsIndexPage() {
   const now = new Date();
-  const articles = listArticles().slice(0, 100);
+  const articles = newsFaceArticles(listArticles()).slice(0, 100);
   const rows = toNewsRows(articles, "ja", now);
   const ui = ARTICLE_UI.ja;
 
@@ -70,7 +71,7 @@ export default function JapaneseNewsIndexPage() {
                 note="※ 左のバッジの数字は「何時間前」の記事かを示します。バーは注目度の目安です。"
               />
             ) : (
-              <p className="text-[0.95rem] text-[#4a5878]">{ui.listEmpty}</p>
+              <p className="text-[0.95rem] text-[#4a5878]">記事はまだありません。</p>
             )}
           </div>
           <VideoRail locale="ja" />

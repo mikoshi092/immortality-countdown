@@ -7,7 +7,7 @@ import { listArticles } from "@/data/articles";
 import { ARTICLE_UI } from "@/lib/article-copy";
 import { FOCUS_RING } from "@/lib/nav";
 import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
-import { toNewsRows } from "@/lib/news-rows";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 
 export const metadata: Metadata = {
   title: "Latest News | Immortality Countdown",
@@ -26,11 +26,12 @@ export const metadata: Metadata = {
  * Calm news index (2026-11-04, owner-approved mock): realtime-chart-style
  * rows — headline links to the original article, badge counts hours since
  * it appeared, bar is an attention guide — with a fixed related-videos
- * rail, mirroring /ja/news. Up to the 100 most recent published articles.
+ * rail, mirroring /ja/news. Up to the 100 most recent published
+ * general-media articles (news-face display policy: lib/news-rows.ts).
  */
 export default function NewsIndexPage() {
   const now = new Date();
-  const articles = listArticles().slice(0, 100);
+  const articles = newsFaceArticles(listArticles()).slice(0, 100);
   const rows = toNewsRows(articles, "en", now);
   const ui = ARTICLE_UI.en;
 
@@ -57,7 +58,7 @@ export default function NewsIndexPage() {
                 note="The badge number is how many hours ago the article appeared. The bar is an attention guide."
               />
             ) : (
-              <p className="text-[0.95rem] text-[#4a5878]">{ui.listEmpty}</p>
+              <p className="text-[0.95rem] text-[#4a5878]">No articles yet.</p>
             )}
           </div>
           <VideoRail locale="en" />

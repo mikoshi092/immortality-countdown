@@ -7,8 +7,9 @@ import type { SiteLocale } from "@/lib/locale";
  * 本日の注目ニュース strip (approved calm mock): a light card directly
  * below the blue header band — never inside it — holding the top 3
  * articles by attention, then recency. The label blinks gently via the
- * CSS-only `.calm-blink` animation. Renders nothing when no article is
- * published yet.
+ * CSS-only `.calm-blink` animation. Renders nothing when no
+ * general-media article is published yet (see the display policy in
+ * lib/news-rows.ts).
  */
 export default function TopStoriesStrip({
   articles,
@@ -30,7 +31,7 @@ export default function TopStoriesStrip({
         {rows.map((row) => (
           <li
             key={row.key}
-            className="flex items-baseline gap-2 rounded-[10px] border border-[#dbe4f2] bg-[#f8fafd] px-3.5 py-2.5 text-[1.02rem] font-bold shadow-[0_1px_3px_rgba(35,50,82,0.05)]"
+            className="flex items-baseline gap-2 rounded-[10px] border-2 border-[#c9d4e8] bg-[#f8fafd] px-3.5 py-2.5 text-[1.02rem] font-bold shadow-[0_1px_3px_rgba(35,50,82,0.05)]"
           >
             <span aria-hidden="true" className="shrink-0 text-[0.85rem]">
               🔥

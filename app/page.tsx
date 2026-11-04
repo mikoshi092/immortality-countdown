@@ -18,7 +18,7 @@ import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
 import { FIELD_IDS, FIELD_LABELS, type FieldId } from "@/lib/fields";
 import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
-import { FIELD_EMOJI, toNewsRows } from "@/lib/news-rows";
+import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { FOCUS_RING } from "@/lib/nav";
 
 /**
@@ -77,7 +77,7 @@ export default function Home() {
   const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
-  const latestRows = toNewsRows(articles.slice(0, 5), "en", now);
+  const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "en", now);
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
@@ -169,7 +169,9 @@ export default function Home() {
           />
         </section>
 
-        {/* News */}
+        {/* News — the strip above already hides itself when empty; the
+            latest-news section does the same (no empty shells). */}
+        {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
             title="📰 Longevity research news"
@@ -191,6 +193,7 @@ export default function Home() {
             </Link>
           </div>
         </section>
+        ) : null}
 
         {/* Age calculator */}
         <section className="pt-[52px]">

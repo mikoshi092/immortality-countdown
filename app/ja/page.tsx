@@ -19,7 +19,7 @@ import { countdown, heroEarlyYears } from "@/lib/countdown";
 import { FIELD_IDS, type FieldId } from "@/lib/fields";
 import { FIELD_LABELS_JA } from "@/lib/ja";
 import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
-import { FIELD_EMOJI, toNewsRows } from "@/lib/news-rows";
+import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -85,7 +85,7 @@ export default function JapaneseLandingPage() {
   const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
-  const latestRows = toNewsRows(articles.slice(0, 5), "ja", now);
+  const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "ja", now);
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
@@ -178,7 +178,9 @@ export default function JapaneseLandingPage() {
           />
         </section>
 
-        {/* News */}
+        {/* News — the strip above already hides itself when empty; the
+            latest-news section does the same (no empty shells). */}
+        {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
             title="📰 長寿研究ニュース"
@@ -200,6 +202,7 @@ export default function JapaneseLandingPage() {
             </Link>
           </div>
         </section>
+        ) : null}
 
         {/* Age calculator */}
         <section className="pt-[52px]">

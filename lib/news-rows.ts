@@ -26,6 +26,15 @@ import type { SiteLocale } from "@/lib/locale";
  *   Until then the attention percentage falls back to the candidate
  *   significance score captured at ingest (`sourceCheck.significanceScore`,
  *   present on most published records); rows with neither omit the bar.
+ *
+ * News-face display policy (owner, 2026-11-04): the news surfaces — the
+ * top-page strip, the top-page latest list and the news index pages —
+ * show general-media coverage only, i.e. records whose contentType is
+ * "science-news". Papers and trial registrations stay in the research
+ * archive (their own article pages and feeds are untouched) but never
+ * appear on the news face. This is a display filter only; no article
+ * data changes. `newsFaceArticles` is the filter, and both row builders
+ * below apply it so no caller can bypass the policy.
  */
 
 export const FIELD_EMOJI: Record<FieldId, string> = {
@@ -125,12 +134,17 @@ export function newsRowData(article: Article, locale: SiteLocale, now: Date): Ne
   };
 }
 
+/** The news-face display filter: general-media ("science-news") records only. */
+export function newsFaceArticles(articles: readonly Article[]): Article[] {
+  return articles.filter((article) => article.contentType === "science-news");
+}
+
 export function toNewsRows(
   articles: readonly Article[],
   locale: SiteLocale,
   now: Date,
 ): NewsRowData[] {
-  return articles.map((article) => newsRowData(article, locale, now));
+  return newsFaceArticles(articles).map((article) => newsRowData(article, locale, now));
 }
 
 /**
@@ -143,7 +157,7 @@ export function topStoryRows(
   now: Date,
   count: number,
 ): NewsRowData[] {
-  return [...articles]
+  return [...newsFaceArticles(articles)]
     .sort((a, b) => {
       const attentionDiff = (attentionPctFor(b) ?? -1) - (attentionPctFor(a) ?? -1);
       if (attentionDiff !== 0) return attentionDiff;
