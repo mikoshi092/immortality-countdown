@@ -1,3 +1,4 @@
+import { SOURCES } from "@/automation/sources";
 import type { Article, ArticleCopy } from "@/data/articles";
 import { FIELD_SHORT_LABELS, type FieldId } from "@/lib/fields";
 import { FIELD_LABELS_JA } from "@/lib/ja";
@@ -35,6 +36,15 @@ import type { SiteLocale } from "@/lib/locale";
  * appear on the news face. This is a display filter only; no article
  * data changes. `newsFaceArticles` is the filter, and both row builders
  * below apply it so no caller can bypass the policy.
+ *
+ * Language policy (owner, 2026-11-04): the Japanese news surfaces
+ * link only to Japanese-language articles — a Japanese headline that
+ * lands the reader on an English article is not acceptable to the
+ * core audience. An article's language is resolved from its
+ * `sourceUrl` host against the ingest registry (`automation/sources`),
+ * whose entries carry the source's language; hosts belonging to no
+ * Japanese source count as English, so an unregistered source can
+ * never slip onto the Japanese face. English surfaces are unchanged.
  */
 
 export const FIELD_EMOJI: Record<FieldId, string> = {
@@ -134,9 +144,56 @@ export function newsRowData(article: Article, locale: SiteLocale, now: Date): Ne
   };
 }
 
-/** The news-face display filter: general-media ("science-news") records only. */
-export function newsFaceArticles(articles: readonly Article[]): Article[] {
-  return articles.filter((article) => article.contentType === "science-news");
+function hostOf(url: string): string | null {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Hosts (www-stripped) of every registry source marked Japanese: the
+ * source's public site plus its feed host. Article URLs live on the
+ * public site, but matching both keeps the resolution correct if a
+ * feed ever points at its own host directly.
+ */
+const JAPANESE_SOURCE_HOSTS: ReadonlySet<string> = new Set(
+  SOURCES.filter((source) => source.language === "ja").flatMap((source) => {
+    const hosts = [hostOf(source.url), hostOf(source.api.baseUrl)];
+    return hosts.filter((host): host is string => host !== null);
+  }),
+);
+
+/**
+ * The language of the article a record links to, resolved from its
+ * source URL against the ingest registry. A host matches when it is
+ * a Japanese source's host or a subdomain of one; anything else —
+ * including hosts no registry entry claims — is English.
+ */
+export function sourceLanguageFor(article: Article): "ja" | "en" {
+  const host = hostOf(article.sourceUrl);
+  if (!host) return "en";
+  for (const sourceHost of JAPANESE_SOURCE_HOSTS) {
+    if (host === sourceHost || host.endsWith(`.${sourceHost}`)) return "ja";
+  }
+  return "en";
+}
+
+export function isJapaneseSourceArticle(article: Article): boolean {
+  return sourceLanguageFor(article) === "ja";
+}
+
+/**
+ * The news-face display filter: general-media ("science-news")
+ * records only. On the Japanese surfaces (`locale: "ja"`) it also
+ * requires a Japanese source, per the language policy above; any
+ * other call — including omitting the locale — keeps the original
+ * behavior exactly.
+ */
+export function newsFaceArticles(articles: readonly Article[], locale?: SiteLocale): Article[] {
+  const media = articles.filter((article) => article.contentType === "science-news");
+  return locale === "ja" ? media.filter(isJapaneseSourceArticle) : media;
 }
 
 export function toNewsRows(
@@ -144,7 +201,7 @@ export function toNewsRows(
   locale: SiteLocale,
   now: Date,
 ): NewsRowData[] {
-  return newsFaceArticles(articles).map((article) => newsRowData(article, locale, now));
+  return newsFaceArticles(articles, locale).map((article) => newsRowData(article, locale, now));
 }
 
 /**
@@ -157,7 +214,7 @@ export function topStoryRows(
   now: Date,
   count: number,
 ): NewsRowData[] {
-  return [...newsFaceArticles(articles)]
+  return [...newsFaceArticles(articles, locale)]
     .sort((a, b) => {
       const attentionDiff = (attentionPctFor(b) ?? -1) - (attentionPctFor(a) ?? -1);
       if (attentionDiff !== 0) return attentionDiff;

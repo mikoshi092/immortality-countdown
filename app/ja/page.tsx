@@ -85,7 +85,7 @@ export default function JapaneseLandingPage() {
   const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
-  const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "ja", now);
+  const latestRows = toNewsRows(newsFaceArticles(articles, "ja").slice(0, 5), "ja", now);
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,

@@ -39,6 +39,13 @@ export type SourceDefinition = {
   url: string;
   enabled: boolean;
   trustTier: TrustTier;
+  /**
+   * Language of the articles the source publishes. The Japanese news
+   * surfaces link only to Japanese-language articles (owner decision,
+   * 2026-11), so the display layer derives each article's language
+   * from the registry entry its URL belongs to.
+   */
+  language: "ja" | "en";
   api: SourceApi;
 };
 
