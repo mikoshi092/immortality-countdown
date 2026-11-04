@@ -18,7 +18,7 @@ import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
 import { FIELD_IDS, type FieldId } from "@/lib/fields";
 import { FIELD_LABELS_JA } from "@/lib/ja";
-import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
+import { getFieldModel } from "@/lib/model-snapshot";
 import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -111,24 +111,22 @@ export default function JapaneseLandingPage() {
         {/* Hero */}
         <section className="pt-14 text-center">
           <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
-            医療が、老化を
-            <br />
-            <span className="text-[#e8502f]">追い越し始める日</span>
+            不老長寿まで
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)]">
             1年生きるあいだに、寿命が1年以上延びるようになる——そんな地点の到来を、世界の長寿研究の進み方から見積もっています。
           </p>
 
           <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border border-[#dfe6f0] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
-            <div className="text-[0.9rem] font-extrabold tracking-[0.12em] text-[#00a8a8]">
-              カウントダウン・早ければ
-            </div>
-            <div className="mt-1 text-[clamp(2.8rem,9vw,4.4rem)] font-extrabold leading-[1.15]">
+            <div className="text-[clamp(2.8rem,9vw,4.4rem)] font-extrabold leading-[1.15]">
               あと{" "}
               <span className="text-[#e8502f]">
                 <CountUp target={heroEarlyYears} />
               </span>{" "}
               年
+              <span className="ml-2 align-middle text-[0.95rem] font-semibold text-[#4a5878]">
+                （早ければ）
+              </span>
             </div>
             <div className="text-[1.25rem] font-bold">
               <b className="text-[1.7rem]">{earlyYear}年</b> に到達
@@ -233,7 +231,8 @@ export default function JapaneseLandingPage() {
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <span className="font-bold">🌍 8分野全体の進み具合（平均）</span>
               <b className="text-[1.3rem]">
-                {averageScore} <span className="text-[0.85rem] font-bold">/ 100</span>
+                {averageScore}
+                <span className="text-[0.85rem] font-bold">%</span>
               </b>
             </div>
             <div className="mt-2 h-[22px] overflow-hidden rounded-full bg-[#eef2f9]">
@@ -245,6 +244,7 @@ export default function JapaneseLandingPage() {
             <p className="mt-[10px] text-[0.9rem]">
               全体はまだ半分に届いていません。伸びている分野と、これからの分野があります。
             </p>
+            <p className="mt-2 text-[0.8rem] text-[#4a5878]">100% = 治療として実際に使える状態</p>
           </div>
           <FieldCards fields={fieldCards} locale="ja" />
           <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
@@ -264,11 +264,7 @@ export default function JapaneseLandingPage() {
               人で試すことの安全性確認は、省くわけにはいきません。一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
             </p>
             <p className="mt-4">
-              この「届けること」の準備は、いま{" "}
-              <span className="text-[2rem] font-extrabold leading-none text-[#e8502f]">
-                {REGULATORY_READINESS.score} / 100
-              </span>{" "}
-              です。
+              治療として届ける準備は、研究の進み具合に比べて、まだ入口の段階です。
             </p>
           </div>
         </section>

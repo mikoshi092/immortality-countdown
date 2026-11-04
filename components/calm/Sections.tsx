@@ -188,8 +188,10 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
                   style={{ width: `${field.score}%` }}
                 />
               </div>
-              <b className="text-[1.05rem]">{field.score}</b>
-              <span className="text-[0.75rem] text-[#4a5878]">/ 100</span>
+              <b className="text-[1.05rem]">
+                {field.score}
+                <span className="text-[0.8rem]">%</span>
+              </b>
             </div>
           </div>
         );
