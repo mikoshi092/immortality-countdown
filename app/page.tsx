@@ -86,6 +86,10 @@ export default function Home() {
     blurb: FIELD_BLURBS_EN[id],
     score: getFieldModel(id).score,
   }));
+  // League-table order (design review, 2026-11-04): leaders first,
+  // foundations last, so the grid reads as progress ranking. Sorted from
+  // the data, not a hardcoded order.
+  const fieldCardsByScore = [...fieldCards].sort((a, b) => b.score - a.score);
   const averageScore = Math.round(
     fieldCards.reduce((sum, field) => sum + field.score, 0) / fieldCards.length,
   );
@@ -130,7 +134,7 @@ export default function Home() {
               { year: medianYear, tag: "Standard pace", left: "46%" },
               { year: lateYear, tag: "Latest", left: "96%" },
             ]}
-            note="If progress is fast, arrival comes at the earliest year; at the standard pace, in the standard year; slower, and it slips further out. The years-to-go figure on this page counts to the earliest arrival."
+            note={`The years-to-go figure on this page counts down to the earliest of the three outlooks (${earlyYear}).`}
           />
         </section>
 
@@ -167,8 +171,9 @@ export default function Home() {
           />
         </section>
 
-        {/* News — the strip above already hides itself when empty; the
-            latest-news section does the same (no empty shells). */}
+        {/* News — the strip above hides itself when empty; the section
+            below swaps its empty shelf for one quiet signpost line so a
+            first-time visitor still learns the site has news. */}
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
@@ -191,7 +196,16 @@ export default function Home() {
             </Link>
           </div>
         </section>
-        ) : null}
+        ) : (
+          <section className="pt-[52px] text-center">
+            <Link
+              href="/news"
+              className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
+            >
+              Longevity research news is on its way →
+            </Link>
+          </section>
+        )}
 
         {/* Age calculator */}
         <section className="pt-[52px]">
@@ -229,14 +243,14 @@ export default function Home() {
                 style={{ width: `${averageScore}%` }}
               />
             </div>
-            <p className="mt-[10px] text-[0.9rem]">
-              Overall, we are not yet halfway. Some fields are surging; others are still to come.
-            </p>
             <p className="mt-2 text-[0.8rem] text-[#4a5878]">
               100% = ready to use as an actual treatment
             </p>
+            <p className="mt-[10px] text-[0.9rem]">
+              Overall, we are not yet halfway. Some fields are surging; others are still to come.
+            </p>
           </div>
-          <FieldCards fields={fieldCards} locale="en" />
+          <FieldCards fields={fieldCardsByScore} locale="en" />
           <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
             Scores are a guide to where each field stands (reviewed {reviewedLabel}). The chip
             beside each field name bands progress by score.
@@ -271,7 +285,11 @@ export default function Home() {
           primaryHref="/news"
           secondaryLabel="How the numbers are made"
           secondaryHref="/model"
-          finePrint={`The "${heroEarlyYears} years to go" on this page is measured against the published model's earliest arrival year (${earlyYear}). At the standard pace it is ${medianYear}; at the latest, ${lateYear}. All three move with the pace of science — a yardstick for where we stand, not a promise about the future.`}
+          locale="en"
+          finePrint={[
+            `The "${heroEarlyYears} years to go" on this page is measured against the published model's earliest arrival year (${earlyYear}). At the standard pace it is ${medianYear}; at the latest, ${lateYear}.`,
+            "All three move with the pace of science — a yardstick for where we stand, not a promise about the future.",
+          ]}
         />
       </div>
     </main>

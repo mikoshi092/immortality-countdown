@@ -58,7 +58,19 @@ export default function NewsIndexPage() {
                 note="The badge number is how many hours ago the article appeared. The bar is an attention guide."
               />
             ) : (
-              <p className="text-[0.95rem] text-[#4a5878]">No articles yet.</p>
+              <>
+                <p className="text-[0.95rem] text-[#4a5878]">
+                  No articles yet. New research news will appear here as it comes in.
+                </p>
+                <p className="mt-2 text-[0.9rem]">
+                  <Link
+                    href="/"
+                    className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}
+                  >
+                    Back to the top page
+                  </Link>
+                </p>
+              </>
             )}
           </div>
           <VideoRail locale="en" />

@@ -28,7 +28,15 @@ export function SectionHeading({ title, sub }: { title: string; sub?: string }) 
   );
 }
 
-export type RangePoint = { year: number; tag: string; left: string; highlight?: boolean };
+export type RangePoint = {
+  year: number;
+  tag: string;
+  left: string;
+  highlight?: boolean;
+  /** Suppress the year label above the dot when the page already states
+   *  that year as the hero's standalone arrival line (JA hero: 2061). */
+  hideYear?: boolean;
+};
 
 /** Scenario range bar: earliest (the endpoint) / standard pace / latest. */
 export function RangeBar({ points, note }: { points: RangePoint[]; note: string }) {
@@ -46,9 +54,11 @@ export function RangeBar({ points, note }: { points: RangePoint[]; note: string 
             }`}
             style={{ left: point.left }}
           >
-            <span className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.95rem] font-extrabold text-[#233252]">
-              {point.year}
-            </span>
+            {point.hideYear ? null : (
+              <span className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.95rem] font-extrabold text-[#233252]">
+                {point.year}
+              </span>
+            )}
             <span className="absolute left-1/2 top-[calc(100%+8px)] -translate-x-1/2 whitespace-nowrap text-[0.8rem] font-bold text-[#4a5878]">
               {point.tag}
             </span>
@@ -200,7 +210,9 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
   );
 }
 
-/** Closing block + fine print, shared by both top pages. */
+/** Closing block + fine print, shared by both top pages. The fine print
+ *  arrives as separate short paragraphs (basis of the figure first, the
+ *  not-a-promise line second) so the disclosure stays readable. */
 export function Closing({
   heading,
   primaryLabel,
@@ -208,13 +220,15 @@ export function Closing({
   secondaryLabel,
   secondaryHref,
   finePrint,
+  locale,
 }: {
   heading: string;
   primaryLabel: string;
   primaryHref: string;
   secondaryLabel: string;
   secondaryHref: string;
-  finePrint: string;
+  finePrint: string[];
+  locale: SiteLocale;
 }) {
   return (
     <>
@@ -241,10 +255,16 @@ export function Closing({
         </div>
       </section>
       <div className="mb-10 mt-10 rounded-xl border border-dashed border-[#c9d4e8] bg-white px-5 py-4 text-[0.8rem] leading-[1.8] text-[#4a5878]">
-        {finePrint}
+        {finePrint.map((paragraph, index) => (
+          <p key={index} className={index > 0 ? "mt-2" : undefined}>
+            {paragraph}
+          </p>
+        ))}
       </div>
       <p className="pb-8 text-center text-[0.82rem] font-bold text-[#4a5878]">
-        Immortality Countdown — Tracking Longevity Escape Velocity
+        {locale === "ja"
+          ? "Immortality Countdown — 長寿研究のいまを追う"
+          : "Immortality Countdown — Tracking Longevity Escape Velocity"}
       </p>
     </>
   );

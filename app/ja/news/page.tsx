@@ -10,7 +10,7 @@ import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
 import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const title = "最新研究 | Immortality Countdown";
+const title = "長寿研究ニュース | Immortality Countdown";
 const description =
   "長寿研究の更新情報を、要点と限界に分けて紹介します。詳細は各記事末尾の一次資料をご確認ください。";
 
@@ -71,7 +71,19 @@ export default function JapaneseNewsIndexPage() {
                 note="※ 左のバッジの数字は「何時間前」の記事かを示します。バーは注目度の目安です。"
               />
             ) : (
-              <p className="text-[0.95rem] text-[#4a5878]">記事はまだありません。</p>
+              <>
+                <p className="text-[0.95rem] text-[#4a5878]">
+                  記事はまだありません。新しい研究ニュースが入り次第、ここに並びます。
+                </p>
+                <p className="mt-2 text-[0.9rem]">
+                  <Link
+                    href="/ja"
+                    className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}
+                  >
+                    トップページへ戻る
+                  </Link>
+                </p>
+              </>
             )}
           </div>
           <VideoRail locale="ja" />
