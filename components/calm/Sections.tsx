@@ -133,6 +133,37 @@ export function RangeBar({ points, note }: { points: RangePoint[]; note: ReactNo
   );
 }
 
+/**
+ * Calm native <details> disclosure: the surface shows only the
+ * summary row (a one-line label with a chevron that flips on open);
+ * the folded content stays in the prerendered HTML, so it works
+ * without JS and search engines still read it. The default marker
+ * is hidden; the row keeps a ~44px tap height. Owner decision,
+ * 2026-11-04 — conclusion on the surface, depth on tap.
+ */
+export function Disclosure({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <details className="group">
+      <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-center gap-1.5 text-[0.95rem] font-bold text-[#4a7fb5] [&::-webkit-details-marker]:hidden">
+        {label}
+        <span
+          aria-hidden="true"
+          className="text-[0.75rem] transition-transform duration-200 group-open:rotate-180"
+        >
+          ▾
+        </span>
+      </summary>
+      {children}
+    </details>
+  );
+}
+
 /** Two-row LEV gauge: where the gain rate is now vs the 1.00 goal. */
 export function LevGauge({
   nowLabel,
@@ -431,26 +462,36 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
 }
 
 /**
- * FAQ panel: the "when?" questions, answered in the open. Items come
- * from lib/faq.ts, the same array that feeds the page's FAQPage
- * JSON-LD, so what search engines read is what visitors read.
+ * FAQ panel as a native <details> accordion: the question is the
+ * summary row (＋ flips to × on open), the answer the collapsible
+ * body; the first item starts open. All answers stay in the
+ * prerendered HTML. Items come from lib/faq.ts, the same array that
+ * feeds the page's FAQPage JSON-LD, so what search engines read is
+ * what visitors read. Owner decision, 2026-11-04.
  */
 export function FaqSection({ items }: { items: FaqItem[] }) {
   return (
     <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
-      <dl>
-        {items.map((item, index) => (
-          <div
-            key={item.question}
-            className={index > 0 ? "mt-6 border-t border-[#e3eaf5] pt-6" : undefined}
-          >
-            <dt className="font-extrabold">{item.question}</dt>
-            <dd className="mt-2 [word-break:auto-phrase]">
-              {item.answerParts ? <Phrases parts={item.answerParts} /> : item.answer}
-            </dd>
+      {items.map((item, index) => (
+        <details
+          key={item.question}
+          open={index === 0}
+          className={`group ${index > 0 ? "mt-4 border-t border-[#e3eaf5]" : ""}`}
+        >
+          <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 font-extrabold [word-break:auto-phrase] [&::-webkit-details-marker]:hidden">
+            {item.question}
+            <span
+              aria-hidden="true"
+              className="shrink-0 text-[1.05rem] font-bold text-[#4a7fb5] transition-transform duration-200 group-open:rotate-45"
+            >
+              ＋
+            </span>
+          </summary>
+          <div className="mt-2 [word-break:auto-phrase]">
+            {item.answerParts ? <Phrases parts={item.answerParts} /> : item.answer}
           </div>
-        ))}
-      </dl>
+        </details>
+      ))}
     </div>
   );
 }

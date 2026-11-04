@@ -7,6 +7,7 @@ import RtNewsList from "@/components/calm/RtNewsList";
 import TopStoriesStrip from "@/components/calm/TopStoriesStrip";
 import {
   Closing,
+  Disclosure,
   FaqSection,
   FieldCards,
   LevGauge,
@@ -196,14 +197,16 @@ export default function JapaneseLandingPage() {
               />
             }
           />
-          <LevGauge
-            nowLabel="🌱 いま"
-            nowValueText={`1年で寿命は ${currentGain.toFixed(2)} 年 延びている`}
-            nowPct={Math.round(currentGain * 100)}
-            goalLabel="🚀 追い越し地点（LEV）"
-            goalValueText="1年で 1.00 年 延びる"
-            note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年延びています。この伸びが1.00年を超えたとき、医療は老化を追い越し始めます。`}
-          />
+          <Disclosure label="くわしく見る">
+            <LevGauge
+              nowLabel="🌱 いま"
+              nowValueText={`1年で寿命は ${currentGain.toFixed(2)} 年 延びている`}
+              nowPct={Math.round(currentGain * 100)}
+              goalLabel="🚀 追い越し地点（LEV）"
+              goalValueText="1年で 1.00 年 延びる"
+              note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年延びています。この伸びが1.00年を超えたとき、医療は老化を追い越し始めます。`}
+            />
+          </Disclosure>
         </section>
 
         {/* Milestones */}

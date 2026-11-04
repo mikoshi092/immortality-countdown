@@ -7,6 +7,7 @@ import RtNewsList from "@/components/calm/RtNewsList";
 import TopStoriesStrip from "@/components/calm/TopStoriesStrip";
 import {
   Closing,
+  Disclosure,
   FaqSection,
   FieldCards,
   LevGauge,
@@ -173,14 +174,16 @@ export default function Home() {
             title="Longevity Escape Velocity (LEV), in one sentence"
             sub="The same idea as a rocket's escape velocity: the speed at which the overtaking begins — that is LEV."
           />
-          <LevGauge
-            nowLabel="🌱 Now"
-            nowValueText={`Each year lived adds ${currentGain.toFixed(2)} years of life`}
-            nowPct={Math.round(currentGain * 100)}
-            goalLabel="🚀 The overtaking point (LEV)"
-            goalValueText="Each year adds 1.00 years"
-            note={`Right now, each year you live adds about ${currentGain.toFixed(2)} years to life expectancy. When that gain passes 1.00 years, medicine starts to outrun aging.`}
-          />
+          <Disclosure label="Read more">
+            <LevGauge
+              nowLabel="🌱 Now"
+              nowValueText={`Each year lived adds ${currentGain.toFixed(2)} years of life`}
+              nowPct={Math.round(currentGain * 100)}
+              goalLabel="🚀 The overtaking point (LEV)"
+              goalValueText="Each year adds 1.00 years"
+              note={`Right now, each year you live adds about ${currentGain.toFixed(2)} years to life expectancy. When that gain passes 1.00 years, medicine starts to outrun aging.`}
+            />
+          </Disclosure>
         </section>
 
         {/* Milestones */}
