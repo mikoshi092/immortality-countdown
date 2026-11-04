@@ -8,9 +8,11 @@ import type { SiteLocale } from "@/lib/locale";
  * Related-videos rail for the news pages (approved news mock): a fixed
  * set of the most-watched longevity classics. The ID/title pairings were
  * verified against YouTube oEmbed by the owner on 2026-11-04 — do not
- * re-pair them. Each video is a click-to-play thumbnail facade: only the
- * thumbnail image loads up front, and the YouTube iframe is created on
- * click, keeping the page light.
+ * re-pair them. The Bryan Johnson additions were verified against their
+ * youtube.com watch pages and YouTube search results (title, channel,
+ * view counts) on 2026-11-04. Each video is a click-to-play thumbnail
+ * facade: only the thumbnail image loads up front, and the YouTube
+ * iframe is created on click, keeping the page light.
  */
 const VIDEOS = [
   {
@@ -33,6 +35,20 @@ const VIDEOS = [
     channel: "CGP Grey",
     viewsJa: "約700万回再生",
     viewsEn: "~7M views",
+  },
+  {
+    id: "in9ubCilsT8",
+    title: "How I Fixed My Terrible Posture - 5 Habits",
+    channel: "Bryan Johnson",
+    viewsJa: "約540万回再生",
+    viewsEn: "~5.4M views",
+  },
+  {
+    id: "pSkfk_Snygo",
+    title: "Before and After My $2m Anti-Aging Routine",
+    channel: "Bryan Johnson",
+    viewsJa: "約160万回再生",
+    viewsEn: "~1.6M views",
   },
 ] as const;
 
