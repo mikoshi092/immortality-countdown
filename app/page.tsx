@@ -199,7 +199,7 @@ export default function Home() {
             ]}
             eventsCaption="Turning points in the wider world"
             events={[
-              { label: "Singularity", left: "30%", size: "large" },
+              { label: "Singularity", year: "2028", left: "30%", size: "large" },
               { label: "Quantum computers spread", year: "2030", left: "40%", size: "small" },
               { label: "Whole-cell analysis complete", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
             ]}
