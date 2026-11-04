@@ -240,25 +240,26 @@ export default function Home() {
 
         {/* The honest wall: delivery */}
         <section className="pt-[52px]">
-          <SectionHeading title="The biggest wall is delivery" sub="To be honest, some parts are still behind." />
+          <SectionHeading title="The biggest wall is delivery" />
           <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
-              Even when research advances, a treatment still has to clear safety checks, clinical
-              trials, approval, manufacturing and social readiness before it reaches people. That
-              delivery readiness is currently{" "}
+              Even as research advances, a treatment still has several walls to clear before it
+              reaches people: safety checks, clinical trials, approval, manufacturing, and
+              acceptance by society.
+            </p>
+            <p className="mt-3">
+              The safety checks for testing in people cannot be skipped. On the other hand, some
+              delays have nothing to do with science: there is still no established framework for
+              treating aging itself as a target of medicine, and some procedures are slow to
+              update. Those are delays people can remove.
+            </p>
+            <p className="mt-4">
+              That delivery readiness is currently{" "}
               <span className="text-[2rem] font-extrabold leading-none text-[#e8502f]">
                 {REGULATORY_READINESS.score} / 100
               </span>
               .
             </p>
-            <p className="mt-3">
-              The safety checks for testing in people cannot be skipped. But some of the delay has
-              other causes — aging is not yet framed as something medicine treats head-on, and some
-              procedures update slowly. Those are delays people can remove.
-            </p>
-            <blockquote className="mt-[18px] rounded-xl border-l-[6px] border-[#ffb703] bg-[#fff8f2] px-[18px] py-[14px] font-bold">
-              Keep the checks that are needed. Remove the delays that are not.
-            </blockquote>
           </div>
         </section>
 

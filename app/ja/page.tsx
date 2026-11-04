@@ -252,21 +252,21 @@ export default function JapaneseLandingPage() {
 
         {/* The honest wall: delivery */}
         <section id="why-now" className="scroll-mt-6 pt-[52px]">
-          <SectionHeading title="一番大きな壁は「届けること」" sub="正直に言うと、遅れている部分もあります。" />
+          <SectionHeading title="一番大きな壁は「届けること」" />
           <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
-              研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れ体制が要ります。この「届けること」の準備は、いま{" "}
+              研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れと、いくつも壁があります。
+            </p>
+            <p className="mt-3">
+              人で試すことの安全性確認は、省くわけにはいきません。一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
+            </p>
+            <p className="mt-4">
+              この「届けること」の準備は、いま{" "}
               <span className="text-[2rem] font-extrabold leading-none text-[#e8502f]">
                 {REGULATORY_READINESS.score} / 100
               </span>{" "}
               です。
             </p>
-            <p className="mt-3">
-              人で試すことの安全性確認は、省くわけにはいきません。一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
-            </p>
-            <blockquote className="mt-[18px] rounded-xl border-l-[6px] border-[#ffb703] bg-[#fff8f2] px-[18px] py-[14px] font-bold">
-              必要な確認は残す。なくてもよい遅れは、人が直せる。
-            </blockquote>
           </div>
         </section>
 
