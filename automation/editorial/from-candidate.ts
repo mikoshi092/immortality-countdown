@@ -60,6 +60,12 @@ export function sourceLabelFromUrl(sourceUrl: string): string {
   if (host.includes("fightaging.org")) return "Fight Aging!";
   if (host.includes("gigazine.net")) return "GIGAZINE";
   if (host.startsWith("nazology.")) return "ナゾロジー";
+  if (host.includes("scienceportal.jst.go.jp")) return "サイエンスポータル";
+  if (host.includes("gooday.nikkei.co.jp")) return "日経Gooday";
+  if (host.includes("univ-journal.jp")) return "大学ジャーナル";
+  if (host.includes("riken.jp")) return "理化学研究所";
+  if (host.includes("healthdayjapan.com")) return "ヘルスデージャパン";
+  if (host.includes("news.mynavi.jp")) return "マイナビニュース";
   return host;
 }
 

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
  */
 export default function JapaneseNewsIndexPage() {
   const now = new Date();
-  const articles = newsFaceArticles(listArticles()).slice(0, 100);
+  const articles = newsFaceArticles(listArticles(), "ja").slice(0, 100);
   const rows = toNewsRows(articles, "ja", now);
   const ui = ARTICLE_UI.ja;
 

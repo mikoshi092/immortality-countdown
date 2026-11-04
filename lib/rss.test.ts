@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { articles } from "../data/articles";
+import { articles, type Article } from "../data/articles";
 import { buildNewsRss } from "./rss";
 
 describe("news RSS", () => {
@@ -39,5 +39,28 @@ describe("news RSS", () => {
       rss.includes(new Date("2026-09-09T00:00:00Z").toUTCString()),
       false,
     );
+  });
+
+  it("restricts the Japanese feed to Japanese-source science news only", () => {
+    const enMedia: Article = {
+      ...articles[0],
+      contentType: "science-news",
+      sourceUrl: "https://www.sciencedaily.com/releases/2026/09/260910100000.htm",
+      sourceLabel: "ScienceDaily",
+      sitePublishedAt: "2026-09-10T00:00:00Z",
+    };
+    const jpMedia: Article = {
+      ...articles[0],
+      contentType: "science-news",
+      sourceUrl: "https://gigazine.net/news/20260910-aging-cells/",
+      sourceLabel: "GIGAZINE",
+      sitePublishedAt: "2026-09-10T00:00:00Z",
+    };
+    const enPaper: Article = { ...articles[0], sitePublishedAt: "2026-09-10T00:00:00Z" };
+    const jaRss = buildNewsRss("ja", [enPaper, enMedia, jpMedia]);
+    assert.equal([...jaRss.matchAll(/<item>/g)].length, 1);
+    // The English feed is unchanged: every published article appears.
+    const enRss = buildNewsRss("en", [enPaper, enMedia, jpMedia]);
+    assert.equal([...enRss.matchAll(/<item>/g)].length, 3);
   });
 });

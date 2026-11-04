@@ -1,5 +1,6 @@
 import { isPublishedArticle, type Article } from "@/data/articles";
 import type { SiteLocale } from "@/lib/locale";
+import { newsFaceArticles } from "@/lib/news-rows";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   articleCanonical,
@@ -17,7 +18,11 @@ function xmlEscape(value: string): string {
 }
 
 export function buildNewsRss(locale: SiteLocale, articles: Article[]): string {
-  const published = articles.filter(isPublishedArticle);
+  // The Japanese feed follows the Japanese news-face policy: only
+  // Japanese-source science-news items. The English feed keeps every
+  // published article, as before.
+  const visible = locale === "ja" ? newsFaceArticles(articles, "ja") : articles;
+  const published = visible.filter(isPublishedArticle);
   const title =
     locale === "ja"
       ? `${SITE_NAME} 最新研究`

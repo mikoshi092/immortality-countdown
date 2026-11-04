@@ -9,6 +9,7 @@ import { generateDrafts } from "./editorial/generate";
 import { validateDraft } from "./editorial/validate";
 import { runIngest } from "./run";
 import { enabledSources, SOURCES, sourceById } from "./sources";
+import { sourceLabelFromUrl } from "./editorial/from-candidate";
 import type { GeneratedCopy } from "./editorial/types";
 
 // Synthetic reporting fixture; not a production article or a quotation.
@@ -103,7 +104,7 @@ describe("general media sources", () => {
   it("enables only media sources; PubMed and ClinicalTrials.gov stay registered but disabled", () => {
     assert.deepEqual(
       enabledSources().map((source) => source.id),
-      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging", "gigazine", "nazology-health"],
+      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging", "gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news"],
     );
     assert.equal(sourceById("pubmed")?.enabled, false);
     assert.equal(sourceById("clinicaltrials")?.enabled, false);
@@ -292,5 +293,86 @@ describe("Japanese media gates", () => {
     // サルコペニア (sarcopenia) is not a monkey experiment.
     assert.equal(detectReportedStage("サルコペニアの予防には運動とタンパク質が有効とされる"), "not-stated");
     assert.equal(detectReportedStage("同社は新しいオフィスと提携を発表した"), "not-stated");
+  });
+});
+
+// Real item captured verbatim (title, link, date, description) from
+// the live RIKEN press feed on 2026-11-04: a report on how early-life
+// nutrition shapes lifespan in flies. Channel boilerplate is trimmed
+// the same way as the other captured fixtures above.
+const rikenRss = `<rss version="2.0"><channel><title>理化学研究所 プレスリリース</title>`
+  + `<item><guid>https://www.riken.jp/press/2026/20260924_1/index.html</guid><link>https://www.riken.jp/press/2026/20260924_1/index.html</link><title>幼少期の栄養が寿命を左右する仕組み</title><description> －貯蔵タンパク質が栄養記憶を担うことをハエで明らかに－</description><pubDate>Thu, 24 Sep 2026 00:00:00 +0900</pubDate></item>`
+  + `</channel></rss>`;
+
+// Synthetic fixtures in the exact URL and date shapes the live feeds
+// emit (verified against the feeds on 2026-11-04); not production
+// articles or quotations. The Gooday shape includes the tracking
+// query the feed appends to every article link.
+const goodayRss = `<rdf:RDF><item><title>規則正しい食事が老化の進行を遅らせる可能性を報告</title><link>https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600399/?n_cid=nbpgdy_sied_rss</link><dc:date>2026-11-04T00:00:00+09:00</dc:date><description>1日3食を規則正しく食べることが、生物学的な老化の進行を遅らせるために重要である可能性が、日本の高齢者を対象とした研究で報告されました。</description></item></rdf:RDF>`;
+const portalRss = `<rss version="2.0"><channel><title>サイエンスポータル</title>`
+  + `<item><title>老化細胞を除去する化合物、マウスで寿命の延長を確認</title><link>https://scienceportal.jst.go.jp/newsflash/20261104_n01/</link><pubDate>Wed, 04 Nov 2026 07:22:13 +0000</pubDate><description>研究チームは、体内にたまった老化細胞を選択的に除去する化合物を開発し、マウスで寿命が延びることを確認したと発表しました。</description></item>`
+  + `</channel></rss>`;
+const mynaviRss = `<rdf:RDF><item><title>老化細胞を除去する薬の候補を開発、大学が発表</title><link>https://news.mynavi.jp/techplus/article/20261104-5299999/</link><dc:date>2026-11-04T17:27:54+09:00</dc:date><description>大学の研究チームが、体内に蓄積した老化細胞を除去する薬の候補物質を開発したと発表しました。再生医療への応用が期待されています。</description></item></rdf:RDF>`;
+const novWindow = lookbackWindow(new Date("2026-11-04T12:00:00Z"));
+
+describe("Tier-1 Japanese sources for the Japanese news face", () => {
+  it("marks exactly the Japanese sources with language ja", () => {
+    assert.deepEqual(
+      SOURCES.filter((source) => source.language === "ja").map((source) => source.id),
+      ["gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news"],
+    );
+    assert.ok(SOURCES.every((source) => source.language === "ja" || source.language === "en"));
+  });
+
+  it("gives each new source its reader-facing label", () => {
+    assert.equal(sourceLabelFromUrl("https://scienceportal.jst.go.jp/newsflash/20261104_n01/"), "サイエンスポータル");
+    assert.equal(sourceLabelFromUrl("https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600351/?n_cid=nbpgdy_sied_rss"), "日経Gooday");
+    assert.equal(sourceLabelFromUrl("https://univ-journal.jp/1002963/"), "大学ジャーナル");
+    assert.equal(sourceLabelFromUrl("https://www.riken.jp/press/2026/20261104_1/index.html"), "理化学研究所");
+    assert.equal(sourceLabelFromUrl("https://healthdayjapan.com/health-news/2026/11/04/coffee-creamer-energy-intake"), "ヘルスデージャパン");
+    assert.equal(sourceLabelFromUrl("https://news.mynavi.jp/techplus/article/20261104-5255465/"), "マイナビニュース");
+  });
+
+  it("admits article links from the new sources and excludes non-article links", () => {
+    assert.equal(isScienceNews({ sourceId: "science-portal", sourceUrl: "https://scienceportal.jst.go.jp/newsflash/20261104_n01/" }), true);
+    assert.equal(isScienceNews({ sourceId: "science-portal", sourceUrl: "https://scienceportal.jst.go.jp/stories/20261028_s01/" }), true);
+    assert.equal(isScienceNews({ sourceId: "science-portal", sourceUrl: "https://scienceportal.jst.go.jp/" }), false);
+    // The Gooday feed appends a tracking query to every article link.
+    assert.equal(isScienceNews({ sourceId: "nikkei-gooday", sourceUrl: "https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600351/?n_cid=nbpgdy_sied_rss" }), true);
+    assert.equal(isScienceNews({ sourceId: "nikkei-gooday", sourceUrl: "https://gooday.nikkei.co.jp/atcl/report/24/102900105/102900001/" }), true);
+    assert.equal(isScienceNews({ sourceId: "nikkei-gooday", sourceUrl: "https://gooday.nikkei.co.jp/" }), false);
+    assert.equal(isScienceNews({ sourceId: "univ-journal", sourceUrl: "https://univ-journal.jp/1002963/" }), true);
+    assert.equal(isScienceNews({ sourceId: "univ-journal", sourceUrl: "https://univ-journal.jp/column/20261001853/" }), true);
+    assert.equal(isScienceNews({ sourceId: "univ-journal", sourceUrl: "https://univ-journal.jp/about/" }), false);
+    assert.equal(isScienceNews({ sourceId: "riken-press", sourceUrl: "https://www.riken.jp/press/2026/20261104_1/index.html" }), true);
+    assert.equal(isScienceNews({ sourceId: "riken-press", sourceUrl: "https://www.riken.jp/press/2026/20261104_1/" }), false);
+    assert.equal(isScienceNews({ sourceId: "healthday-japan", sourceUrl: "https://healthdayjapan.com/health-news/2026/11/04/coffee-creamer-energy-intake" }), true);
+    assert.equal(isScienceNews({ sourceId: "healthday-japan", sourceUrl: "https://healthdayjapan.com/health-news/" }), false);
+    assert.equal(isScienceNews({ sourceId: "mynavi-news", sourceUrl: "https://news.mynavi.jp/article/20261104-5253473/" }), true);
+    assert.equal(isScienceNews({ sourceId: "mynavi-news", sourceUrl: "https://news.mynavi.jp/techplus/article/20261104-5255465/" }), true);
+    assert.equal(isScienceNews({ sourceId: "mynavi-news", sourceUrl: "https://news.mynavi.jp/premium/article/20261104-5255223/" }), true);
+    assert.equal(isScienceNews({ sourceId: "mynavi-news", sourceUrl: "https://news.mynavi.jp/" }), false);
+  });
+
+  it("parses a real RIKEN lifespan press release on the existing gates", () => {
+    const source = sourceById("riken-press")!;
+    const records = parseRssFeed(source, rikenRss, lookbackWindow(new Date("2026-09-25T12:00:00Z")));
+    assert.equal(records.length, 1, JSON.stringify(records.map((record) => record.title)));
+    assert.equal(records[0].sourceId, "riken-press");
+    assert.equal(isScienceNews(records[0]), true);
+    const ranked = rankRecord(records[0]);
+    assert.equal(passesRankThresholds(ranked), true);
+  });
+
+  it("parses the new feeds' document shapes: RDF with dc:date and RSS 2.0", () => {
+    const gooday = parseRssFeed(sourceById("nikkei-gooday")!, goodayRss, novWindow);
+    assert.equal(gooday.length, 1);
+    assert.equal(gooday[0].sourceUrl, "https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600399/?n_cid=nbpgdy_sied_rss");
+    const portal = parseRssFeed(sourceById("science-portal")!, portalRss, novWindow);
+    assert.equal(portal.length, 1);
+    assert.equal(portal[0].sourceId, "science-portal");
+    const mynavi = parseRssFeed(sourceById("mynavi-news")!, mynaviRss, novWindow);
+    assert.equal(mynavi.length, 1);
+    assert.equal(mynavi[0].sourceId, "mynavi-news");
   });
 });
