@@ -1,5 +1,5 @@
 import { enabledSources, sourceById } from "./sources";
-import { fetchNatureNews } from "./science-news";
+import { fetchScienceNews } from "./science-news";
 import {
   LOOKBACK_HOURS,
   type DatedValue,
@@ -863,8 +863,8 @@ export async function fetchEnabledSources(
 ): Promise<SourceFetchResult[]> {
   const results: SourceFetchResult[] = [];
   for (const source of sources.filter((item) => item.enabled)) {
-    if (source.api.kind === "nature-rss") {
-      results.push(await fetchNatureNews(window, httpGet));
+    if (source.api.kind === "rss") {
+      results.push(await fetchScienceNews(source, window, httpGet));
     } else if (source.api.kind === "pubmed-eutils") {
       results.push(await fetchPubmed(window, httpGet, source));
     } else if (source.api.kind === "ctgov-studies") {

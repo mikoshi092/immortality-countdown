@@ -19,6 +19,10 @@ const COPY_KEYS = [
   "realityCheck",
 ] as const satisfies readonly (keyof ArticleCopy)[];
 
+const OPTIONAL_COPY_KEYS = [
+  "popHeadline",
+] as const satisfies readonly (keyof ArticleCopy)[];
+
 const REQUIRED_FACT_KEYS = [
   "studyDesign",
   "populationOrModel",
@@ -59,6 +63,11 @@ function readCopy(value: unknown, path: string, reasons: string[]): ArticleCopy 
   const copy = {} as ArticleCopy;
   for (const key of COPY_KEYS) {
     copy[key] = readString(value[key], `${path}.${key}`, reasons);
+  }
+  for (const key of OPTIONAL_COPY_KEYS) {
+    if (value[key] === undefined) continue;
+    const text = readString(value[key], `${path}.${key}`, reasons);
+    if (text) copy[key] = text;
   }
   return copy;
 }

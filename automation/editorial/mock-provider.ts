@@ -86,6 +86,7 @@ export class MockEditorialProvider implements EditorialProvider {
       },
       en: {
         headline: input.title.slice(0, 140),
+        ...(isNews ? { popHeadline: input.title.slice(0, 140) } : {}),
         dek: isTrial
           ? `A trial registration covering ${subjectsEn} was posted.`
           : `Source-backed brief covering ${subjectsEn}.${sampleEn}`,
@@ -98,6 +99,7 @@ export class MockEditorialProvider implements EditorialProvider {
         headline: isTrial
           ? `${subjectsJa}を対象とする試験登録が公開された`
           : `${subjectsJa}を対象とする研究が資料に記された`,
+        ...(isNews ? { popHeadline: `「${input.title}」と報じられた` } : {}),
         dek: isTrial
           ? `${subjectsJa}を対象とする試験登録が公開された。`
           : `対象は${subjectsJa}である。${sampleJa}`,

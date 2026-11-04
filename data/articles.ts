@@ -46,6 +46,15 @@ export type ArticleCopy = {
   whatHappened: string;
   whyItMatters: string;
   realityCheck: string;
+  /**
+   * Science-news only: a bright, plain-language headline in the voice
+   * of a human news editor, written for lay readers. In headline-list
+   * presentation this headline is itself the link to the original
+   * report, so it must not claim more than the source states, must
+   * not upgrade the reported stage, and is hype-checked like the
+   * main headline.
+   */
+  popHeadline?: string;
 };
 
 export type Article = {
@@ -79,6 +88,14 @@ export type Article = {
   evidence: EvidenceLevel;
   studySubjects: string[];
   contentType: ContentType;
+  /**
+   * Science-news only: attention band (1–4) derived deterministically
+   * from the candidate's significance score at editorial time and
+   * locked by validation. Rendered as the 注目度 indicator in
+   * headline-list presentation: that many hearts (❤ to ❤❤❤❤).
+   * Absent for papers, reviews, and trial registrations.
+   */
+  attentionLevel?: 1 | 2 | 3 | 4;
   countdownImpact: CountdownImpact;
   localizedFacts: LocalizedFacts;
   en: ArticleCopy;

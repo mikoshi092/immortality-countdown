@@ -17,12 +17,19 @@ export type SourceType = "literature" | "trial-registry" | "science-news";
 /** Higher number = more editorial caution required, not a quality score. */
 export type TrustTier = 1 | 2 | 3;
 
-export type SourceApiKind = "pubmed-eutils" | "ctgov-studies" | "nature-rss";
+export type SourceApiKind = "pubmed-eutils" | "ctgov-studies" | "rss";
 
 export type SourceApi = {
   kind: SourceApiKind;
   /** Official HTTP API base used by the adapter. Not the public HTML site. */
   baseUrl: string;
+  /**
+   * Science-news sources only: an item is admitted only when its link
+   * matches this pattern, so section pages, author pages, and other
+   * non-article URLs in a feed never become records. Stored as a regex
+   * source string and compiled by the RSS adapter.
+   */
+  linkPattern?: string;
 };
 
 export type SourceDefinition = {

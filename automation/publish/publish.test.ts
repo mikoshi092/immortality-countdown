@@ -11,6 +11,7 @@ import { validateDraft } from "../editorial/validate";
 import { generateDrafts } from "../editorial/generate";
 import { MockEditorialProvider } from "../editorial/mock-provider";
 import { runIngest } from "../run";
+import { SOURCES } from "../sources";
 import type { Candidate, IngestReport } from "../types";
 import type { EditorialDraft, EditorialReport } from "../editorial/types";
 import { applyDraftsToArticles } from "./apply";
@@ -405,11 +406,18 @@ describe("mock end-to-end does not touch the model", () => {
       return new Response("unexpected", { status: 500 });
     };
 
+    // The production registry is media-only now; this end-to-end test
+    // exercises the fixture-served sources (Nature RSS, PubMed,
+    // ClinicalTrials.gov) explicitly.
+    const fixtureSources = SOURCES.filter((source) =>
+      ["nature-news", "pubmed", "clinicaltrials"].includes(source.id),
+    ).map((source) => ({ ...source, enabled: true }));
     const ingest = await runIngest({
       now: new Date("2026-09-16T02:00:00Z"),
       httpGet,
       outputPath: ingestPath,
       write: true,
+      sources: fixtureSources,
     });
     assert.equal(ingest.sourceResults.every((source) => source.status === "ok"), true);
     writeFileSync(ingestPath, JSON.stringify(ingest));

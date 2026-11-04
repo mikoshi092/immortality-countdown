@@ -1,5 +1,6 @@
 import { articles } from "../../data/articles";
 import type { Candidate } from "../types";
+import { attentionLevelFor } from "../rank";
 import {
   inferContentType,
   promptInputFromCandidate,
@@ -66,6 +67,8 @@ export async function generateDrafts(
       candidate.recordId,
     );
 
+    const contentType = inferContentType(candidate);
+
     const draft: EditorialDraft = {
       id: slug,
       slug,
@@ -78,7 +81,11 @@ export async function generateDrafts(
       fieldId: candidate.fieldId,
       evidence: candidate.evidence,
       studySubjects: candidate.studySubjects ?? [],
-      contentType: inferContentType(candidate),
+      contentType,
+      attentionLevel:
+        contentType === "science-news"
+          ? attentionLevelFor(candidate.significanceScore)
+          : undefined,
       countdownImpact: "none",
       localizedFacts: generated.localizedFacts,
       en: generated.en,
