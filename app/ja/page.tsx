@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
-import HeroVisual from "@/components/HeroVisual";
-import ArticleTeaser from "@/components/ArticleTeaser";
-import LevCrossingDiagram from "@/components/ja/LevCrossingDiagram";
-import PipelineFlow from "@/components/ja/PipelineFlow";
-import TechnologyMap from "@/components/ja/TechnologyMap";
+import AgeCalculator from "@/components/calm/AgeCalculator";
+import CountUp from "@/components/calm/CountUp";
+import RtNewsList from "@/components/calm/RtNewsList";
+import TopStoriesStrip from "@/components/calm/TopStoriesStrip";
+import {
+  Closing,
+  FieldCards,
+  LevGauge,
+  Milestones,
+  RangeBar,
+  SectionHeading,
+  type FieldCardData,
+} from "@/components/calm/Sections";
 import { listArticles } from "@/data/articles";
 import { countdown, heroEarlyYears } from "@/lib/countdown";
-import { FIELD_IDS } from "@/lib/fields";
-import { FIELD_LABELS_JA, FIELD_SUMMARIES_JA } from "@/lib/ja";
-import { getFieldModel, REGULATORY_READINESS } from "@/lib/model-snapshot";
+import { FIELD_IDS, type FieldId } from "@/lib/fields";
+import { FIELD_LABELS_JA } from "@/lib/ja";
+import { getFieldModel } from "@/lib/model-snapshot";
+import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
+import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title =
@@ -48,454 +58,226 @@ export const metadata: Metadata = {
   },
 };
 
-const FOCUS_RING =
-  "rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]";
-
 /**
- * No negative tracking anywhere in this file. Tight letter-spacing is a
- * Latin display-type trick; applied to kana and kanji — which are drawn
- * on a full-width em square — it just collides the glyphs.
- */
-const SECTION_HEADING =
-  "font-ja-serif text-[clamp(1.5rem,4.6vw,2.2rem)] font-medium leading-[1.45] text-[#17202a]";
-
-const BODY = "text-[15px] leading-8 text-[#17202a]/75 sm:text-base sm:leading-9";
-
-/**
- * An editorial pull quote: a sentence already made in the surrounding
- * prose, set larger so a scanning reader picks up the argument without
- * reading the section.
+ * Calm redesign (2026-11-04, owner-approved mock): plain background,
+ * standard sans, thin borders and light shadows. The countdown endpoint
+ * is the early scenario — heroEarlyYears years — with the standard pace
+ * and the late scenario kept as secondary context on the range bar. No
+ * scenario counts or simulation framing on this page: the model page
+ * carries the methodology, this page carries the headline.
  *
- * No quotation marks, no card, no tinted panel. A short accent rule and
- * the whitespace around it carry the emphasis, which is why the two
- * instances stay legible next to the section's other serif blocks —
- * every one of those is either ruled differently or set at a different
- * size. It stays inside the max-w-2xl text column rather than breaking
- * out of it, so the page keeps one measure throughout.
+ * Short card blurbs per field, from the approved mock. The longer
+ * canonical summaries remain in lib/ja.ts for other surfaces.
  */
-function PullQuote({ children }: { children: React.ReactNode }) {
-  return (
-    <blockquote className="my-10 max-w-2xl sm:my-12">
-      <span aria-hidden="true" className="block h-0.5 w-10 bg-[#2f766d]" />
-      <p className="font-ja-serif mt-5 text-[clamp(1.25rem,3.1vw,1.75rem)] font-medium leading-[1.75] text-[#17202a]">
-        {children}
-      </p>
-    </blockquote>
-  );
-}
-
-const GATES = [
-  {
-    title: "人での試験と安全性",
-    body: "マウスで効いても、人で効くとは限らない。治療にするには臨床試験と安全性の確認が要る。老化では「効いた」の測り方自体がまだ整っていない。必要な確認と、試験設計の遅れは別だ。",
-  },
-  {
-    title: "制度と承認の経路",
-    body: "安全性の審査は残す必要がある。一方で、老化を正面から治療対象として扱いづらい経路や、更新が遅いルールは、研究の速度を落とす。遅れの原因は規制だけではない。",
-  },
-  {
-    title: "製造と費用",
-    body: "量産できない治療は社会を変えない。製造、届け方、品質管理、価格を乗り越え、実験段階の治療を、使える医療へ落とし込む。",
-  },
-  {
-    title: "社会に届けること",
-    body: "届かない技術は、ないのと同じだ。保険、診断基準、アクセスを、これからの医療に合わせる。届く速度は、そのまま寿命に響く。",
-  },
-];
+const FIELD_BLURBS_JA: Record<FieldId, string> = {
+  "rejuvenation-regeneration": "傷んだ細胞や組織を、若い状態へ近づける技術。",
+  "biomarkers-diagnostics": "老化の進み具合を、数字で測れるようにする技術。",
+  "geroscience-drugs-trials": "老化そのものを狙う薬と、人での臨床試験。",
+  "gene-therapy-delivery": "遺伝子を編集・追加し、必要な場所へ安全に届ける技術。",
+  "ai-drug-discovery": "AIで薬の候補探しと試験設計を速くする領域。",
+  "organ-replacement-biofabrication": "壊れた臓器の修復・交換。移植、人工臓器、組織の作製。",
+  "immune-engineering-cancer-control": "免疫を保ち、がんや慢性炎症を抑える技術。",
+  "enabling-technology-automation": "ロボット実験や計算基盤で、研究の速度そのものを上げる技術。",
+};
 
 export default function JapaneseLandingPage() {
-  const earlyYears = heroEarlyYears;
-  const gain = countdown.currentGain;
-  const draws = countdown.draws.toLocaleString("en-US");
-  const latest = listArticles().slice(0, 3);
+  const now = new Date();
+  const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
+  const yearsToMedian = medianYear - baseYear;
+  const articles = listArticles();
+  const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "ja", now);
+
+  const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
+    key: id,
+    emoji: FIELD_EMOJI[id],
+    name: FIELD_LABELS_JA[id],
+    blurb: FIELD_BLURBS_JA[id],
+    score: getFieldModel(id).score,
+  }));
+  const averageScore = Math.round(
+    fieldCards.reduce((sum, field) => sum + field.score, 0) / fieldCards.length,
+  );
+  // All field reviews share one date in lev/params.json; the footnote
+  // shows it as a year-month rather than inventing a fresher one.
+  const reviewed = getFieldModel(FIELD_IDS[0]).lastReviewed;
+  const reviewedLabel = `${reviewed.slice(0, 4)}年${Number(reviewed.slice(5, 7))}月`;
 
   return (
-    <main
-      id="top"
-      lang="ja"
-      className="min-h-screen bg-[#f7f5ef] text-[#17202a]"
-    >
+    <main id="top" lang="ja" className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
+      <div className="mx-auto max-w-[980px] px-5">
+        <TopStoriesStrip articles={articles} locale="ja" now={now} />
 
-      <div className="border-b border-white/10 bg-[#141413]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-2.5 sm:flex-row sm:items-center sm:gap-3 sm:px-6 sm:py-2">
-          <span className="inline-flex shrink-0 items-center gap-1.5">
-            <span
-              aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-[#2f766d]"
-            />
-            <span className="text-[11px] font-bold tracking-[0.14em] text-white/90">
-              PUBLIC BETA
-            </span>
-          </span>
-          <p className="text-[11px] font-medium leading-4 text-white/55 sm:text-xs">
-            カウントダウンのモデルは開発中です。各スコアはモデルへの入力値であり、
-            根拠の見直しにあわせて変わります。
-          </p>
-        </div>
-      </div>
-
-      <section className="px-5 pt-10 pb-8 sm:px-6 sm:pt-12 md:pt-16">
-        <div className="mx-auto max-w-7xl">
-          {/* The illustration column widens at xl rather than taking its
-              full size the moment the row splits, which keeps the drop in
-              headline size across the lg boundary from being abrupt. */}
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_30rem]">
-            {/* @container so the headline can be measured against this
-                column instead of the viewport. Once the hero splits in
-                two, a vw-based size knows nothing about the illustration
-                taking a third of the row, and overruns the column. */}
-            <div className="@container">
-              {/* Latin display text, so the wide tracking here is the
-                  right call — unlike on the Japanese headings below. */}
-              <p className="text-xs font-semibold tracking-[0.22em] text-[#2f766d] sm:text-sm">
-                DEATH IS A BUG
-              </p>
-
-              {/* Japanese has no spaces, so the browser may break a
-                  heading between any two characters — including inside
-                  「なる」 and between the number and 年. Marking the two
-                  closing phrases nowrap makes 「…に / なるまで、 /
-                  早ければあとX年。」 the only break points.
-
-                  The clamp middle term matters as much as the spans.
-                  Kanji, kana and 「」、。 are all drawn full-width, so the
-                  opening phrase is exactly 12em wide and cannot break any
-                  later than 「に」. Holding the size at or below one
-                  twelfth of the column keeps that phrase on one line at
-                  every width; anything larger hands the break back to the
-                  browser, mid-word. */}
-              <h1 className="font-ja-serif mt-4 max-w-3xl text-[clamp(1.35rem,8cqw,3.6rem)] font-medium leading-[1.32] sm:mt-5">
-                死が「治療可能なバグ」に
-                <span className="whitespace-nowrap">なるまで、</span>
-                <span className="whitespace-nowrap">
-                  早ければあと
-                  <span className="lining-nums tabular-nums">{earlyYears}</span>
-                  年。
-                </span>
-              </h1>
-
-              <p className="mt-3 max-w-2xl text-[12px] leading-6 text-[#17202a]/50 sm:text-[13px] sm:leading-6">
-                基準年{countdown.baseYear}からの年数。モデルの早期シナリオ（P10）は
-                <span className="tabular-nums">{countdown.earlyYear}</span>年。
-                <Link
-                  href="/model"
-                  className={`ml-2 font-medium text-[#2f766d] underline-offset-4 hover:underline ${FOCUS_RING}`}
-                >
-                  算出方法（英語）
-                </Link>
-              </p>
-
-              <p className="mt-5 max-w-2xl text-[15px] leading-8 text-[#17202a]/70 sm:text-lg sm:leading-9">
-                医療の進歩が、老化の速度を追い越すまでの距離を、世界の研究とともに追う。
-              </p>
-            </div>
-
-            <HeroVisual earlyYear={countdown.earlyYear} locale="ja" />
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="lev-toha"
-        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>寿命脱出速度（LEV）という考え方</h2>
-
-          <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_26rem] lg:gap-14">
-            <div className={`max-w-2xl space-y-5 ${BODY}`}>
-              <p>
-                <strong className="font-semibold text-[#17202a]">
-                  LEVは、1年あたりに得られる健康寿命が1年を超える地点です。延びた時間のあいだに次の治療へつながれば、老化の進行より医療の進歩が速くなる、という考え方です。
-                </strong>
-              </p>
-              <p>
-                現在のモデルは
-                <span className="font-semibold tabular-nums text-[#17202a]">
-                  {gain.toFixed(2)}
-                </span>
-                年/年。LEVは
-                <span className="font-semibold tabular-nums text-[#17202a]">
-                  {countdown.levThreshold.toFixed(2)}
-                </span>
-                年/年。いまは時間が勝っている。1.00を超えると、医療の進歩が老化の速度を追い越す、というのがこのモデルの見方です。
-              </p>
-            </div>
-
-            <figure className="rounded-xl border border-black/10 bg-white px-5 py-5 shadow-sm lg:self-start">
-              <figcaption className="text-xs font-semibold text-[#17202a]/60">
-                1年あたりに得られる健康寿命
-              </figcaption>
-
-              <div className="mt-3">
-                <LevCrossingDiagram
-                  currentGain={gain}
-                  threshold={countdown.levThreshold}
-                />
-              </div>
-
-              <div className="mt-1 flex items-baseline justify-between gap-4 border-t border-black/8 pt-3">
-                <p className="text-sm font-medium text-[#17202a]/70">
-                  現在
-                  <span className="ml-1.5 font-semibold tabular-nums text-[#17202a]">
-                    {gain.toFixed(2)}
-                  </span>
-                  <span className="font-normal text-[#17202a]/45"> 年/年</span>
-                </p>
-                <p className="text-sm font-medium text-[#17202a]/70">
-                  LEV到達時
-                  <span className="ml-1.5 font-semibold tabular-nums text-[#17202a]">
-                    {countdown.levThreshold.toFixed(2)}
-                  </span>
-                  <span className="font-normal text-[#17202a]/45"> 年/年</span>
-                </p>
-              </div>
-
-              <p className="mt-3 text-[11px] leading-5 text-[#17202a]/45">
-                現在値は{countdown.baseYear}
-                年時点のImmortality Countdownモデルによる推定値です。
-                図の曲線はLEVという考え方を説明するための概念図で、
-                予測した軌道ではありません。
-              </p>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="why-now"
-        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>なぜこれほど時間がかかるのか</h2>
-
-          <p className={`mt-6 max-w-2xl ${BODY}`}>
-            研究室の成功が患者に届くまでには、試験、安全性の確認、製造、届け方がある。
-            必要な確認と、なくてもよい遅れは別だ。遅れの理由を規制だけに帰さない。
+        {/* Hero */}
+        <section className="pt-14 text-center">
+          <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
+            不老長寿まで
+          </h1>
+          <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)]">
+            1年生きるあいだに、寿命が1年以上延びるようになる——そんな地点の到来を、世界の長寿研究の進み方から見積もっています。
           </p>
 
-          <PipelineFlow lastReviewed={REGULATORY_READINESS.lastReviewed} />
-
-          <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {GATES.map((gate, index) => (
-              <div
-                key={gate.title}
-                className="rounded-xl border border-black/10 bg-white px-5 py-4 shadow-sm"
-              >
-                <p className="font-mono text-[11px] tabular-nums text-[#2f766d]">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <dt className="mt-1.5 text-sm font-semibold leading-6 text-[#17202a]">
-                  {gate.title}
-                </dt>
-                <dd className="mt-2 text-[13px] leading-6 text-[#17202a]/65">
-                  {gate.body}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <PullQuote>必要な確認は残す。なくてもよい遅れは、人が直せる。</PullQuote>
-
-          <div className={`max-w-2xl ${BODY}`}>
-            <p>
-              Immortality Countdownは、8つの研究分野とは別に
-              <strong className="font-semibold text-[#17202a]">
-                「規制・社会実装の準備度」
-              </strong>
-              もモデルに入れている。承認され、量産され、必要な人に届かなければ、研究成果は健康寿命の延伸につながらない。
-            </p>
-          </div>
-
-          <div className="mt-8 max-w-2xl rounded-xl border border-black/10 bg-white px-5 py-4 shadow-sm sm:px-6 sm:py-5">
-            <p className="text-sm font-semibold text-[#17202a]/80">
-              規制・社会実装の準備度
-            </p>
-            <p className="mt-0.5 text-[11px] font-medium text-[#17202a]/55">
-              モデル入力値 · 最終確認 {REGULATORY_READINESS.lastReviewed}
-            </p>
-
-            <div className="mt-4 flex items-center gap-4">
-              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/8">
-                <div
-                  className="readiness-bar-fill h-full rounded-full bg-[#2f766d]"
-                  style={{ width: `${REGULATORY_READINESS.score}%` }}
-                />
-              </div>
-              <p className="shrink-0 text-lg font-semibold tabular-nums text-[#17202a] sm:text-xl">
-                {REGULATORY_READINESS.score}
-                <span className="text-sm font-normal text-[#17202a]/45">
-                  {" "}
-                  / 100
-                </span>
-              </p>
+          <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border border-[#dfe6f0] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+            <div className="text-[clamp(2.8rem,9vw,4.4rem)] font-extrabold leading-[1.15]">
+              あと{" "}
+              <span className="text-[#e8502f]">
+                <CountUp target={heroEarlyYears} />
+              </span>{" "}
+              年
+              <span className="ml-2 align-middle text-[0.95rem] font-semibold text-[#4a5878]">
+                （早ければ）
+              </span>
+            </div>
+            <div className="text-[1.25rem] font-bold">
+              <b className="text-[1.7rem]">{earlyYear}年</b> に到達
             </div>
           </div>
 
-          <p className="mt-6">
-            <Link
-              href="/model"
-              className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
-            >
-              モデルの計算方法と前提を見る（英語）→
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      <section
-        id="eight-fields"
-        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>LEVを動かす8つの研究分野</h2>
-
-          <p className={`mt-6 max-w-2xl ${BODY}`}>
-            このサイトのモデルは、8つの研究分野の進み方を見て到達時期を見積もっています。
-            分野が遅れれば予測も遅れます。8つが同時に完成することが自然法則だという意味ではありません。
-            スコアは各分野の現在地です。
-          </p>
-
-          <TechnologyMap
-            fields={FIELD_IDS.map((id) => ({
-              id,
-              label: FIELD_LABELS_JA[id],
-              score: getFieldModel(id).score,
-            }))}
-            earlyYear={countdown.earlyYear}
+          <RangeBar
+            points={[
+              { year: earlyYear, tag: "早ければ・終着点", left: "4%", highlight: true },
+              { year: medianYear, tag: "標準ペース", left: "46%" },
+              { year: lateYear, tag: "遅ければ", left: "96%" },
+            ]}
+            note="進み方が速ければ早ければで到達し、標準のペースなら標準ペースの年に、遅れればもっと先になります。このページの「あと何年」は、いちばん早い到達（早ければ）を終着点にしています。"
           />
+        </section>
 
-          <ol className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {FIELD_IDS.map((id, index) => {
-              const field = getFieldModel(id);
-              return (
-                <li
-                  key={id}
-                  className="flex flex-col rounded-xl border border-black/10 bg-white px-5 py-4 shadow-sm"
-                >
-                  <p className="font-mono text-[11px] tabular-nums text-[#2f766d]">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
+        {/* LEV in one sentence */}
+        <section id="lev-toha" className="scroll-mt-6 pt-[52px]">
+          <SectionHeading
+            title="「寿命脱出速度（LEV）」を、ひとことで"
+            sub="ロケットの「脱出速度」と同じ発想です。追い越しが始まる速さ——それがLEVです。"
+          />
+          <LevGauge
+            nowLabel="🌱 いま"
+            nowValueText={`1年で寿命は ${currentGain.toFixed(2)} 年 延びている`}
+            nowPct={Math.round(currentGain * 100)}
+            goalLabel="🚀 追い越し地点（LEV）"
+            goalValueText="1年で 1.00 年 延びる"
+            note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年延びています。この伸びが1.00年を超えたとき、医療は老化を追い越し始めます。`}
+          />
+        </section>
 
-                  <p className="mt-1.5 text-sm font-semibold leading-6 text-[#17202a]">
-                    {FIELD_LABELS_JA[id]}
-                  </p>
+        {/* Milestones */}
+        <section className="pt-[52px]">
+          <SectionHeading
+            title="到達までのマイルストーン"
+            sub="「伸び率」がどこまで上がれば、いつ到達するか。早ければの到達に向けた道筋です。"
+          />
+          <Milestones
+            steps={[
+              { gain: currentGain.toFixed(2), when: `${baseYear}年・いまここ`, state: "done" },
+              { gain: "0.30", when: "2028年ごろ", state: "next" },
+              { gain: "0.50", when: "2042年ごろ・折り返し", state: "next" },
+              { gain: "0.75", when: "2052年ごろ", state: "next" },
+              { gain: "1.00", when: `${earlyYear}年・LEV到達`, state: "final" },
+            ]}
+          />
+        </section>
 
-                  <p className="mt-2 flex-1 text-[13px] leading-6 text-[#17202a]/65">
-                    {FIELD_SUMMARIES_JA[id]}
-                  </p>
-
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/8">
-                      <div
-                        className="field-bar-fill h-full origin-left rounded-full bg-[#2f766d]"
-                        style={{
-                          width: `${field.score}%`,
-                          animationDelay: `${index * 100}ms`,
-                        }}
-                      />
-                    </div>
-                    <p className="w-12 shrink-0 text-right text-sm font-semibold tabular-nums text-[#17202a]">
-                      {field.score}
-                      <span className="text-[11px] font-normal text-[#17202a]/40">
-                        /100
-                      </span>
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-
-          <p className="mt-6">
+        {/* News — the strip above already hides itself when empty; the
+            latest-news section does the same (no empty shells). */}
+        {latestRows.length > 0 ? (
+        <section className="pt-[52px]">
+          <SectionHeading
+            title="📰 長寿研究ニュース"
+            sub="世界中の研究ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクになっています。"
+          />
+          <div className="mt-6">
+            <RtNewsList
+              rows={latestRows}
+              locale="ja"
+              note="※ 左の数字は元の記事の新しさ（何時間前）の目安、バーは注目度の目安です。"
+            />
+          </div>
+          <div className="mt-[18px] text-center">
             <Link
-              href="/fields"
-              className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
+              href="/ja/news"
+              className={`inline-block font-extrabold text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              8分野それぞれの評価を読む（英語）→
+              ニュース一覧をすべて見る →
             </Link>
-          </p>
-        </div>
-      </section>
+          </div>
+        </section>
+        ) : null}
 
-      <section
-        id="latest-research"
-        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>最新研究</h2>
-          <p className={`mt-6 max-w-2xl ${BODY}`}>
-            {latest.length > 0
-              ? "長寿研究の更新を、日本語の記事として掲載しています。英語の見出しをそのまま出していません。"
-              : "公開中の研究記事はまだありません。一次資料を確認した記事から掲載します。"}
+        {/* Age calculator */}
+        <section className="pt-[52px]">
+          <SectionHeading
+            title="あなたは何歳になっていますか"
+            sub="到達の年を、自分の人生に引き寄せてみてください。"
+          />
+          <AgeCalculator
+            locale="ja"
+            earlyYear={earlyYear}
+            medianYear={medianYear}
+            yearsToEarly={heroEarlyYears}
+            yearsToMedian={yearsToMedian}
+          />
+          <p className="mt-[14px] text-center text-[0.92rem] text-[#4a5878]">
+            例：今年生まれた赤ちゃんは、{earlyYear}年に{heroEarlyYears}歳。いま40歳の人は
+            {40 + heroEarlyYears}歳です。
           </p>
-          {latest.length > 0 ? (
-            <div className="mt-8 space-y-4">
-              {latest.map((article) => (
-                <ArticleTeaser key={article.id} article={article} locale="ja" />
-              ))}
+        </section>
+
+        {/* Eight fields */}
+        <section id="eight-fields" className="scroll-mt-6 pt-[52px]">
+          <SectionHeading
+            title="8つの分野が、同時に進んでいます"
+            sub="老化への挑戦は、ひとつの技術では届きません。8分野の足並みがそろうほど、到達は近づきます。"
+          />
+          <div className="mt-6 rounded-[14px] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <span className="font-bold">🌍 8分野全体の進み具合（平均）</span>
+              <b className="text-[1.3rem]">
+                {averageScore}
+                <span className="text-[0.85rem] font-bold">%</span>
+              </b>
             </div>
-          ) : null}
-          <p className="mt-6">
-            <Link
-              href="/ja/news"
-              className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
-            >
-              最新研究の一覧を見る →
-            </Link>
+            <div className="mt-2 h-[22px] overflow-hidden rounded-full bg-[#eef2f9]">
+              <div
+                className="h-full rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a)]"
+                style={{ width: `${averageScore}%` }}
+              />
+            </div>
+            <p className="mt-[10px] text-[0.9rem]">
+              全体はまだ半分に届いていません。伸びている分野と、これからの分野があります。
+            </p>
+            <p className="mt-2 text-[0.8rem] text-[#4a5878]">100% = 治療として実際に使える状態</p>
+          </div>
+          <FieldCards fields={fieldCards} locale="ja" />
+          <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
+            スコアは各分野の「現在地」を示す目安です（{reviewedLabel}
+            時点の評価）。分野名の横の色は、スコア帯による進み具合の目安表示です。
           </p>
-        </div>
-      </section>
+        </section>
 
-      <section
-        id="when-lev"
-        className="scroll-mt-20 border-t border-black/8 px-5 py-12 sm:px-6 sm:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={SECTION_HEADING}>
-            早期シナリオが示すのは、{countdown.earlyYear}年
-          </h2>
-
-          <div className={`mt-6 max-w-2xl space-y-5 ${BODY}`}>
+        {/* The honest wall: delivery */}
+        <section id="why-now" className="scroll-mt-6 pt-[52px]">
+          <SectionHeading title="一番大きな壁は「届けること」" />
+          <div className="mt-6 rounded-[14px] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <p>
-              この数字はAIの作文ではない。公開されたTypeScriptモデルが、固定シードで
-              {draws}個のシナリオを走らせた結果だ。
+              研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れと、いくつも壁があります。
             </p>
-            <p>
-              基準年{countdown.baseYear}年から数えて{earlyYears}年。
-              早期側の分位点であり、最短の保証ではない。
-              人で効く治療、適切な試験、創薬の加速。これらが進めば年数は縮む。停滞すれば伸びる。
+            <p className="mt-3">
+              人で試すことの安全性確認は、省くわけにはいきません。一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
+            </p>
+            <p className="mt-4">
+              治療として届ける準備は、研究の進み具合に比べて、まだ入口の段階です。
             </p>
           </div>
+        </section>
 
-          <div className="mt-10 max-w-2xl border-t border-black/8 pt-8 sm:mt-12">
-            <p className="font-ja-serif text-[clamp(1.3rem,3.6vw,1.95rem)] font-medium leading-[1.7] text-[#17202a]">
-              この<span className="tabular-nums">{earlyYears}</span>年を、より短い距離へ。
-              <br />
-              死を「治療可能なバグ」に変える時計を進める。
-            </p>
-            <p className={`mt-5 ${BODY}`}>
-              Immortality Countdownは、長寿研究の進展を追い、予測を変えた根拠も公開する。
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Link
-              href="/ja/news"
-              className={`text-sm font-semibold text-[#2f766d] ${FOCUS_RING}`}
-            >
-              最新研究を読む →
-            </Link>
-            <Link
-              href="/methodology"
-              className={`text-sm font-medium text-[#17202a]/55 underline-offset-4 hover:underline ${FOCUS_RING}`}
-            >
-              評価の方法（英語）
-            </Link>
-          </div>
-        </div>
-      </section>
+        <Closing
+          heading="「死はバグである」未来を、数字で追いかけます。"
+          primaryLabel="最新研究を見る"
+          primaryHref="/ja/news"
+          secondaryLabel="数字の出し方（モデルについて）"
+          secondaryHref="/model"
+          finePrint={`このページの「あと${heroEarlyYears}年」は、公開中のモデルが置く「早ければ」の到達年（${earlyYear}年）を基準にした目安です。「標準ペース」では${medianYear}年、「遅ければ」${lateYear}年です。いずれも、科学の進み方によって前後します。将来の約束ではなく、現在地を測るための物差しとしてご覧ください。`}
+        />
+      </div>
     </main>
   );
 }

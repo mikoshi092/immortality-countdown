@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
-import BetaBanner from "@/components/BetaBanner";
-import ArticleTeaser from "@/components/ArticleTeaser";
+import RtNewsList from "@/components/calm/RtNewsList";
+import VideoRail from "@/components/calm/VideoRail";
 import { listArticles } from "@/data/articles";
 import { ARTICLE_UI } from "@/lib/article-copy";
 import { FOCUS_RING } from "@/lib/nav";
 import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 
 export const metadata: Metadata = {
   title: "Latest News | Immortality Countdown",
@@ -21,39 +22,48 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Calm news index (2026-11-04, owner-approved mock): realtime-chart-style
+ * rows — headline links to the original article, badge counts hours since
+ * it appeared, bar is an attention guide — with a fixed related-videos
+ * rail, mirroring /ja/news. Up to the 100 most recent published
+ * general-media articles (news-face display policy: lib/news-rows.ts).
+ */
 export default function NewsIndexPage() {
-  const articles = listArticles();
+  const now = new Date();
+  const articles = newsFaceArticles(listArticles()).slice(0, 100);
+  const rows = toNewsRows(articles, "en", now);
   const ui = ARTICLE_UI.en;
 
   return (
-    <main className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
+    <main className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
-      <BetaBanner />
-      <section className="px-5 py-10 sm:px-6 sm:py-12">
-        <div className="mx-auto max-w-7xl">
-          <h1 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#17202a]/70">
-            {ui.listTitle}
-          </h1>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#17202a]/70">{ui.listDek}</p>
-          <p className="mt-3 text-sm">
-            <Link
-              href={newsRssPath("en")}
-              className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
-            >
-              {ui.rssLabel} →
-            </Link>
-          </p>
-          <div className="mt-8 space-y-4">
-            {articles.length > 0 ? (
-              articles.map((article) => (
-                <ArticleTeaser key={article.id} article={article} locale="en" />
-              ))
+      <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
+        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Longevity research news</h1>
+        <p className="mt-1 text-[0.95rem] text-[#4a5878]">
+          Longevity research news from around the world. Each headline links straight to the
+          original article.
+        </p>
+        <p className="mt-1 text-[0.9rem]">
+          <Link href={newsRssPath("en")} className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}>
+            {ui.rssLabel} →
+          </Link>
+        </p>
+        <div className="mt-[18px] grid items-start gap-5 min-[820px]:grid-cols-[1fr_300px]">
+          <div>
+            {rows.length > 0 ? (
+              <RtNewsList
+                rows={rows}
+                locale="en"
+                note="The badge number is how many hours ago the article appeared. The bar is an attention guide."
+              />
             ) : (
-              <p className="text-base leading-7 text-[#17202a]/70">{ui.listEmpty}</p>
+              <p className="text-[0.95rem] text-[#4a5878]">No articles yet.</p>
             )}
           </div>
+          <VideoRail locale="en" />
         </div>
-      </section>
+      </div>
     </main>
   );
 }

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
-import ArticleTeaser from "@/components/ArticleTeaser";
+import RtNewsList from "@/components/calm/RtNewsList";
+import VideoRail from "@/components/calm/VideoRail";
 import { listArticles } from "@/data/articles";
 import { ARTICLE_UI } from "@/lib/article-copy";
 import { FOCUS_RING } from "@/lib/nav";
 import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = "最新研究 | Immortality Countdown";
@@ -32,62 +34,49 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Calm news index (2026-11-04, owner-approved mock): realtime-chart-style
+ * rows — headline links to the original article, badge counts hours since
+ * it appeared, bar is an attention guide — with a fixed related-videos
+ * rail. Up to the 100 most recent published general-media articles
+ * (news-face display policy: lib/news-rows.ts). The model is a
+ * list-first aggregator: this page deliberately does not editorialize the
+ * rows beyond the headline the pipeline wrote.
+ */
 export default function JapaneseNewsIndexPage() {
-  const articles = listArticles();
+  const now = new Date();
+  const articles = newsFaceArticles(listArticles()).slice(0, 100);
+  const rows = toNewsRows(articles, "ja", now);
   const ui = ARTICLE_UI.ja;
 
   return (
-    <main lang="ja" className="min-h-screen bg-[#f7f5ef] text-[#17202a]">
+    <main lang="ja" className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
-      <JaNewsBanner />
-      <section className="px-5 py-10 sm:px-6 sm:py-12">
-        <div className="mx-auto max-w-7xl">
-          <h1 className="font-ja-serif text-[clamp(1.5rem,4.6vw,2.2rem)] font-medium leading-[1.45] text-[#17202a]">
-            {ui.listTitle}
-          </h1>
-          <p className="mt-3 max-w-3xl text-pretty text-[15px] leading-8 text-[#17202a]/75 sm:text-base sm:leading-9">
-            {ui.listDek}
-          </p>
-          <p className="mt-3 text-sm">
-            <Link
-              href={newsRssPath("ja")}
-              className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
-            >
-              {ui.rssLabel} →
-            </Link>
-          </p>
-          <div className="mt-8 space-y-4">
-            {articles.length > 0 ? (
-              articles.map((article) => (
-                <ArticleTeaser key={article.id} article={article} locale="ja" />
-              ))
+      <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
+        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 長寿研究ニュース一覧</h1>
+        <p className="mt-1 text-[0.95rem] text-[#4a5878]">
+          世界中の長寿研究ニュースを、日本語の見出しで。見出しがそのまま元の記事へのリンクです。
+        </p>
+        <p className="mt-1 text-[0.9rem]">
+          <Link href={newsRssPath("ja")} className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}>
+            {ui.rssLabel} →
+          </Link>
+        </p>
+        <div className="mt-[18px] grid items-start gap-5 min-[820px]:grid-cols-[1fr_300px]">
+          <div>
+            {rows.length > 0 ? (
+              <RtNewsList
+                rows={rows}
+                locale="ja"
+                note="※ 左のバッジの数字は「何時間前」の記事かを示します。バーは注目度の目安です。"
+              />
             ) : (
-              <p className="text-[15px] leading-8 text-[#17202a]/75 sm:text-base sm:leading-9">
-                {ui.listEmpty}
-              </p>
+              <p className="text-[0.95rem] text-[#4a5878]">記事はまだありません。</p>
             )}
           </div>
+          <VideoRail locale="ja" />
         </div>
-      </section>
-    </main>
-  );
-}
-
-function JaNewsBanner() {
-  return (
-    <div className="border-b border-white/10 bg-[#141413]">
-      <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-2.5 sm:flex-row sm:items-center sm:gap-3 sm:px-6 sm:py-2">
-        <span className="inline-flex shrink-0 items-center gap-1.5">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#2f766d]" />
-          <span className="text-[11px] font-bold tracking-[0.14em] text-white/90">
-            PUBLIC BETA
-          </span>
-        </span>
-        <p className="text-[11px] font-medium leading-4 text-white/55 sm:text-xs">
-          カウントダウンのモデルは開発中です。各スコアはモデルへの入力値であり、
-          根拠の見直しにあわせて変わります。
-        </p>
       </div>
-    </div>
+    </main>
   );
 }
