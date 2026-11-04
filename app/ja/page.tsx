@@ -225,15 +225,16 @@ export default function JapaneseLandingPage() {
           <Milestones
             steps={[
               { gain: currentGain.toFixed(2), when: `${baseYear}年`, note: "いまここ", state: "done" },
-              { gain: "0.30", when: "2028年", note: "ごろ", state: "next" },
-              { gain: "0.50", when: "2042年", note: "ごろ・折り返し", state: "next" },
-              { gain: "0.75", when: "2052年", note: "ごろ", state: "next" },
+              { gain: "0.30", state: "next" },
+              { gain: "0.50", note: "折り返し", state: "next" },
+              { gain: "0.75", state: "next" },
               { gain: "1.00", when: `${earlyYear}年`, note: "LEV到達", state: "final" },
             ]}
             eventsCaption="世の中の転換点"
             events={[
               { label: "シンギュラリティ", left: "30%", size: "large" },
               { label: "量子コンピューターの普及", year: "2030", left: "40%", size: "small" },
+              { label: "全細胞の解析終了", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
             ]}
           />
         </section>
@@ -287,11 +288,9 @@ export default function JapaneseLandingPage() {
         {/* Age calculator */}
         <section className="pt-[52px]">
           <SectionHeading
-            title={<Phrases parts={["あなたは", "何歳になっていますか"]} />}
+            title={<Phrases parts={["あなたは", "不老長寿に", "間に合うか？"]} />}
             sub={
-              <Phrases
-                parts={["到達の年を、", "自分の人生に", "引き寄せてみてください。"]}
-              />
+              <Phrases parts={["あなたの", "現在の年齢を", "入れてください。"]} />
             }
           />
           <AgeCalculator

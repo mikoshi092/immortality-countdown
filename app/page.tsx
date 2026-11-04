@@ -192,15 +192,16 @@ export default function Home() {
           <Milestones
             steps={[
               { gain: currentGain.toFixed(2), when: `${baseYear}`, note: "you are here", state: "done" },
-              { gain: "0.30", when: "2028", note: "around", state: "next" },
-              { gain: "0.50", when: "2042", note: "around · halfway", state: "next" },
-              { gain: "0.75", when: "2052", note: "around", state: "next" },
+              { gain: "0.30", state: "next" },
+              { gain: "0.50", note: "halfway", state: "next" },
+              { gain: "0.75", state: "next" },
               { gain: "1.00", when: `${earlyYear}`, note: "LEV reached", state: "final" },
             ]}
             eventsCaption="Turning points in the wider world"
             events={[
               { label: "Singularity", left: "30%", size: "large" },
               { label: "Quantum computers spread", year: "2030", left: "40%", size: "small" },
+              { label: "Whole-cell analysis complete", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
             ]}
           />
         </section>
@@ -243,7 +244,7 @@ export default function Home() {
 
         {/* Age calculator */}
         <section className="pt-[52px]">
-          <SectionHeading title="How old will you be?" sub="Bring the arrival year into your own life." />
+          <SectionHeading title="Will you live long enough to live forever?" sub="Enter your current age to find out." />
           <AgeCalculator
             locale="en"
             earlyYear={earlyYear}
