@@ -58,6 +58,8 @@ export function sourceLabelFromUrl(sourceUrl: string): string {
   if (host.includes("genengnews.com")) return "GEN";
   if (host.includes("fiercebiotech.com")) return "Fierce Biotech";
   if (host.includes("fightaging.org")) return "Fight Aging!";
+  if (host.includes("gigazine.net")) return "GIGAZINE";
+  if (host.startsWith("nazology.")) return "ナゾロジー";
   return host;
 }
 

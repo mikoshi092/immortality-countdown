@@ -12,7 +12,10 @@ import type { SourceDefinition } from "./types";
  *
  * Enabled sources are science-news (media) feeds. Nature News is kept
  * enabled because it is news reporting rather than papers; it carries
- * its own stricter d41586 article link pattern.
+ * its own stricter d41586 article link pattern. GIGAZINE and Nazology
+ * were added on the same 2026-11 owner direction that pop,
+ * general-audience coverage (GIGAZINE-level) is welcome; both are
+ * Japanese-language feeds handled by the same RSS adapter and gates.
  *
  * `url` is the public site. `api.baseUrl` is the feed URL the adapter
  * actually calls, and `api.linkPattern` admits only article URLs.
@@ -94,6 +97,32 @@ export const SOURCES: SourceDefinition[] = [
       kind: "rss",
       baseUrl: "https://www.fightaging.org/index.xml",
       linkPattern: "^https://www\\.fightaging\\.org/archives/\\d{4}/\\d{2}/[\\w-]+/$",
+    },
+  },
+  {
+    id: "gigazine",
+    name: "GIGAZINE",
+    type: "science-news",
+    url: "https://gigazine.net/",
+    enabled: true,
+    trustTier: 3,
+    api: {
+      kind: "rss",
+      baseUrl: "https://gigazine.net/news/rss_2.0/",
+      linkPattern: "^https://gigazine\\.net/news/\\d{8}-[\\w-]+/$",
+    },
+  },
+  {
+    id: "nazology-health",
+    name: "ナゾロジー",
+    type: "science-news",
+    url: "https://nazology.kusuguru.co.jp/",
+    enabled: true,
+    trustTier: 3,
+    api: {
+      kind: "rss",
+      baseUrl: "https://nazology.kusuguru.co.jp/archives/category/life/health/feed",
+      linkPattern: "^https://nazology\\.kusuguru\\.co\\.jp/archives/\\d+$",
     },
   },
   {
