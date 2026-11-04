@@ -286,7 +286,7 @@ export default function Home() {
 
         <Closing
           heading="We track the future where death is a bug — in numbers."
-          primaryLabel="Read the latest research"
+          primaryLabel="Read the latest news"
           primaryHref="/news"
           secondaryLabel="How the numbers are made"
           secondaryHref="/model"

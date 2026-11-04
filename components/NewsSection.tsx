@@ -103,7 +103,7 @@ export default function NewsSection({ items }: { items: NewsItem[] }) {
                     href="/news"
                     className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}
                   >
-                    Latest research →
+                    Latest News →
                   </Link>
                 </p>
               </div>
