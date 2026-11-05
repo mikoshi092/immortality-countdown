@@ -29,7 +29,7 @@ export const ARTICLE_UI = {
     modelNote:
       "The LEV model is re-evaluated about twice a year, or sooner after an extraordinary event. A typical research article does not change the countdown.",
     readSource: "Read the primary source",
-    backToList: "Back to Immortality News",
+    backToList: "Back to Latest News",
     otherLanguage: "日本語で読む",
     studyDesign: "Study design",
     population: "Population / model",
@@ -39,9 +39,7 @@ export const ARTICLE_UI = {
     limitations: "Limitations",
     trialPhase: "Trial phase",
     resultStatus: "Result status",
-    listTitle: "Immortality News",
-    listDek:
-      "Longevity research news from around the world. Each headline links straight to the original article.",
+    listTitle: "Latest News",
     listEmpty: "No research updates currently meet the publication criteria.",
     rssLabel: "RSS",
     englishField: "",
@@ -70,8 +68,6 @@ export const ARTICLE_UI = {
     trialPhase: "試験相",
     resultStatus: "結果の位置づけ",
     listTitle: "最新ニュース",
-    listDek:
-      "世界中の長寿研究ニュースを、日本語の見出しで紹介します。見出しがそのまま元の記事へのリンクになっています。",
     listEmpty: "現在、公開基準を満たす新しい研究情報はありません。",
     rssLabel: "RSS",
     englishField: "（英語）",

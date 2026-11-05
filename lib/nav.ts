@@ -6,7 +6,7 @@ export const NAV_LINKS = [
   { label: "Methodology", href: "/methodology" },
   { label: "Eight Fields", href: "/fields" },
   { label: "The Model", href: "/model" },
-  { label: "Immortality News", href: "/news" },
+  { label: "Latest News", href: "/news" },
   { label: "About", href: "/about" },
 ] as const;
 
