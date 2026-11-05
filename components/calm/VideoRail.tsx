@@ -109,8 +109,8 @@ export default function VideoRail({ locale }: { locale: SiteLocale }) {
       ))}
       <p className="mt-2 text-[0.78rem] leading-[1.6] text-[#4a5878]">
         {ja
-          ? "再生数の多い定番動画に固定し、たまにだけ入れ替えます。サムネイルだけを先に読み込む作りで、ページは軽いままです（クリックで再生）。"
-          : "A fixed set of the most-watched classics, swapped only occasionally. Only thumbnails load up front, so the page stays light — click to play."}
+          ? "再生数の多い定番動画を並べています。たまに入れ替えることがあります（クリックで再生）。"
+          : "The most-watched classics, swapped only occasionally — click to play."}
       </p>
     </aside>
   );

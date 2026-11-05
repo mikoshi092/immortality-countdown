@@ -635,11 +635,11 @@ function compliantTrialDraft(trial: ReturnType<typeof fixtureCandidate>) {
         resultStatus: "Trial registration and research plan. No results posted.",
       },
       ja: {
-        studyDesign: "試験登録・研究計画。観察研究。全体の状態は招待による登録。結果は未掲載。",
+        studyDesign: "試験登録・研究計画。観察研究。現在は招待制で登録を受け付けています。結果はまだ公表されていません。",
         populationOrModel: "登録に記載された参加者。",
-        outcomes: "結果は未掲載である。",
+        outcomes: "結果はまだ公表されていません。",
         limitations: "この登録は測定された治療効果を報告していない。",
-        resultStatus: "試験登録・研究計画。結果は未掲載。",
+        resultStatus: "試験登録・研究計画。結果はまだ公表されていません。",
       },
     },
     en: {
@@ -652,10 +652,10 @@ function compliantTrialDraft(trial: ReturnType<typeof fixtureCandidate>) {
     },
     ja: {
       headline: "画像検査の試験登録が公開された",
-      dek: "観察研究の登録が公開され、状態は招待による登録である。結果は未掲載である。",
-      whatHappened: "参加者を含む観察研究の登録が公開された。全体の状態は招待による登録である。",
+      dek: "観察研究の登録が公開されました。現在は招待制で登録を受け付けています。結果はまだ公表されていません。",
+      whatHappened: "参加者を含む観察研究の登録が公開されました。現在は招待制で登録を受け付けています。",
       whyItMatters: "この記録は計画を示している。検査が診療を変えるかは示していない。",
-      realityCheck: "結果は未掲載である。招待による登録は完了した研究ではない。",
+      realityCheck: "結果はまだ公表されていません。招待制の登録は完了した研究ではありません。",
     },
   });
 }

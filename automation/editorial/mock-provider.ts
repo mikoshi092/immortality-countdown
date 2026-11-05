@@ -30,8 +30,8 @@ export class MockEditorialProvider implements EditorialProvider {
       ? `A trial registration titled "${input.title}" was posted. The listed subjects are ${subjectsEn}. Registration is not a result.`
       : `The source materials describe work in ${subjectsEn}.${sampleEn}`;
     const whatJa = isTrial
-      ? `「${input.title}」という試験登録が公開された。対象は${subjectsJa}である。登録は結果ではない。`
-      : `提供された資料に基づく研究であり、対象は${subjectsJa}である。${sampleJa}`;
+      ? `「${input.title}」という試験登録が公開されました。対象は${subjectsJa}です。登録は結果ではありません。`
+      : `提供された資料に基づく研究で、対象は${subjectsJa}です。${sampleJa}`;
 
     const realityEn =
       (isAnimal || isTissue || isCell) && !isLiving
@@ -39,8 +39,8 @@ export class MockEditorialProvider implements EditorialProvider {
         : "This brief must not be over-read. See the source for design and limits.";
     const realityJa =
       (isAnimal || isTissue || isCell) && !isLiving
-        ? "実験は動物、細胞、または組織試料であり、生きている人での結果ではない。"
-        : "この要約を過大に読んではいけない。デザインと限界は出典を当たること。";
+        ? "実験は動物、細胞、または組織試料を対象としたもので、生きている人での結果ではありません。"
+        : "この要約を過大に読まないでください。デザインと限界は出典でご確認ください。";
 
     const statusLine = trialStatusLine(input.overallStatus);
     const factsEn = {
@@ -69,18 +69,18 @@ export class MockEditorialProvider implements EditorialProvider {
           studyDesign: isNews
             ? "科学ニュース報道"
             : isTrial
-              ? `試験登録・研究計画。${statusLine.ja}結果は未掲載。`
+              ? `試験登録・研究計画。${statusLine.ja}結果はまだ公表されていません。`
               : "提供されたタイトルと抄録に記されたとおり。",
           populationOrModel: isNews
             ? "本報道では研究対象を検証していない"
             : subjectsJa,
           ...(sample ? { sampleSize: sample } : {}),
-          outcomes: isTrial ? "結果は未掲載である。" : `結果は${subjectsJa}に限られる。`,
+          outcomes: isTrial ? "結果はまだ公表されていません。" : `結果は${subjectsJa}に限られます。`,
           limitations: realityJa,
           resultStatus: isNews
             ? "科学ニュース報道"
             : isTrial
-              ? "試験登録・研究計画。結果は未掲載。"
+              ? "試験登録・研究計画。結果はまだ公表されていません。"
               : "提供された抄録に記されたとおり。",
         },
       },
@@ -102,10 +102,10 @@ export class MockEditorialProvider implements EditorialProvider {
         ...(isNews ? { popHeadline: `「${input.title}」と報じられた` } : {}),
         dek: isTrial
           ? `${subjectsJa}を対象とする試験登録が公開された。`
-          : `対象は${subjectsJa}である。${sampleJa}`,
+          : `対象は${subjectsJa}です。${sampleJa}`,
         whatHappened: whatJa.slice(0, 800),
         whyItMatters:
-          "研究更新として追う価値はある。これだけでカウントダウンは動かない。",
+          "研究の更新として追う価値があります。これだけでカウントダウンは動きません。",
         realityCheck: realityJa,
       },
       countdownImpact: "none",
@@ -150,19 +150,19 @@ function subjectPhrase(subjects: readonly string[], lang: "en" | "ja"): string {
 function trialStatusLine(status: string | undefined): { en: string; ja: string } {
   switch ((status ?? "").toUpperCase()) {
     case "RECRUITING":
-      return { en: "Overall status: recruiting.", ja: "全体の状態は募集中。" };
+      return { en: "Overall status: recruiting.", ja: "現在、参加者を募集しています。" };
     case "NOT_YET_RECRUITING":
-      return { en: "Overall status: not yet recruiting.", ja: "全体の状態は未募集。" };
+      return { en: "Overall status: not yet recruiting.", ja: "まだ参加者の募集は始まっていません。" };
     case "ENROLLING_BY_INVITATION":
-      return { en: "Overall status: enrolling by invitation.", ja: "全体の状態は招待による登録。" };
+      return { en: "Overall status: enrolling by invitation.", ja: "現在は招待制で登録を受け付けています。" };
     case "ACTIVE_NOT_RECRUITING":
-      return { en: "Overall status: active, not recruiting.", ja: "全体の状態は実施中で募集は終了。" };
+      return { en: "Overall status: active, not recruiting.", ja: "実施中で、参加者の募集は終了しています。" };
     case "COMPLETED":
-      return { en: "Overall status: completed.", ja: "全体の状態は完了。" };
+      return { en: "Overall status: completed.", ja: "すでに完了しています。" };
     case "TERMINATED":
-      return { en: "Overall status: terminated.", ja: "全体の状態は中止。" };
+      return { en: "Overall status: terminated.", ja: "中止されました。" };
     case "SUSPENDED":
-      return { en: "Overall status: suspended.", ja: "全体の状態は中断。" };
+      return { en: "Overall status: suspended.", ja: "中断しています。" };
     default:
       return { en: "", ja: "" };
   }

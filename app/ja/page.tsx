@@ -341,7 +341,7 @@ export default function JapaneseLandingPage() {
             yearsToMedian={yearsToMedian}
           />
           <p className="mt-[14px] text-center text-[0.92rem] text-[#4a5878]">
-            例：今年生まれた赤ちゃんは、{earlyYear}年に{heroEarlyYears}歳。いま40歳の人は
+            例：今年生まれた赤ちゃんは、{earlyYear}年に{heroEarlyYears}歳になります。いま40歳の人は
             {40 + heroEarlyYears}歳です。
           </p>
         </section>

@@ -23,7 +23,7 @@ export const NAV_LINKS = [
 export const NAV_LINKS_JA = [
   { label: "トップ", href: "/ja#top" },
   { label: "LEVとは", href: "/ja#lev-toha" },
-  { label: "なぜこの年数か", href: "/ja#why-now" },
+  { label: "届けることの壁", href: "/ja#why-now" },
   { label: "8つの技術", href: "/ja#eight-fields" },
   { label: "最新ニュース", href: "/ja/news" },
 ] as const;

@@ -94,7 +94,7 @@ export default async function FieldDetailPage({
             className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[#17202a]/60"
           >
             <Link href="/" className={`font-medium hover:text-[#17202a] ${FOCUS_RING}`}>
-              Dashboard
+              Top page
             </Link>
             <span aria-hidden="true">/</span>
             <Link href="/fields" className={`font-medium hover:text-[#17202a] ${FOCUS_RING}`}>
@@ -206,7 +206,7 @@ export default async function FieldDetailPage({
               Methodology →
             </Link>
             <Link href="/" className={`font-semibold text-[#2f766d] ${FOCUS_RING}`}>
-              Dashboard →
+              Top page →
             </Link>
           </div>
 

@@ -296,7 +296,7 @@ export default function Home() {
           />
           <p className="mt-[14px] text-center text-[0.92rem] text-[#4a5878]">
             Example: a baby born this year turns {heroEarlyYears} in {earlyYear}. Someone who is 40
-            now will be {40 + heroEarlyYears}.
+            now will be {40 + heroEarlyYears} years old.
           </p>
         </section>
 
