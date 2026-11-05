@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { FaqItem } from "@/lib/faq";
+import type { FieldId } from "@/lib/fields";
 import { FOCUS_RING } from "@/lib/nav";
 import type { SiteLocale } from "@/lib/locale";
+import { FieldIcon } from "./FieldIcons";
 
 /**
  * Presentational sections shared by the calm top pages (EN + JA), built
@@ -414,8 +416,21 @@ export function fieldChip(score: number, locale: SiteLocale): { label: string; c
   };
 }
 
-export type FieldCardData = { key: string; emoji: string; name: string; blurb: string; score: number };
+export type FieldCardData = { key: string; icon: FieldId; name: string; blurb: string; score: number };
 
+/**
+ * Field cards in fixed lanes (owner report, 2026-11-05: bars and chips
+ * sat at different heights from card to card). Each card is a flex
+ * column — icon row, two-line title, the status chip on its own row
+ * under the title, description, then the bar row pinned to the bottom
+ * by margin-top:auto — and the grid stretches every card in a row to
+ * the same height, so bars and percentages line up across the row.
+ * The lane min-heights only apply once the grid can actually hold
+ * more than one column (≥480px viewport); in a single column the
+ * lanes size naturally so stacked cards carry no dead space. The
+ * description reserves 3 lines in Japanese and 4 in English, the
+ * longest blurb in each locale at card width.
+ */
 export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale: SiteLocale }) {
   return (
     <div className="mt-[22px] grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(210px,1fr))]">
@@ -424,23 +439,29 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
         return (
           <div
             key={field.key}
-            className="rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-5 shadow-[0_1px_6px_rgba(35,50,82,0.06)]"
+            className="flex flex-col rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-5 shadow-[0_1px_6px_rgba(35,50,82,0.06)]"
           >
-            <div className="text-[1.15rem]" aria-hidden="true">
-              {field.emoji}
+            <div className="flex h-7 items-start">
+              <FieldIcon id={field.icon} className="h-7 w-7 shrink-0" />
             </div>
-            <h3 className="mt-1 flex flex-wrap items-center gap-2 text-[1.02rem] font-extrabold leading-[1.4]">
+            <h3 className="mt-2 text-[1.02rem] font-extrabold leading-[1.4] min-[480px]:min-h-[2.8em]">
               {field.name}
+            </h3>
+            <div className="mt-1.5 flex items-center">
               <span
                 className={`whitespace-nowrap rounded-full px-2 py-px text-[0.7rem] font-extrabold ${chip.className}`}
               >
                 {chip.label}
               </span>
-            </h3>
-            <p className="mt-1 min-h-[3.3em] text-[0.85rem] leading-[1.65] text-[#4a5878]">
+            </div>
+            <p
+              className={`mt-2 text-[0.85rem] leading-[1.65] text-[#4a5878] ${
+                locale === "ja" ? "min-[480px]:min-h-[4.95em]" : "min-[480px]:min-h-[6.6em]"
+              }`}
+            >
               {field.blurb}
             </p>
-            <div className="mt-2 flex items-center gap-2">
+            <div className="mt-auto flex items-center gap-2 pt-3">
               <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#eef2f9]">
                 <div
                   className="h-full rounded-full bg-[linear-gradient(90deg,#00a8a8,#57b8ff)]"
