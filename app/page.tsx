@@ -22,7 +22,8 @@ import { faqItems, faqPageJsonLd } from "@/lib/faq";
 import { FIELD_IDS, FIELD_LABELS, type FieldId } from "@/lib/fields";
 import { getFieldModel } from "@/lib/model-snapshot";
 import { serializeJsonLd } from "@/lib/json-ld";
-import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
+import { GlobeIcon } from "@/components/calm/FieldIcons";
 import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -105,7 +106,7 @@ export default function Home() {
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
-    emoji: FIELD_EMOJI[id],
+    icon: id,
     name: FIELD_LABELS[id],
     blurb: FIELD_BLURBS_EN[id],
     score: getFieldModel(id).score,
@@ -309,7 +310,10 @@ export default function Home() {
           </p>
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="font-bold">🌍 All eight fields (average)</span>
+              <span className="flex items-center gap-2 font-bold">
+                <GlobeIcon className="h-5 w-5 shrink-0" />
+                All eight fields (average)
+              </span>
               <b className="text-[1.3rem]">
                 {averageScore}
                 <span className="text-[0.85rem] font-bold">%</span>

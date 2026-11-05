@@ -24,7 +24,8 @@ import { FIELD_IDS, type FieldId } from "@/lib/fields";
 import { FIELD_LABELS_JA } from "@/lib/ja";
 import { getFieldModel } from "@/lib/model-snapshot";
 import { serializeJsonLd } from "@/lib/json-ld";
-import { FIELD_EMOJI, newsFaceArticles, toNewsRows } from "@/lib/news-rows";
+import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
+import { GlobeIcon } from "@/components/calm/FieldIcons";
 import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -95,7 +96,7 @@ export default function JapaneseLandingPage() {
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({
     key: id,
-    emoji: FIELD_EMOJI[id],
+    icon: id,
     name: FIELD_LABELS_JA[id],
     blurb: FIELD_BLURBS_JA[id],
     score: getFieldModel(id).score,
@@ -366,7 +367,10 @@ export default function JapaneseLandingPage() {
           </p>
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="font-bold">🌍 8分野全体の進み具合（平均）</span>
+              <span className="flex items-center gap-2 font-bold">
+                <GlobeIcon className="h-5 w-5 shrink-0" />
+                8分野全体の進み具合（平均）
+              </span>
               <b className="text-[1.3rem]">
                 {averageScore}
                 <span className="text-[0.85rem] font-bold">%</span>
