@@ -66,6 +66,31 @@ export function probabilityBy(year: number): number | null {
   return row ? row.probability : null;
 }
 
+/**
+ * Modelled gain in calendar `year` (trajectory median, P50), 0–1.
+ * Returns null outside the modelled horizon.
+ */
+export function gainBy(year: number): number | null {
+  const row = forecast.trajectory.find((t) => t.year === year);
+  return row ? row.p50 : null;
+}
+
+/**
+ * The model's gain in calendar `year` as a whole percent, rounded the
+ * same way as the start point's `currentGain`. The road-to-arrival
+ * event positions are derived through this — never placed by hand —
+ * so the timeline cannot drift from the model (owner decision,
+ * 2026-11-05). Throws outside the modelled horizon; the event years
+ * are fixed and well inside it.
+ */
+export function gainPercentAt(year: number): number {
+  const gain = gainBy(year);
+  if (gain === null) {
+    throw new Error(`gainPercentAt: ${year} is outside the modelled horizon`);
+  }
+  return Math.round(gain * 100);
+}
+
 export const trajectory = forecast.trajectory;
 export const cumulative = forecast.cumulative;
 
