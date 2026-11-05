@@ -12,7 +12,6 @@ import {
   FieldCards,
   Milestones,
   Phrases,
-  RangeBar,
   SectionHeading,
   type FieldCardData,
 } from "@/components/calm/Sections";
@@ -66,8 +65,9 @@ export const metadata: Metadata = {
 /**
  * Calm redesign (2026-11-04, owner-approved mock): plain background,
  * standard sans, thin borders and light shadows. The countdown endpoint
- * is the early scenario — heroEarlyYears years — with the standard pace
- * and the late scenario kept as secondary context on the range bar. No
+ * is the early scenario — heroEarlyYears years. The standard pace
+ * and the late scenario are not displayed on this page (owner decision,
+ * 2026-11-05: the early scenario is the single story). No
  * scenario counts or simulation framing on this page: the model page
  * carries the methodology, this page carries the headline.
  *
@@ -87,7 +87,7 @@ const FIELD_BLURBS_JA: Record<FieldId, string> = {
 
 export default function JapaneseLandingPage() {
   const now = new Date();
-  const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
+  const { baseYear, earlyYear, currentGain } = countdown;
   // Road-to-arrival event positions: the model's own gain in each
   // event year (trajectory median, whole percent) — derived from the
   // model, never placed by hand (owner decision, 2026-11-05).
@@ -147,41 +147,6 @@ export default function JapaneseLandingPage() {
               <b className="text-[1.7rem]">{earlyYear}年</b> に到達
             </div>
           </div>
-
-          <RangeBar
-            points={[
-              {
-                year: earlyYear,
-                tag: "早ければ・終着点",
-                left: "4%",
-                highlight: true,
-                hideYear: true,
-                yearsToGo: `あと${earlyYear - baseYear}年`,
-              },
-              {
-                year: medianYear,
-                tag: "標準ペース",
-                left: "46%",
-                yearsToGo: `あと${medianYear - baseYear}年`,
-              },
-              {
-                year: lateYear,
-                tag: "遅ければ",
-                left: "96%",
-                yearsToGo: `あと${lateYear - baseYear}年`,
-              },
-            ]}
-            note={
-              <Phrases
-                parts={[
-                  "「あと何年」は、",
-                  "いちばん早い到達",
-                  `（${earlyYear}年）までの`,
-                  "年数です。",
-                ]}
-              />
-            }
-          />
         </section>
 
         {/* LEV in one sentence */}
