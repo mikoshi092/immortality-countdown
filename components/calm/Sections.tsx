@@ -228,203 +228,167 @@ export function LevGauge({
   );
 }
 
-export type MilestoneStep = {
-  gain: string;
-  /** Year line, e.g. "2026年" — rendered on its own line, never wraps.
-   *  Only the first ("now") and last (arrival) steps carry one: the
-   *  intermediate steps' crossing years are model internals, not
-   *  milestones (owner decision, 2026-11-04), so they stay pure scale
-   *  ticks. A missing line renders as a blank line, keeping the
-   *  two-line slot — and the row's alignment — identical. */
-  when?: string;
-  /** Note line under the year, e.g. "いまここ" — its own line, never
-   *  wraps. The halfway step keeps its note with no year above it. */
+export type RoadPoint = {
+  /** Position on the gain track, in percent (gain × 100): the point
+   *  sits at `left: pct%` of the track, which spans the full LEV gain
+   *  scale 0 → 1.00. */
+  pct: number;
+  /** Percent line under the track, e.g. "22%". */
+  pctLabel: string;
+  /** Year line under the percent, e.g. "2026年" — never wraps. */
+  when: string;
+  /** Optional note line under the year (start and end points only),
+   *  e.g. "いまここ" / "LEV到達" — never wraps. */
   note?: string;
-  state: "done" | "next" | "final";
+  /** "start" and "end" render as larger circle markers on the track;
+   *  an "event" renders as a small filled dot in its pill's tone,
+   *  with the pill itself above the track. */
+  marker: "start" | "event" | "end";
+  /** Turning-point event pill above the track (events only). The
+   *  `level` staggers the pills vertically so neighbours never
+   *  collide: 1 sits closest to the track, 3 highest. */
+  pill?: {
+    label: string;
+    tone: "coral" | "navy" | "teal";
+    level: 1 | 2 | 3;
+  };
+  /** Mobile-only: drop this point's under-track label one row down.
+   *  The 2028 label would otherwise collide with its close
+   *  neighbours (the 22% and 35% labels) at phone widths. */
+  dropLabel?: boolean;
+  /** Mobile-only: anchor this point's under-track label toward the
+   *  right of its point instead of centering it, so it clears the
+   *  wide start label at phone widths. */
+  shiftLabel?: boolean;
 };
 
-/**
- * A turning-point event in the wider world, pinned to the milestone
- * axis at `left` (the five steps sit at 10/30/50/70/90% of the row).
- * Events are NOT model output: they render as filled pills in a band
- * above the axis — a large coral pill for the headline event, smaller
- * pills for the secondary ones (navy, deep teal) — visually separate
- * from the stepper's outline circles, each with a short tick down
- * toward its point. A "small" event has no step of its own, so it
- * also gets a filled dot on the axis line itself. A small event can
- * sit on the lower row (`row: "lower"`, level with the large pill)
- * when the top row would crowd. Owner decision, 2026-11-04.
- *
- * On mobile (below sm) the absolute layout collapses, so the band
- * becomes a centered stack instead: caption, then the large pill,
- * then the small pills in chronological order — no ticks. The pills
- * are static there and the axis dot stays as-is. Owner report, 2026-11-04.
- * The stacked panel then read too large on phones, so below sm the
- * panel also compacts: tighter padding and band gaps, smaller pills,
- * 34px step circles (axis line and event dot re-centered to match),
- * and one-notch-smaller gain and year lines. The note line keeps the
- * fit-driven size from the two-line structure — the longest notes
- * ("around · halfway") have no slack to give at 360px. ≥sm sizes are
- * untouched. Owner report, 2026-11-04.
- */
-export type TimelineEvent = {
-  label: string;
-  /** Optional year shown inside the marker, before the label
-   *  (e.g. "2030" on the small pills, "2028" on the large pill). */
-  year?: string;
-  /** Position on the stepper axis, as a CSS left value (e.g. "30%"). */
-  left: string;
-  size: "large" | "small";
-  /** Small-pill colorway (default "navy"). */
-  tone?: "navy" | "teal";
-  /** Desktop band row for a small pill: "upper" (default, top row) or
-   *  "lower" (level with the large pill). Mobile stacks regardless. */
-  row?: "upper" | "lower";
-};
-
-/** Small-pill colorways: navy for the technology event, deep teal
- *  (#2f7d6a, life-science register) for the cell event. The large
- *  headline pill is always coral. */
-const SMALL_EVENT_TONES = {
+/** Pill colorways: coral for the headline event, navy for the
+ *  technology event, deep teal (#2f7d6a, life-science register) for
+ *  the cell event. */
+const ROAD_PILL_TONES = {
+  coral: { pill: "bg-[#e8502f]", tick: "bg-[#e8502f]/50", dot: "bg-[#e8502f]" },
   navy: { pill: "bg-[#233252]", tick: "bg-[#233252]/40", dot: "bg-[#233252]" },
   teal: { pill: "bg-[#2f7d6a]", tick: "bg-[#2f7d6a]/40", dot: "bg-[#2f7d6a]" },
 } as const;
 
-/** Five-step milestone stepper keyed to the early scenario. */
-export function Milestones({
-  steps,
-  events,
-  eventsCaption,
-}: {
-  steps: MilestoneStep[];
-  events?: TimelineEvent[];
-  eventsCaption?: string;
-}) {
-  const smallEvents = events?.filter((event) => event.size === "small") ?? [];
-  // DOM order is chronological (2028 → 2030 → 2036) so the band
-  // reads in year order to screen readers and text extraction.
-  // Placement is absolute on desktop and order-class driven on
-  // mobile, so the visuals are unchanged (design review, 2026-11-05).
-  const orderedEvents = [...(events ?? [])].sort(
-    (a, b) => Number(a.year ?? 0) - Number(b.year ?? 0),
-  );
+/**
+ * Pill stagger geometry. The stage is a fixed-height relative box
+ * (262px, 258px below sm) with the track's centre line at top:164px
+ * (140px below sm). Each level's pill hangs its tick length above
+ * the track — level 1 closest, level 3 highest — the arrangement in
+ * the owner's 2026-11-05 sketch, where the 2030 pill rides highest
+ * so the three pills never overlap even though 30% and 35% sit
+ * close together on the scale.
+ */
+const ROAD_LEVELS = {
+  1: {
+    pillBottom: "bottom-[118px] max-sm:bottom-[142px]",
+    tick: "bottom-[95px] h-[23px] max-sm:bottom-[115px] max-sm:h-[27px]",
+  },
+  2: {
+    pillBottom: "bottom-[180px] max-sm:bottom-[188px]",
+    tick: "bottom-[95px] h-[85px] max-sm:bottom-[115px] max-sm:h-[73px]",
+  },
+  3: {
+    pillBottom: "bottom-[224px]",
+    tick: "bottom-[95px] h-[129px] max-sm:bottom-[115px] max-sm:h-[109px]",
+  },
+} as const;
+
+/**
+ * The road to arrival: one horizontal track for the whole LEV gain
+ * scale (0 → 1.00, shown as %), filled up to the current point, with
+ * the turning-point events pinned ON the track at their gain
+ * positions — a staggered pill above the track, percent + year
+ * below it — and circle markers for the start (now) and the arrival
+ * point. This replaces the earlier two-part display (a pill panel
+ * captioned 「世の中の転換点」 above a separate five-step gain
+ * stepper) with the single unified timeline from the owner's
+ * hand-drawn sketch. Owner decision, 2026-11-05.
+ *
+ * Points render in the order given — chronological (2026 → 2028 →
+ * 2030 → 2036 → 2061) — so screen readers and text extraction meet
+ * them in year order; all placement is absolute. The end point's
+ * label is anchored to its right edge so it never clips at the
+ * panel edge (the same care as the range bar's end labels).
+ */
+export function Milestones({ points }: { points: RoadPoint[] }) {
+  const nowPoint = points.find((point) => point.marker === "start");
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
-      {events && events.length > 0 ? (
-        <>
-          {eventsCaption ? (
-            <p className="flex items-center gap-1.5 text-[0.75rem] font-bold text-[#4a5878] max-sm:justify-center">
-              <span
-                aria-hidden="true"
-                className="inline-block h-[10px] w-[10px] rounded-full bg-[#e8502f]"
-              />
-              {smallEvents.map((event) => (
-                <span
-                  key={`caption-${event.label}`}
-                  aria-hidden="true"
-                  className={`inline-block h-[10px] w-[10px] rounded-full ${SMALL_EVENT_TONES[event.tone ?? "navy"].dot}`}
-                />
-              ))}
-              {eventsCaption}
-            </p>
-          ) : null}
-          <div className="relative h-[118px] max-sm:mt-2 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-2">
-            {orderedEvents.map((event) => {
-              if (event.size === "large") {
-                return (
-                  <span
-                    key={event.label}
-                    className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
-                    style={{ left: event.left }}
-                  >
-                    {event.year ? (
-                      <span className="mr-1.5 font-extrabold">{event.year}</span>
-                    ) : null}
-                    {event.label}
-                  </span>
-                );
-              }
-              const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
-              const lower = event.row === "lower";
-              return (
-                <span
-                  key={event.label}
-                  className={`absolute -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold leading-[1.25] text-white shadow-[0_1px_5px_rgba(35,50,82,0.25)] ${tone.pill} ${lower ? "top-[48px]" : "top-0"} max-sm:static max-sm:order-2 max-sm:translate-x-0 max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem]`}
-                  style={{ left: event.left }}
-                >
-                  {event.year ? (
-                    <span className="mr-1.5 font-extrabold">{event.year}</span>
-                  ) : null}
-                  {event.label}
-                </span>
-              );
-            })}
-            {orderedEvents.map((event) => {
-              if (event.size === "large") {
-                return (
-                  <span
-                    key={`tick-${event.label}`}
-                    aria-hidden="true"
-                    className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50 max-sm:hidden"
-                    style={{ left: event.left }}
-                  />
-                );
-              }
-              const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
-              const lower = event.row === "lower";
-              return (
-                <span
-                  key={`tick-${event.label}`}
-                  aria-hidden="true"
-                  className={`absolute w-[3px] -translate-x-1/2 rounded ${tone.tick} ${lower ? "top-[84px] h-[34px]" : "top-[34px] h-[8px]"} max-sm:hidden`}
-                  style={{ left: event.left }}
-                />
-              );
-            })}
-          </div>
-        </>
-      ) : null}
-      <div className="relative">
+      <div className="relative h-[262px] max-sm:h-[258px]">
+        {/* Track: the full gain scale, filled up to the current point. */}
         <div
           aria-hidden="true"
-          className="absolute left-[6%] right-[6%] top-[16px] h-[6px] rounded-full bg-[linear-gradient(90deg,#00a8a8_10%,#dbe7f5_10%)] max-sm:top-[14px]"
-        />
-        {smallEvents.map((event) => (
-          <span
-            key={`dot-${event.label}`}
-            aria-hidden="true"
-            className={`absolute top-[19px] z-10 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white shadow-[0_1px_4px_rgba(35,50,82,0.3)] ${SMALL_EVENT_TONES[event.tone ?? "navy"].dot} max-sm:top-[17px]`}
-            style={{ left: event.left }}
+          className="absolute left-0 right-0 top-[161px] h-[6px] rounded-full bg-[#dbe7f5] max-sm:top-[137px]"
+        >
+          <div
+            className="h-full rounded-full bg-[linear-gradient(90deg,#57b8ff,#00a8a8)]"
+            style={{ width: `${nowPoint?.pct ?? 0}%` }}
           />
-        ))}
-        <div className="relative flex">
-          {steps.map((step) => (
-            <div key={step.gain} className="flex-1 px-0.5 text-center">
-              <div
-                className={`mx-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border-[3px] bg-white text-[1.05rem] max-sm:h-[34px] max-sm:w-[34px] max-sm:text-[0.95rem] ${
-                  step.state === "done"
-                    ? "border-[#00a8a8] bg-[#e6fbfb]"
-                    : step.state === "final"
-                      ? "border-[#e8502f] bg-[#ffe9e2]"
-                      : "border-[#c9d4e8]"
+        </div>
+        {points.map((point) => {
+          const tone = point.pill ? ROAD_PILL_TONES[point.pill.tone] : null;
+          const level = point.pill ? ROAD_LEVELS[point.pill.level] : null;
+          return (
+            <div key={`${point.pct}-${point.when}`} className="contents">
+              {point.pill && tone && level ? (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className={`absolute w-[3px] -translate-x-1/2 rounded ${tone.tick} ${level.tick}`}
+                    style={{ left: `${point.pct}%` }}
+                  />
+                  <span
+                    className={`absolute -translate-x-1/2 whitespace-nowrap rounded-full leading-[1.25] text-white ${tone.pill} ${level.pillBottom} ${
+                      point.pill.tone === "coral"
+                        ? "px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
+                        : "px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem]"
+                    }`}
+                    style={{ left: `${point.pct}%` }}
+                  >
+                    {point.pill.label}
+                  </span>
+                </>
+              ) : null}
+              <span
+                aria-hidden="true"
+                className={`absolute top-[164px] z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white shadow-[0_1px_4px_rgba(35,50,82,0.3)] max-sm:top-[140px] ${
+                  point.marker === "start"
+                    ? "h-[20px] w-[20px] bg-[#00a8a8] max-sm:h-[18px] max-sm:w-[18px]"
+                    : point.marker === "end"
+                      ? "h-[20px] w-[20px] bg-[#e8502f] max-sm:h-[18px] max-sm:w-[18px]"
+                      : `h-[13px] w-[13px] ${tone?.dot ?? ""}`
                 }`}
+                style={{ left: `${point.pct}%` }}
+              />
+              <div
+                className={`absolute top-[186px] text-center max-sm:top-[162px] ${
+                  point.dropLabel ? "max-sm:top-[196px]" : ""
+                } ${
+                  point.marker === "end"
+                    ? "-translate-x-full"
+                    : point.shiftLabel
+                      ? "-translate-x-1/2 max-sm:-translate-x-[12%]"
+                      : "-translate-x-1/2"
+                }`}
+                style={{ left: `${point.pct}%` }}
               >
-                {step.state === "done" ? "✅" : step.state === "final" ? "🚀" : "→"}
-              </div>
-              <div className="mt-2 text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold max-sm:mt-1.5 max-sm:text-[0.95rem]">
-                {step.gain}
-              </div>
-              <div className="mt-0.5 font-bold leading-[1.5] text-[#4a5878]">
-                <div className="whitespace-nowrap text-[0.78rem] max-sm:text-[0.74rem]">
-                  {step.when ?? " "}
+                <div className="text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold leading-[1.2] max-sm:text-[0.95rem]">
+                  {point.pctLabel}
                 </div>
-                <div className="whitespace-nowrap text-[clamp(0.38rem,1.85vw,0.78rem)]">
-                  {step.note ?? " "}
+                <div className="mt-0.5 whitespace-nowrap text-[0.78rem] font-bold leading-[1.5] text-[#4a5878] max-sm:text-[0.74rem]">
+                  {point.when}
                 </div>
+                {point.note ? (
+                  <div className="whitespace-nowrap text-[0.78rem] font-bold leading-[1.5] text-[#4a5878] max-sm:text-[0.74rem]">
+                    {point.note}
+                  </div>
+                ) : null}
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
