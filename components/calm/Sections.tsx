@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { FaqItem } from "@/lib/faq";
 import type { FieldId } from "@/lib/fields";
 import { FOCUS_RING } from "@/lib/nav";
@@ -269,6 +269,20 @@ export type RoadPoint = {
     label: string;
     tone: "coral" | "navy" | "teal";
     level: 1 | 2 | 3;
+    /** Centre of the pill, as a percent of the stage width. The
+     *  pills fan out horizontally (owner's hand-edited mock,
+     *  2026-11-05) instead of stacking in one column over their
+     *  points: the coral pill sits left, the navy pill
+     *  upper-left, the teal pill over its own point — and a
+     *  diagonal leader line runs from each pill's bottom edge
+     *  down to its point. `anchor` applies at sm and up,
+     *  `anchorSm` below sm: the stage narrows much faster than
+     *  the pills shrink, so the widest pill (navy, EN — 252px on
+     *  the 320px stage at 390px) needs its centre pushed right
+     *  on small screens to stay inside the stage. Both values
+     *  are verified against rendered captures in both locales. */
+    anchor: number;
+    anchorSm: number;
   };
   /** Row for the under-track label (see ROAD_LABEL_ROWS). The event
    *  years' modelled gains sit within a few points of the start, so
@@ -281,11 +295,13 @@ export type RoadPoint = {
 
 /** Pill colorways: coral for the headline event, navy for the
  *  technology event, deep teal (#2f7d6a, life-science register) for
- *  the cell event. */
+ *  the cell event. `line` / `lineOpacity` style the SVG leader line
+ *  from the pill down to its point — the same muted tone strength
+ *  the old vertical tick divs used (50% coral, 40% navy / teal). */
 const ROAD_PILL_TONES = {
-  coral: { pill: "bg-[#e8502f]", tick: "bg-[#e8502f]/50", dot: "bg-[#e8502f]" },
-  navy: { pill: "bg-[#233252]", tick: "bg-[#233252]/40", dot: "bg-[#233252]" },
-  teal: { pill: "bg-[#2f7d6a]", tick: "bg-[#2f7d6a]/40", dot: "bg-[#2f7d6a]" },
+  coral: { pill: "bg-[#e8502f]", line: "#e8502f", lineOpacity: 0.5, dot: "bg-[#e8502f]" },
+  navy: { pill: "bg-[#233252]", line: "#233252", lineOpacity: 0.4, dot: "bg-[#233252]" },
+  teal: { pill: "bg-[#2f7d6a]", line: "#2f7d6a", lineOpacity: 0.4, dot: "bg-[#2f7d6a]" },
 } as const;
 
 /**
@@ -296,29 +312,34 @@ const ROAD_PILL_TONES = {
  * above the track does not depend on the stage height: level 1
  * hangs 18px above the centre line (16px below sm), level 2 49px
  * (47px), level 3 80px (78px) — the arrangement in the owner's
- * 2026-11-05 sketch, where the 2030 pill rides highest so the three
- * pills never overlap even though the event points now sit within
- * a few percent of each other on the scale. All three pills share
- * one type scale (owner cleanup, 2026-11-05: the headline pill used
- * to render far larger than the other two); the level gaps above
- * are sized so each pill's band clears the next by ~8px. Each tick
- * runs from its pill's bottom edge down to just past the centre
- * line, passing behind the pills (pills carry z-10).
+ * 2026-11-05 sketch, where the 2030 pill rides highest. All three
+ * pills share one type scale (owner cleanup, 2026-11-05: the
+ * headline pill used to render far larger than the other two);
+ * the level gaps are sized so each pill's band clears the next by
+ * ~8px regardless of horizontal position.
+ *
+ * Leader lines: the pills fan out horizontally (owner's
+ * hand-edited mock, 2026-11-05), so the old vertical tick divs
+ * became diagonal SVG lines, one per event, drawn in two overlay
+ * variants — desktop and below-sm — because the geometry differs
+ * per breakpoint: each line runs from (pill anchor %, the level's
+ * `lineTop` — the same value as the pill's bottom-edge anchor)
+ * down to (the point's display %, just past the centre line:
+ * 119px, 115px below sm). The SVGs use a 0–100 x-range (percent
+ * of stage width) against a pixel y-range matching the stage
+ * height, with non-scaling-stroke so lines stay 2px at any width.
+ * The overlays sit under the pills (z-10) and markers (z-20).
  */
 const ROAD_LEVELS = {
-  1: {
-    pillAnchor: "top-[98px] max-sm:top-[96px]",
-    tick: "top-[98px] h-[21px] max-sm:top-[96px] max-sm:h-[19px]",
-  },
-  2: {
-    pillAnchor: "top-[67px] max-sm:top-[65px]",
-    tick: "top-[67px] h-[52px] max-sm:top-[65px] max-sm:h-[50px]",
-  },
-  3: {
-    pillAnchor: "top-[36px] max-sm:top-[34px]",
-    tick: "top-[36px] h-[83px] max-sm:top-[34px] max-sm:h-[81px]",
-  },
+  1: { pillAnchor: "top-[98px] max-sm:top-[96px]", lineTop: 98, lineTopSm: 96 },
+  2: { pillAnchor: "top-[67px] max-sm:top-[65px]", lineTop: 67, lineTopSm: 65 },
+  3: { pillAnchor: "top-[36px] max-sm:top-[34px]", lineTop: 36, lineTopSm: 34 },
 } as const;
+
+/** Track centre line, per breakpoint (see the stage geometry
+ *  above): leader lines end 3px past it, under the markers. */
+const ROAD_LINE_END = 119;
+const ROAD_LINE_END_SM = 115;
 
 /**
  * Under-track label rows. The event points' modelled gains (23%,
@@ -355,7 +376,10 @@ const ROAD_LABEL_ROWS = {
  * track through the deformed display scale (roadDisplayPct) so
  * the four left-hand points spread across the track's left half;
  * their labels descend in a one-row-per-point staircase
- * (ROAD_LABEL_ROWS) to stay legible.
+ * (ROAD_LABEL_ROWS) to stay legible. The pills fan out
+ * horizontally over the stage (each pill carries its own `anchor`
+ * centre, per the owner's hand-edited mock, 2026-11-05), joined
+ * to their points by diagonal SVG leader lines.
  *
  * Points render in the order given — chronological (2026 → 2028 →
  * 2030 → 2036 → 2061) — so screen readers and text extraction meet
@@ -378,6 +402,55 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
             style={{ width: `${roadDisplayPct(nowPoint?.pct ?? 0)}%` }}
           />
         </div>
+        {/* Leader lines: one diagonal per event, from its pill's
+            bottom edge down to its point. Two overlay variants —
+            the stage geometry differs below sm (see ROAD_LEVELS). */}
+        <svg
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full max-sm:hidden"
+          viewBox="0 0 100 318"
+          preserveAspectRatio="none"
+        >
+          {points.map((point) =>
+            point.pill ? (
+              <line
+                key={`${point.pct}-${point.when}`}
+                x1={point.pill.anchor}
+                y1={ROAD_LEVELS[point.pill.level].lineTop}
+                x2={roadDisplayPct(point.pct)}
+                y2={ROAD_LINE_END}
+                stroke={ROAD_PILL_TONES[point.pill.tone].line}
+                strokeOpacity={ROAD_PILL_TONES[point.pill.tone].lineOpacity}
+                strokeWidth={2}
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            ) : null,
+          )}
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute inset-0 hidden h-full w-full max-sm:block"
+          viewBox="0 0 100 298"
+          preserveAspectRatio="none"
+        >
+          {points.map((point) =>
+            point.pill ? (
+              <line
+                key={`${point.pct}-${point.when}`}
+                x1={point.pill.anchorSm}
+                y1={ROAD_LEVELS[point.pill.level].lineTopSm}
+                x2={roadDisplayPct(point.pct)}
+                y2={ROAD_LINE_END_SM}
+                stroke={ROAD_PILL_TONES[point.pill.tone].line}
+                strokeOpacity={ROAD_PILL_TONES[point.pill.tone].lineOpacity}
+                strokeWidth={2}
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            ) : null,
+          )}
+        </svg>
         {points.map((point) => {
           const tone = point.pill ? ROAD_PILL_TONES[point.pill.tone] : null;
           const level = point.pill ? ROAD_LEVELS[point.pill.level] : null;
@@ -385,23 +458,21 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
           return (
             <div key={`${point.pct}-${point.when}`} className="contents">
               {point.pill && tone && level ? (
-                <>
-                  <span
-                    aria-hidden="true"
-                    className={`absolute w-[2px] -translate-x-1/2 rounded ${tone.tick} ${level.tick}`}
-                    style={{ left: `${displayPct}%` }}
-                  />
-                  <span
-                    className={`absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full px-2.5 py-1 text-[12px] font-semibold leading-[1.25] text-white max-sm:px-2 max-sm:text-[11px] ${tone.pill} ${level.pillAnchor} ${
-                      point.pill.tone === "coral"
-                        ? "shadow-[0_2px_8px_rgba(232,80,47,0.3)]"
-                        : "shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
-                    }`}
-                    style={{ left: `${displayPct}%` }}
-                  >
-                    {point.pill.label}
-                  </span>
-                </>
+                <span
+                  className={`absolute left-[var(--road-anchor)] z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full px-2.5 py-1 text-[12px] font-semibold leading-[1.25] text-white max-sm:left-[var(--road-anchor-sm)] max-sm:px-2 max-sm:text-[11px] ${tone.pill} ${level.pillAnchor} ${
+                    point.pill.tone === "coral"
+                      ? "shadow-[0_2px_8px_rgba(232,80,47,0.3)]"
+                      : "shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
+                  }`}
+                  style={
+                    {
+                      "--road-anchor": `${point.pill.anchor}%`,
+                      "--road-anchor-sm": `${point.pill.anchorSm}%`,
+                    } as CSSProperties
+                  }
+                >
+                  {point.pill.label}
+                </span>
               ) : null}
               <span
                 aria-hidden="true"
