@@ -4473,7 +4473,7 @@ export const articles: Article[] = [
     "sourcePublishedAt": "2026-10-31T00:00:00.000Z",
     "draftCreatedAt": "2026-11-05T14:05:20.000Z",
     "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
+    "fieldId": "geroscience-drugs-trials",
     "evidence": "Evidence E",
     "studySubjects": [],
     "contentType": "science-news",
@@ -4518,7 +4518,7 @@ export const articles: Article[] = [
       "publishedAt": "2026-10-31T00:00:00.000Z",
       "fetchedAt": "2026-11-05T14:04:00.000Z",
       "abstract": "USC researchers gave aged rats the experimental drug cinaciguat for two weeks. It restored aging liver sinusoidal endothelial cells, and amyloid beta levels fell by approximately 50%, to young-rat levels; LDL cholesterol also returned to youthful levels. The study, in the Journal of Biological Chemistry, also found a previously unknown HB-EGF signalling pathway between liver cells. Rats only; benefit in people is unproven.",
-      "fieldId": "enabling-technology-automation",
+      "fieldId": "geroscience-drugs-trials",
       "evidence": "Evidence E",
       "relevanceScore": 50,
       "significanceScore": 55,
@@ -4639,93 +4639,7 @@ export const articles: Article[] = [
     },
     "sitePublishedAt": "2026-11-05T14:05:40.000Z"
   },
-  {
-    "id": "2026-10-02-fda-will-put-aging-and-longevity-medicine-into-its-regulatory-science-pr",
-    "slug": "2026-10-02-fda-will-put-aging-and-longevity-medicine-into-its-regulatory-science-pr",
-    "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/",
-    "sourceLabel": "GEN",
-    "sourcePublishedAt": "2026-10-02T18:39:14.000Z",
-    "draftCreatedAt": "2026-11-05T14:06:00.000Z",
-    "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
-    "evidence": "Evidence E",
-    "studySubjects": [],
-    "contentType": "science-news",
-    "attentionLevel": 2,
-    "countdownImpact": "none",
-    "localizedFacts": {
-      "en": {
-        "studyDesign": "Science news report",
-        "populationOrModel": "Not assessed in this news report",
-        "outcomes": "The agency announced aging and longevity will feature in its updated regulatory science priorities",
-        "limitations": "A priorities report changes no rules by itself; no aging treatment target has been approved",
-        "resultStatus": "Science news report"
-      },
-      "ja": {
-        "studyDesign": "科学ニュース報道",
-        "populationOrModel": "本報道では研究対象を検証していない",
-        "outcomes": "改訂される規制科学の重点分野に、老化と長寿を盛り込む方針が示されました",
-        "limitations": "報告書だけでは制度は変わらず、老化を対象とする治療標的はまだ承認されていません",
-        "resultStatus": "科学ニュース報道"
-      }
-    },
-    "en": {
-      "headline": "FDA will put aging and longevity medicine into its regulatory science priorities",
-      "dek": "The FDA's chief scientist said aging and longevity will feature in the agency's updated Focus Areas of Regulatory Science report, with shared endpoints for aging trials under discussion.",
-      "whatHappened": "Speaking at the ARDD 2026 meeting in Boston, FDA Chief Scientist Steven Kozlowski said the agency will include aging and longevity in its updated Focus Areas of Regulatory Science (FARS) report. Officials discussed the need for shared, qualified endpoints that aging trials can use. Epigenetic-clock pioneer Steve Horvath spoke on the following panel.",
-      "whyItMatters": "Aging is not an approved treatment target today, so trial endpoints are a real bottleneck. The regulator publicly working on that bottleneck is a structural step for the whole field.",
-      "realityCheck": "A priorities report is not an approval pathway. No aging indication exists yet, and shared endpoints still have to be defined and qualified.",
-      "popHeadline": "The FDA is adding aging itself to its regulatory science agenda"
-    },
-    "ja": {
-      "headline": "米FDA、規制科学の重点分野に「老化と長寿医療」を明記へ",
-      "dek": "米FDAの首席科学者が、改訂される規制科学重点分野（FARS）報告書に老化と長寿を含めると述べ、老化を対象とする試験の共通評価指標も議論されました。",
-      "whatHappened": "ボストンで開かれたARDD 2026で、米FDAの首席科学者スティーブン・コズロフスキー氏が、改訂版の規制科学重点分野（FARS）報告書に老化と長寿を盛り込むと述べました。当局者たちは、老化を対象とする試験で使える共通の評価指標の必要性を議論しました。次のパネルでは、エピジェネティック時計の先駆者スティーブ・ホルバス氏が登壇しました。",
-      "whyItMatters": "老化は現状では承認された治療対象ではなく、試験の評価指標は分野全体のボトルネックです。規制当局がその解消に公に動き始めたことは、構造的な一歩です。",
-      "realityCheck": "重点分野の報告書は承認制度そのものではありません。老化を対象とする適応はまだ存在せず、共通の評価指標もこれから定義と検証が必要です。",
-      "popHeadline": "米FDAが「老化」そのものを規制科学の重点分野に入れる方針"
-    },
-    "sourceCheck": {
-      "sourceId": "gen-news",
-      "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/",
-      "title": "FDA to Highlight Aging, Longevity Medicine in Planned FARS Updates",
-      "publishedAt": "2026-10-02T18:39:14.000Z",
-      "fetchedAt": "2026-11-05T14:04:00.000Z",
-      "abstract": "At ARDD 2026 in Boston, FDA Chief Scientist Steven Kozlowski said the agency will include aging and longevity in its updated Focus Areas of Regulatory Science (FARS) report, due early in FY2027. Officials discussed shared, qualified endpoints for aging trials; epigenetic-clock pioneer Steve Horvath spoke on the following panel. The article cites a 2021 analysis valuing one extra year of life expectancy at 38 trillion dollars, and notes blocking aging mechanisms has raised lifespan up to 30% in experimental models.",
-      "fieldId": "enabling-technology-automation",
-      "evidence": "Evidence E",
-      "relevanceScore": 50,
-      "significanceScore": 45,
-      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
-      "recordId": "fda-to-highlight-aging-longevity-medicine-in-planned-fars-update",
-      "dateFields": {
-        "publicationDate": {
-          "raw": "2026-10-02T18:39:14Z",
-          "iso": "2026-10-02T18:39:14.000Z",
-          "precision": "datetime"
-        }
-      },
-      "windowMatch": {
-        "inWindow": true,
-        "matchedFields": [
-          "publicationDate"
-        ]
-      },
-      "urlOrigin": {
-        "kind": "source-feed",
-        "rule": "Exact link supplied by Genetic Engineering & Biotechnology News RSS",
-        "id": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/"
-      },
-      "studySubjects": [],
-      "hints": {
-        "pubTypes": [
-          "News"
-        ],
-        "journal": "Genetic Engineering & Biotechnology News"
-      }
-    },
-    "sitePublishedAt": "2026-11-05T14:06:00.000Z"
-  },
+
   {
     "id": "2026-10-25-an-ai-reads-biological-age-from-a-single-face-photo-and-predicts-surviva",
     "slug": "2026-10-25-an-ai-reads-biological-age-from-a-single-face-photo-and-predicts-surviva",
@@ -5422,93 +5336,7 @@ export const articles: Article[] = [
     },
     "sitePublishedAt": "2026-11-05T14:08:40.000Z"
   },
-  {
-    "id": "2026-10-30-newly-found-protein-omc1-guards-egg-chromosomes-through-the-long-wait-of",
-    "slug": "2026-10-30-newly-found-protein-omc1-guards-egg-chromosomes-through-the-long-wait-of",
-    "sourceUrl": "https://www.riken.jp/press/2026/20261030_1/index.html",
-    "sourceLabel": "理化学研究所",
-    "sourcePublishedAt": "2026-10-30T00:00:00.000Z",
-    "draftCreatedAt": "2026-11-05T14:09:00.000Z",
-    "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
-    "evidence": "Evidence E",
-    "studySubjects": [],
-    "contentType": "science-news",
-    "attentionLevel": 3,
-    "countdownImpact": "none",
-    "localizedFacts": {
-      "en": {
-        "studyDesign": "Science news report",
-        "populationOrModel": "Not assessed in this news report",
-        "outcomes": "Without OMC1, young mouse eggs showed the adhesion loss and separation errors of aged eggs",
-        "limitations": "Mouse work only; relevance to human egg aging is a mechanism-level suggestion",
-        "resultStatus": "Science news report"
-      },
-      "ja": {
-        "studyDesign": "科学ニュース報道",
-        "populationOrModel": "本報道では研究対象を検証していない",
-        "outcomes": "OMC1を欠くと、若いマウスの卵子でも接着低下と分離エラーが起きました",
-        "limitations": "マウスでの研究のみで、人の卵子老化への当てはまりは機構レベルの示唆にとどまります",
-        "resultStatus": "科学ニュース報道"
-      }
-    },
-    "en": {
-      "headline": "Newly found protein OMC1 guards egg chromosomes through the long wait of reproductive life",
-      "dek": "Chiba University, RIKEN and Kumamoto University researchers found that the protein OMC1 protects a chromosome glue in eggs; without it, young mouse eggs made the separation errors typical of aged eggs.",
-      "whatHappened": "A joint team from Chiba University, the RIKEN Center for Biosystems Dynamics Research and Kumamoto University identified a new protein, OMC1, that sits with the cohesin REC8 on egg chromosomes and prevents REC8 from being lost over the long storage period of eggs. In mice lacking OMC1, even young eggs showed weakened chromosome adhesion and separation errors resembling those of aged eggs. The finding explains part of the molecular machinery behind egg aging and female reproductive lifespan.",
-      "whyItMatters": "Egg aging is one of the earliest and least reversible forms of aging. Naming a factor that preserves chromosome cohesion gives reproductive-aging research a concrete molecular handle.",
-      "realityCheck": "The experiments are in mice and mouse eggs. Whether the same factor can be supported or restored in human eggs is a separate, unanswered question.",
-      "popHeadline": "A protein that keeps egg chromosomes glued together for decades is identified"
-    },
-    "ja": {
-      "headline": "卵子の染色体接着を長期間維持する新因子OMC1を発見",
-      "dek": "千葉大学と理化学研究所、熊本大学の共同研究で、卵子の染色体の接着を長期間守る新規タンパク質OMC1が見つかりました。欠けると若い卵子でも老化した卵子のようなエラーが起きます。",
-      "whatHappened": "千葉大学、理化学研究所生命機能科学研究センター、熊本大学の共同研究チームは、新規タンパク質OMC1が卵子の染色体上でコヒーシンREC8と共に存在し、卵子が長期間待機するあいだREC8の喪失を防ぐことを発見しました。OMC1を欠損したマウスでは、若い卵子でも老化した卵子のように染色体の接着低下や分離エラーが起きました。卵子老化に伴う女性の生殖寿命を支える分子機構の解明につながる成果です。",
-      "whyItMatters": "卵子の老化は最も早く進み、最も戻しにくい老化の一つです。染色体の接着を守る因子に名前がついたことで、生殖老化の研究に具体的な分子の取っ掛かりができました。",
-      "realityCheck": "実験はマウスとマウスの卵子でのものです。同じ因子を人の卵子で支えたり回復させたりできるかは、別の未解決の問いです。",
-      "popHeadline": "卵子の染色体を何十年も接着し続ける新しいタンパク質OMC1を発見"
-    },
-    "sourceCheck": {
-      "sourceId": "riken-press",
-      "sourceUrl": "https://www.riken.jp/press/2026/20261030_1/index.html",
-      "title": "卵子の染色体接着を長期間維持する新因子OMC1を発見 －卵子老化に伴う女性の生殖寿命を支える分子機構の解明へ－",
-      "publishedAt": "2026-10-30T00:00:00.000Z",
-      "fetchedAt": "2026-11-05T14:04:00.000Z",
-      "abstract": "千葉大学、理化学研究所生命機能科学研究センター、熊本大学の共同研究。新規タンパク質OMC1（Oocyte Meiotic Chromosome protein 1）が卵子の染色体上でコヒーシンREC8と共に存在し、長期間にわたりREC8の喪失を防ぐことを発見した。OMC1を欠損したマウスでは、若い卵子でも老化した卵子のように染色体の接着低下や分離エラーが起きた。卵子老化に伴う女性の生殖寿命を支える分子機構の解明につながる成果。",
-      "fieldId": "enabling-technology-automation",
-      "evidence": "Evidence E",
-      "relevanceScore": 50,
-      "significanceScore": 55,
-      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
-      "recordId": "index.html",
-      "dateFields": {
-        "publicationDate": {
-          "raw": "2026-10-30",
-          "iso": "2026-10-30",
-          "precision": "day"
-        }
-      },
-      "windowMatch": {
-        "inWindow": true,
-        "matchedFields": [
-          "publicationDate"
-        ]
-      },
-      "urlOrigin": {
-        "kind": "source-feed",
-        "rule": "Exact link supplied by RIKEN Press Releases RSS",
-        "id": "https://www.riken.jp/press/2026/20261030_1/index.html"
-      },
-      "studySubjects": [],
-      "hints": {
-        "pubTypes": [
-          "News"
-        ],
-        "journal": "RIKEN Press Releases"
-      }
-    },
-    "sitePublishedAt": "2026-11-05T14:09:00.000Z"
-  },
+
   {
     "id": "2026-11-02-bill-gates-alzheimer-s-blood-tests-and-approved-antibody-drugs-exist-but",
     "slug": "2026-11-02-bill-gates-alzheimer-s-blood-tests-and-approved-antibody-drugs-exist-but",
@@ -5604,7 +5432,7 @@ export const articles: Article[] = [
     "sourcePublishedAt": "2026-10-22T08:10:00.000Z",
     "draftCreatedAt": "2026-11-05T14:09:40.000Z",
     "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "gene-therapy-delivery",
+    "fieldId": "enabling-technology-automation",
     "evidence": "Evidence E",
     "studySubjects": [],
     "contentType": "science-news",
@@ -5649,7 +5477,7 @@ export const articles: Article[] = [
       "publishedAt": "2026-10-22T08:10:00.000Z",
       "fetchedAt": "2026-11-05T14:04:00.000Z",
       "abstract": "OpenAIが2026年10月21日に発表。数千体のAIエージェント（GPT-Rosalind、PerturbAI、Scripps研究所と連携）が、マウス全脳のCRISPRアトラスに含まれる数百万個の脳細胞データをわずか32分で分析した（人間の研究者なら数カ月〜1年と見積もられた作業）。mTOR関連のTsc1/Tsc2（小脳ではTsc2操作で数十のシナプス遺伝子が変化、Tsc1はほぼ変化なし）や、ペリー症候群／パーキンソン様症状に関わるDCTN1（コレステロール合成遺伝子の増加）に関する手掛かりを得た。マルチエージェントは最も重い条件で単一エージェントの11本に対し数千本の論文を参照し、盲検した専門家は75％の割合でマルチエージェントの結果を好んだ。推論アトラスも公開された。段階はマウスデータのAI解析。",
-      "fieldId": "gene-therapy-delivery",
+      "fieldId": "enabling-technology-automation",
       "evidence": "Evidence E",
       "relevanceScore": 50,
       "significanceScore": 40,
@@ -5683,93 +5511,7 @@ export const articles: Article[] = [
     },
     "sitePublishedAt": "2026-11-05T14:09:40.000Z"
   },
-  {
-    "id": "2026-09-24-early-life-nutrition-leaves-a-protein-memory-that-can-extend-lifespan-by",
-    "slug": "2026-09-24-early-life-nutrition-leaves-a-protein-memory-that-can-extend-lifespan-by",
-    "sourceUrl": "https://www.riken.jp/press/2026/20260924_1/index.html",
-    "sourceLabel": "理化学研究所",
-    "sourcePublishedAt": "2026-09-24T00:00:00.000Z",
-    "draftCreatedAt": "2026-11-05T14:10:00.000Z",
-    "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
-    "evidence": "Evidence E",
-    "studySubjects": [],
-    "contentType": "science-news",
-    "attentionLevel": 3,
-    "countdownImpact": "none",
-    "localizedFacts": {
-      "en": {
-        "studyDesign": "Science news report",
-        "populationOrModel": "Not assessed in this news report",
-        "outcomes": "Larval protein restriction extended adult lifespan by up to 20%; the memory traced to Lsp2",
-        "limitations": "Fruit-fly work only; a mammalian equivalent is unknown",
-        "resultStatus": "Science news report"
-      },
-      "ja": {
-        "studyDesign": "科学ニュース報道",
-        "populationOrModel": "本報道では研究対象を検証していない",
-        "outcomes": "幼虫期のタンパク質制限で成虫の寿命が最大約20％延び、担い手はLsp2と分かりました",
-        "limitations": "ショウジョウバエでの研究のみで、哺乳類に同等の仕組みがあるかは分かっていません",
-        "resultStatus": "科学ニュース報道"
-      }
-    },
-    "en": {
-      "headline": "Early-life nutrition leaves a protein 'memory' that can extend lifespan by up to 20% in flies",
-      "dek": "RIKEN researchers found that restricting protein only in the larval stage extended adult fruit-fly lifespan by up to 20%, and traced the memory of that diet to a storage protein, Lsp2.",
-      "whatHappened": "A RIKEN team led by Fumiaki Obata restricted protein only during the larval stage of fruit flies. Even on a normal adult diet, the flies lived up to 20% longer. Isotope tracing showed about half of the protein present on day 6 still came from larval amino acids, and the storage protein Lsp2 carried this nutritional memory. Suppressing Lsp2 alone extended lifespan without the growth and fertility costs, and lowering the amino acids tyrosine and phenylalanine reproduced the effect. The study was published in Nature.",
-      "whyItMatters": "A defined molecule that stores an early-life nutritional state and moves lifespan is a clean mechanistic lead — and it separates the lifespan effect from the diet itself.",
-      "realityCheck": "The work is in fruit flies, published just before this site's October window. Whether any equivalent memory mechanism matters in mammals is unknown.",
-      "popHeadline": "A stored protein remembers larval diet — and can lengthen fly life by up to 20%"
-    },
-    "ja": {
-      "headline": "幼少期の栄養が寿命を左右する仕組み、貯蔵タンパク質が栄養記憶を担うことをハエで解明",
-      "dek": "理化学研究所の研究で、幼虫期だけタンパク質を制限すると成虫の寿命が最大約20％延び、その栄養の記憶を貯蔵タンパク質Lsp2が担うことが分かりました。",
-      "whatHappened": "理化学研究所生命機能科学研究センターの小幡史明氏らは、ショウジョウバエで幼虫期だけタンパク質を制限すると、成虫が通常食でも寿命が最大約20％延びることを示しました。安定同位体追跡では、6日目の時点でタンパク質の約半分が幼虫期のアミノ酸由来で、貯蔵タンパク質Lsp2が「栄養記憶」の担い手と分かりました。Lsp2の抑制だけでも成長・繁殖の代償なしに寿命が延び、全身のチロシンとフェニルアラニンの低下でも効果が再現されました。論文は『Nature』に掲載されました。",
-      "whyItMatters": "幼少期の栄養状態を蓄え、寿命を動かす分子が特定されたことで、食事そのものと寿命効果を切り分けて研究できるようになりました。",
-      "realityCheck": "ショウジョウバエでの研究で、掲載は当サイトの対象期間の直前です。哺乳類に同等の記憶の仕組みがあるかは分かっていません。",
-      "popHeadline": "幼少期の栄養の「記憶」を担うタンパク質、ハエの寿命を最大20％延ばす"
-    },
-    "sourceCheck": {
-      "sourceId": "riken-press",
-      "sourceUrl": "https://www.riken.jp/press/2026/20260924_1/index.html",
-      "title": "幼少期の栄養が寿命を左右する仕組み －貯蔵タンパク質が栄養記憶を担うことをハエで明らかに－",
-      "publishedAt": "2026-09-24T00:00:00.000Z",
-      "fetchedAt": "2026-11-05T14:04:00.000Z",
-      "abstract": "理化学研究所生命機能科学研究センターの小幡史明氏らの研究。ショウジョウバエで、幼虫期だけタンパク質を制限すると成虫が通常食でも寿命が最大約20％延び、雌雄ともに効果があった一方、体サイズは約10％小さく雌の産卵数は約30％減った。安定同位体追跡では6日目時点でタンパク質の約半分が幼虫期のアミノ酸由来で、貯蔵タンパク質Lsp2が「栄養記憶」の担い手と判明。Lsp2の抑制だけでも成長・繁殖の代償なしに寿命が延び、全身のチロシンとフェニルアラニンが約20％低下、これら単独の制限でも効果が再現された。『Nature』2026年9月23日オンライン掲載。",
-      "fieldId": "enabling-technology-automation",
-      "evidence": "Evidence E",
-      "relevanceScore": 50,
-      "significanceScore": 55,
-      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
-      "recordId": "index.html",
-      "dateFields": {
-        "publicationDate": {
-          "raw": "2026-09-24",
-          "iso": "2026-09-24",
-          "precision": "day"
-        }
-      },
-      "windowMatch": {
-        "inWindow": true,
-        "matchedFields": [
-          "publicationDate"
-        ]
-      },
-      "urlOrigin": {
-        "kind": "source-feed",
-        "rule": "Exact link supplied by RIKEN Press Releases RSS",
-        "id": "https://www.riken.jp/press/2026/20260924_1/index.html"
-      },
-      "studySubjects": [],
-      "hints": {
-        "pubTypes": [
-          "News"
-        ],
-        "journal": "RIKEN Press Releases"
-      }
-    },
-    "sitePublishedAt": "2026-11-05T14:10:00.000Z"
-  },
+
   {
     "id": "2026-10-04-people-who-lost-visceral-fat-kept-more-brain-volume-years-later-follow-u",
     "slug": "2026-10-04-people-who-lost-visceral-fat-kept-more-brain-volume-years-later-follow-u",
@@ -5778,7 +5520,7 @@ export const articles: Article[] = [
     "sourcePublishedAt": "2026-10-04T06:00:00.000Z",
     "draftCreatedAt": "2026-11-05T14:10:20.000Z",
     "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
+    "fieldId": "biomarkers-diagnostics",
     "evidence": "Evidence E",
     "studySubjects": [],
     "contentType": "science-news",
@@ -5823,7 +5565,7 @@ export const articles: Article[] = [
       "publishedAt": "2026-10-04T06:00:00.000Z",
       "fetchedAt": "2026-11-05T14:04:00.000Z",
       "abstract": "イスラエル・ベングリオン大学（ネゲブ）の研究チームが、過去の食事・生活習慣介入試験4件に参加した成人533人を、5〜16年後に腹部・脳MRIと認知機能検査（MoCA）で再調査した。追跡時平均年齢61.4歳、86％が男性。3時点で記録のそろった295人では内臓脂肪を長く多く抱えた人ほどMoCAや記憶の点数が低く、297人では介入期間中に内臓脂肪が平均24％減り、多く減らした人ほど5〜10年後の脳全体・灰白質の体積が保たれ、海馬も健康に保たれていた。脳を3回撮影した188人では内臓脂肪が多い期間が長い人ほど脳の萎縮が速く脳室も拡大した。BMIや皮下脂肪には同様の関連はなかった。媒介因子としては空腹時血糖など血糖指標のみが関連。",
-      "fieldId": "enabling-technology-automation",
+      "fieldId": "biomarkers-diagnostics",
       "evidence": "Evidence E",
       "relevanceScore": 50,
       "significanceScore": 45,
@@ -5952,7 +5694,7 @@ export const articles: Article[] = [
     "sourcePublishedAt": "2026-11-03T15:00:00.000Z",
     "draftCreatedAt": "2026-11-05T14:11:00.000Z",
     "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
+    "fieldId": "biomarkers-diagnostics",
     "evidence": "Evidence E",
     "studySubjects": [],
     "contentType": "science-news",
@@ -5997,7 +5739,7 @@ export const articles: Article[] = [
       "publishedAt": "2026-11-03T15:00:00.000Z",
       "fetchedAt": "2026-11-05T14:04:00.000Z",
       "abstract": "国立長寿医療研究センターなどによる日本の地域在住高齢者を対象とした研究を取り上げたコラム。愛知県の高齢者378人を対象に分析し、食事時間の不規則さと血液中の生物学的老化マーカーGDF-15との関連を調べ、食事の質がその関連をどの程度説明するかを検討した。食事時間の乱れと老化進行のつながりの一部は、食事の質の低下で説明できるとする内容。出典論文は『Eur Geriatr Med』2026年掲載。",
-      "fieldId": "enabling-technology-automation",
+      "fieldId": "biomarkers-diagnostics",
       "evidence": "Evidence E",
       "relevanceScore": 50,
       "significanceScore": 45,
@@ -6030,93 +5772,6 @@ export const articles: Article[] = [
       }
     },
     "sitePublishedAt": "2026-11-05T14:11:00.000Z"
-  },
-  {
-    "id": "2026-10-27-golf-cognition-and-dementia-prevention-a-longevity-medicine-leader-in-ni",
-    "slug": "2026-10-27-golf-cognition-and-dementia-prevention-a-longevity-medicine-leader-in-ni",
-    "sourceUrl": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/",
-    "sourceLabel": "日経Gooday",
-    "sourcePublishedAt": "2026-10-27T00:00:00.000Z",
-    "draftCreatedAt": "2026-11-05T14:11:20.000Z",
-    "discoveredAt": "2026-11-05T14:04:00.000Z",
-    "fieldId": "enabling-technology-automation",
-    "evidence": "Evidence E",
-    "studySubjects": [],
-    "contentType": "science-news",
-    "attentionLevel": 2,
-    "countdownImpact": "none",
-    "localizedFacts": {
-      "en": {
-        "studyDesign": "Science news report",
-        "populationOrModel": "Not assessed in this news report",
-        "outcomes": "The Lancet commission's preventable share of dementia was put at about 45% across 14 risk factors",
-        "limitations": "Interview feature with a paywalled second half; figures are population-level estimates",
-        "resultStatus": "Science news report"
-      },
-      "ja": {
-        "studyDesign": "科学ニュース報道",
-        "populationOrModel": "本報道では研究対象を検証していない",
-        "outcomes": "認知症の約45％が14のリスク因子で予防可能と見積もられました",
-        "limitations": "インタビュー特集で後半は有料部分。数字は集団レベルの見積もりです",
-        "resultStatus": "科学ニュース報道"
-      }
-    },
-    "en": {
-      "headline": "Golf, cognition and dementia prevention: a longevity-medicine leader in Nikkei Gooday's special",
-      "dek": "In Nikkei Gooday's golf-and-health special, the honorary director of the Tokyo Health and Longevity Medical Center surveys dementia-prevention research, including the Lancet commission's estimate that about 45% of dementia is potentially preventable.",
-      "whatHappened": "The special feature interviewed a co-author of a 2026 paper on golf and cognitive function from the National Center for Geriatrics and Gerontology research community. On where dementia prevention stands, the latest Lancet commission report estimates that about 45% of dementia cases are potentially preventable through 14 modifiable risk factors, among them low education, hearing loss, high LDL cholesterol, depression, head injury, physical inactivity, diabetes, hypertension, smoking, obesity, excess alcohol, social isolation, air pollution and vision loss. The feature also introduces research linking continued golf with a 50% lower risk of memory impairment.",
-      "whyItMatters": "Dementia carries the largest care burden of any aging outcome. A preventable share near half reframes it from fate into a set of addressable risks — behaviour and delivery, the same wall this site tracks.",
-      "realityCheck": "This is an interview feature whose second half is paywalled. The 45% is the Lancet commission's population-level estimate, not a personal guarantee, and the golf finding is an association.",
-      "popHeadline": "About 45% of dementia may be preventable — the Lancet figure behind a golf-and-health special"
-    },
-    "ja": {
-      "headline": "ゴルフと健康の関係は？ 認知症の45％は予防可能という最新報告を聞く",
-      "dek": "日経Goodayの「ゴルフと健康」特集で、東京都健康長寿医療センター名誉理事長の鳥羽研二氏が、認知症予防研究の到達点とゴルフと認知機能の研究について語りました。",
-      "whatHappened": "日経Goodayの特集は、国立長寿医療研究センターの島田裕之氏らが2026年に発表した「ゴルフと認知機能の関係」の論文にも名を連ねる鳥羽研二氏へのインタビューです。認知症予防研究の到達点として、Lancet専門委員会の最新報告では認知症の約45％が予防可能と紹介されました。修正可能な14のリスク因子には、教育水準の低さ、聴覚障害、高LDLコレステロール、抑うつ、頭部外傷、運動不足、糖尿病、高血圧、喫煙、肥満、過度の飲酒、社会的孤立、大気汚染、視覚障害が挙げられます。ゴルフを続けている人の記憶障害のリスクは50％低下するとの研究も紹介されています。",
-      "whyItMatters": "認知症は介護負担が最も大きい老化の帰結です。約半分が予防可能という見積もりは、認知症を運命ではなく、対処できるリスクの集まりとして捉え直させます。",
-      "realityCheck": "インタビュー特集で、本文の後半は有料会員限定です。45％はLancet専門委員会の集団レベルの見積もりで個人への保証ではなく、ゴルフの知見も関連の段階です。",
-      "popHeadline": "認知症の約45％は予防可能、ゴルフと健康の特集で鳥羽研二氏に聞く"
-    },
-    "sourceCheck": {
-      "sourceId": "nikkei-gooday",
-      "sourceUrl": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/",
-      "title": "ゴルフと健康との関係は？ プロゴルファーもかかわった世界初の研究（「ゴルフと健康」特集・東京都健康長寿医療センター名誉理事長 鳥羽研二氏に聞く 前編）",
-      "publishedAt": "2026-10-27T00:00:00.000Z",
-      "fetchedAt": "2026-11-05T14:04:00.000Z",
-      "abstract": "国立長寿医療研究センターの島田裕之氏らが2026年に発表した「ゴルフと認知機能の関係」の論文にも名を連ねる鳥羽研二氏へのインタビュー。認知症予防研究の到達点として、Lancet専門委員会の最新報告では認知症の約45％が予防可能（2017年報告では35％）と紹介。2024年版の修正可能な14リスク因子と予防寄与率は、教育水準の低さ5％、聴覚障害7％、高LDLコレステロール7％、抑うつ3％、頭部外傷3％、運動不足2％、糖尿病2％、高血圧2％、喫煙2％、肥満1％、過度の飲酒1％、社会的孤立5％、大気汚染3％、視覚障害2％。記事の構成見出しには「ゴルフを続けている人の記憶障害のリスクは50％低下」とある（本文後半は有料会員限定）。段階はヒト研究の解説インタビュー。",
-      "fieldId": "enabling-technology-automation",
-      "evidence": "Evidence E",
-      "relevanceScore": 50,
-      "significanceScore": 45,
-      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
-      "recordId": "102100001",
-      "dateFields": {
-        "publicationDate": {
-          "raw": "2026-10-27",
-          "iso": "2026-10-27",
-          "precision": "day"
-        }
-      },
-      "windowMatch": {
-        "inWindow": true,
-        "matchedFields": [
-          "publicationDate"
-        ]
-      },
-      "urlOrigin": {
-        "kind": "source-feed",
-        "rule": "Exact link supplied by Nikkei Gooday RSS",
-        "id": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/"
-      },
-      "studySubjects": [],
-      "hints": {
-        "pubTypes": [
-          "News"
-        ],
-        "journal": "Nikkei Gooday"
-      }
-    },
-    "sitePublishedAt": "2026-11-05T14:11:20.000Z"
   }
 ] as Article[];
 

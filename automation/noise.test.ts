@@ -34,6 +34,21 @@ function ranked(overrides: Partial<FetchedRecord> = {}): RankedRecord {
 }
 
 describe("noise exclusion", () => {
+  it("excludes a record with no field fit instead of lending it a tag", () => {
+    const reasons = exclusionReasons(
+      ranked({
+        title: "Golf and health special: an interview about dementia prevention walks",
+        abstract: "A magazine interview about golf, walking and memory in later life.",
+      }),
+    );
+    assert.ok(reasons.some((reason) => reason.includes("no field fit")));
+  });
+
+  it("does not flag a field-matched record as field-less", () => {
+    const reasons = exclusionReasons(ranked());
+    assert.ok(!reasons.some((reason) => reason.includes("no field fit")));
+  });
+
   it("excludes celebrity and gossip coverage", () => {
     const reasons = exclusionReasons(
       ranked({

@@ -443,7 +443,7 @@ function clampScore(value: number): number {
   return Math.max(0, Math.min(100, Math.round(value)));
 }
 
-export function classifyField(record: FetchedRecord): { fieldId: FieldId; hits: string[] } {
+export function classifyField(record: FetchedRecord): { fieldId: FieldId | null; hits: string[] } {
   const text = haystack(record);
   let best: FieldId = "geroscience-drugs-trials";
   let bestScore = -1;
@@ -459,10 +459,13 @@ export function classifyField(record: FetchedRecord): { fieldId: FieldId; hits: 
   }
 
   if (bestScore <= 0) {
-    return {
-      fieldId: "geroscience-drugs-trials",
-      hits: [],
-    };
+    // No field's terms appear in the title/abstract, so no honest
+    // field tag exists for this record. Return null instead of the
+    // old silent default (a generic geroscience bucket): a null field
+    // is a hard exclusion in exclusionReasons, so an unclassifiable
+    // record can never be published wearing a borrowed tag (owner
+    // finding, 2026-11-06).
+    return { fieldId: null, hits: [] };
   }
   return { fieldId: best, hits: bestHits };
 }
@@ -493,7 +496,7 @@ export function scoreRelevance(record: FetchedRecord, fieldHits: string[]): { sc
       notes.push(`field terms in abstract: ${fieldHits.slice(0, 4).join(", ")}`);
     }
   } else {
-    notes.push("no field-specific terms; assigned the generic geroscience bucket");
+    notes.push("no field-specific terms; no field assigned");
   }
 
   if (CANCER_TREATMENT.test(`${title} ${abstract}`) && CANCER_THERAPY.test(`${title} ${abstract}`)) {
@@ -829,7 +832,7 @@ export function rankRecord(record: FetchedRecord): RankedRecord {
       significanceScore = clampScore(significanceScore);
     }
     return {
-      ...record, studySubjects: [], fieldId: field.hits.length ? field.fieldId : "enabling-technology-automation",
+      ...record, studySubjects: [], fieldId: field.fieldId,
       evidence: "Evidence E", relevanceScore: relevant ? 50 : 0,
       significanceScore,
       reason: "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
@@ -841,7 +844,7 @@ export function rankRecord(record: FetchedRecord): RankedRecord {
   const significance = scoreSignificance(record);
   const studySubjects = detectStudySubjects(record);
   const reason = [
-    `field=${field.fieldId}`,
+    `field=${field.fieldId ?? "none"}`,
     `evidence=${evidence.evidence}`,
     ...evidence.notes,
     ...relevance.notes,

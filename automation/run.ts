@@ -83,8 +83,11 @@ export async function runIngest(options: RunIngestOptions = {}): Promise<IngestR
         relevanceScore: record.relevanceScore,
         significanceScore: record.significanceScore,
       });
-    } else {
-      thresholdPassed.push(toCandidate(record));
+    } else if (record.fieldId) {
+      // exclusionReasons above rejects every field-less record, so a
+      // record reaching this point always carries a real field; the
+      // check only narrows the type for toCandidate.
+      thresholdPassed.push(toCandidate({ ...record, fieldId: record.fieldId }));
     }
   }
 

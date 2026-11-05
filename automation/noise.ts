@@ -15,6 +15,12 @@ export function exclusionReasons(record: RankedRecord): string[] {
   const reasons: string[] = [];
   const scienceNews = isScienceNews(record);
 
+  if (!record.fieldId) {
+    reasons.push(
+      "no field fit: the title/abstract match no field's terms, so no honest field tag exists",
+    );
+  }
+
   if (
     /\b(celebrity|celebrities|gossip|tabloid|hollywood|kardashian|influencer gossip)\b/i.test(
       text,

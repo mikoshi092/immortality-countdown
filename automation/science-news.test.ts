@@ -11,9 +11,16 @@ import { runIngest } from "./run";
 import { enabledSources, SOURCES, sourceById } from "./sources";
 import { sourceLabelFromUrl } from "./editorial/from-candidate";
 import type { GeneratedCopy } from "./editorial/types";
+import type { RankedRecord } from "./types";
+
+/** toCandidate requires a real field; every fixture here matches one. */
+function candidateOf(ranked: RankedRecord) {
+  assert.ok(ranked.fieldId, "fixture should match a field");
+  return toCandidate({ ...ranked, fieldId: ranked.fieldId });
+}
 
 // Synthetic reporting fixture; not a production article or a quotation.
-const title = "AI biolab finds repeated DNA in a viral genome";
+const title = "AI laboratory automation finds repeated DNA in a viral genome";
 const summary = "Researchers announced an AI biology laboratory and reported a repeating DNA pattern in a viral genome. Its function remains unknown. The report describes an early discovery; experimental and therapeutic applications remain to be investigated.";
 const url = "https://www.nature.com/articles/d41586-026-03039-6";
 const window = lookbackWindow(new Date("2026-09-25T12:00:00Z"));
@@ -35,7 +42,7 @@ describe("science-news discovery and publication", () => {
     assert.equal(ranked.evidence, "Evidence E");
     assert.equal(passesRankThresholds(ranked), true);
     assert.deepEqual(exclusionReasons(ranked), []);
-    const candidate = toCandidate(ranked);
+    const candidate = candidateOf(ranked);
     const report = await generateDrafts([candidate], { name: "mock", generate: async () => copy });
     assert.equal(report.drafts.length, 1, JSON.stringify(report.rejectedDrafts));
     const draft = report.drafts[0];
@@ -62,7 +69,7 @@ describe("science-news discovery and publication", () => {
   });
 
   it("holds a headline-only source instead of filling in facts", async () => {
-    const candidate = toCandidate(rankRecord(parseNatureNews(rss.replace(summary, "Short summary"), window)[0]));
+    const candidate = candidateOf(rankRecord(parseNatureNews(rss.replace(summary, "Short summary"), window)[0]));
     const report = await generateDrafts([candidate], { name: "mock", generate: async () => copy });
     assert.equal(report.counts.held, 1);
     assert.equal(report.drafts.length, 0);
@@ -184,7 +191,7 @@ describe("general media sources", () => {
 
   it("publishes a media item with a pop headline and attention level, and guards the headline stage", async () => {
     const source = sourceById("sciencedaily-aging")!;
-    const candidate = toCandidate(rankRecord(parseRssFeed(source, sdRss, window)[0]));
+    const candidate = candidateOf(rankRecord(parseRssFeed(source, sdRss, window)[0]));
     const report = await generateDrafts([candidate], { name: "mock", generate: async () => mediaCopy });
     assert.equal(report.drafts.length, 1, JSON.stringify(report.rejectedDrafts));
     const draft = report.drafts[0];
