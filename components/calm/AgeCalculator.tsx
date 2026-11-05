@@ -3,26 +3,22 @@
 import { useState } from "react";
 import type { SiteLocale } from "@/lib/locale";
 
-type Result = { kind: "ages"; early: number; median: number } | { kind: "prompt" };
+type Result = { kind: "age"; ageAtEarly: number } | { kind: "prompt" };
 
 /**
- * Age calculator island (approved calm mock). Year offsets are passed in
- * from the server and counted from the model's base year — the same
- * convention as lib/countdown (`heroEarlyYears`): early scenario first,
- * standard pace second.
+ * Age calculator island: a fill-in-the-sentence form (owner design,
+ * 2026-11-05). The single result line uses the EARLY scenario only:
+ * the age the visitor will be at the earliest arrival, counted with
+ * the years-to-early offset passed in from the server — the same
+ * convention as lib/countdown (`heroEarlyYears`, earlyYear − baseYear).
+ * No year counts are hard-coded here.
  */
 export default function AgeCalculator({
   locale,
-  earlyYear,
-  medianYear,
   yearsToEarly,
-  yearsToMedian,
 }: {
   locale: SiteLocale;
-  earlyYear: number;
-  medianYear: number;
   yearsToEarly: number;
-  yearsToMedian: number;
 }) {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<Result | null>(null);
@@ -34,13 +30,13 @@ export default function AgeCalculator({
       setResult({ kind: "prompt" });
       return;
     }
-    setResult({ kind: "ages", early: age + yearsToEarly, median: age + yearsToMedian });
+    setResult({ kind: "age", ageAtEarly: age + yearsToEarly });
   };
 
   return (
     <div className="mx-auto mt-[22px] max-w-[560px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
-      <label className="flex flex-wrap items-center justify-center gap-[10px] text-[1.05rem] font-bold">
-        {ja ? "今の年齢" : "Your age now"}
+      <div className="flex flex-wrap items-center justify-center gap-[10px] text-[1.05rem] font-bold">
+        {ja ? "私の現在の年齢は" : "My current age is"}
         <input
           type="number"
           min={0}
@@ -51,10 +47,10 @@ export default function AgeCalculator({
           onKeyDown={(event) => {
             if (event.key === "Enter") calculate();
           }}
-          aria-label={ja ? "今の年齢" : "Your age now"}
+          aria-label={ja ? "現在の年齢" : "Your current age"}
           className="w-[90px] rounded-[10px] border-2 border-[#7d97bd] px-2 py-[9px] text-center text-[1.1rem] font-extrabold text-[#233252] focus:border-[#57b8ff] focus:outline-none"
         />
-        {ja ? "歳" : ""}
+        {ja ? "歳" : "years old"}
         <button
           type="button"
           onClick={calculate}
@@ -62,7 +58,7 @@ export default function AgeCalculator({
         >
           {ja ? "計算する" : "Calculate"}
         </button>
-      </label>
+      </div>
       {result !== null ? (
         <p className="mt-4 text-center text-[1.12rem] font-bold leading-[1.7]" aria-live="polite">
           {result.kind === "prompt" ? (
@@ -73,15 +69,14 @@ export default function AgeCalculator({
             )
           ) : ja ? (
             <>
-              早ければ（{earlyYear}年）<b className="text-[1.45rem] text-[#e8502f]">{result.early}</b>
-              歳。標準のペース（{medianYear}年）では{" "}
-              <b className="text-[1.45rem] text-[#e8502f]">{result.median}</b>歳 です。
+              早ければ、貴方が
+              <b className="text-[1.45rem] text-[#e8502f]">{result.ageAtEarly}</b>
+              歳になった時に不老不死となる可能性があります。
             </>
           ) : (
             <>
-              At the earliest ({earlyYear}) you would be{" "}
-              <b className="text-[1.45rem] text-[#e8502f]">{result.early}</b>. At the standard pace
-              ({medianYear}), <b className="text-[1.45rem] text-[#e8502f]">{result.median}</b>.
+              At the earliest, you could reach immortality when you turn{" "}
+              <b className="text-[1.45rem] text-[#e8502f]">{result.ageAtEarly}</b>.
             </>
           )}
         </p>

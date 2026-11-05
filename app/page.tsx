@@ -10,7 +10,6 @@ import {
   Disclosure,
   FaqSection,
   FieldCards,
-  LevGauge,
   Milestones,
   RangeBar,
   SectionHeading,
@@ -105,7 +104,6 @@ export default function Home() {
   const road2028Pct = gainPercentAt(2028);
   const road2030Pct = gainPercentAt(2030);
   const road2036Pct = gainPercentAt(2036);
-  const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
   const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "en", now);
   const faq = faqItems("en");
@@ -194,14 +192,9 @@ export default function Home() {
             sub="On this site, achieving immortality is defined as the moment we reach longevity escape velocity — the concept proposed by futurist Ray Kurzweil, gerontologist Aubrey de Grey, and others."
           />
           <Disclosure label="Read more">
-            <LevGauge
-              nowLabel="🌱 Now"
-              nowValueText={`Each year lived adds ${currentGain.toFixed(2)} years of life`}
-              nowPct={Math.round(currentGain * 100)}
-              goalLabel="🚀 The overtaking point (LEV)"
-              goalValueText="Each year adds 1.00 years"
-              note={`Right now, each year you live adds about ${currentGain.toFixed(2)} years (roughly 2.6 months) to life expectancy. When that gain reaches 1.00 years, medicine starts to outrun aging.`}
-            />
+<p className="mt-6 leading-[1.9]">
+              Longevity escape velocity (LEV) is the point at which medical progress begins to extend life faster than we age. In OECD countries today, average life expectancy for men and women is growing by 2.6 months every year. In other words, for every year the average person lives, their lifespan extends by about 2.6 months. When that growth reaches one full year per year, every year lived adds a year of life — in theory, a state in which we can keep escaping death by aging. Reaching LEV is nothing less than the immortality humanity has always dreamed of.
+            </p>
           </Disclosure>
         </section>
 
@@ -255,7 +248,7 @@ export default function Home() {
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
-            title="📰 Ageless Longevity News"
+            title="📰 Immortality News"
             sub="Research news from around the world. Each headline links straight to the original article."
           />
           <div className="mt-6">
@@ -288,17 +281,7 @@ export default function Home() {
         {/* Age calculator */}
         <section className="pt-[52px]">
           <SectionHeading title="Will you live long enough to live forever?" sub="Enter your current age to find out." />
-          <AgeCalculator
-            locale="en"
-            earlyYear={earlyYear}
-            medianYear={medianYear}
-            yearsToEarly={heroEarlyYears}
-            yearsToMedian={yearsToMedian}
-          />
-          <p className="mt-[14px] text-center text-[0.92rem] text-[#4a5878]">
-            Example: a baby born this year turns {heroEarlyYears} in {earlyYear}. Someone who is 40
-            now will be {40 + heroEarlyYears} years old.
-          </p>
+          <AgeCalculator locale="en" yearsToEarly={heroEarlyYears} />
         </section>
 
         {/* Eight fields */}

@@ -29,7 +29,7 @@ export const ARTICLE_UI = {
     modelNote:
       "The LEV model is re-evaluated about twice a year, or sooner after an extraordinary event. A typical research article does not change the countdown.",
     readSource: "Read the primary source",
-    backToList: "Back to Ageless Longevity News",
+    backToList: "Back to Immortality News",
     otherLanguage: "日本語で読む",
     studyDesign: "Study design",
     population: "Population / model",
@@ -39,7 +39,7 @@ export const ARTICLE_UI = {
     limitations: "Limitations",
     trialPhase: "Trial phase",
     resultStatus: "Result status",
-    listTitle: "Ageless Longevity News",
+    listTitle: "Immortality News",
     listDek:
       "Longevity research news from around the world. Each headline links straight to the original article.",
     listEmpty: "No research updates currently meet the publication criteria.",
