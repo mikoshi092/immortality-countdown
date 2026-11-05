@@ -247,13 +247,19 @@ function roadDisplayPct(pct: number): number {
 
 export type RoadPoint = {
   /** The model's gain for the point's year, in percent (gain ×
-   *  100). This is the value printed on the label; the point's
-   *  position on the track is `roadDisplayPct(pct)`, a deformed
-   *  scale (see above). */
+   *  100). For the start and end points this is the value printed
+   *  on the under-track label; the point's position on the track
+   *  is `roadDisplayPct(pct)`, a deformed scale (see above). The
+   *  events print no % of their own (owner decision, 2026-11-05:
+   *  the 23/24/29% labels came off — the events are identified by
+   *  their pills, which now carry the year instead). */
   pct: number;
-  /** Percent line under the track, e.g. "22%". */
-  pctLabel: string;
-  /** Year line under the percent, e.g. "2026年" — never wraps. */
+  /** Percent line under the track, e.g. "22%" — start and end
+   *  points only; events carry no under-track label. */
+  pctLabel?: string;
+  /** Year line under the percent, e.g. "2026年" — never wraps.
+   *  For events this is data only (the year is displayed in the
+   *  pill); it also keeps point keys self-describing. */
   when: string;
   /** Optional note line under the year (start and end points only),
    *  e.g. "いまここ" / "LEV到達" — never wraps. */
@@ -267,6 +273,14 @@ export type RoadPoint = {
    *  collide: 1 sits closest to the track, 3 highest. */
   pill?: {
     label: string;
+    /** The event's year, appended to the label inside the pill
+     *  (owner decision, 2026-11-05 — the year moved into the pill
+     *  when the under-track event labels were removed). Passed as
+     *  the full suffix so each locale punctuates its own way:
+     *  " (2028)" / "（2028年）". Rendered in the same type as the
+     *  label at reduced opacity — a quieter echo, not a second
+     *  style tier. */
+    year: string;
     tone: "coral" | "navy" | "teal";
     level: 1 | 2 | 3;
     /** Centre of the pill, as a percent of the stage width. The
@@ -277,20 +291,17 @@ export type RoadPoint = {
      *  diagonal leader line runs from each pill's bottom edge
      *  down to its point. `anchor` applies at sm and up,
      *  `anchorSm` below sm: the stage narrows much faster than
-     *  the pills shrink, so the widest pill (navy, EN — 252px on
-     *  the 320px stage at 390px) needs its centre pushed right
-     *  on small screens to stay inside the stage. Both values
-     *  are verified against rendered captures in both locales. */
+     *  the pills shrink. With the year inside the pill the set
+     *  steps down to 10px below sm — at 11px the EN navy pill
+     *  measured 294px on the 320px stage at 390px and clipped
+     *  at any workable centre — and two centres move: the EN
+     *  navy pill (276px even at 10px) centres at 50 below sm,
+     *  and the JA coral pill (154px) needs 28 to clear the left
+     *  edge. All values are verified against rendered captures
+     *  in both locales. */
     anchor: number;
     anchorSm: number;
   };
-  /** Row for the under-track label (see ROAD_LABEL_ROWS). The event
-   *  years' modelled gains sit within a few points of the start, so
-   *  the left-hand labels each take their own row — a chronological
-   *  staircase down from the track — and cannot overlap at any
-   *  width. The end point shares row 0: it sits at the far right,
-   *  clear of the cluster. */
-  labelRow: 0 | 1 | 2 | 3;
 };
 
 /** Pill colorways: coral for the headline event, navy for the
@@ -306,7 +317,7 @@ const ROAD_PILL_TONES = {
 
 /**
  * Pill stagger geometry. The stage is a fixed-height relative box
- * (318px, 298px below sm) with the track's centre line at top:116px
+ * (204px, 196px below sm) with the track's centre line at top:116px
  * (112px below sm). Pills are anchored from the top by their BOTTOM
  * edge (the anchor top plus -translate-y-full), so their distance
  * above the track does not depend on the stage height: level 1
@@ -342,41 +353,34 @@ const ROAD_LINE_END = 119;
 const ROAD_LINE_END_SM = 115;
 
 /**
- * Under-track label rows. The event points' modelled gains (23%,
- * 24%, 29%) cluster within a few points of the start (22%); even
- * after the display deformation they sit only ~2 track-points
- * apart — far narrower than the labels themselves — so no two
- * left-hand labels can share a row at any width: each takes its
- * own row, descending chronologically from the track — row 0 (start)
- * at the track, then 2028, 2030, 2036. The first pitch (56px, 52px
- * below sm) clears the start label's extra note line (いまここ /
- * "You are here"); the event rows then step at a tight 38px pitch
- * (36px below sm), each event label being ~35px tall. The end label
- * sits on row 0 at the far right, well clear of the cluster.
+ * Under-track label position. Only the start and end points carry
+ * a label under the track (percent, year, note — ~53px tall from
+ * this top): the events' % + year labels used to descend in a
+ * one-row-per-point staircase under the left cluster, but the
+ * owner removed them (2026-11-05) — the events now speak through
+ * their pills alone, year included. The end label shares this
+ * top, anchored to its right edge at the far right of the stage.
  */
-const ROAD_LABEL_ROWS = {
-  0: "top-[136px] max-sm:top-[130px]",
-  1: "top-[192px] max-sm:top-[182px]",
-  2: "top-[230px] max-sm:top-[218px]",
-  3: "top-[268px] max-sm:top-[254px]",
-} as const;
+const ROAD_LABEL_TOP = "top-[136px] max-sm:top-[130px]";
 
 /**
  * The road to arrival: one horizontal track for the whole LEV gain
  * scale (0 → 1.00, shown as %), filled up to the current point, with
  * the turning-point events pinned ON the track at their gain
- * positions — a staggered pill above the track, percent + year
- * below it — and circle markers for the start (now) and the arrival
- * point. This replaces the earlier two-part display (a pill panel
- * captioned 「世の中の転換点」 above a separate five-step gain
- * stepper) with the single unified timeline from the owner's
- * hand-drawn sketch. Owner decision, 2026-11-05. The event
- * positions are the model's own gains in their years (derived by
- * the pages through lib/countdown's gainPercentAt), placed on the
- * track through the deformed display scale (roadDisplayPct) so
- * the four left-hand points spread across the track's left half;
- * their labels descend in a one-row-per-point staircase
- * (ROAD_LABEL_ROWS) to stay legible. The pills fan out
+ * positions — a staggered pill above the track carrying the event
+ * name and its year — and circle markers for the start (now) and
+ * the arrival point, which keep the only under-track labels
+ * (percent, year, note). This replaces the earlier two-part
+ * display (a pill panel captioned 「世の中の転換点」 above a
+ * separate five-step gain stepper) with the single unified
+ * timeline from the owner's hand-drawn sketch. Owner decision,
+ * 2026-11-05. The event positions are the model's own gains in
+ * their years (derived by the pages through lib/countdown's
+ * gainPercentAt), placed on the track through the deformed
+ * display scale (roadDisplayPct) so the four left-hand points
+ * spread across the track's left half. The events' under-track
+ * % + year labels were removed by the owner (2026-11-05) — the
+ * year moved into the pill text instead. The pills fan out
  * horizontally over the stage (each pill carries its own `anchor`
  * centre, per the owner's hand-edited mock, 2026-11-05), joined
  * to their points by diagonal SVG leader lines.
@@ -391,7 +395,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
   const nowPoint = points.find((point) => point.marker === "start");
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
-      <div className="relative h-[318px] max-sm:h-[298px]">
+      <div className="relative h-[204px] max-sm:h-[196px]">
         {/* Track: the full gain scale, filled up to the current point. */}
         <div
           aria-hidden="true"
@@ -408,7 +412,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
         <svg
           aria-hidden="true"
           className="absolute inset-0 h-full w-full max-sm:hidden"
-          viewBox="0 0 100 318"
+          viewBox="0 0 100 204"
           preserveAspectRatio="none"
         >
           {points.map((point) =>
@@ -431,7 +435,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
         <svg
           aria-hidden="true"
           className="absolute inset-0 hidden h-full w-full max-sm:block"
-          viewBox="0 0 100 298"
+          viewBox="0 0 100 196"
           preserveAspectRatio="none"
         >
           {points.map((point) =>
@@ -459,7 +463,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
             <div key={`${point.pct}-${point.when}`} className="contents">
               {point.pill && tone && level ? (
                 <span
-                  className={`absolute left-[var(--road-anchor)] z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full px-2.5 py-1 text-[12px] font-semibold leading-[1.25] text-white max-sm:left-[var(--road-anchor-sm)] max-sm:px-2 max-sm:text-[11px] ${tone.pill} ${level.pillAnchor} ${
+                  className={`absolute left-[var(--road-anchor)] z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full px-2.5 py-1 text-[12px] font-semibold leading-[1.25] text-white max-sm:left-[var(--road-anchor-sm)] max-sm:px-2 max-sm:text-[10px] ${tone.pill} ${level.pillAnchor} ${
                     point.pill.tone === "coral"
                       ? "shadow-[0_2px_8px_rgba(232,80,47,0.3)]"
                       : "shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
@@ -472,6 +476,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
                   }
                 >
                   {point.pill.label}
+                  <span className="opacity-80">{point.pill.year}</span>
                 </span>
               ) : null}
               <span
@@ -485,24 +490,26 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
                 }`}
                 style={{ left: `${displayPct}%` }}
               />
-              <div
-                className={`absolute text-center ${ROAD_LABEL_ROWS[point.labelRow]} ${
-                  point.marker === "end" ? "-translate-x-full" : "-translate-x-1/2"
-                }`}
-                style={{ left: `${displayPct}%` }}
-              >
-                <div className="text-[15px] font-bold leading-[1.15] max-sm:text-[14px]">
-                  {point.pctLabel}
-                </div>
-                <div className="mt-0.5 whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
-                  {point.when}
-                </div>
-                {point.note ? (
-                  <div className="whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
-                    {point.note}
+              {point.pctLabel ? (
+                <div
+                  className={`absolute text-center ${ROAD_LABEL_TOP} ${
+                    point.marker === "end" ? "-translate-x-full" : "-translate-x-1/2"
+                  }`}
+                  style={{ left: `${displayPct}%` }}
+                >
+                  <div className="text-[15px] font-bold leading-[1.15] max-sm:text-[14px]">
+                    {point.pctLabel}
                   </div>
-                ) : null}
-              </div>
+                  <div className="mt-0.5 whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
+                    {point.when}
+                  </div>
+                  {point.note ? (
+                    <div className="whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
+                      {point.note}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           );
         })}
