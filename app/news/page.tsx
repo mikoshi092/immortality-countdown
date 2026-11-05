@@ -60,7 +60,7 @@ export default function NewsIndexPage() {
             ) : (
               <>
                 <p className="text-[0.95rem] text-[#4a5878]">
-                  We are preparing the news feed. As new stories arrive, they will appear here, newest first. Until then, see the countdown and the eight fields' progress on the top page.
+                  We are preparing the news feed. As new stories arrive, they will appear here, newest first. Until then, see the countdown and the eight fields&#39; progress on the top page.
                 </p>
                 <p className="mt-2 text-[0.9rem]">
                   <Link
