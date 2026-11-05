@@ -189,19 +189,8 @@ export default function JapaneseLandingPage() {
         {/* LEV in one sentence */}
         <section id="lev-toha" className="scroll-mt-6 pt-[52px]">
           <SectionHeading
-            title={<Phrases parts={["「寿命脱出速度（LEV）」を、", "ひとことで"]} />}
-            sub={
-              <Phrases
-                parts={[
-                  "ロケットの",
-                  "「脱出速度」と",
-                  "同じ発想です。",
-                  "追い越しが",
-                  "始まる速さ——",
-                  "それがLEVです。",
-                ]}
-              />
-            }
+            title="寿命脱出速度（LEV）"
+            sub="当サイトでは、不老不死達成の定義を未来学者のレイ・カーツワイルや、老年学者のオーブリー・デ・グレイらが提唱した寿命脱出速度に到達する時とする。"
           />
           <Disclosure label="くわしく見る">
             <LevGauge
