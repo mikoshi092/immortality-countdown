@@ -254,14 +254,13 @@ export type RoadPoint = {
     tone: "coral" | "navy" | "teal";
     level: 1 | 2 | 3;
   };
-  /** Mobile-only: drop this point's under-track label one row down.
-   *  The 2028 label would otherwise collide with its close
-   *  neighbours (the 22% and 35% labels) at phone widths. */
-  dropLabel?: boolean;
-  /** Mobile-only: anchor this point's under-track label toward the
-   *  right of its point instead of centering it, so it clears the
-   *  wide start label at phone widths. */
-  shiftLabel?: boolean;
+  /** Row for the under-track label (see ROAD_LABEL_ROWS). The event
+   *  years' modelled gains sit within a few points of the start, so
+   *  the left-hand labels each take their own row — a chronological
+   *  staircase down from the track — and cannot overlap at any
+   *  width. The end point shares row 0: it sits at the far right,
+   *  clear of the cluster. */
+  labelRow: 0 | 1 | 2 | 3;
 };
 
 /** Pill colorways: coral for the headline event, navy for the
@@ -275,26 +274,46 @@ const ROAD_PILL_TONES = {
 
 /**
  * Pill stagger geometry. The stage is a fixed-height relative box
- * (262px, 258px below sm) with the track's centre line at top:164px
- * (140px below sm). Each level's pill hangs its tick length above
- * the track — level 1 closest, level 3 highest — the arrangement in
- * the owner's 2026-11-05 sketch, where the 2030 pill rides highest
- * so the three pills never overlap even though 30% and 35% sit
- * close together on the scale.
+ * (396px, 366px below sm) with the track's centre line at top:164px
+ * (140px below sm). Pills are anchored from the top by their BOTTOM
+ * edge (the anchor top plus -translate-y-full), so their distance
+ * above the track does not depend on the stage height: level 1
+ * hangs 20px above the centre line (24px below sm), level 2 82px
+ * (70px), level 3 126px (106px) — the arrangement in the owner's
+ * 2026-11-05 sketch, where the 2030 pill rides highest so the three
+ * pills never overlap even though the event points now sit within
+ * a few percent of each other on the scale. Each tick runs from its
+ * pill's bottom edge down to just past the centre line.
  */
 const ROAD_LEVELS = {
   1: {
-    pillBottom: "bottom-[118px] max-sm:bottom-[142px]",
-    tick: "bottom-[95px] h-[23px] max-sm:bottom-[115px] max-sm:h-[27px]",
+    pillAnchor: "top-[144px] max-sm:top-[116px]",
+    tick: "top-[144px] h-[23px] max-sm:top-[116px] max-sm:h-[27px]",
   },
   2: {
-    pillBottom: "bottom-[180px] max-sm:bottom-[188px]",
-    tick: "bottom-[95px] h-[85px] max-sm:bottom-[115px] max-sm:h-[73px]",
+    pillAnchor: "top-[82px] max-sm:top-[70px]",
+    tick: "top-[82px] h-[85px] max-sm:top-[70px] max-sm:h-[73px]",
   },
   3: {
-    pillBottom: "bottom-[224px]",
-    tick: "bottom-[95px] h-[129px] max-sm:bottom-[115px] max-sm:h-[109px]",
+    pillAnchor: "top-[38px] max-sm:top-[34px]",
+    tick: "top-[38px] h-[129px] max-sm:top-[34px] max-sm:h-[109px]",
   },
+} as const;
+
+/**
+ * Under-track label rows. The event points' modelled gains (23%,
+ * 24%, 29%) cluster within a few points of the start (22%), so no
+ * two left-hand labels can share a row at any width: each takes its
+ * own row, descending chronologically from the track — row 0 (start)
+ * at the track, then 2028, 2030, 2036 — with enough pitch to clear
+ * the start label's extra note line. The end label sits on row 0 at
+ * the far right, well clear of the cluster.
+ */
+const ROAD_LABEL_ROWS = {
+  0: "top-[186px] max-sm:top-[162px]",
+  1: "top-[254px] max-sm:top-[226px]",
+  2: "top-[300px] max-sm:top-[272px]",
+  3: "top-[346px] max-sm:top-[318px]",
 } as const;
 
 /**
@@ -306,7 +325,11 @@ const ROAD_LEVELS = {
  * point. This replaces the earlier two-part display (a pill panel
  * captioned 「世の中の転換点」 above a separate five-step gain
  * stepper) with the single unified timeline from the owner's
- * hand-drawn sketch. Owner decision, 2026-11-05.
+ * hand-drawn sketch. Owner decision, 2026-11-05. The event
+ * positions are the model's own gains in their years (derived by
+ * the pages through lib/countdown's gainPercentAt), so the four
+ * left-hand points cluster near the start; their labels descend in
+ * a one-row-per-point staircase (ROAD_LABEL_ROWS) to stay legible.
  *
  * Points render in the order given — chronological (2026 → 2028 →
  * 2030 → 2036 → 2061) — so screen readers and text extraction meet
@@ -318,7 +341,7 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
   const nowPoint = points.find((point) => point.marker === "start");
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
-      <div className="relative h-[262px] max-sm:h-[258px]">
+      <div className="relative h-[396px] max-sm:h-[366px]">
         {/* Track: the full gain scale, filled up to the current point. */}
         <div
           aria-hidden="true"
@@ -342,9 +365,9 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
                     style={{ left: `${point.pct}%` }}
                   />
                   <span
-                    className={`absolute -translate-x-1/2 whitespace-nowrap rounded-full leading-[1.25] text-white ${tone.pill} ${level.pillBottom} ${
+                    className={`absolute -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full leading-[1.25] text-white ${tone.pill} ${level.pillAnchor} ${
                       point.pill.tone === "coral"
-                        ? "px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
+                        ? "px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:-translate-x-[44%] max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
                         : "px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem]"
                     }`}
                     style={{ left: `${point.pct}%` }}
@@ -365,14 +388,8 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
                 style={{ left: `${point.pct}%` }}
               />
               <div
-                className={`absolute top-[186px] text-center max-sm:top-[162px] ${
-                  point.dropLabel ? "max-sm:top-[196px]" : ""
-                } ${
-                  point.marker === "end"
-                    ? "-translate-x-full"
-                    : point.shiftLabel
-                      ? "-translate-x-1/2 max-sm:-translate-x-[12%]"
-                      : "-translate-x-1/2"
+                className={`absolute text-center ${ROAD_LABEL_ROWS[point.labelRow]} ${
+                  point.marker === "end" ? "-translate-x-full" : "-translate-x-1/2"
                 }`}
                 style={{ left: `${point.pct}%` }}
               >

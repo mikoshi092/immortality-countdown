@@ -17,7 +17,7 @@ import {
   type FieldCardData,
 } from "@/components/calm/Sections";
 import { listArticles } from "@/data/articles";
-import { countdown, heroEarlyYears } from "@/lib/countdown";
+import { countdown, gainPercentAt, heroEarlyYears } from "@/lib/countdown";
 import { faqItems, faqPageJsonLd } from "@/lib/faq";
 import { FIELD_IDS, FIELD_LABELS, type FieldId } from "@/lib/fields";
 import { getFieldModel } from "@/lib/model-snapshot";
@@ -99,6 +99,12 @@ const MONTHS_EN = [
 export default function Home() {
   const now = new Date();
   const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
+  // Road-to-arrival event positions: the model's own gain in each
+  // event year (trajectory median, whole percent) — derived from the
+  // model, never placed by hand (owner decision, 2026-11-05).
+  const road2028Pct = gainPercentAt(2028);
+  const road2030Pct = gainPercentAt(2030);
+  const road2036Pct = gainPercentAt(2036);
   const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
   const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "en", now);
@@ -212,29 +218,31 @@ export default function Home() {
                 when: `${baseYear}`,
                 note: "You are here",
                 marker: "start",
+                labelRow: 0,
               },
               {
-                pct: 30,
-                pctLabel: "30%",
+                pct: road2028Pct,
+                pctLabel: `${road2028Pct}%`,
                 when: "2028",
                 marker: "event",
                 pill: { label: "The Singularity", tone: "coral", level: 1 },
-                dropLabel: true,
+                labelRow: 1,
               },
               {
-                pct: 35,
-                pctLabel: "35%",
+                pct: road2030Pct,
+                pctLabel: `${road2030Pct}%`,
                 when: "2030",
                 marker: "event",
                 pill: { label: "Quantum computing becomes mainstream", tone: "navy", level: 3 },
-                shiftLabel: true,
+                labelRow: 2,
               },
               {
-                pct: 50,
-                pctLabel: "50%",
+                pct: road2036Pct,
+                pctLabel: `${road2036Pct}%`,
                 when: "2036",
                 marker: "event",
                 pill: { label: "Whole-cell analysis complete", tone: "teal", level: 2 },
+                labelRow: 3,
               },
               {
                 pct: 100,
@@ -242,6 +250,7 @@ export default function Home() {
                 when: `${earlyYear}`,
                 note: "LEV reached",
                 marker: "end",
+                labelRow: 0,
               },
             ]}
           />
