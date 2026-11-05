@@ -60,6 +60,18 @@ body {
     "Hiragino Mincho ProN", "Yu Mincho", YuMincho, ui-serif, Georgia, serif;
 }
 
+/* Hero H1 display face (owner pick, 2026-11-05): Zen Kaku Gothic New 900.
+   The Latin face (--font-zen-kaku, root layout) is listed first, so Latin
+   glyphs render in it on both locales; Japanese glyphs fall through to
+   the full family (--font-zen-kaku-jp, app/ja/layout.tsx). The JP var
+   carries a fallback because it is only defined on /ja routes — without
+   one, an undefined var would void the whole declaration on EN pages. */
+.font-hero-display {
+  font-family: var(--font-zen-kaku), var(--font-zen-kaku-jp, sans-serif),
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic",
+    Meiryo, system-ui, sans-serif;
+}
+
 /* Technology Readiness bar. The element's real `width` (set inline per
    instance) is the source of truth for the final size — the animation
    only scales that already-correctly-sized box from 0 to its full

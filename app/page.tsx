@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Immortality Countdown | Tracking Longevity Escape Velocity",
+    title: "Countdown to Immortality | Immortality Countdown",
     description,
     url: SITE_URL,
     siteName: SITE_NAME,
@@ -135,8 +135,8 @@ export default function Home() {
 
         {/* Hero */}
         <section className="pt-14 text-center">
-          <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
-            Until <span className="text-[#e8502f]">ageless longevity</span>
+          <h1 className="font-hero-display text-[clamp(2.2rem,6vw,3.4rem)] font-black leading-[1.25]">
+            Countdown to Immortality
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
             Living one more year starts to buy you more than one extra year of life. This site
