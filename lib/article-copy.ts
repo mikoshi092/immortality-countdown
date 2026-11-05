@@ -39,7 +39,7 @@ export const ARTICLE_UI = {
     limitations: "Limitations",
     trialPhase: "Trial phase",
     resultStatus: "Result status",
-    listTitle: "Latest News",
+    listTitle: "Ageless Longevity News",
     listDek:
       "Selected research updates. Read the article here, then open the primary source.",
     listEmpty: "No research updates currently meet the publication criteria.",
