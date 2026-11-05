@@ -225,7 +225,7 @@ export default function Home() {
                 pctLabel: `${road2028Pct}%`,
                 when: "2028",
                 marker: "event",
-                pill: { label: "The Singularity", tone: "coral", level: 1 },
+                pill: { label: "The Singularity", tone: "coral", level: 1, anchor: 24, anchorSm: 24 },
                 labelRow: 1,
               },
               {
@@ -233,7 +233,7 @@ export default function Home() {
                 pctLabel: `${road2030Pct}%`,
                 when: "2030",
                 marker: "event",
-                pill: { label: "Quantum computing becomes mainstream", tone: "navy", level: 3 },
+                pill: { label: "Quantum computing becomes mainstream", tone: "navy", level: 3, anchor: 38, anchorSm: 44 },
                 labelRow: 2,
               },
               {
@@ -241,7 +241,7 @@ export default function Home() {
                 pctLabel: `${road2036Pct}%`,
                 when: "2036",
                 marker: "event",
-                pill: { label: "Whole-cell analysis complete", tone: "teal", level: 2 },
+                pill: { label: "Whole-cell analysis complete", tone: "teal", level: 2, anchor: 55, anchorSm: 55 },
                 labelRow: 3,
               },
               {
