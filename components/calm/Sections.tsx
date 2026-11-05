@@ -66,6 +66,11 @@ export type RangePoint = {
    *  second line below sm instead of colliding. The note below the
    *  bar then takes extra mobile margin to clear the taller tag. */
   wrapTagOnMobile?: boolean;
+  /** Years-to-go sub-line under the year ("あと35年" / "35 years to
+   *  go"), rendered in the same label block as the year so it
+   *  inherits the mobile end anchoring (design review, 2026-11-05).
+   *  Shown even when the year itself is hidden (JA endpoint). */
+  yearsToGo?: string;
 };
 
 /**
@@ -76,12 +81,16 @@ export type RangePoint = {
  * screen (the JA left tag lost its first characters). Dots stay at
  * their data positions and the middle label stays centered; ≥sm
  * rendering is unchanged. Owner report, 2026-11-04.
+ *
+ * Each point's label block also carries a years-to-go sub-line under
+ * the year (design review, 2026-11-05); the two-line block is why
+ * the bar's top margin is larger than its bottom margin.
  */
 export function RangeBar({ points, note }: { points: RangePoint[]; note: ReactNode }) {
   const anyWrappedTag = points.some((point) => point.wrapTagOnMobile);
   return (
     <>
-      <div className="relative mx-auto my-[38px] max-w-[680px]">
+      <div className="relative mx-auto mb-[38px] mt-[64px] max-w-[680px]">
         <div className="h-2 rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a_45%,#b8c4de)]" />
         {points.map((point, index) => {
           const align =
@@ -102,11 +111,26 @@ export function RangeBar({ points, note }: { points: RangePoint[]; note: ReactNo
               }`}
               style={{ left: point.left }}
             >
-              {point.hideYear ? null : (
+              {point.hideYear && !point.yearsToGo ? null : (
                 <span
-                  className={`absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.95rem] font-extrabold text-[#233252] ${alignClass}`}
+                  className={`absolute bottom-[calc(100%+8px)] left-1/2 flex -translate-x-1/2 flex-col items-center ${alignClass} ${
+                    align === "start"
+                      ? "max-sm:items-start"
+                      : align === "end"
+                        ? "max-sm:items-end"
+                        : ""
+                  }`}
                 >
-                  {point.year}
+                  {point.hideYear ? null : (
+                    <span className="whitespace-nowrap text-[0.95rem] font-extrabold leading-[1.25] text-[#233252]">
+                      {point.year}
+                    </span>
+                  )}
+                  {point.yearsToGo ? (
+                    <span className="whitespace-nowrap text-[0.72rem] font-bold leading-[1.3] text-[#4a5878]">
+                      {point.yearsToGo}
+                    </span>
+                  ) : null}
                 </span>
               )}
               <span
@@ -276,8 +300,14 @@ export function Milestones({
   events?: TimelineEvent[];
   eventsCaption?: string;
 }) {
-  const largeEvents = events?.filter((event) => event.size === "large") ?? [];
   const smallEvents = events?.filter((event) => event.size === "small") ?? [];
+  // DOM order is chronological (2028 → 2030 → 2036) so the band
+  // reads in year order to screen readers and text extraction.
+  // Placement is absolute on desktop and order-class driven on
+  // mobile, so the visuals are unchanged (design review, 2026-11-05).
+  const orderedEvents = [...(events ?? [])].sort(
+    (a, b) => Number(a.year ?? 0) - Number(b.year ?? 0),
+  );
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
       {events && events.length > 0 ? (
@@ -299,7 +329,21 @@ export function Milestones({
             </p>
           ) : null}
           <div className="relative h-[118px] max-sm:mt-2 max-sm:flex max-sm:h-auto max-sm:flex-col max-sm:items-center max-sm:gap-2">
-            {smallEvents.map((event) => {
+            {orderedEvents.map((event) => {
+              if (event.size === "large") {
+                return (
+                  <span
+                    key={event.label}
+                    className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
+                    style={{ left: event.left }}
+                  >
+                    {event.year ? (
+                      <span className="mr-1.5 font-extrabold">{event.year}</span>
+                    ) : null}
+                    {event.label}
+                  </span>
+                );
+              }
               const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
               const lower = event.row === "lower";
               return (
@@ -315,7 +359,17 @@ export function Milestones({
                 </span>
               );
             })}
-            {smallEvents.map((event) => {
+            {orderedEvents.map((event) => {
+              if (event.size === "large") {
+                return (
+                  <span
+                    key={`tick-${event.label}`}
+                    aria-hidden="true"
+                    className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50 max-sm:hidden"
+                    style={{ left: event.left }}
+                  />
+                );
+              }
               const tone = SMALL_EVENT_TONES[event.tone ?? "navy"];
               const lower = event.row === "lower";
               return (
@@ -327,26 +381,6 @@ export function Milestones({
                 />
               );
             })}
-            {largeEvents.map((event) => (
-              <span
-                key={event.label}
-                className="absolute top-[48px] -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8502f] px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold leading-[1.25] text-white shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:static max-sm:order-1 max-sm:translate-x-0 max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
-                style={{ left: event.left }}
-              >
-                {event.year ? (
-                  <span className="mr-1.5 font-extrabold">{event.year}</span>
-                ) : null}
-                {event.label}
-              </span>
-            ))}
-            {largeEvents.map((event) => (
-              <span
-                key={`tick-${event.label}`}
-                aria-hidden="true"
-                className="absolute top-[100px] h-[18px] w-[3px] -translate-x-1/2 rounded bg-[#e8502f]/50 max-sm:hidden"
-                style={{ left: event.left }}
-              />
-            ))}
           </div>
         </>
       ) : null}
