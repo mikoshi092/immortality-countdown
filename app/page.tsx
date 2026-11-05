@@ -200,22 +200,48 @@ export default function Home() {
         {/* Milestones */}
         <section className="pt-[52px]">
           <SectionHeading
-            title="Milestones on the way"
+            title="The road to arrival"
             sub="How far the gain rate has to climb, and when arrival follows — on the path to the earliest arrival."
           />
           <Milestones
-            steps={[
-              { gain: currentGain.toFixed(2), when: `${baseYear}`, note: "you are here", state: "done" },
-              { gain: "0.30", state: "next" },
-              { gain: "0.50", note: "halfway", state: "next" },
-              { gain: "0.75", state: "next" },
-              { gain: "1.00", when: `${earlyYear}`, note: "LEV reached", state: "final" },
-            ]}
-            eventsCaption="Turning points in the wider world"
-            events={[
-              { label: "Singularity", year: "2028", left: "30%", size: "large" },
-              { label: "Quantum computers spread", year: "2030", left: "40%", size: "small" },
-              { label: "Whole-cell analysis complete", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
+            points={[
+              {
+                pct: Math.round(currentGain * 100),
+                pctLabel: `${Math.round(currentGain * 100)}%`,
+                when: `${baseYear}`,
+                note: "You are here",
+                marker: "start",
+              },
+              {
+                pct: 30,
+                pctLabel: "30%",
+                when: "2028",
+                marker: "event",
+                pill: { label: "The Singularity", tone: "coral", level: 1 },
+                dropLabel: true,
+              },
+              {
+                pct: 35,
+                pctLabel: "35%",
+                when: "2030",
+                marker: "event",
+                pill: { label: "Quantum computing becomes mainstream", tone: "navy", level: 3 },
+                shiftLabel: true,
+              },
+              {
+                pct: 50,
+                pctLabel: "50%",
+                when: "2036",
+                marker: "event",
+                pill: { label: "Whole-cell analysis complete", tone: "teal", level: 2 },
+              },
+              {
+                pct: 100,
+                pctLabel: "100%",
+                when: `${earlyYear}`,
+                note: "LEV reached",
+                marker: "end",
+              },
             ]}
           />
         </section>

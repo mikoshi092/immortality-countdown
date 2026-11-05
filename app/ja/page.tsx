@@ -221,7 +221,7 @@ export default function JapaneseLandingPage() {
         {/* Milestones */}
         <section className="pt-[52px]">
           <SectionHeading
-            title="到達までのマイルストーン"
+            title="到達までの道のり"
             sub={
               <Phrases
                 parts={[
@@ -235,18 +235,44 @@ export default function JapaneseLandingPage() {
             }
           />
           <Milestones
-            steps={[
-              { gain: currentGain.toFixed(2), when: `${baseYear}年`, note: "いまここ", state: "done" },
-              { gain: "0.30", state: "next" },
-              { gain: "0.50", note: "折り返し", state: "next" },
-              { gain: "0.75", state: "next" },
-              { gain: "1.00", when: `${earlyYear}年`, note: "LEV到達", state: "final" },
-            ]}
-            eventsCaption="世の中の転換点"
-            events={[
-              { label: "シンギュラリティ", year: "2028", left: "30%", size: "large" },
-              { label: "量子コンピューターの普及", year: "2030", left: "40%", size: "small" },
-              { label: "全細胞の解析終了", year: "2036", left: "64%", size: "small", tone: "teal", row: "lower" },
+            points={[
+              {
+                pct: Math.round(currentGain * 100),
+                pctLabel: `${Math.round(currentGain * 100)}%`,
+                when: `${baseYear}年`,
+                note: "いまここ",
+                marker: "start",
+              },
+              {
+                pct: 30,
+                pctLabel: "30%",
+                when: "2028年",
+                marker: "event",
+                pill: { label: "シンギュラリティ", tone: "coral", level: 1 },
+                dropLabel: true,
+              },
+              {
+                pct: 35,
+                pctLabel: "35%",
+                when: "2030年",
+                marker: "event",
+                pill: { label: "量子コンピュータの普及", tone: "navy", level: 3 },
+                shiftLabel: true,
+              },
+              {
+                pct: 50,
+                pctLabel: "50%",
+                when: "2036年",
+                marker: "event",
+                pill: { label: "全細胞解析終了", tone: "teal", level: 2 },
+              },
+              {
+                pct: 100,
+                pctLabel: "100%",
+                when: `${earlyYear}年`,
+                note: "LEV到達",
+                marker: "end",
+              },
             ]}
           />
         </section>
