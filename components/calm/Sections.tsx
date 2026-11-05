@@ -230,10 +230,26 @@ export function LevGauge({
   );
 }
 
+/**
+ * Display deformation (owner decision, 2026-11-05): on a strict
+ * linear scale the arrival point strands far to the right and the
+ * early points crush together, so track POSITIONS are mapped
+ * through a piecewise scale — the first 30 points of gain stretch
+ * across the left 57% of the track, the remaining 70 points across
+ * the right 43%. The % values printed on the labels stay the
+ * model's true values; only placement is deformed. The point
+ * markers, pill ticks, labels and the "filled up to now" gradient
+ * all anchor to the mapped position.
+ */
+function roadDisplayPct(pct: number): number {
+  return pct <= 30 ? (pct / 30) * 57 : 57 + ((pct - 30) / 70) * 43;
+}
+
 export type RoadPoint = {
-  /** Position on the gain track, in percent (gain × 100): the point
-   *  sits at `left: pct%` of the track, which spans the full LEV gain
-   *  scale 0 → 1.00. */
+  /** The model's gain for the point's year, in percent (gain ×
+   *  100). This is the value printed on the label; the point's
+   *  position on the track is `roadDisplayPct(pct)`, a deformed
+   *  scale (see above). */
   pct: number;
   /** Percent line under the track, e.g. "22%". */
   pctLabel: string;
@@ -274,46 +290,54 @@ const ROAD_PILL_TONES = {
 
 /**
  * Pill stagger geometry. The stage is a fixed-height relative box
- * (396px, 366px below sm) with the track's centre line at top:164px
- * (140px below sm). Pills are anchored from the top by their BOTTOM
+ * (318px, 298px below sm) with the track's centre line at top:116px
+ * (112px below sm). Pills are anchored from the top by their BOTTOM
  * edge (the anchor top plus -translate-y-full), so their distance
  * above the track does not depend on the stage height: level 1
- * hangs 20px above the centre line (24px below sm), level 2 82px
- * (70px), level 3 126px (106px) — the arrangement in the owner's
+ * hangs 18px above the centre line (16px below sm), level 2 49px
+ * (47px), level 3 80px (78px) — the arrangement in the owner's
  * 2026-11-05 sketch, where the 2030 pill rides highest so the three
  * pills never overlap even though the event points now sit within
- * a few percent of each other on the scale. Each tick runs from its
- * pill's bottom edge down to just past the centre line.
+ * a few percent of each other on the scale. All three pills share
+ * one type scale (owner cleanup, 2026-11-05: the headline pill used
+ * to render far larger than the other two); the level gaps above
+ * are sized so each pill's band clears the next by ~8px. Each tick
+ * runs from its pill's bottom edge down to just past the centre
+ * line, passing behind the pills (pills carry z-10).
  */
 const ROAD_LEVELS = {
   1: {
-    pillAnchor: "top-[144px] max-sm:top-[116px]",
-    tick: "top-[144px] h-[23px] max-sm:top-[116px] max-sm:h-[27px]",
+    pillAnchor: "top-[98px] max-sm:top-[96px]",
+    tick: "top-[98px] h-[21px] max-sm:top-[96px] max-sm:h-[19px]",
   },
   2: {
-    pillAnchor: "top-[82px] max-sm:top-[70px]",
-    tick: "top-[82px] h-[85px] max-sm:top-[70px] max-sm:h-[73px]",
+    pillAnchor: "top-[67px] max-sm:top-[65px]",
+    tick: "top-[67px] h-[52px] max-sm:top-[65px] max-sm:h-[50px]",
   },
   3: {
-    pillAnchor: "top-[38px] max-sm:top-[34px]",
-    tick: "top-[38px] h-[129px] max-sm:top-[34px] max-sm:h-[109px]",
+    pillAnchor: "top-[36px] max-sm:top-[34px]",
+    tick: "top-[36px] h-[83px] max-sm:top-[34px] max-sm:h-[81px]",
   },
 } as const;
 
 /**
  * Under-track label rows. The event points' modelled gains (23%,
- * 24%, 29%) cluster within a few points of the start (22%), so no
- * two left-hand labels can share a row at any width: each takes its
+ * 24%, 29%) cluster within a few points of the start (22%); even
+ * after the display deformation they sit only ~2 track-points
+ * apart — far narrower than the labels themselves — so no two
+ * left-hand labels can share a row at any width: each takes its
  * own row, descending chronologically from the track — row 0 (start)
- * at the track, then 2028, 2030, 2036 — with enough pitch to clear
- * the start label's extra note line. The end label sits on row 0 at
- * the far right, well clear of the cluster.
+ * at the track, then 2028, 2030, 2036. The first pitch (56px, 52px
+ * below sm) clears the start label's extra note line (いまここ /
+ * "You are here"); the event rows then step at a tight 38px pitch
+ * (36px below sm), each event label being ~35px tall. The end label
+ * sits on row 0 at the far right, well clear of the cluster.
  */
 const ROAD_LABEL_ROWS = {
-  0: "top-[186px] max-sm:top-[162px]",
-  1: "top-[254px] max-sm:top-[226px]",
-  2: "top-[300px] max-sm:top-[272px]",
-  3: "top-[346px] max-sm:top-[318px]",
+  0: "top-[136px] max-sm:top-[130px]",
+  1: "top-[192px] max-sm:top-[182px]",
+  2: "top-[230px] max-sm:top-[218px]",
+  3: "top-[268px] max-sm:top-[254px]",
 } as const;
 
 /**
@@ -327,9 +351,11 @@ const ROAD_LABEL_ROWS = {
  * stepper) with the single unified timeline from the owner's
  * hand-drawn sketch. Owner decision, 2026-11-05. The event
  * positions are the model's own gains in their years (derived by
- * the pages through lib/countdown's gainPercentAt), so the four
- * left-hand points cluster near the start; their labels descend in
- * a one-row-per-point staircase (ROAD_LABEL_ROWS) to stay legible.
+ * the pages through lib/countdown's gainPercentAt), placed on the
+ * track through the deformed display scale (roadDisplayPct) so
+ * the four left-hand points spread across the track's left half;
+ * their labels descend in a one-row-per-point staircase
+ * (ROAD_LABEL_ROWS) to stay legible.
  *
  * Points render in the order given — chronological (2026 → 2028 →
  * 2030 → 2036 → 2061) — so screen readers and text extraction meet
@@ -341,36 +367,37 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
   const nowPoint = points.find((point) => point.marker === "start");
   return (
     <div className="relative mt-[30px] rounded-[14px] border-[3px] border-[#7d97bd] bg-white px-4 py-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)] max-sm:px-3 max-sm:py-5">
-      <div className="relative h-[396px] max-sm:h-[366px]">
+      <div className="relative h-[318px] max-sm:h-[298px]">
         {/* Track: the full gain scale, filled up to the current point. */}
         <div
           aria-hidden="true"
-          className="absolute left-0 right-0 top-[161px] h-[6px] rounded-full bg-[#dbe7f5] max-sm:top-[137px]"
+          className="absolute left-0 right-0 top-[113px] h-[6px] rounded-full bg-[#dbe7f5] max-sm:top-[109px]"
         >
           <div
             className="h-full rounded-full bg-[linear-gradient(90deg,#57b8ff,#00a8a8)]"
-            style={{ width: `${nowPoint?.pct ?? 0}%` }}
+            style={{ width: `${roadDisplayPct(nowPoint?.pct ?? 0)}%` }}
           />
         </div>
         {points.map((point) => {
           const tone = point.pill ? ROAD_PILL_TONES[point.pill.tone] : null;
           const level = point.pill ? ROAD_LEVELS[point.pill.level] : null;
+          const displayPct = roadDisplayPct(point.pct);
           return (
             <div key={`${point.pct}-${point.when}`} className="contents">
               {point.pill && tone && level ? (
                 <>
                   <span
                     aria-hidden="true"
-                    className={`absolute w-[3px] -translate-x-1/2 rounded ${tone.tick} ${level.tick}`}
-                    style={{ left: `${point.pct}%` }}
+                    className={`absolute w-[2px] -translate-x-1/2 rounded ${tone.tick} ${level.tick}`}
+                    style={{ left: `${displayPct}%` }}
                   />
                   <span
-                    className={`absolute -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full leading-[1.25] text-white ${tone.pill} ${level.pillAnchor} ${
+                    className={`absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full px-2.5 py-1 text-[12px] font-semibold leading-[1.25] text-white max-sm:px-2 max-sm:text-[11px] ${tone.pill} ${level.pillAnchor} ${
                       point.pill.tone === "coral"
-                        ? "px-[18px] py-2 text-[clamp(1.02rem,4.6vw,1.4rem)] font-extrabold shadow-[0_2px_10px_rgba(232,80,47,0.35)] max-sm:-translate-x-[44%] max-sm:px-4 max-sm:py-1.5 max-sm:text-[1.02rem]"
-                        : "px-3 py-1.5 text-[clamp(0.66rem,2.7vw,0.82rem)] font-bold shadow-[0_1px_5px_rgba(35,50,82,0.25)] max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem]"
+                        ? "shadow-[0_2px_8px_rgba(232,80,47,0.3)]"
+                        : "shadow-[0_1px_5px_rgba(35,50,82,0.25)]"
                     }`}
-                    style={{ left: `${point.pct}%` }}
+                    style={{ left: `${displayPct}%` }}
                   >
                     {point.pill.label}
                   </span>
@@ -378,29 +405,29 @@ export function Milestones({ points }: { points: RoadPoint[] }) {
               ) : null}
               <span
                 aria-hidden="true"
-                className={`absolute top-[164px] z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white shadow-[0_1px_4px_rgba(35,50,82,0.3)] max-sm:top-[140px] ${
+                className={`absolute top-[116px] z-20 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-[0_0_0_2px_#ffffff,0_1px_3px_rgba(35,50,82,0.35)] max-sm:top-[112px] ${
                   point.marker === "start"
-                    ? "h-[20px] w-[20px] bg-[#00a8a8] max-sm:h-[18px] max-sm:w-[18px]"
+                    ? "h-[15px] w-[15px] bg-[#00a8a8]"
                     : point.marker === "end"
-                      ? "h-[20px] w-[20px] bg-[#e8502f] max-sm:h-[18px] max-sm:w-[18px]"
-                      : `h-[13px] w-[13px] ${tone?.dot ?? ""}`
+                      ? "h-[15px] w-[15px] bg-[#e8502f]"
+                      : `h-[11px] w-[11px] ${tone?.dot ?? ""}`
                 }`}
-                style={{ left: `${point.pct}%` }}
+                style={{ left: `${displayPct}%` }}
               />
               <div
                 className={`absolute text-center ${ROAD_LABEL_ROWS[point.labelRow]} ${
                   point.marker === "end" ? "-translate-x-full" : "-translate-x-1/2"
                 }`}
-                style={{ left: `${point.pct}%` }}
+                style={{ left: `${displayPct}%` }}
               >
-                <div className="text-[clamp(1rem,3.4vw,1.25rem)] font-extrabold leading-[1.2] max-sm:text-[0.95rem]">
+                <div className="text-[15px] font-bold leading-[1.15] max-sm:text-[14px]">
                   {point.pctLabel}
                 </div>
-                <div className="mt-0.5 whitespace-nowrap text-[0.78rem] font-bold leading-[1.5] text-[#4a5878] max-sm:text-[0.74rem]">
+                <div className="mt-0.5 whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
                   {point.when}
                 </div>
                 {point.note ? (
-                  <div className="whitespace-nowrap text-[0.78rem] font-bold leading-[1.5] text-[#4a5878] max-sm:text-[0.74rem]">
+                  <div className="whitespace-nowrap text-[11px] font-bold leading-[1.45] text-[#4a5878]">
                     {point.note}
                   </div>
                 ) : null}
