@@ -11,7 +11,6 @@ import {
   FaqSection,
   FieldCards,
   Milestones,
-  RangeBar,
   SectionHeading,
   type FieldCardData,
 } from "@/components/calm/Sections";
@@ -68,8 +67,9 @@ export const metadata: Metadata = {
 /**
  * Calm redesign (2026-11-04, owner-approved mock): the same design
  * system and section structure as /ja. The countdown endpoint is the
- * early scenario — heroEarlyYears years — with the standard pace and
- * the late scenario kept as secondary context on the range bar. Copy is
+ * early scenario — heroEarlyYears years. The standard pace and the
+ * late scenario are not displayed on this page (owner decision,
+ * 2026-11-05: the early scenario is the single story). Copy is
  * the page's existing English where a counterpart exists; sections that
  * only existed in the Japanese mock are translated plainly from it. No
  * scenario counts or simulation framing on this page.
@@ -97,7 +97,7 @@ const MONTHS_EN = [
 
 export default function Home() {
   const now = new Date();
-  const { baseYear, earlyYear, medianYear, lateYear, currentGain } = countdown;
+  const { baseYear, earlyYear, currentGain } = countdown;
   // Road-to-arrival event positions: the model's own gain in each
   // event year (trajectory median, whole percent) — derived from the
   // model, never placed by hand (owner decision, 2026-11-05).
@@ -158,31 +158,6 @@ export default function Home() {
             </div>
           </div>
 
-          <RangeBar
-            points={[
-              {
-                year: earlyYear,
-                tag: "Earliest · the endpoint",
-                left: "4%",
-                highlight: true,
-                wrapTagOnMobile: true,
-                yearsToGo: `${earlyYear - baseYear} years to go`,
-              },
-              {
-                year: medianYear,
-                tag: "Standard pace",
-                left: "46%",
-                yearsToGo: `${medianYear - baseYear} years to go`,
-              },
-              {
-                year: lateYear,
-                tag: "Latest",
-                left: "96%",
-                yearsToGo: `${lateYear - baseYear} years to go`,
-              },
-            ]}
-            note={`The years-to-go figure counts down to the earliest outlook (${earlyYear}).`}
-          />
         </section>
 
         {/* LEV in one sentence */}
