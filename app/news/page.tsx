@@ -12,7 +12,7 @@ import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 export const metadata: Metadata = {
   title: "Ageless Longevity News | Immortality Countdown",
   description:
-    "Selected longevity research updates. Read the article here, then open the primary source.",
+    "Longevity research news from around the world. Each headline links straight to the original article.",
   alternates: {
     canonical: "/news",
     languages: newsIndexHreflang(),
@@ -41,7 +41,7 @@ export default function NewsIndexPage() {
       <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
         <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Ageless Longevity News</h1>
         <p className="mt-1 text-[0.95rem] text-[#4a5878]">
-          Ageless longevity news from around the world. Each headline links straight to the
+          Longevity news from around the world. Each headline links straight to the
           original article.
         </p>
         <p className="mt-1 text-[0.9rem]">

@@ -95,12 +95,13 @@ Rules:
 - Do not invent a source URL, DOI, Evidence level, field, or study species.
 - Do not upgrade the provided Evidence.
 - Write Japanese from the same locked numbers and identifiers, not as a literal translation of the English sentences. Japanese fields must be written in Japanese. Do not leave English headlines or dek, and do not paste internal labels such as living-people or mice. Gene names, drug names, and abbreviations may stay in English.
+- Write all Japanese prose (dek, whatHappened, whyItMatters, realityCheck, and the Japanese fact fields) in the polite です・ます style, never the plain である style, and as natural Japanese rather than word-for-word renderings of the English (for example, never write 「全体の状態は…」 for "Overall status: …").
 - Keep numbers and units identical in English and Japanese, and only if they appear in the provided materials.
 - Preserve negations (not significant, no association, failed, 有意差なし).
 - Do not treat a trial registration as an efficacy result.
 - For a trial registration, studyDesign must include "Trial registration and research plan" in English and "試験登録・研究計画" in Japanese. Do not call it a science news report.
-- When hasResults is false, say "No results posted" and "結果は未掲載". Put the registry purpose in what happened, not as an achieved outcome.
-- State the provided overall status in both languages: recruiting / 募集中; not yet recruiting / 未募集; enrolling by invitation / 招待による登録; active, not recruiting / 実施中で募集は終了; completed / 完了; terminated / 中止; suspended / 中断. Do not use a different status.
+- When hasResults is false, say "No results posted" and "結果はまだ公表されていません". Put the registry purpose in what happened, not as an achieved outcome.
+- State the provided overall status in both languages. In Japanese, state it as a full polite sentence: recruiting / 現在、参加者を募集しています; not yet recruiting / まだ参加者の募集は始まっていません; enrolling by invitation / 現在は招待制で登録を受け付けています; active, not recruiting / 実施中で、参加者の募集は終了しています; completed / すでに完了しています; terminated / 中止されました; suspended / 中断しています. Do not use a different status.
 - Do not treat hasResults=false as posted results.
 - Do not write a trial status or phase beyond the provided registry values.
 - Do not treat observational findings as causal human outcomes.

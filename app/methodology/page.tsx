@@ -25,7 +25,7 @@ const SCENARIOS = [
   {
     name: "Base",
     description:
-      "The central estimate shown on the dashboard, and the median of the published simulation rather than a hand-set figure. It moves whenever a parameter changes, and every change is a commit.",
+      "The central estimate shown on the top page, and the median of the published simulation rather than a hand-set figure. It moves whenever a parameter changes, and every change is a commit.",
   },
   {
     name: "Accelerated",
@@ -65,7 +65,7 @@ export default function MethodologyPage() {
             href="/"
             className="inline-block text-sm font-medium text-[#17202a]/60 transition-colors hover:text-[#17202a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f766d]"
           >
-            ← Back to dashboard
+            ← Back to the top page
           </Link>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-[#2f766d] sm:text-sm">
@@ -120,7 +120,7 @@ export default function MethodologyPage() {
 
           <Section title="Three Scenarios: Conservative / Base / Accelerated">
             <p>
-              The figure shown on the dashboard is the base case. Two other
+              The figure shown on the top page is the base case. Two other
               scenarios bound the range of outcomes:
             </p>
             <div className="mt-2 grid gap-4 sm:grid-cols-3">

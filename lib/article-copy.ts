@@ -29,7 +29,7 @@ export const ARTICLE_UI = {
     modelNote:
       "The LEV model is re-evaluated about twice a year, or sooner after an extraordinary event. A typical research article does not change the countdown.",
     readSource: "Read the primary source",
-    backToList: "Latest News list",
+    backToList: "Back to Ageless Longevity News",
     otherLanguage: "日本語で読む",
     studyDesign: "Study design",
     population: "Population / model",
@@ -41,7 +41,7 @@ export const ARTICLE_UI = {
     resultStatus: "Result status",
     listTitle: "Ageless Longevity News",
     listDek:
-      "Selected research updates. Read the article here, then open the primary source.",
+      "Longevity research news from around the world. Each headline links straight to the original article.",
     listEmpty: "No research updates currently meet the publication criteria.",
     rssLabel: "RSS",
     englishField: "",
@@ -49,7 +49,7 @@ export const ARTICLE_UI = {
   ja: {
     field: "分野",
     date: "日付",
-    evidence: "Evidence",
+    evidence: "エビデンス",
     signal: "要点",
     whatHappened: "何が起きたか",
     whyItMatters: "なぜ重要か",
@@ -66,12 +66,12 @@ export const ARTICLE_UI = {
     sampleSize: "サンプル数",
     intervention: "介入",
     outcomes: "結果",
-    limitations: "限界",
+    limitations: "注意点",
     trialPhase: "試験相",
     resultStatus: "結果の位置づけ",
     listTitle: "最新ニュース",
     listDek:
-      "長寿研究の更新情報を、要点と限界に分けて紹介します。詳細は各記事末尾の一次資料をご確認ください。",
+      "世界中の長寿研究ニュースを、日本語の見出しで紹介します。見出しがそのまま元の記事へのリンクになっています。",
     listEmpty: "現在、公開基準を満たす新しい研究情報はありません。",
     rssLabel: "RSS",
     englishField: "（英語）",

@@ -325,44 +325,44 @@ const REGISTRY_STATUS: Record<
 > = {
   RECRUITING: {
     en: /\brecruiting\b/i,
-    ja: /募集中/,
+    ja: /募集しています/,
     forbidEn: /\b(not yet recruiting|terminated|suspended|completed the trial)\b/i,
-    forbidJa: /未募集|中止|中断|試験は完了/,
+    forbidJa: /募集は始まっていません|中止|中断|試験は完了/,
   },
   NOT_YET_RECRUITING: {
     en: /not yet recruiting/i,
-    ja: /未募集/,
+    ja: /募集は始まっていません/,
     forbidEn: /\b(is recruiting|are recruiting)\b/i,
-    forbidJa: /募集中/,
+    forbidJa: /参加者を募集しています/,
   },
   ENROLLING_BY_INVITATION: {
     en: /enrolling by invitation/i,
-    ja: /招待による登録/,
+    ja: /招待制で登録を受け付けています/,
     forbidEn: /\brecruiting\b/i,
-    forbidJa: /募集中/,
+    forbidJa: /参加者を募集しています/,
   },
   ACTIVE_NOT_RECRUITING: {
     en: /active, not recruiting/i,
-    ja: /実施中で募集は終了/,
-    forbidJa: /募集中/,
+    ja: /募集は終了しています/,
+    forbidJa: /参加者を募集しています/,
   },
   COMPLETED: {
     en: /\bcompleted\b/i,
     ja: /完了/,
     forbidEn: /\brecruiting\b/i,
-    forbidJa: /募集中/,
+    forbidJa: /参加者を募集しています/,
   },
   TERMINATED: {
     en: /\bterminated\b/i,
     ja: /中止/,
     forbidEn: /\brecruiting\b/i,
-    forbidJa: /募集中/,
+    forbidJa: /参加者を募集しています/,
   },
   SUSPENDED: {
     en: /\bsuspended\b/i,
     ja: /中断/,
     forbidEn: /\brecruiting\b/i,
-    forbidJa: /募集中/,
+    forbidJa: /参加者を募集しています/,
   },
 };
 
@@ -622,7 +622,7 @@ export function validateDraft(
       }
       const planLabel = `${draft.localizedFacts.en.resultStatus}\n${draft.localizedFacts.en.studyDesign}`;
       const planLabelJa = `${draft.localizedFacts.ja.resultStatus}\n${draft.localizedFacts.ja.studyDesign}`;
-      if (!/no results posted/i.test(planLabel) || !planLabelJa.includes("結果は未掲載")) {
+      if (!/no results posted/i.test(planLabel) || !planLabelJa.includes("結果はまだ公表されていません")) {
         reasons.push("hasResults=false must be stated as no results posted in both languages");
       }
       if (

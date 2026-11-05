@@ -64,7 +64,11 @@ export default function ArticleView({
           <dt className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#17202a]/40">
             {ui.evidence}
           </dt>
-          <dd className="mt-1 text-[#17202a]/75">{article.evidence}</dd>
+          <dd className="mt-1 text-[#17202a]/75">
+            {locale === "ja"
+              ? article.evidence.replace(/^Evidence/, "エビデンス")
+              : article.evidence}
+          </dd>
         </div>
       </dl>
 

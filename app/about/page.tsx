@@ -65,7 +65,7 @@ export default function AboutPage() {
             href="/"
             className={`inline-block text-sm font-medium text-[#17202a]/60 transition-colors hover:text-[#17202a] ${FOCUS_RING}`}
           >
-            ← Back to dashboard
+            ← Back to the top page
           </Link>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-[#2f766d] sm:text-sm">
