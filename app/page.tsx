@@ -190,8 +190,8 @@ export default function Home() {
         {/* LEV in one sentence */}
         <section className="pt-[52px]">
           <SectionHeading
-            title="Longevity Escape Velocity (LEV), in one sentence"
-            sub="The same idea as a rocket's escape velocity: the speed at which the overtaking begins — that is LEV."
+            title="Longevity Escape Velocity (LEV)"
+            sub="On this site, achieving immortality is defined as the moment we reach longevity escape velocity — the concept proposed by futurist Ray Kurzweil, gerontologist Aubrey de Grey, and others."
           />
           <Disclosure label="Read more">
             <LevGauge
