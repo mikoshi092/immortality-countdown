@@ -1,4 +1,4 @@
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Zen_Kaku_Gothic_New } from "next/font/google";
 
 /**
  * Japanese faces for every /ja route.
@@ -30,7 +30,19 @@ const notoSerifJP = Noto_Serif_JP({
   preload: false,
 });
 
-const JA_FONT_VARS = `:root{--font-noto-sans-jp:${notoSansJP.style.fontFamily};--font-noto-serif-jp:${notoSerifJP.style.fontFamily}}`;
+/**
+ * Full-family Zen Kaku Gothic New 900 for the hero H1's Japanese glyphs
+ * (the root layout loads the Latin subset as --font-zen-kaku). Same
+ * no-subsets + preload:false combination as the Noto faces above.
+ */
+const zenKakuJP = Zen_Kaku_Gothic_New({
+  variable: "--font-zen-kaku-jp",
+  weight: "900",
+  display: "swap",
+  preload: false,
+});
+
+const JA_FONT_VARS = `:root{--font-noto-sans-jp:${notoSansJP.style.fontFamily};--font-noto-serif-jp:${notoSerifJP.style.fontFamily};--font-zen-kaku-jp:${zenKakuJP.style.fontFamily}}`;
 
 export default function JapaneseLayout({
   children,
@@ -39,7 +51,7 @@ export default function JapaneseLayout({
 }>) {
   return (
     <div
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} font-ja`}
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenKakuJP.variable} font-ja`}
     >
       <style href="ja-font-vars" precedence="high">
         {JA_FONT_VARS}

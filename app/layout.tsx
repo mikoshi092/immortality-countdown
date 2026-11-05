@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4, Zen_Kaku_Gothic_New } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
 import { serializeJsonLd } from "@/lib/json-ld";
@@ -29,8 +29,21 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
+/**
+ * Display face for the hero H1 (owner pick, 2026-11-05): Zen Kaku Gothic
+ * New 900, the heavy gothic from the font specimens. Latin subset here;
+ * app/ja/layout.tsx loads the full family as --font-zen-kaku-jp for the
+ * Japanese glyphs, and .font-hero-display in globals.css stacks the two.
+ */
+const zenKaku = Zen_Kaku_Gothic_New({
+  variable: "--font-zen-kaku",
+  subsets: ["latin"],
+  weight: "900",
+  display: "swap",
+});
+
 const siteUrl = SITE_URL;
-const title = "Immortality Countdown | Tracking Longevity Escape Velocity";
+const title = "Countdown to Immortality | Immortality Countdown";
 const description =
   "A conservative, evidence-based estimate of when medical technology may begin to outrun aging, with transparent methodology and longevity research updates.";
 
@@ -95,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} ${zenKaku.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

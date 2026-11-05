@@ -30,7 +30,7 @@ import { FOCUS_RING } from "@/lib/nav";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title =
-  "寿命脱出速度（LEV）とは？不老長寿はいつ実現するのか | Immortality Countdown";
+  "不老不死へのカウントダウン | 寿命脱出速度（LEV）とは？不老長寿はいつ実現するのか";
 const description =
   "不老不死はいつ実現するのか。医療の進歩が老化の速度を追い越す「寿命脱出速度（LEV）」とは何か。長寿研究の進展を追い、Immortality Countdown独自モデルによる現在の到達予測を解説します。";
 
@@ -127,8 +127,8 @@ export default function JapaneseLandingPage() {
 
         {/* Hero */}
         <section className="pt-14 text-center">
-          <h1 className="text-[clamp(1.7rem,5vw,2.5rem)] font-extrabold leading-[1.4]">
-            不老長寿まで
+          <h1 className="font-hero-display text-[clamp(2.2rem,6vw,3.4rem)] font-black leading-[1.3]">
+            不老不死への<br className="sm:hidden" />カウントダウン
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
             <Phrases
