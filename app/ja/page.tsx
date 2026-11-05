@@ -221,20 +221,7 @@ export default function JapaneseLandingPage() {
             first-time visitor still learns the site has news. */}
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
-          <SectionHeading
-            title="📰 不老不死ニュース"
-            sub={
-              <Phrases
-                parts={[
-                  "世界中の研究ニュースを、",
-                  "日本語の見出しで。",
-                  "見出しがそのまま",
-                  "元の記事への",
-                  "リンクになっています。",
-                ]}
-              />
-            }
-          />
+          <SectionHeading title="📰 最新ニュース" />
           <div className="mt-6">
             <RtNewsList
               rows={latestRows}
@@ -247,7 +234,7 @@ export default function JapaneseLandingPage() {
               href="/ja/news"
               className={`inline-block font-extrabold text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              ニュース一覧をすべて見る →
+              ニュース一覧を見る →
             </Link>
           </div>
         </section>
@@ -257,7 +244,7 @@ export default function JapaneseLandingPage() {
               href="/ja/news"
               className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              不老不死ニュースは準備中です →
+              最新ニュースは準備中です →
             </Link>
           </section>
         )}

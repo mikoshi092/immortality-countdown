@@ -10,7 +10,7 @@ import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
 import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 
 export const metadata: Metadata = {
-  title: "Immortality News | Immortality Countdown",
+  title: "Latest News | Immortality Countdown",
   description:
     "Longevity research news from around the world. Each headline links straight to the original article.",
   alternates: {
@@ -39,11 +39,7 @@ export default function NewsIndexPage() {
     <main className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
       <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
-        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Immortality News</h1>
-        <p className="mt-1 text-[0.95rem] text-[#4a5878]">
-          Longevity news from around the world. Each headline links straight to the
-          original article.
-        </p>
+        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Latest News</h1>
         <p className="mt-1 text-[0.9rem]">
           <Link href={newsRssPath("en")} className={`font-bold text-[#00a8a8] hover:underline ${FOCUS_RING}`}>
             {ui.rssLabel} →

@@ -222,10 +222,7 @@ export default function Home() {
             first-time visitor still learns the site has news. */}
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
-          <SectionHeading
-            title="📰 Immortality News"
-            sub="Research news from around the world. Each headline links straight to the original article."
-          />
+          <SectionHeading title="📰 Latest News" />
           <div className="mt-6">
             <RtNewsList
               rows={latestRows}
@@ -238,7 +235,7 @@ export default function Home() {
               href="/news"
               className={`inline-block font-extrabold text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              See all news →
+              See the news list →
             </Link>
           </div>
         </section>
