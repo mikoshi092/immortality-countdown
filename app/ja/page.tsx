@@ -249,31 +249,24 @@ export default function JapaneseLandingPage() {
                 when: `${baseYear}年`,
                 note: "いまここ",
                 marker: "start",
-                labelRow: 0,
               },
               {
                 pct: road2028Pct,
-                pctLabel: `${road2028Pct}%`,
                 when: "2028年",
                 marker: "event",
-                pill: { label: "シンギュラリティ", tone: "coral", level: 1, anchor: 24, anchorSm: 24 },
-                labelRow: 1,
+                pill: { label: "シンギュラリティ", year: "（2028年）", tone: "coral", level: 1, anchor: 24, anchorSm: 28 },
               },
               {
                 pct: road2030Pct,
-                pctLabel: `${road2030Pct}%`,
                 when: "2030年",
                 marker: "event",
-                pill: { label: "量子コンピュータの普及", tone: "navy", level: 3, anchor: 38, anchorSm: 44 },
-                labelRow: 2,
+                pill: { label: "量子コンピュータの普及", year: "（2030年）", tone: "navy", level: 3, anchor: 38, anchorSm: 44 },
               },
               {
                 pct: road2036Pct,
-                pctLabel: `${road2036Pct}%`,
                 when: "2036年",
                 marker: "event",
-                pill: { label: "全細胞解析終了", tone: "teal", level: 2, anchor: 55, anchorSm: 55 },
-                labelRow: 3,
+                pill: { label: "全細胞解析終了", year: "（2036年）", tone: "teal", level: 2, anchor: 55, anchorSm: 55 },
               },
               {
                 pct: 100,
@@ -281,7 +274,6 @@ export default function JapaneseLandingPage() {
                 when: `${earlyYear}年`,
                 note: "LEV到達",
                 marker: "end",
-                labelRow: 0,
               },
             ]}
           />

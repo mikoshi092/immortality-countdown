@@ -218,31 +218,24 @@ export default function Home() {
                 when: `${baseYear}`,
                 note: "You are here",
                 marker: "start",
-                labelRow: 0,
               },
               {
                 pct: road2028Pct,
-                pctLabel: `${road2028Pct}%`,
                 when: "2028",
                 marker: "event",
-                pill: { label: "The Singularity", tone: "coral", level: 1, anchor: 24, anchorSm: 24 },
-                labelRow: 1,
+                pill: { label: "The Singularity", year: " (2028)", tone: "coral", level: 1, anchor: 24, anchorSm: 24 },
               },
               {
                 pct: road2030Pct,
-                pctLabel: `${road2030Pct}%`,
                 when: "2030",
                 marker: "event",
-                pill: { label: "Quantum computing becomes mainstream", tone: "navy", level: 3, anchor: 38, anchorSm: 44 },
-                labelRow: 2,
+                pill: { label: "Quantum computing becomes mainstream", year: " (2030)", tone: "navy", level: 3, anchor: 38, anchorSm: 50 },
               },
               {
                 pct: road2036Pct,
-                pctLabel: `${road2036Pct}%`,
                 when: "2036",
                 marker: "event",
-                pill: { label: "Whole-cell analysis complete", tone: "teal", level: 2, anchor: 55, anchorSm: 55 },
-                labelRow: 3,
+                pill: { label: "Whole-cell analysis complete", year: " (2036)", tone: "teal", level: 2, anchor: 55, anchorSm: 55 },
               },
               {
                 pct: 100,
@@ -250,7 +243,6 @@ export default function Home() {
                 when: `${earlyYear}`,
                 note: "LEV reached",
                 marker: "end",
-                labelRow: 0,
               },
             ]}
           />
