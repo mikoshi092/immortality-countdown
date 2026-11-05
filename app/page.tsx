@@ -139,9 +139,10 @@ export default function Home() {
             Countdown to Immortality
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
-            Living one more year starts to buy you more than one extra year of life. This site
-            estimates when that point may arrive, from how longevity research is progressing around
-            the world.
+            With recent advances in AI drug discovery and the arrival of quantum computers,
+            &lsquo;immortality&rsquo; — once only a dream — has become a technically achievable
+            goal. This site tracks the latest news and data to follow, in real time, how many
+            years remain until we get there.
           </p>
 
           <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border-[3px] border-[#7d97bd] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
