@@ -4377,6 +4377,1746 @@ export const articles: Article[] = [
         "journal": "Blood"
       }
     }
+  },
+  {
+    "id": "2026-10-20-human-blood-cells-reprogrammed-into-neural-stem-cells-read-decades-young",
+    "slug": "2026-10-20-human-blood-cells-reprogrammed-into-neural-stem-cells-read-decades-young",
+    "sourceUrl": "https://www.sciencedaily.com/releases/2026/10/261020085013.htm",
+    "sourceLabel": "ScienceDaily",
+    "sourcePublishedAt": "2026-10-20T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:05:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Converted cells read under 20 on epigenetic clocks and behaved like young cells",
+        "limitations": "Results are limited to donor cells in a laboratory; no living person was treated",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "変換した細胞の時計年齢は20歳未満になり、若い細胞と同様に機能しました",
+        "limitations": "結果は実験室のドナー細胞に限られ、生きている人への治療ではありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Human blood cells reprogrammed into neural stem cells read decades younger on epigenetic clocks",
+      "dek": "Bonn researchers converted immature red blood cells from an 80-year-old donor directly into neural stem cells, and the cells' epigenetic age fell to under 20.",
+      "whatHappened": "A University of Bonn team took immature red blood cells from an 80-year-old donor and converted them directly into neural stem cells, skipping the pluripotent stage. Tracked with DNA methylation and RNA sequencing, the converted cells gradually grew younger over 100-plus days, until epigenetic clocks read them as under 20. The rejuvenated cells behaved like young cells, with less DNA damage. The work was published in Aging Cell.",
+      "whyItMatters": "Direct reprogramming that resets epigenetic age without a pluripotent detour is a concrete step in rejuvenation research, shown here in a donor's own cells in the lab.",
+      "realityCheck": "This is a laboratory result in cells taken from a donor. Nothing was given to a living person, and a younger clock reading in a dish is not a treatment.",
+      "popHeadline": "Reprogrammed human cells read 60-plus years younger on epigenetic clocks"
+    },
+    "ja": {
+      "headline": "血液細胞から変換した神経幹細胞、エピジェネティック時計で数十年若く",
+      "dek": "ボン大学のチームが80歳のドナーの赤血球前駆細胞を神経幹細胞へ直接変換したところ、エピジェネティック時計の年齢は20歳未満まで下がりました。",
+      "whatHappened": "ボン大学の研究チームは、80歳のドナーから採取した赤血球前駆細胞を、iPS細胞を経由せずに神経幹細胞へ直接変換しました。DNAメチル化とRNAシーケンスで追跡すると、変換した細胞は100日あまりをかけて少しずつ若返り、エピジェネティック時計の年齢は20歳未満になりました。若返った細胞は若い細胞と同様に機能し、DNA損傷も少なかったとされます。論文は『Aging Cell』に掲載されました。",
+      "whyItMatters": "多能性幹細胞を経由せずにエピジェネティックな年齢を巻き戻す直接変換は、若返り研究の具体的な前進です。ドナー本人の細胞で示された点にも意味があります。",
+      "realityCheck": "これはドナーから採取した細胞での実験結果です。生きている人に投与したわけではなく、培養皿の中の時計の若返りは治療ではありません。",
+      "popHeadline": "人の血液細胞を神経幹細胞に変換、時計の年齢は60年以上若返り"
+    },
+    "sourceCheck": {
+      "sourceId": "sciencedaily-aging",
+      "sourceUrl": "https://www.sciencedaily.com/releases/2026/10/261020085013.htm",
+      "title": "Rejuvenation breakthrough: Scientists reverse 60 years of aging in human cells",
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "Bonn researchers directly reprogrammed immature red blood cells from an 80-year-old donor into neural stem cells, bypassing the pluripotent stage. Epigenetic clocks put the cells' molecular age at under 20 — a reversal of 60-plus years, tracked gradually over 100-plus days. Published in Aging Cell; a laboratory cell model, not a treatment for people.",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "261020085013.htm",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-20",
+          "iso": "2026-10-20",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by ScienceDaily (Healthy Aging) RSS",
+        "id": "https://www.sciencedaily.com/releases/2026/10/261020085013.htm"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "ScienceDaily (Healthy Aging)"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:05:00.000Z"
+  },
+  {
+    "id": "2026-10-31-experimental-drug-restores-aged-liver-cells-in-rats-and-halves-an-alzhei",
+    "slug": "2026-10-31-experimental-drug-restores-aged-liver-cells-in-rats-and-halves-an-alzhei",
+    "sourceUrl": "https://www.sciencedaily.com/releases/2026/10/261031221155.htm",
+    "sourceLabel": "ScienceDaily",
+    "sourcePublishedAt": "2026-10-31T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:05:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Amyloid beta fell by approximately 50% to young-rat levels; liver filter cells were restored",
+        "limitations": "Shown only in rats; any benefit in people is unknown and was not tested",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "アミロイドベータが約50%減って若いラット並みになり、肝臓のフィルター細胞が回復しました",
+        "limitations": "ラットでのみ示された結果で、人での効果は不明であり検証されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Experimental drug restores aged liver cells in rats and halves an Alzheimer's-linked protein",
+      "dek": "Two weeks of cinaciguat restored aging liver cells in rats, and amyloid beta in the blood fell by about 50% to young-rat levels.",
+      "whatHappened": "USC researchers treated aged rats with the experimental drug cinaciguat. The drug restored the structure of aging liver sinusoidal endothelial cells, the liver's filter cells. Amyloid beta in the blood fell by approximately 50%, back to the level of young rats, and LDL cholesterol also returned to youthful levels. The team also identified a previously unknown HB-EGF signalling pathway between liver cells, reported in the Journal of Biological Chemistry.",
+      "whyItMatters": "A single drug that restores an aged cell type and moves a blood marker tied to Alzheimer's disease is the kind of result the senolytics field watches for — at animal stage.",
+      "realityCheck": "Every result here is in rats and rat cells. Whether the same pathway can be used safely in people is unknown, and no human benefit has been shown.",
+      "popHeadline": "In aged rats, a drug that rejuvenates liver cells also cut amyloid beta by about 50%"
+    },
+    "ja": {
+      "headline": "実験薬で老いたラットの肝細胞が回復、アルツハイマー関連タンパク質は半減",
+      "dek": "シナシグアトを投与した老化ラットで、肝臓の類洞内皮細胞が回復し、血液中のアミロイドベータが若いラット並みの約50%減になりました。",
+      "whatHappened": "南カリフォルニア大学の研究チームは、老化したラットに実験薬シナシグアトを投与しました。肝臓のフィルター役である類洞内皮細胞の構造が回復し、血液中のアミロイドベータは約50%減って若いラット並みになり、LDLコレステロールも若いレベルまで下がりました。肝細胞のあいだで働く、これまで知られていなかったHB-EGFのシグナル経路も見つかり、『Journal of Biological Chemistry』に報告されました。",
+      "whyItMatters": "老化した細胞の型を回復させ、アルツハイマー病に関わる血液マーカーまで動かした動物段階の成果で、セノリティクス分野が注目するタイプの結果です。",
+      "realityCheck": "結果はすべてラットとラットの細胞でのものです。同じ経路を人で安全に使えるかは不明で、人での効果は示されていません。",
+      "popHeadline": "老いたラットの肝臓を若返らせる実験薬、アミロイドベータを約50%減らした"
+    },
+    "sourceCheck": {
+      "sourceId": "sciencedaily-aging",
+      "sourceUrl": "https://www.sciencedaily.com/releases/2026/10/261031221155.htm",
+      "title": "Scientists reverse liver cell aging and cut Alzheimer's-linked protein in half",
+      "publishedAt": "2026-10-31T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "USC researchers gave aged rats the experimental drug cinaciguat for two weeks. It restored aging liver sinusoidal endothelial cells, and amyloid beta levels fell by approximately 50%, to young-rat levels; LDL cholesterol also returned to youthful levels. The study, in the Journal of Biological Chemistry, also found a previously unknown HB-EGF signalling pathway between liver cells. Rats only; benefit in people is unproven.",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "261031221155.htm",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-31",
+          "iso": "2026-10-31",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by ScienceDaily (Healthy Aging) RSS",
+        "id": "https://www.sciencedaily.com/releases/2026/10/261031221155.htm"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "ScienceDaily (Healthy Aging)"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:05:20.000Z"
+  },
+  {
+    "id": "2026-11-03-circular-rna-carrying-yamanaka-factors-partially-reprograms-senescent-st",
+    "slug": "2026-11-03-circular-rna-carrying-yamanaka-factors-partially-reprograms-senescent-st",
+    "sourceUrl": "https://www.fightaging.org/archives/2026/11/circular-rna-encoding-yamanaka-factors-enables-partial-reprogramming-without-pluripotency/",
+    "sourceLabel": "Fight Aging!",
+    "sourcePublishedAt": "2026-11-03T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:05:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Senescence markers and DNA damage fell; growth recovered to early-passage levels in cultured cells",
+        "limitations": "Cell-culture work only; delivery and safety in a living body remain untested",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "培養細胞で老化マーカーとDNA損傷が減り、増殖が若い継代のレベルまで回復しました",
+        "limitations": "培養細胞での研究のみで、生きた体への届け方や安全性は検証されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Circular RNA carrying Yamanaka factors partially reprograms senescent stem cells without pluripotency",
+      "dek": "A circular RNA expressing three Yamanaka factors rejuvenated senescent mesenchymal stem cells in culture, without converting them into pluripotent stem cells.",
+      "whatHappened": "Researchers packaged a circular RNA that expresses three Yamanaka factors into lipid nanoparticles and delivered it to senescent mesenchymal stem cells. The treated cells showed lower senescence markers, less DNA damage and fewer inflammatory signals, and their growth and differentiation recovered to early-passage levels. The cells did not convert into pluripotent stem cells, and genome stability was preserved. The study appeared in Stem Cell Research and Therapy.",
+      "whyItMatters": "Partial reprogramming is a leading rejuvenation strategy, and its main safety worry is accidental pluripotency. A delivery method that skips that step addresses the worry directly.",
+      "realityCheck": "The work is in cultured stem cells only. Delivery to tissues in a living body, dosing, and long-term safety all remain open questions.",
+      "popHeadline": "Partial reprogramming without the pluripotency step, using circular RNA"
+    },
+    "ja": {
+      "headline": "山中因子を運ぶ環状RNA、多能化せずに老化した幹細胞を部分リプログラミング",
+      "dek": "山中因子を発現する環状RNAが、培養中の老化した間葉系幹細胞を、多能性幹細胞に変えることなく若返らせました。",
+      "whatHappened": "研究チームは、山中因子を発現する環状RNAを脂質ナノ粒子に包み、老化した間葉系幹細胞に届けました。処理した細胞では老化マーカーやDNA損傷、炎症シグナルが減り、増殖と分化の能力は若い継代のレベルまで回復しました。細胞が多能性幹細胞に変わることはなく、ゲノムの安定性も保たれました。論文は『Stem Cell Research and Therapy』に掲載されました。",
+      "whyItMatters": "部分リプログラミングは若返り戦略の本命の一つで、最大の安全面の懸念は意図しない多能化です。その段階を踏まない届け方は、懸念への直接の答えになります。",
+      "realityCheck": "培養した幹細胞での研究です。生きた体の組織へ届ける方法や投与量、長期の安全性は、これからの課題です。",
+      "popHeadline": "環状RNAで部分リプログラミング、多能化の段階を踏まずに若返り"
+    },
+    "sourceCheck": {
+      "sourceId": "fight-aging",
+      "sourceUrl": "https://www.fightaging.org/archives/2026/11/circular-rna-encoding-yamanaka-factors-enables-partial-reprogramming-without-pluripotency/",
+      "title": "Circular RNA Encoding Yamanaka Factors Enables Partial Reprogramming Without Pluripotency",
+      "publishedAt": "2026-11-03T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "An LNP-delivered circular RNA co-expressing OCT4, SOX2 and KLF4 (circ-OSK) partially reprogrammed senescent late-passage mesenchymal stem cells, reducing senescence-associated beta-galactosidase, DNA-damage markers and inflammatory cytokines and restoring proliferation and differentiation to early-passage levels, with no pluripotent (iPSC) conversion and genome stability preserved. The study demonstrates partial reprogramming of senescent cells without a pluripotency step. Published in Stem Cell Research and Therapy.",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "circular-rna-encoding-yamanaka-factors-enables-partial-reprogramming-without-pluripotency",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-03",
+          "iso": "2026-11-03",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Fight Aging! RSS",
+        "id": "https://www.fightaging.org/archives/2026/11/circular-rna-encoding-yamanaka-factors-enables-partial-reprogramming-without-pluripotency/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Fight Aging!"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:05:40.000Z"
+  },
+  {
+    "id": "2026-10-02-fda-will-put-aging-and-longevity-medicine-into-its-regulatory-science-pr",
+    "slug": "2026-10-02-fda-will-put-aging-and-longevity-medicine-into-its-regulatory-science-pr",
+    "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/",
+    "sourceLabel": "GEN",
+    "sourcePublishedAt": "2026-10-02T18:39:14.000Z",
+    "draftCreatedAt": "2026-11-05T14:06:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "The agency announced aging and longevity will feature in its updated regulatory science priorities",
+        "limitations": "A priorities report changes no rules by itself; no aging treatment target has been approved",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "改訂される規制科学の重点分野に、老化と長寿を盛り込む方針が示されました",
+        "limitations": "報告書だけでは制度は変わらず、老化を対象とする治療標的はまだ承認されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "FDA will put aging and longevity medicine into its regulatory science priorities",
+      "dek": "The FDA's chief scientist said aging and longevity will feature in the agency's updated Focus Areas of Regulatory Science report, with shared endpoints for aging trials under discussion.",
+      "whatHappened": "Speaking at the ARDD 2026 meeting in Boston, FDA Chief Scientist Steven Kozlowski said the agency will include aging and longevity in its updated Focus Areas of Regulatory Science (FARS) report. Officials discussed the need for shared, qualified endpoints that aging trials can use. Epigenetic-clock pioneer Steve Horvath spoke on the following panel.",
+      "whyItMatters": "Aging is not an approved treatment target today, so trial endpoints are a real bottleneck. The regulator publicly working on that bottleneck is a structural step for the whole field.",
+      "realityCheck": "A priorities report is not an approval pathway. No aging indication exists yet, and shared endpoints still have to be defined and qualified.",
+      "popHeadline": "The FDA is adding aging itself to its regulatory science agenda"
+    },
+    "ja": {
+      "headline": "米FDA、規制科学の重点分野に「老化と長寿医療」を明記へ",
+      "dek": "米FDAの首席科学者が、改訂される規制科学重点分野（FARS）報告書に老化と長寿を含めると述べ、老化を対象とする試験の共通評価指標も議論されました。",
+      "whatHappened": "ボストンで開かれたARDD 2026で、米FDAの首席科学者スティーブン・コズロフスキー氏が、改訂版の規制科学重点分野（FARS）報告書に老化と長寿を盛り込むと述べました。当局者たちは、老化を対象とする試験で使える共通の評価指標の必要性を議論しました。次のパネルでは、エピジェネティック時計の先駆者スティーブ・ホルバス氏が登壇しました。",
+      "whyItMatters": "老化は現状では承認された治療対象ではなく、試験の評価指標は分野全体のボトルネックです。規制当局がその解消に公に動き始めたことは、構造的な一歩です。",
+      "realityCheck": "重点分野の報告書は承認制度そのものではありません。老化を対象とする適応はまだ存在せず、共通の評価指標もこれから定義と検証が必要です。",
+      "popHeadline": "米FDAが「老化」そのものを規制科学の重点分野に入れる方針"
+    },
+    "sourceCheck": {
+      "sourceId": "gen-news",
+      "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/",
+      "title": "FDA to Highlight Aging, Longevity Medicine in Planned FARS Updates",
+      "publishedAt": "2026-10-02T18:39:14.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "At ARDD 2026 in Boston, FDA Chief Scientist Steven Kozlowski said the agency will include aging and longevity in its updated Focus Areas of Regulatory Science (FARS) report, due early in FY2027. Officials discussed shared, qualified endpoints for aging trials; epigenetic-clock pioneer Steve Horvath spoke on the following panel. The article cites a 2021 analysis valuing one extra year of life expectancy at 38 trillion dollars, and notes blocking aging mechanisms has raised lifespan up to 30% in experimental models.",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "fda-to-highlight-aging-longevity-medicine-in-planned-fars-update",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-02T18:39:14Z",
+          "iso": "2026-10-02T18:39:14.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Genetic Engineering & Biotechnology News RSS",
+        "id": "https://www.genengnews.com/topics/translational-medicine/fda-to-highlight-aging-longevity-medicine-in-planned-fars-update/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Genetic Engineering & Biotechnology News"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:06:00.000Z"
+  },
+  {
+    "id": "2026-10-25-an-ai-reads-biological-age-from-a-single-face-photo-and-predicts-surviva",
+    "slug": "2026-10-25-an-ai-reads-biological-age-from-a-single-face-photo-and-predicts-surviva",
+    "sourceUrl": "https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/",
+    "sourceLabel": "New Atlas",
+    "sourcePublishedAt": "2026-10-25T22:03:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:06:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "biomarkers-diagnostics",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Photo-based age estimates tracked mortality risk; a companion model separated short-term survival groups",
+        "limitations": "Group-level prediction from records; not an individual diagnosis and not prospectively trialed",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "写真からの年齢推定が死亡リスクと関連し、短期生存の異なる群を分けることができました",
+        "limitations": "診療記録に基づく集団レベルの予測で、個人の診断ではなく前向き試験でもありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "An AI reads biological age from a single face photo and predicts survival after radiotherapy",
+      "dek": "Mass General Brigham's FAHR-Face model estimates biological age from a face photo, and its readings track mortality risk and short-term survival after radiotherapy.",
+      "whatHappened": "Researchers at Mass General Brigham trained an AI foundation model on face photos and built two tools from it. One estimates a person's biological age from a single photo; people who looked older than their real age had higher mortality risk, and people who looked younger fared better. A second tool, trained on radiotherapy records, separated people into risk groups whose short-term survival differed sharply. The study was published in The Lancet Digital Health.",
+      "whyItMatters": "Biological-age measurement is one of this site's tracked fields. A clock that needs only a photo would make that measurement radically cheaper to collect.",
+      "realityCheck": "The tools predict risk in groups; they do not diagnose an individual, and the survival model was built and tested on radiotherapy records, not in a prospective trial.",
+      "popHeadline": "One face photo, read by AI, estimates biological age and survival odds"
+    },
+    "ja": {
+      "headline": "顔写真1枚から生物学的年齢と放射線治療後の生存をAIが予測",
+      "dek": "マスジェネラル・ブリガムのAIモデル「FAHR-Face」が、顔写真から生物学的年齢を推定し、その値が死亡リスクや放射線治療後の短期生存と関連しました。",
+      "whatHappened": "マスジェネラル・ブリガムの研究チームは、顔写真で学習したAI基盤モデルから二つのツールを作りました。一つは顔写真1枚から生物学的年齢を推定するもので、実年齢より老けて見える人は死亡リスクが高く、若く見える人は良好な経過と関連しました。もう一つは放射線治療の記録で学習し、短期の生存が大きく異なるリスク群を分けることができました。論文は『The Lancet Digital Health』に掲載されました。",
+      "whyItMatters": "生物学的年齢の測定は当サイトが追う分野の一つです。写真だけで測れる時計が使えるようになれば、測定のコストは大きく下がります。",
+      "realityCheck": "これらのツールは集団のリスクを予測するもので、個人を診断するものではありません。生存モデルも診療記録での構築と検証で、前向きの試験ではありません。",
+      "popHeadline": "顔写真1枚で生物学的年齢を読むAI、生存の見込みまで推定"
+    },
+    "sourceCheck": {
+      "sourceId": "new-atlas-medical",
+      "sourceUrl": "https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/",
+      "title": "Single photo predicts your chances of surviving cancer treatment",
+      "publishedAt": "2026-10-25T22:03:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "Mass General Brigham built FAHR-Face, an AI foundation model trained on over 42 million face photos. Its FAHR-FaceAge tool estimates biological age with a mean error of 5.1 years, versus 6.92 for a comparator; people appearing 5 or more years older than their real age had 21% higher mortality risk, while looking 5 years younger was linked to 17% higher survival. A companion survival model, trained on records of more than 34,000 radiotherapy patients, saw 52% of its highest-risk group die within 90 days versus 2.1% in the lowest-risk group. Published in The Lancet Digital Health.",
+      "fieldId": "biomarkers-diagnostics",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "photo-predict-cancer-treatment-faceage-facesurvival",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-25T22:03:00Z",
+          "iso": "2026-10-25T22:03:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by New Atlas (Medical) RSS",
+        "id": "https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "New Atlas (Medical)"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:06:20.000Z"
+  },
+  {
+    "id": "2026-10-09-an-atlas-of-millions-of-immune-cells-shows-how-people-s-immune-aging-pat",
+    "slug": "2026-10-09-an-atlas-of-millions-of-immune-cells-shows-how-people-s-immune-aging-pat",
+    "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/immune-cell-atlas-charts-how-peoples-aging-paths-diverge/",
+    "sourceLabel": "GEN",
+    "sourcePublishedAt": "2026-10-09T16:41:48.000Z",
+    "draftCreatedAt": "2026-11-05T14:06:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "A CD8 T cell signature marked unhealthy immune aging and higher risk a decade later",
+        "limitations": "Observational data; the signature is an association, not a shown cause or treatment target",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "CD8 T細胞のサインが不健康な免疫老化と十年後のリスク上昇を示しました",
+        "limitations": "観察データであり、サインは関連を示すもので、原因や治療標的が示されたわけではありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "An atlas of millions of immune cells shows how people's immune aging paths diverge",
+      "dek": "Profiling millions of immune cells from thousands of adults, researchers found a blood-cell signature that marks unhealthy immune aging and higher risk a decade later.",
+      "whatHappened": "Teams at WashU, Nationwide Children's and King's College London profiled millions of immune cells from over 2,600 adults and modelled the pattern in a 50,000-person UK Biobank sample. A high share of one type of CD8 T cell marked unhealthy immune aging: people with that signature had a higher risk of death a decade later, and more type 2 diabetes, hypertension, liver disease and renal failure. The work was published in Immunity.",
+      "whyItMatters": "A blood signature that separates healthy from unhealthy immune aging is a candidate biomarker — the kind of measurement that aging trials and clinics both need.",
+      "realityCheck": "This is an observational atlas. The signature is associated with later risk; the study does not show that changing it would change anyone's outcome.",
+      "popHeadline": "Millions of immune cells chart healthy and unhealthy immune aging"
+    },
+    "ja": {
+      "headline": "数百万個の免疫細胞アトラスが、人の免疫老化の分かれ道を描く",
+      "dek": "数千人の成人から数百万個の免疫細胞を解析し、不健康な免疫老化を示し、十年後のリスク上昇と関わる血液細胞のサインが見つかりました。",
+      "whatHappened": "ワシントン大学、ネーションワイド小児病院、キングス・カレッジ・ロンドンのチームが、2,600人を超える成人から数百万個の免疫細胞を解析し、UKバイオバンクの50,000人でそのパターンをモデル化しました。ある種のCD8 T細胞の割合が高いことが不健康な免疫老化のサインとなり、そのサインを持つ人は十年後の死亡リスクが高く、2型糖尿病や高血圧、肝疾患、腎不全も多いことが分かりました。論文は『Immunity』に掲載されました。",
+      "whyItMatters": "健康な免疫老化とそうでない老化を分ける血液のサインは、バイオマーカーの候補です。老化の試験にも臨床にも必要とされる測定です。",
+      "realityCheck": "これは観察研究のアトラスです。サインは後のリスクと関連しますが、それを変えれば結果が変わることまでは示していません。",
+      "popHeadline": "免疫細胞の大規模解析で見えた、健康な免疫老化とそうでない老化の違い"
+    },
+    "sourceCheck": {
+      "sourceId": "gen-news",
+      "sourceUrl": "https://www.genengnews.com/topics/translational-medicine/immune-cell-atlas-charts-how-peoples-aging-paths-diverge/",
+      "title": "Immune Cell Atlas Charts How People's Aging Paths Diverge",
+      "publishedAt": "2026-10-09T16:41:48.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "Researchers at WashU, Nationwide Children's and King's College London analysed approximately 12.4 million immune cells from over 2,600 mainly healthy adults aged 20 to 90-plus across eight cohorts, then modelled 50,000 UK Biobank participants. A high ratio of granzyme B- to granzyme K-producing CD8 T cells marked unhealthy immune aging: that group had higher risk of death a decade later and more type 2 diabetes, hypertension, liver disease and renal failure. Published in Immunity.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "immune-cell-atlas-charts-how-peoples-aging-paths-diverge",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-09T16:41:48Z",
+          "iso": "2026-10-09T16:41:48.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Genetic Engineering & Biotechnology News RSS",
+        "id": "https://www.genengnews.com/topics/translational-medicine/immune-cell-atlas-charts-how-peoples-aging-paths-diverge/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Genetic Engineering & Biotechnology News"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:06:40.000Z"
+  },
+  {
+    "id": "2026-11-02-a-youth-factor-protein-reduces-vascular-senescence-in-mammals-and-extend",
+    "slug": "2026-11-02-a-youth-factor-protein-reduces-vascular-senescence-in-mammals-and-extend",
+    "sourceUrl": "https://www.fightaging.org/archives/2026/11/mtr4-reduces-vascular-cellular-senescence-in-mammals-extends-life-in-nematode-worms/",
+    "sourceLabel": "Fight Aging!",
+    "sourcePublishedAt": "2026-11-02T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:07:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Restoring the protein eased vascular aging signs in mice; extra gene copies extended worm lifespan",
+        "limitations": "Lifespan shown in worms only; mammal work is in mice and cells, with no human intervention",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "タンパク質を戻すとマウスの血管老化の兆しが和らぎ、遺伝子追加で線虫の寿命が延びました",
+        "limitations": "寿命は線虫でのみ示され、哺乳類ではマウスと細胞の結果で、人への介入はありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "A 'youth factor' protein reduces vascular senescence in mammals and extends life in worms",
+      "dek": "The protein MTR4 falls as blood-vessel cells age. Restoring it made vessels act younger in mice, and extra copies extended lifespan in nematode worms.",
+      "whatHappened": "Researchers found that the protein MTR4 declines in senescent human vessel-lining cells and in aged mouse aortas. Removing it pushed cells into early senescence; adding it back restored a youthful profile. In mice, lowering the protein in vessel linings worsened vascular function and multi-organ aging, while raising it eased both. In the nematode C. elegans, extra copies of the gene extended lifespan to a degree comparable with classic longevity models.",
+      "whyItMatters": "Vascular aging drives much of the body's wider aging. A single conserved factor that moves vessel senescence in both directions is a clean mechanistic lead.",
+      "realityCheck": "The lifespan result is in worms, and the mammal results are in mice and cultured cells. No human intervention exists, and raising a protein safely in people is untested.",
+      "popHeadline": "One protein, less vascular senescence in mammals — and longer life in worms"
+    },
+    "ja": {
+      "headline": "「若さ因子」タンパク質、哺乳類の血管老化を抑え線虫の寿命を延ばす",
+      "dek": "血管の細胞が老いると減るタンパク質MTR4。マウスでは血管の若々しさが戻り、線虫では遺伝子の追加で寿命が延びました。",
+      "whatHappened": "研究チームは、タンパク質MTR4が老化したヒト血管内皮細胞や老いたマウスの大動脈で減っていることを見つけました。これを減らすと細胞は早く老化し、増やすと若い状態に戻りました。マウスでは血管内皮でこのタンパク質を減らすと血管機能の低下と多臓器の老化が進み、増やすと和らぎました。線虫C. elegansでは、遺伝子を増やすことで古典的な長寿モデルに匹敵する寿命の延長が見られました。",
+      "whyItMatters": "血管の老化は全身の老化を引っ張ります。血管の老化を双方向に動かせる保存された因子は、機構解明のきれいな手掛かりです。",
+      "realityCheck": "寿命の結果は線虫でのもので、哺乳類の結果はマウスと培養細胞です。人への介入は存在せず、人でタンパク質を安全に増やす方法は検証されていません。",
+      "popHeadline": "1つのタンパク質で血管の老化が軽く、線虫では寿命が大きく延長"
+    },
+    "sourceCheck": {
+      "sourceId": "fight-aging",
+      "sourceUrl": "https://www.fightaging.org/archives/2026/11/mtr4-reduces-vascular-cellular-senescence-in-mammals-extends-life-in-nematode-worms/",
+      "title": "MTR4 Reduces Vascular Cellular Senescence in Mammals, Extends Life in Nematode Worms",
+      "publishedAt": "2026-11-02T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "The protein MTR4 declines in senescent human umbilical vein endothelial cells and aged mouse aortas. Its depletion drove cells into premature senescence; overexpression restored a youthful phenotype. In mice, endothelial Mtr4 knockdown promoted vascular dysfunction and multi-organ aging, while overexpression alleviated them. In C. elegans, mtr-4 overexpression dramatically extended lifespan, comparable to classic longevity models, and knockdown accelerated aging. Underlying open-access paper: MTR4, a conserved youth factor for vascular endothelium.",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "mtr4-reduces-vascular-cellular-senescence-in-mammals-extends-life-in-nematode-worms",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-02",
+          "iso": "2026-11-02",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Fight Aging! RSS",
+        "id": "https://www.fightaging.org/archives/2026/11/mtr4-reduces-vascular-cellular-senescence-in-mammals-extends-life-in-nematode-worms/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Fight Aging!"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:07:00.000Z"
+  },
+  {
+    "id": "2026-11-01-taurine-works-as-a-brake-on-age-related-inflammation-yale-study-finds",
+    "slug": "2026-11-01-taurine-works-as-a-brake-on-age-related-inflammation-yale-study-finds",
+    "sourceUrl": "https://newatlas.com/aging/age-related-inflammation-taurine/",
+    "sourceLabel": "New Atlas",
+    "sourcePublishedAt": "2026-11-01T22:03:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:07:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "immune-engineering-cancer-control",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Taurine restrained the NLRP3 inflammasome in cells and mouse macrophages",
+        "limitations": "Mechanism shown in cells and mice; supplement benefit in people was not tested",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "タウリンが細胞とマウスのマクロファージでNLRP3インフラマソームを抑えました",
+        "limitations": "機構は細胞とマウスで示されたもので、人でのサプリメントの効果は検証されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Taurine works as a brake on age-related inflammation, Yale study finds",
+      "dek": "Immune cells release most of their taurine when they respond to danger signals — and restoring it blocks the NLRP3 inflammasome, a driver of inflammaging.",
+      "whatHappened": "A Yale School of Medicine team reported in Cell that taurine restrains the NLRP3 inflammasome, a driver of chronic age-related inflammation. Macrophages released up to 80% of their taurine when responding to danger signals; restoring taurine blocked downstream inflammation, and lowering taurine in mouse macrophages raised inflammation even in young animals. Blood taurine was higher in older adults than in younger adults, which the authors read as the body countering inflammation.",
+      "whyItMatters": "Taurine became a longevity talking point after earlier animal work. This study adds a mechanism — an inflammation brake — rather than another lifespan claim.",
+      "realityCheck": "The mechanism was shown in cells and mice. Higher blood taurine in older adults is an observation, not evidence that supplements help anyone.",
+      "popHeadline": "Taurine brakes the inflammasome behind age-related inflammation"
+    },
+    "ja": {
+      "headline": "タウリンは加齢に伴う炎症のブレーキだった、イェール大学の研究",
+      "dek": "免疫細胞は危険信号に反応するとタウリンの大半を放出し、タウリンを戻すと炎症老化を引っ張るNLRP3インフラマソームが止まりました。",
+      "whatHappened": "イェール大学医学部のチームが『Cell』に、タウリンが慢性的な加齢性炎症の原動力であるNLRP3インフラマソームを抑えることを報告しました。マクロファージは危険信号に反応するとタウリンの最大80%を放出し、タウリンを戻すと下流の炎症が止まりました。マウスのマクロファージでタウリンを減らすと、若い動物でも炎症が高まりました。高齢の成人の血中タウリンは若い成人より高く、体が炎症に対抗して増やしている可能性が示されています。",
+      "whyItMatters": "タウリンは先行する動物研究で長寿の話題になりました。今回は寿命の主張ではなく、炎症のブレーキという機構を加えた点が重要です。",
+      "realityCheck": "機構が示されたのは細胞とマウスです。高齢者で血中タウリンが高いのは観察結果で、サプリメントの効果を示すものではありません。",
+      "popHeadline": "タウリンが「炎症老化」の鍵インフラマソームにブレーキをかけていた"
+    },
+    "sourceCheck": {
+      "sourceId": "new-atlas-medical",
+      "sourceUrl": "https://newatlas.com/aging/age-related-inflammation-taurine/",
+      "title": "Taurine shields us from age-related inflammation – in an unexpected way",
+      "publishedAt": "2026-11-01T22:03:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "A Yale School of Medicine study in Cell found taurine acts as a brake on the NLRP3 inflammasome behind inflammaging, the chronic low-grade inflammation of aging. Macrophages released up to 80% of their taurine when responding to danger signals; restoring taurine blocked downstream inflammation, and lowering taurine in macrophages of mice drove up NLRP3 inflammation even in young animals. Contrary to expectations, blood taurine was higher in adults aged 60 to 99 than in adults aged 20 to 40.",
+      "fieldId": "immune-engineering-cancer-control",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "age-related-inflammation-taurine",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-01T22:03:00Z",
+          "iso": "2026-11-01T22:03:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by New Atlas (Medical) RSS",
+        "id": "https://newatlas.com/aging/age-related-inflammation-taurine/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "New Atlas (Medical)"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:07:20.000Z"
+  },
+  {
+    "id": "2026-10-26-the-longevity-industry-comes-to-pets-gene-therapies-and-trials-for-agein",
+    "slug": "2026-10-26-the-longevity-industry-comes-to-pets-gene-therapies-and-trials-for-agein",
+    "sourceUrl": "https://www.nature.com/articles/d41586-026-03447-8",
+    "sourceLabel": "Nature",
+    "sourcePublishedAt": "2026-10-26T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:07:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 4,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Trials in cats and gene-therapy development in dogs were reported at the first Animal Longevity Summit",
+        "limitations": "Veterinary programmes at trial or development stage; no approved longevity treatment for pets or people",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "第1回アニマル・ロンジェビティ・サミットで、猫の試験と犬の遺伝子治療開発が報告されました",
+        "limitations": "試験または開発段階の獣医療プログラムで、ペットにも人にも承認された長寿治療はありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "The longevity industry comes to pets: gene therapies and trials for ageing cats and dogs",
+      "dek": "Nature reports from the first Animal Longevity Summit: companies are running trials in cats and developing gene therapies for dogs, with human studies a possible later step.",
+      "whatHappened": "Nature reported from the inaugural Animal Longevity Summit in Toronto, attended by ageing researcher Vera Gorbunova. The Cat Health Company has two compounds in clinical trials for ageing-associated diseases in cats, including sarcopenia. Rejuvenate Bio is developing a gene therapy for mitral valve disease in dogs with longevity aims, and Genflow Biosciences is developing a gene therapy intended to enhance longevity and reduce sarcopenia in dogs.",
+      "whyItMatters": "Pet trials can generate real-world ageing data years before human longevity trials can. What works — or fails — in dogs and cats will shape the human field's evidence base.",
+      "realityCheck": "These are veterinary programmes at trial or development stage. Nothing here is an approved pet longevity treatment, and pet results would not by themselves establish human benefit.",
+      "popHeadline": "Longevity science for pets: trials and gene therapies for ageing dogs and cats"
+    },
+    "ja": {
+      "headline": "長寿産業はペットへ、老いる犬と猫のための試験と遺伝子治療",
+      "dek": "『Nature』が第1回アニマル・ロンジェビティ・サミットの様子を報告。猫では試験が進み、犬では遺伝子治療の開発が進んでいます。",
+      "whatHappened": "『Nature』は、老化研究者のベラ・ゴルブノワ氏も参加したトロントの第1回アニマル・ロンジェビティ・サミットを報じました。キャット・ヘルス・カンパニーは、サルコペニアを含む加齢関連疾患を対象に、猫で二つの化合物の試験を進めています。リジュビネイト・バイオは長寿を目指す犬の僧帽弁疾患の遺伝子治療を、ジェンフロー・バイオサイエンシズは犬の長寿とサルコペニア軽減を目指す遺伝子治療を開発しています。",
+      "whyItMatters": "ペットの試験は、人の長寿試験より何年も早く実世界の老化データを生みます。犬と猫で何が効き、何が失敗するかは、人の分野の証拠基盤を形作ります。",
+      "realityCheck": "いずれも試験または開発段階の獣医療プログラムです。承認されたペット向け長寿治療はなく、ペットの結果だけで人の効果が立つわけでもありません。",
+      "popHeadline": "ペットにも長寿科学、老いる犬と猫で試験と遺伝子治療が進行中"
+    },
+    "sourceCheck": {
+      "sourceId": "nature-news",
+      "sourceUrl": "https://www.nature.com/articles/d41586-026-03447-8",
+      "title": "Can science make your dog live longer? Longevity craze comes to pets",
+      "publishedAt": "2026-10-26T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "Nature reports from the inaugural Animal Longevity Summit in Toronto, attended by ageing researcher Vera Gorbunova. The United States pet and animal-health market is estimated at 150 billion dollars. The Cat Health Company has two compounds in clinical trials for ageing-associated diseases in cats, including sarcopenia; Rejuvenate Bio is developing a gene therapy for mitral valve disease in dogs with longevity aims, and Genflow Biosciences a gene therapy to enhance longevity and reduce sarcopenia in dogs, hoping human studies could follow.",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 70,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "d41586-026-03447-8",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-26",
+          "iso": "2026-10-26",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Nature News RSS",
+        "id": "https://www.nature.com/articles/d41586-026-03447-8"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Nature News"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:07:40.000Z"
+  },
+  {
+    "id": "2026-11-05-senescent-cells-spread-senescence-to-neighbours-through-tiny-vesicles-st",
+    "slug": "2026-11-05-senescent-cells-spread-senescence-to-neighbours-through-tiny-vesicles-st",
+    "sourceUrl": "https://www.fightaging.org/archives/2026/11/senescent-cells-promote-senescence-in-other-cells-in-part-via-small-extracellular-vesicle-secretion/",
+    "sourceLabel": "Fight Aging!",
+    "sourcePublishedAt": "2026-11-05T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:08:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Vesicles from senescent cells induced senescence in recipient cultured cells",
+        "limitations": "Cultured-cell experiments only; blocking the route in a living body is untested",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "老化細胞の小胞が、培養された受け手の細胞に老化を引き起こしました",
+        "limitations": "培養細胞の実験のみで、生きた体でこの経路を止める方法は検証されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Senescent cells spread senescence to neighbours through tiny vesicles, study finds",
+      "dek": "Senescent human fibroblasts release more small extracellular vesicles, and those vesicles push recipient cells into senescence — a spread route separate from the usual SASP signals.",
+      "whatHappened": "Researchers studied human fibroblasts that had entered senescence. The senescent cells released significantly more small extracellular vesicles than growing cells. Vesicles from senescent cells pushed recipient cells into proliferative arrest with a DNA-damage response, without raising the canonical SASP factors. Vesicles from aged-donor fibroblasts induced senescence in young-donor fibroblasts. The study appeared in the journal Aging.",
+      "whyItMatters": "How senescence spreads from cell to cell is central to senolytics strategy. A vesicle route that bypasses the known SASP factors is a new place to intervene.",
+      "realityCheck": "The experiments are in cultured human cells. Whether blocking these vesicles in a living body would slow senescence spread is untested.",
+      "popHeadline": "Senescent cells pass their state to other cells in tiny vesicles"
+    },
+    "ja": {
+      "headline": "老化細胞は小さな小胞で周囲の細胞に老化を広げていた",
+      "dek": "老化したヒト線維芽細胞は小さな細胞外小胞を多く放出し、その小胞が受け取った細胞を老化状態にしました。通常のSASP因子とは別の広がり方です。",
+      "whatHappened": "研究チームは、老化状態に入ったヒト線維芽細胞を調べました。老化細胞は増殖中の細胞より有意に多くの小さな細胞外小胞を放出していました。老化細胞の小胞は、受け取った細胞の増殖を止めてDNA損傷応答を引き起こし、典型的なSASP因子は増えませんでした。高齢ドナーの線維芽細胞の小胞は、若いドナーの線維芽細胞に老化を引き起こしました。論文は学術誌『Aging』に掲載されました。",
+      "whyItMatters": "老化が細胞から細胞へどう広がるかは、セノリティクス戦略の中心課題です。既知のSASP因子を介さない小胞の経路は、新しい介入の場所になります。",
+      "realityCheck": "実験は培養したヒト細胞でのものです。生きた体でこの小胞を止めれば老化の広がりが遅くなるかは、検証されていません。",
+      "popHeadline": "老化細胞が小さな小胞に「老化」を詰めて隣の細胞へ渡していた"
+    },
+    "sourceCheck": {
+      "sourceId": "fight-aging",
+      "sourceUrl": "https://www.fightaging.org/archives/2026/11/senescent-cells-promote-senescence-in-other-cells-in-part-via-small-extracellular-vesicle-secretion/",
+      "title": "Senescent Cells Promote Senescence in Other Cells in Part via Small Extracellular Vesicle Secretion",
+      "publishedAt": "2026-11-05T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "Human primary fibroblasts expressing p16INK4A released significantly more small extracellular vesicles (sEVs) than proliferating cells. Those sEVs induced proliferative arrest, p16INK4A upregulation and a DNA-damage response in recipient cells, without inducing canonical SASP factors IL-6 or IL-8. The effect was shown in progerin-expression and telomere-dysfunction models, and sEVs from aged-donor fibroblasts induced senescence in young-donor fibroblasts. Underlying study in Aging, which shows a vesicle route for the spread of senescence.",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "senescent-cells-promote-senescence-in-other-cells-in-part-via-small-extracellular-vesicle-secretion",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-05",
+          "iso": "2026-11-05",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Fight Aging! RSS",
+        "id": "https://www.fightaging.org/archives/2026/11/senescent-cells-promote-senescence-in-other-cells-in-part-via-small-extracellular-vesicle-secretion/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Fight Aging!"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:08:00.000Z"
+  },
+  {
+    "id": "2026-10-26-neural-stem-cells-made-from-aged-blood-cells-slowly-grow-younger-study-r",
+    "slug": "2026-10-26-neural-stem-cells-made-from-aged-blood-cells-slowly-grow-younger-study-r",
+    "sourceUrl": "https://gigazine.net/news/20261026-old-blood-cells-young-brain-cells/",
+    "sourceLabel": "GIGAZINE",
+    "sourcePublishedAt": "2026-10-26T07:30:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:08:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Converted stem cells rejuvenated over weeks; clocks fell to about 5% of donor age",
+        "limitations": "Laboratory cell work only; no treatment in any living person was tested",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "変換した幹細胞が数週間かけて若返り、時計は実年齢の約5％まで低下しました",
+        "limitations": "実験室の細胞研究のみで、生きている人への治療は検証されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Neural stem cells made from aged blood cells slowly grow younger, study reports",
+      "dek": "Bonn researchers converted blood precursor cells from donors up to 101 into neural stem cells without a pluripotent step, and the cells' epigenetic clocks fell to about 5% of the donors' real age.",
+      "whatHappened": "A team at the University of Bonn and its hospital took red-blood-cell precursors from 15 donors, from newborns to a 101-year-old, and directly reprogrammed them into neural stem cells, skipping the iPS cell stage. Followed with DNA methylation and RNA sequencing, the stem cells slowly rejuvenated over 50 to 100-plus days. In cells from an 80-year-old donor, the epigenetic clock fell below 20. The rejuvenated cells functioned like young cells, with less DNA damage. The paper appeared in Aging Cell.",
+      "whyItMatters": "Showing rejuvenation during direct conversion — not only in iPS cells — widens the map of how cell age can be reset, using a person's own blood cells.",
+      "realityCheck": "This is cell research in a laboratory. No person was treated, and a younger epigenetic clock in converted cells is not a therapy.",
+      "popHeadline": "Stem cells converted from aged blood cells read about 5% of the donor's real age"
+    },
+    "ja": {
+      "headline": "老化した血液細胞から変換した神経幹細胞、少しずつ若返ると研究結果",
+      "dek": "ボン大学のチームが最年長101歳までのドナーの赤血球前駆細胞を神経幹細胞へ直接変換したところ、エピジェネティック時計は実年齢の約5％まで下がりました。",
+      "whatHappened": "ドイツのボン大学／ボン大学病院の研究チームが、新生児から101歳までの15人から採取した赤血球前駆細胞を、iPS細胞を経由せず直接リプログラミングして神経幹細胞へ変換しました。DNAメチル化とRNAシーケンスで追跡したところ、神経幹細胞は50〜100日かけてゆっくり若返り、エピジェネティック時計はドナーの実年齢の約5％まで低下しました。80歳ドナーの細胞では時計が20歳未満になり、若返った細胞は若い細胞と同様に機能して、DNA損傷も少なかったとされます。論文は『Aging Cell』に掲載されました。",
+      "whyItMatters": "iPS細胞だけでなく直接変換でも若返りが起きることが示され、本人の血液細胞を使える点も含め、細胞の年齢をリセットする道筋の地図が広がりました。",
+      "realityCheck": "これは実験室での細胞研究です。人に投与したわけではなく、変換した細胞の時計が若返ることは治療ではありません。",
+      "popHeadline": "血液細胞から作った神経幹細胞、時計の年齢は実年齢の約5%まで低下"
+    },
+    "sourceCheck": {
+      "sourceId": "gigazine",
+      "sourceUrl": "https://gigazine.net/news/20261026-old-blood-cells-young-brain-cells/",
+      "title": "老化した血液細胞を神経幹細胞に変換すると細胞が少しずつ若返るとの研究結果",
+      "publishedAt": "2026-10-26T07:30:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "ドイツのボン大学／ボン大学病院の研究チームが、新生児から101歳までの15人から採取した赤血球前駆細胞を、iPS細胞を経由せず直接リプログラミングして神経幹細胞へ変換した。DNAメチル化とRNAシーケンスで追跡したところ、神経幹細胞は50〜100日かけてゆっくり若返り、エピジェネティック時計はドナーの実年齢の約5％まで低下した。80歳ドナーの細胞では時計が20歳未満になった。若返った細胞は若い細胞と同様に機能し、DNA損傷やミトコンドリア毒性も少なかった。直接リプログラミングによる若返りを初めて確認した研究で、論文は『Aging Cell』に掲載された。段階は細胞実験。",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "20261026-old-blood-cells-young-brain-cells",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-26T16:30+09:00",
+          "iso": "2026-10-26T07:30:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by GIGAZINE RSS",
+        "id": "https://gigazine.net/news/20261026-old-blood-cells-young-brain-cells/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "GIGAZINE"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:08:20.000Z"
+  },
+  {
+    "id": "2026-10-10-glp-1-drug-users-biological-age-read-younger-in-two-drugmakers-aging-clo",
+    "slug": "2026-10-10-glp-1-drug-users-biological-age-read-younger-in-two-drugmakers-aging-clo",
+    "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200987",
+    "sourceLabel": "ナゾロジー",
+    "sourcePublishedAt": "2026-10-10T09:10:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:08:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "biomarkers-diagnostics",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 4,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Treated groups read about two to three years younger on aging clocks than placebo",
+        "limitations": "Company conference data in people with overweight and diabetes; healthy people were not studied",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "実薬群は老化時計でプラセボ群より約二〜三歳若く出ました",
+        "limitations": "過体重・糖尿病のある人を対象とした製薬会社の学会発表で、健康な人は対象に含まれていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "GLP-1 drug users' biological age read younger in two drugmakers' aging-clock analyses",
+      "dek": "Novo Nordisk and Eli Lilly told longevity conferences that people taking their GLP-1 drugs showed slower biological aging on protein- and DNA-based clocks than placebo groups.",
+      "whatHappened": "Novo Nordisk analysed blood from more than ten thousand people in trials of semaglutide, using a protein-based aging clock; Eli Lilly ran a smaller DNA-clock analysis for tirzepatide. Both companies reported at longevity meetings that the treated groups' biological age ran about two to three years younger than placebo overall, with a gap of up to four years on a heart-related protein clock over time. The data are the companies' own conference presentations, in people with overweight and diabetes only.",
+      "whyItMatters": "Aging clocks are being used as endpoints in large drug programmes for the first time at this scale. If regulators accept such clocks, aging itself becomes a measurable trial target.",
+      "realityCheck": "These are company-reported conference analyses, not peer-reviewed results, and they cover people with overweight and diabetes. Effects in healthy people are not known, and the clocks disagree by organ and type.",
+      "popHeadline": "People on GLP-1 drugs read two to three years younger on aging clocks, drugmakers report"
+    },
+    "ja": {
+      "headline": "痩せ薬を使う人ほど「体の老化」が遅いと製薬会社が発表",
+      "dek": "ノボ ノルディスクとイーライリリーが、GLP-1薬の使用者はタンパク質やDNAの老化時計でプラセボ群より生物学的年齢が若く出たと、長寿関連学会で報告しました。",
+      "whatHappened": "ノボ ノルディスクは、セマグルチドの治験に参加した1万人を超える人の血液をタンパク質ベースの老化時計で解析し、イーライリリーもチルゼパチドでDNAベースの老化時計による小規模な解析を行いました。両社は長寿関連学会で、実薬群の生物学的年齢がプラセボ群より全体で約二〜三歳若く、心臓関連のタンパク質時計では時間経過とともに最大四歳の遅れが見られたと報告しました。対象は過体重・糖尿病のある人のみで、製薬会社自身の学会発表データです。",
+      "whyItMatters": "大規模な薬のプログラムで老化時計が評価指標に使われ始めた転機です。規制当局がこうした時計を受け入れれば、老化そのものが測定できる試験の対象になります。",
+      "realityCheck": "査読論文ではなく製薬会社の学会発表で、対象は過体重・糖尿病のある人に限られます。健康な人への効果は分かっておらず、時計の種類や臓器で結果のばらつきも大きいと指摘されています。",
+      "popHeadline": "GLP-1薬の使用者は老化時計で二〜三歳若く、製薬二社が学会発表"
+    },
+    "sourceCheck": {
+      "sourceId": "nazology-health",
+      "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200987",
+      "title": "痩せ薬を使う人ほど「体の老化」が遅いと製薬会社が発表",
+      "publishedAt": "2026-10-10T09:10:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "ノボ ノルディスクはセマグルチド（オゼンピック／ウゴービ）の治験参加者10,052人（過体重・糖尿病患者、半数が実薬、半数がプラセボ）の血液をタンパク質ベースの老化時計で解析し、イーライリリーもチルゼパチド（マンジャロ／ゼップバウンド）でDNAベースの老化時計を用いた小規模解析を行った。両社は長寿関連学会で、実薬群の生物学的年齢がプラセボ群より全体で約2〜3歳若く、心臓関連のタンパク質時計では時間経過とともに最大4歳の遅れが見られたと報告した。ただし対象は過体重・糖尿病患者のみで健康な人への効果は不明、時計の種類や臓器で効果のばらつきが大きく、筋肉減少などの副作用も指摘されている。製薬会社自身の学会発表データである点に注意。",
+      "fieldId": "biomarkers-diagnostics",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 70,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "200987",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-10T09:10:00Z",
+          "iso": "2026-10-10T09:10:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by ナゾロジー RSS",
+        "id": "https://nazology.kusuguru.co.jp/archives/200987"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "ナゾロジー"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:08:40.000Z"
+  },
+  {
+    "id": "2026-10-30-newly-found-protein-omc1-guards-egg-chromosomes-through-the-long-wait-of",
+    "slug": "2026-10-30-newly-found-protein-omc1-guards-egg-chromosomes-through-the-long-wait-of",
+    "sourceUrl": "https://www.riken.jp/press/2026/20261030_1/index.html",
+    "sourceLabel": "理化学研究所",
+    "sourcePublishedAt": "2026-10-30T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:09:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Without OMC1, young mouse eggs showed the adhesion loss and separation errors of aged eggs",
+        "limitations": "Mouse work only; relevance to human egg aging is a mechanism-level suggestion",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "OMC1を欠くと、若いマウスの卵子でも接着低下と分離エラーが起きました",
+        "limitations": "マウスでの研究のみで、人の卵子老化への当てはまりは機構レベルの示唆にとどまります",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Newly found protein OMC1 guards egg chromosomes through the long wait of reproductive life",
+      "dek": "Chiba University, RIKEN and Kumamoto University researchers found that the protein OMC1 protects a chromosome glue in eggs; without it, young mouse eggs made the separation errors typical of aged eggs.",
+      "whatHappened": "A joint team from Chiba University, the RIKEN Center for Biosystems Dynamics Research and Kumamoto University identified a new protein, OMC1, that sits with the cohesin REC8 on egg chromosomes and prevents REC8 from being lost over the long storage period of eggs. In mice lacking OMC1, even young eggs showed weakened chromosome adhesion and separation errors resembling those of aged eggs. The finding explains part of the molecular machinery behind egg aging and female reproductive lifespan.",
+      "whyItMatters": "Egg aging is one of the earliest and least reversible forms of aging. Naming a factor that preserves chromosome cohesion gives reproductive-aging research a concrete molecular handle.",
+      "realityCheck": "The experiments are in mice and mouse eggs. Whether the same factor can be supported or restored in human eggs is a separate, unanswered question.",
+      "popHeadline": "A protein that keeps egg chromosomes glued together for decades is identified"
+    },
+    "ja": {
+      "headline": "卵子の染色体接着を長期間維持する新因子OMC1を発見",
+      "dek": "千葉大学と理化学研究所、熊本大学の共同研究で、卵子の染色体の接着を長期間守る新規タンパク質OMC1が見つかりました。欠けると若い卵子でも老化した卵子のようなエラーが起きます。",
+      "whatHappened": "千葉大学、理化学研究所生命機能科学研究センター、熊本大学の共同研究チームは、新規タンパク質OMC1が卵子の染色体上でコヒーシンREC8と共に存在し、卵子が長期間待機するあいだREC8の喪失を防ぐことを発見しました。OMC1を欠損したマウスでは、若い卵子でも老化した卵子のように染色体の接着低下や分離エラーが起きました。卵子老化に伴う女性の生殖寿命を支える分子機構の解明につながる成果です。",
+      "whyItMatters": "卵子の老化は最も早く進み、最も戻しにくい老化の一つです。染色体の接着を守る因子に名前がついたことで、生殖老化の研究に具体的な分子の取っ掛かりができました。",
+      "realityCheck": "実験はマウスとマウスの卵子でのものです。同じ因子を人の卵子で支えたり回復させたりできるかは、別の未解決の問いです。",
+      "popHeadline": "卵子の染色体を何十年も接着し続ける新しいタンパク質OMC1を発見"
+    },
+    "sourceCheck": {
+      "sourceId": "riken-press",
+      "sourceUrl": "https://www.riken.jp/press/2026/20261030_1/index.html",
+      "title": "卵子の染色体接着を長期間維持する新因子OMC1を発見 －卵子老化に伴う女性の生殖寿命を支える分子機構の解明へ－",
+      "publishedAt": "2026-10-30T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "千葉大学、理化学研究所生命機能科学研究センター、熊本大学の共同研究。新規タンパク質OMC1（Oocyte Meiotic Chromosome protein 1）が卵子の染色体上でコヒーシンREC8と共に存在し、長期間にわたりREC8の喪失を防ぐことを発見した。OMC1を欠損したマウスでは、若い卵子でも老化した卵子のように染色体の接着低下や分離エラーが起きた。卵子老化に伴う女性の生殖寿命を支える分子機構の解明につながる成果。",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "index.html",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-30",
+          "iso": "2026-10-30",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by RIKEN Press Releases RSS",
+        "id": "https://www.riken.jp/press/2026/20261030_1/index.html"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "RIKEN Press Releases"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:09:00.000Z"
+  },
+  {
+    "id": "2026-11-02-bill-gates-alzheimer-s-blood-tests-and-approved-antibody-drugs-exist-but",
+    "slug": "2026-11-02-bill-gates-alzheimer-s-blood-tests-and-approved-antibody-drugs-exist-but",
+    "sourceUrl": "https://gigazine.net/news/20261102-alzheimer-blood-test-bill-gates/",
+    "sourceLabel": "GIGAZINE",
+    "sourcePublishedAt": "2026-11-02T08:20:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:09:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "geroscience-drugs-trials",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Approved Alzheimer's blood tests and antibody drugs were described, with five delivery barriers named",
+        "limitations": "An advocate's commentary, not new research; the approved drugs slow decline modestly with rare serious risks",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "承認済みの血液検査と抗体治療薬と、届かない理由五点が紹介されました",
+        "limitations": "新しい研究ではなく提唱者の発信で、治療薬の効果は緩やかな進行抑制にとどまります",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Bill Gates: Alzheimer's blood tests and approved antibody drugs exist, but are not reaching people",
+      "dek": "In a blog post, Bill Gates noted that two Alzheimer's blood tests and two amyloid-clearing antibody drugs are FDA-approved, yet listed five reasons they fail to reach the people who need them.",
+      "whatHappened": "Bill Gates wrote that two blood tests for Alzheimer's disease and two antibody drugs that remove amyloid and slow cognitive decline are already FDA-approved, and that a pen-injector treatment is approved as well. He listed five delivery problems: low public awareness; months-long waits to see specialists; regulation and insurance walls, with blood tests largely uninsured outside the United States; treatment burden, including infusions every two weeks for the first year and a half and repeated MRI scans; and difficulty enrolling diverse trial groups.",
+      "whyItMatters": "This is the site's core wall in a flagship disease: the science arrived, the approvals happened, and the bottleneck is now delivery, insurance and access.",
+      "realityCheck": "This is a blog post by a funder and advocate, not a study. The drugs it describes slow decline modestly and carry rare serious side effects; approval is not the same as wide availability.",
+      "popHeadline": "Approved Alzheimer's tests and drugs are stuck at the delivery wall, Gates writes"
+    },
+    "ja": {
+      "headline": "アルツハイマー病の血液検査と承認済み治療薬、必要な人に届いていないとゲイツ氏",
+      "dek": "ビル・ゲイツ氏がブログで、アルツハイマー病の血液検査と抗体治療薬はFDA承認済みでありながら、必要な人に届かない理由を五点挙げました。",
+      "whatHappened": "ビル・ゲイツ氏はブログ／X投稿で、アルツハイマー病の血液検査二種と、アミロイドを除去して認知機能低下を遅らせる抗体治療薬二種がFDA承認済みであり、ペン型注射剤の治療も承認されていると紹介しました。一方で届かない理由として、認知度の低さ、専門医受診まで数カ月待ちというアクセスの問題、規制・保険の壁、最初の一年半は二週間ごとの点滴やMRI検査が続く投与負担、治験の多様性確保の難しさ、の五点を挙げました。",
+      "whyItMatters": "当サイトが「いちばんの壁」と呼ぶものの実例です。科学は到達し承認も済んだのに、詰まっているのは届ける側、保険とアクセスです。",
+      "realityCheck": "これは研究ではなく、出資者・提唱者のブログ記事です。紹介される治療薬は進行を緩やかに遅らせるもので、まれな重篤副作用もあります。承認と普及は別物です。",
+      "popHeadline": "承認済みのアルツハイマー検査と治療薬が「届ける壁」に阻まれているとゲイツ氏"
+    },
+    "sourceCheck": {
+      "sourceId": "gigazine",
+      "sourceUrl": "https://gigazine.net/news/20261102-alzheimer-blood-test-bill-gates/",
+      "title": "ビル・ゲイツが「アルツハイマー病の血液検査手法や治療法が登場しているが患者に十分に届いていない」とするブログ記事を投稿",
+      "publishedAt": "2026-11-02T08:20:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "ビル・ゲイツがブログ／X投稿で、アルツハイマー病の血液検査2種と、アミロイドを除去して認知機能低下を遅らせる抗体治療薬2種がFDA承認済みであり、ペン型注射剤の治療も承認されていると紹介した。一方で患者に届かない理由として、認知度の低さ、専門医受診まで数カ月待ちというアクセスの問題、規制・保険の壁（血液検査は米国以外の大半の国で保険適用外、米国でも居住地で差、ペン型は点滴より自己負担が高い）、投与負担（最初の1年半は2週間ごとの点滴、その後月1回、MRI検査の連続実施、まれな重篤副作用）、治験参加者の多様性確保の難しさ、の5点を挙げた。段階は承認済み医療の普及課題の解説。",
+      "fieldId": "geroscience-drugs-trials",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "20261102-alzheimer-blood-test-bill-gates",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-02T17:20+09:00",
+          "iso": "2026-11-02T08:20:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by GIGAZINE RSS",
+        "id": "https://gigazine.net/news/20261102-alzheimer-blood-test-bill-gates/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "GIGAZINE"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:09:20.000Z"
+  },
+  {
+    "id": "2026-10-22-thousands-of-ai-agents-analysed-millions-of-mouse-brain-cells-in-32-minu",
+    "slug": "2026-10-22-thousands-of-ai-agents-analysed-millions-of-mouse-brain-cells-in-32-minu",
+    "sourceUrl": "https://gigazine.net/news/20261022-openai-research-complex-biological-data/",
+    "sourceLabel": "GIGAZINE",
+    "sourcePublishedAt": "2026-10-22T08:10:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:09:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "gene-therapy-delivery",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 1,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "The agent team finished the atlas analysis in 32 minutes and produced gene-level leads",
+        "limitations": "A company announcement on existing mouse data; the leads are unverified starting points",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "エージェントチームが32分でアトラス分析を終え、遺伝子レベルの手掛かりを得ました",
+        "limitations": "既存のマウスデータに関する企業発表で、手掛かりは未検証の出発点です",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Thousands of AI agents analysed millions of mouse brain cells in 32 minutes, OpenAI reports",
+      "dek": "OpenAI said thousands of its AI agents, working with Scripps Research, analysed a CRISPR atlas of millions of mouse brain cells in 32 minutes and surfaced leads for Alzheimer's and Parkinson's research.",
+      "whatHappened": "OpenAI announced that thousands of AI agents built on its research models, working with Scripps Research, analysed a whole-brain mouse CRISPR atlas containing millions of brain cells in 32 minutes — work estimated to take human researchers months. The agents produced leads involving the mTOR-related genes Tsc1 and Tsc2 and the gene DCTN1, which is linked to Perry syndrome and Parkinson-like symptoms. In blinded comparisons, experts preferred the multi-agent output 75% of the time.",
+      "whyItMatters": "Research automation is one of the forces that can compress the road to longevity escape velocity. A verified jump in analysis throughput is the kind of enabling-technology signal this site tracks.",
+      "realityCheck": "This is a company announcement about analysis of existing mouse data. The leads are starting points for experiments, not findings about any treatment.",
+      "popHeadline": "AI agent teams did months of brain-cell analysis in 32 minutes"
+    },
+    "ja": {
+      "headline": "数千体のAIが数百万個の脳細胞データをわずか32分で分析、新たな手掛かりを発見",
+      "dek": "OpenAIは、数千体のAIエージェントがScripps研究所と連携し、マウス全脳のCRISPRアトラスに含まれる数百万個の脳細胞データを32分で分析したと発表しました。",
+      "whatHappened": "OpenAIは、研究モデルを基にした数千体のAIエージェントがScripps研究所と連携し、マウス全脳のCRISPRアトラスに含まれる数百万個の脳細胞データをわずか32分で分析したと発表しました。人間の研究者なら数カ月〜1年と見積もられた作業です。mTOR関連のTsc1／Tsc2や、ペリー症候群／パーキンソン様症状に関わるDCTN1に関する手掛かりが得られ、盲検した専門家は75％の割合でマルチエージェントの結果を好みました。推論アトラスも公開されています。",
+      "whyItMatters": "研究の自動化は、寿命脱出速度までの道のりを圧縮しうる力の一つです。分析の処理能力の跳ね上がりは、当サイトが追う基盤技術の信号です。",
+      "realityCheck": "これは既存のマウスデータの分析に関する企業発表です。手掛かりは実験の出発点で、治療についての知見ではありません。",
+      "popHeadline": "AIエージェント数千体が脳細胞データの分析を32分で完了"
+    },
+    "sourceCheck": {
+      "sourceId": "gigazine",
+      "sourceUrl": "https://gigazine.net/news/20261022-openai-research-complex-biological-data/",
+      "title": "数千体のAIが数百万個の脳細胞データをわずか32分で分析、アルツハイマー病やパーキンソン病の研究につながる新たな手掛かりを発見",
+      "publishedAt": "2026-10-22T08:10:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "OpenAIが2026年10月21日に発表。数千体のAIエージェント（GPT-Rosalind、PerturbAI、Scripps研究所と連携）が、マウス全脳のCRISPRアトラスに含まれる数百万個の脳細胞データをわずか32分で分析した（人間の研究者なら数カ月〜1年と見積もられた作業）。mTOR関連のTsc1/Tsc2（小脳ではTsc2操作で数十のシナプス遺伝子が変化、Tsc1はほぼ変化なし）や、ペリー症候群／パーキンソン様症状に関わるDCTN1（コレステロール合成遺伝子の増加）に関する手掛かりを得た。マルチエージェントは最も重い条件で単一エージェントの11本に対し数千本の論文を参照し、盲検した専門家は75％の割合でマルチエージェントの結果を好んだ。推論アトラスも公開された。段階はマウスデータのAI解析。",
+      "fieldId": "gene-therapy-delivery",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 40,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "20261022-openai-research-complex-biological-data",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-22T17:10+09:00",
+          "iso": "2026-10-22T08:10:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by GIGAZINE RSS",
+        "id": "https://gigazine.net/news/20261022-openai-research-complex-biological-data/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "GIGAZINE"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:09:40.000Z"
+  },
+  {
+    "id": "2026-09-24-early-life-nutrition-leaves-a-protein-memory-that-can-extend-lifespan-by",
+    "slug": "2026-09-24-early-life-nutrition-leaves-a-protein-memory-that-can-extend-lifespan-by",
+    "sourceUrl": "https://www.riken.jp/press/2026/20260924_1/index.html",
+    "sourceLabel": "理化学研究所",
+    "sourcePublishedAt": "2026-09-24T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:10:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 3,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Larval protein restriction extended adult lifespan by up to 20%; the memory traced to Lsp2",
+        "limitations": "Fruit-fly work only; a mammalian equivalent is unknown",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "幼虫期のタンパク質制限で成虫の寿命が最大約20％延び、担い手はLsp2と分かりました",
+        "limitations": "ショウジョウバエでの研究のみで、哺乳類に同等の仕組みがあるかは分かっていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Early-life nutrition leaves a protein 'memory' that can extend lifespan by up to 20% in flies",
+      "dek": "RIKEN researchers found that restricting protein only in the larval stage extended adult fruit-fly lifespan by up to 20%, and traced the memory of that diet to a storage protein, Lsp2.",
+      "whatHappened": "A RIKEN team led by Fumiaki Obata restricted protein only during the larval stage of fruit flies. Even on a normal adult diet, the flies lived up to 20% longer. Isotope tracing showed about half of the protein present on day 6 still came from larval amino acids, and the storage protein Lsp2 carried this nutritional memory. Suppressing Lsp2 alone extended lifespan without the growth and fertility costs, and lowering the amino acids tyrosine and phenylalanine reproduced the effect. The study was published in Nature.",
+      "whyItMatters": "A defined molecule that stores an early-life nutritional state and moves lifespan is a clean mechanistic lead — and it separates the lifespan effect from the diet itself.",
+      "realityCheck": "The work is in fruit flies, published just before this site's October window. Whether any equivalent memory mechanism matters in mammals is unknown.",
+      "popHeadline": "A stored protein remembers larval diet — and can lengthen fly life by up to 20%"
+    },
+    "ja": {
+      "headline": "幼少期の栄養が寿命を左右する仕組み、貯蔵タンパク質が栄養記憶を担うことをハエで解明",
+      "dek": "理化学研究所の研究で、幼虫期だけタンパク質を制限すると成虫の寿命が最大約20％延び、その栄養の記憶を貯蔵タンパク質Lsp2が担うことが分かりました。",
+      "whatHappened": "理化学研究所生命機能科学研究センターの小幡史明氏らは、ショウジョウバエで幼虫期だけタンパク質を制限すると、成虫が通常食でも寿命が最大約20％延びることを示しました。安定同位体追跡では、6日目の時点でタンパク質の約半分が幼虫期のアミノ酸由来で、貯蔵タンパク質Lsp2が「栄養記憶」の担い手と分かりました。Lsp2の抑制だけでも成長・繁殖の代償なしに寿命が延び、全身のチロシンとフェニルアラニンの低下でも効果が再現されました。論文は『Nature』に掲載されました。",
+      "whyItMatters": "幼少期の栄養状態を蓄え、寿命を動かす分子が特定されたことで、食事そのものと寿命効果を切り分けて研究できるようになりました。",
+      "realityCheck": "ショウジョウバエでの研究で、掲載は当サイトの対象期間の直前です。哺乳類に同等の記憶の仕組みがあるかは分かっていません。",
+      "popHeadline": "幼少期の栄養の「記憶」を担うタンパク質、ハエの寿命を最大20％延ばす"
+    },
+    "sourceCheck": {
+      "sourceId": "riken-press",
+      "sourceUrl": "https://www.riken.jp/press/2026/20260924_1/index.html",
+      "title": "幼少期の栄養が寿命を左右する仕組み －貯蔵タンパク質が栄養記憶を担うことをハエで明らかに－",
+      "publishedAt": "2026-09-24T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "理化学研究所生命機能科学研究センターの小幡史明氏らの研究。ショウジョウバエで、幼虫期だけタンパク質を制限すると成虫が通常食でも寿命が最大約20％延び、雌雄ともに効果があった一方、体サイズは約10％小さく雌の産卵数は約30％減った。安定同位体追跡では6日目時点でタンパク質の約半分が幼虫期のアミノ酸由来で、貯蔵タンパク質Lsp2が「栄養記憶」の担い手と判明。Lsp2の抑制だけでも成長・繁殖の代償なしに寿命が延び、全身のチロシンとフェニルアラニンが約20％低下、これら単独の制限でも効果が再現された。『Nature』2026年9月23日オンライン掲載。",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 55,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "index.html",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-09-24",
+          "iso": "2026-09-24",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by RIKEN Press Releases RSS",
+        "id": "https://www.riken.jp/press/2026/20260924_1/index.html"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "RIKEN Press Releases"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:10:00.000Z"
+  },
+  {
+    "id": "2026-10-04-people-who-lost-visceral-fat-kept-more-brain-volume-years-later-follow-u",
+    "slug": "2026-10-04-people-who-lost-visceral-fat-kept-more-brain-volume-years-later-follow-u",
+    "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200650",
+    "sourceLabel": "ナゾロジー",
+    "sourcePublishedAt": "2026-10-04T06:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:10:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Greater visceral-fat loss tracked with more preserved brain volume years later",
+        "limitations": "Observational follow-up, mostly men; association shown, causation not established",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "内臓脂肪の減少が大きい人ほど、後の脳の体積が保たれていました",
+        "limitations": "男性中心の観察的追跡研究で、示されたのは関連であり因果ではありません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "People who lost visceral fat kept more brain volume years later, follow-up study finds",
+      "dek": "Re-examining 533 adults from four diet and lifestyle trials years later, researchers found that those who had lost more visceral fat kept more whole-brain and grey-matter volume.",
+      "whatHappened": "A Ben-Gurion University of the Negev team re-examined 533 adults who had taken part in four earlier diet and lifestyle intervention trials, bringing them back after a 5-to-16-year gap for abdominal and brain MRI and cognitive testing. People who carried more visceral fat for longer scored lower on cognitive tests. Among those with complete records, visceral fat fell by an average of 24% during the interventions, and people who lost more of it kept more whole-brain and grey-matter volume and healthier hippocampi years later. BMI and subcutaneous fat showed no comparable link.",
+      "whyItMatters": "Brain aging is the aging outcome people fear most. A modifiable body measure that tracks brain volume a decade later is a rare, concrete handle.",
+      "realityCheck": "This is an observational follow-up of earlier trials, mostly in men. It shows an association between visceral fat history and later brain volume, not proof that losing visceral fat protects the brain.",
+      "popHeadline": "Less visceral fat, slower brain aging, in a long-term follow-up of 533 adults"
+    },
+    "ja": {
+      "headline": "内臓脂肪が減った人ほど「脳の老化」が遅かった",
+      "dek": "過去の介入試験に参加した成人533人を5〜16年後に再調査した研究で、内臓脂肪を多く減らした人ほど脳全体と灰白質の体積が保たれていました。",
+      "whatHappened": "イスラエル・ベングリオン大学（ネゲブ）の研究チームが、過去の食事・生活習慣介入試験に参加した成人533人を、5〜16年後に腹部・脳MRIと認知機能検査で再調査しました。内臓脂肪を長く多く抱えた人ほど認知機能の点数が低く、介入期間中に内臓脂肪が平均24％減った人たちでは、多く減らした人ほど後の脳全体・灰白質の体積が保たれ、海馬も健康に保たれていました。BMIや皮下脂肪には同様の関連は見られませんでした。",
+      "whyItMatters": "脳の老化は多くの人が最も恐れる老化です。変えられる体の指標が、後の脳の体積と結びつくという具体的で珍しい手掛かりです。",
+      "realityCheck": "過去の試験の追跡による観察研究で、対象は男性が大半です。内臓脂肪の履歴と後の脳体積の関連を示したもので、内臓脂肪を減らせば脳が守られるという証明ではありません。",
+      "popHeadline": "内臓脂肪の減少が大きい人ほど脳の体積が保たれていた、533人の追跡研究"
+    },
+    "sourceCheck": {
+      "sourceId": "nazology-health",
+      "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200650",
+      "title": "内臓脂肪が減った人ほど「脳の老化」が遅かった",
+      "publishedAt": "2026-10-04T06:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "イスラエル・ベングリオン大学（ネゲブ）の研究チームが、過去の食事・生活習慣介入試験4件に参加した成人533人を、5〜16年後に腹部・脳MRIと認知機能検査（MoCA）で再調査した。追跡時平均年齢61.4歳、86％が男性。3時点で記録のそろった295人では内臓脂肪を長く多く抱えた人ほどMoCAや記憶の点数が低く、297人では介入期間中に内臓脂肪が平均24％減り、多く減らした人ほど5〜10年後の脳全体・灰白質の体積が保たれ、海馬も健康に保たれていた。脳を3回撮影した188人では内臓脂肪が多い期間が長い人ほど脳の萎縮が速く脳室も拡大した。BMIや皮下脂肪には同様の関連はなかった。媒介因子としては空腹時血糖など血糖指標のみが関連。",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "200650",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-04T06:00:00Z",
+          "iso": "2026-10-04T06:00:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by ナゾロジー RSS",
+        "id": "https://nazology.kusuguru.co.jp/archives/200650"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "ナゾロジー"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:10:20.000Z"
+  },
+  {
+    "id": "2026-10-10-the-hydra-that-gives-up-immortality-cold-switches-this-species-from-clon",
+    "slug": "2026-10-10-the-hydra-that-gives-up-immortality-cold-switches-this-species-from-clon",
+    "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200998",
+    "sourceLabel": "ナゾロジー",
+    "sourcePublishedAt": "2026-10-10T04:25:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:10:40.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "rejuvenation-regeneration",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Cold flipped the hydra into an aging state; early taurine partly restored depleted stem cells",
+        "limitations": "One polyp species only; the taurine effect was partial and early-window",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "寒さでヒドラは老いる状態に切り替わり、初期のタウリン補充で幹細胞の減少が一部回復しました",
+        "limitations": "一つのポリプ種での結果で、タウリンの効果は一部の時期の部分的なものです",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "The hydra that gives up immortality: cold switches this species from cloning to sex — and aging",
+      "dek": "Hydra oligactis is the one hydra species that ages and dies. Innsbruck researchers tracked the metabolic switch as cold pushes it from cloning to sexual reproduction, and found taurine in the story.",
+      "whatHappened": "Hydra oligactis normally propagates by cloning and does not age. Exposed to cold, it switches to sexual reproduction — an 'emergency' mode in which the parent loses its immortality and ages. University of Innsbruck researchers followed metabolite changes over the weeks of this switch: by week 8 the animals were severely aged, and taurine fell sharply in both sexes around week 4. Supplementing taurine during the first two weeks of cold partly restored the stem cells that the switch depletes.",
+      "whyItMatters": "A creature that can be flipped between non-aging and aging states by one environmental trigger is a rare experimental window on what aging's on-switch actually is.",
+      "realityCheck": "This is basic biology in a freshwater polyp. It explains a trade-off in one species; it is not a route to human immortality, and the taurine effect was partial.",
+      "popHeadline": "An 'immortal' hydra trades eternal youth for reproduction when the cold comes"
+    },
+    "ja": {
+      "headline": "不死の生物ヒドラが「不死を手放す条件」とは",
+      "dek": "ヒドラ・オリガクティスは寒さをきっかけに老いて死ぬ唯一のヒドラ。インスブルック大学の研究が、その切り替えの代謝変化とタウリンの関わりを追いました。",
+      "whatHappened": "ヒドラ・オリガクティスは通常クローンで増え、老いることのない種ですが、寒さを受けると精子・卵による有性生殖へ切り替え、親は不死を失って老いていきます。インスブルック大学の研究者らは、この切り替えが進む数週間の代謝物の変化を追跡しました。8週目にはひどく老化した状態となり、4週目には雌雄ともタウリンが大幅に減少していました。寒さ曝露の最初の二週間にタウリンを補うと、切り替えで減る幹細胞の減少が一部回復しました。",
+      "whyItMatters": "環境のきっかけ一つで「老いない状態」と「老いる状態」を切り替えられる生物は、老化のスイッチそのものを調べる稀な実験の窓です。",
+      "realityCheck": "淡水のポリプでの基礎生物学です。一つの種のトレードオフを説明するもので、人の不老不死への道ではなく、タウリンの効果も部分的なものでした。",
+      "popHeadline": "不死のヒドラは寒さで有性生殖に切り替え、老いて死ぬ運命を受け入れる"
+    },
+    "sourceCheck": {
+      "sourceId": "nazology-health",
+      "sourceUrl": "https://nazology.kusuguru.co.jp/archives/200998",
+      "title": "不死の生物ヒドラが「不死を手放す条件」とは",
+      "publishedAt": "2026-10-10T04:25:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "ヒドラ・オリガクティスはヒドラの仲間で唯一、寒さをきっかけに老いて死ぬ種。寒さを受けると増殖様式をクローンから精子・卵による有性生殖へ切り替え（「緊急の有性生殖」）、親は不死を失う。インスブルック大学の研究者らは、寒さで有性生殖化し老いていく数週間の代謝物の変化を追跡した。8週目にはひどく老化した状態となり、4〜6週目に生殖準備のピークが見られるなど「老い」と「子作り」の2つの変化が同時に刻まれていた。4週目には雌雄ともタウリンが大幅に減少し、タウリン不足は他生物でも老化促進要因として知られる。寒さ曝露の最初の二週間にタウリンを補うと幹細胞の減少が一部回復することが確認された。",
+      "fieldId": "rejuvenation-regeneration",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "200998",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-10T04:25:00Z",
+          "iso": "2026-10-10T04:25:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by ナゾロジー RSS",
+        "id": "https://nazology.kusuguru.co.jp/archives/200998"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "ナゾロジー"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:10:40.000Z"
+  },
+  {
+    "id": "2026-11-03-irregular-mealtimes-linked-to-a-blood-marker-of-biological-aging-in-378-",
+    "slug": "2026-11-03-irregular-mealtimes-linked-to-a-blood-marker-of-biological-aging-in-378-",
+    "sourceUrl": "https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600351/",
+    "sourceLabel": "日経Gooday",
+    "sourcePublishedAt": "2026-11-03T15:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:11:00.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Irregular meal timing was associated with higher GDF-15; diet quality explained part of the link",
+        "limitations": "Observational association in one prefecture's older adults; causation not shown",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "食事時間の不規則さはGDF-15の高さと関連し、関連の一部は食事の質で説明されました",
+        "limitations": "一地域の高齢者での観察研究の関連で、因果は示されていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Irregular mealtimes linked to a blood marker of biological aging in 378 older adults in Japan",
+      "dek": "A column reports a National Center for Geriatrics and Gerontology-linked study of 378 older adults in Aichi: irregular meal timing was associated with higher GDF-15, a blood marker of biological aging.",
+      "whatHappened": "Nikkei Gooday's column covered a study of community-dwelling older adults in Aichi Prefecture, Japan, analysing 378 people. The researchers examined the association between irregular meal timing and blood levels of GDF-15, a marker of biological aging, and asked how much of the link diet quality explains. Part of the connection between irregular meal timing and aging progression was explained by lower diet quality. The underlying paper appeared in the European Geriatric Medicine journal.",
+      "whyItMatters": "Chrononutrition — when people eat, not only what — is an emerging aging-research angle, and this is Japanese cohort data with a named blood marker rather than a questionnaire score.",
+      "realityCheck": "The study is observational: it links meal timing and a marker at a point in time. It does not show that fixing mealtimes slows aging.",
+      "popHeadline": "Skipping a regular mealtime rhythm tracks with a faster-aging blood marker"
+    },
+    "ja": {
+      "headline": "食事時間が不規則だと老化が早まる可能性",
+      "dek": "国立長寿医療研究センターなどによる愛知県の高齢者378人の研究で、食事時間の不規則さと生物学的老化マーカーGDF-15の関連が調べられました。",
+      "whatHappened": "日経Goodayのコラムが、国立長寿医療研究センターなどによる日本の地域在住高齢者を対象とした研究を取り上げました。愛知県の高齢者378人を分析し、食事時間の不規則さと血液中の生物学的老化マーカーGDF-15との関連を調べ、食事の質がその関連をどの程度説明するかを検討したものです。食事時間の乱れと老化進行のつながりの一部は、食事の質の低下で説明できるとしています。出典論文は『European Geriatric Medicine』に掲載されました。",
+      "whyItMatters": "何を食べるかだけでなく、いつ食べるかという時間栄養学は老化研究の新しい角度です。日本の地域コホートで、質問票ではなく血液マーカーを用いた点が具体的です。",
+      "realityCheck": "観察研究の関連であり、食事時間を整えれば老化が遅くなることを示したものではありません。関連の一部は食事の質で説明されるとする内容です。",
+      "popHeadline": "食事時間の乱れは生物学的老化マーカーの高さと関連、高齢者378人で分析"
+    },
+    "sourceCheck": {
+      "sourceId": "nikkei-gooday",
+      "sourceUrl": "https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600351/",
+      "title": "食事時間が不規則だと老化が早まる可能性",
+      "publishedAt": "2026-11-03T15:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "国立長寿医療研究センターなどによる日本の地域在住高齢者を対象とした研究を取り上げたコラム。愛知県の高齢者378人を対象に分析し、食事時間の不規則さと血液中の生物学的老化マーカーGDF-15との関連を調べ、食事の質がその関連をどの程度説明するかを検討した。食事時間の乱れと老化進行のつながりの一部は、食事の質の低下で説明できるとする内容。出典論文は『Eur Geriatr Med』2026年掲載。",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "100600351",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-04T00:00:00+09:00",
+          "iso": "2026-11-03T15:00:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Nikkei Gooday RSS",
+        "id": "https://gooday.nikkei.co.jp/atcl/column/15/050800004/100600351/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Nikkei Gooday"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:11:00.000Z"
+  },
+  {
+    "id": "2026-10-27-golf-cognition-and-dementia-prevention-a-longevity-medicine-leader-in-ni",
+    "slug": "2026-10-27-golf-cognition-and-dementia-prevention-a-longevity-medicine-leader-in-ni",
+    "sourceUrl": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/",
+    "sourceLabel": "日経Gooday",
+    "sourcePublishedAt": "2026-10-27T00:00:00.000Z",
+    "draftCreatedAt": "2026-11-05T14:11:20.000Z",
+    "discoveredAt": "2026-11-05T14:04:00.000Z",
+    "fieldId": "enabling-technology-automation",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 2,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "The Lancet commission's preventable share of dementia was put at about 45% across 14 risk factors",
+        "limitations": "Interview feature with a paywalled second half; figures are population-level estimates",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "認知症の約45％が14のリスク因子で予防可能と見積もられました",
+        "limitations": "インタビュー特集で後半は有料部分。数字は集団レベルの見積もりです",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Golf, cognition and dementia prevention: a longevity-medicine leader in Nikkei Gooday's special",
+      "dek": "In Nikkei Gooday's golf-and-health special, the honorary director of the Tokyo Health and Longevity Medical Center surveys dementia-prevention research, including the Lancet commission's estimate that about 45% of dementia is potentially preventable.",
+      "whatHappened": "The special feature interviewed a co-author of a 2026 paper on golf and cognitive function from the National Center for Geriatrics and Gerontology research community. On where dementia prevention stands, the latest Lancet commission report estimates that about 45% of dementia cases are potentially preventable through 14 modifiable risk factors, among them low education, hearing loss, high LDL cholesterol, depression, head injury, physical inactivity, diabetes, hypertension, smoking, obesity, excess alcohol, social isolation, air pollution and vision loss. The feature also introduces research linking continued golf with a 50% lower risk of memory impairment.",
+      "whyItMatters": "Dementia carries the largest care burden of any aging outcome. A preventable share near half reframes it from fate into a set of addressable risks — behaviour and delivery, the same wall this site tracks.",
+      "realityCheck": "This is an interview feature whose second half is paywalled. The 45% is the Lancet commission's population-level estimate, not a personal guarantee, and the golf finding is an association.",
+      "popHeadline": "About 45% of dementia may be preventable — the Lancet figure behind a golf-and-health special"
+    },
+    "ja": {
+      "headline": "ゴルフと健康の関係は？ 認知症の45％は予防可能という最新報告を聞く",
+      "dek": "日経Goodayの「ゴルフと健康」特集で、東京都健康長寿医療センター名誉理事長の鳥羽研二氏が、認知症予防研究の到達点とゴルフと認知機能の研究について語りました。",
+      "whatHappened": "日経Goodayの特集は、国立長寿医療研究センターの島田裕之氏らが2026年に発表した「ゴルフと認知機能の関係」の論文にも名を連ねる鳥羽研二氏へのインタビューです。認知症予防研究の到達点として、Lancet専門委員会の最新報告では認知症の約45％が予防可能と紹介されました。修正可能な14のリスク因子には、教育水準の低さ、聴覚障害、高LDLコレステロール、抑うつ、頭部外傷、運動不足、糖尿病、高血圧、喫煙、肥満、過度の飲酒、社会的孤立、大気汚染、視覚障害が挙げられます。ゴルフを続けている人の記憶障害のリスクは50％低下するとの研究も紹介されています。",
+      "whyItMatters": "認知症は介護負担が最も大きい老化の帰結です。約半分が予防可能という見積もりは、認知症を運命ではなく、対処できるリスクの集まりとして捉え直させます。",
+      "realityCheck": "インタビュー特集で、本文の後半は有料会員限定です。45％はLancet専門委員会の集団レベルの見積もりで個人への保証ではなく、ゴルフの知見も関連の段階です。",
+      "popHeadline": "認知症の約45％は予防可能、ゴルフと健康の特集で鳥羽研二氏に聞く"
+    },
+    "sourceCheck": {
+      "sourceId": "nikkei-gooday",
+      "sourceUrl": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/",
+      "title": "ゴルフと健康との関係は？ プロゴルファーもかかわった世界初の研究（「ゴルフと健康」特集・東京都健康長寿医療センター名誉理事長 鳥羽研二氏に聞く 前編）",
+      "publishedAt": "2026-10-27T00:00:00.000Z",
+      "fetchedAt": "2026-11-05T14:04:00.000Z",
+      "abstract": "国立長寿医療研究センターの島田裕之氏らが2026年に発表した「ゴルフと認知機能の関係」の論文にも名を連ねる鳥羽研二氏へのインタビュー。認知症予防研究の到達点として、Lancet専門委員会の最新報告では認知症の約45％が予防可能（2017年報告では35％）と紹介。2024年版の修正可能な14リスク因子と予防寄与率は、教育水準の低さ5％、聴覚障害7％、高LDLコレステロール7％、抑うつ3％、頭部外傷3％、運動不足2％、糖尿病2％、高血圧2％、喫煙2％、肥満1％、過度の飲酒1％、社会的孤立5％、大気汚染3％、視覚障害2％。記事の構成見出しには「ゴルフを続けている人の記憶障害のリスクは50％低下」とある（本文後半は有料会員限定）。段階はヒト研究の解説インタビュー。",
+      "fieldId": "enabling-technology-automation",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 45,
+      "reason": "Science-news event priority only; source-reported development, not verified treatment efficacy. Study subjects are not inferred from news copy.",
+      "recordId": "102100001",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-10-27",
+          "iso": "2026-10-27",
+          "precision": "day"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by Nikkei Gooday RSS",
+        "id": "https://gooday.nikkei.co.jp/atcl/report/24/102100103/102100001/"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Nikkei Gooday"
+      }
+    },
+    "sitePublishedAt": "2026-11-05T14:11:20.000Z"
   }
 ] as Article[];
 
