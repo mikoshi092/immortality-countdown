@@ -131,17 +131,7 @@ export default function JapaneseLandingPage() {
             不老不死への<br className="sm:hidden" />カウントダウン
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
-            <Phrases
-              parts={[
-                "1年生きるあいだに、",
-                "寿命が1年以上",
-                "延びるようになる——",
-                "そんな地点の到来を、",
-                "世界の長寿研究の",
-                "進み方から",
-                "見積もっています。",
-              ]}
-            />
+            近年のAI創薬の進歩や量子コンピューターの登場でかつては夢でしかなかった&quot;不老不死&quot;は、技術的に達成可能な目標となってきた。このサイトでは、最新ニュースやデータを追い、あと何年で到達できるかをリアルタイムで追って行きたい。
           </p>
 
           <div className="mx-auto mt-[38px] max-w-[560px] rounded-[32px] border-[3px] border-[#7d97bd] bg-white px-5 pb-[22px] pt-[26px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
