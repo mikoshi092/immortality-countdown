@@ -226,7 +226,7 @@ export default function Home() {
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
-            title="📰 Longevity research news"
+            title="📰 Ageless Longevity News"
             sub="Research news from around the world. Each headline links straight to the original article."
           />
           <div className="mt-6">

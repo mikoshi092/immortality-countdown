@@ -26,7 +26,7 @@ export function buildNewsRss(locale: SiteLocale, articles: Article[]): string {
   const title =
     locale === "ja"
       ? `${SITE_NAME} 最新ニュース`
-      : `${SITE_NAME} Latest News`;
+      : `${SITE_NAME} Ageless Longevity News`;
   const description =
     locale === "ja"
       ? "長寿研究の更新情報を、要点と限界に分けて紹介します。詳細は各記事末尾の一次資料をご確認ください。"
