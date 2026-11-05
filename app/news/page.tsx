@@ -10,7 +10,7 @@ import { newsIndexHreflang, newsRssPath } from "@/lib/article-seo";
 import { newsFaceArticles, toNewsRows } from "@/lib/news-rows";
 
 export const metadata: Metadata = {
-  title: "Latest News | Immortality Countdown",
+  title: "Ageless Longevity News | Immortality Countdown",
   description:
     "Selected longevity research updates. Read the article here, then open the primary source.",
   alternates: {
@@ -39,9 +39,9 @@ export default function NewsIndexPage() {
     <main className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
       <SiteHeader />
       <div className="mx-auto max-w-[1080px] px-5 pb-[60px]">
-        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Longevity research news</h1>
+        <h1 className="mt-3.5 text-[1.6rem] font-extrabold">📰 Ageless Longevity News</h1>
         <p className="mt-1 text-[0.95rem] text-[#4a5878]">
-          Longevity research news from around the world. Each headline links straight to the
+          Ageless longevity news from around the world. Each headline links straight to the
           original article.
         </p>
         <p className="mt-1 text-[0.9rem]">
@@ -60,7 +60,7 @@ export default function NewsIndexPage() {
             ) : (
               <>
                 <p className="text-[0.95rem] text-[#4a5878]">
-                  No articles yet. New research news will appear here as it comes in.
+                  We are preparing the news feed. As new stories arrive, they will appear here, newest first. Until then, see the countdown and the eight fields' progress on the top page.
                 </p>
                 <p className="mt-2 text-[0.9rem]">
                   <Link

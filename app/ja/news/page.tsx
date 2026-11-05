@@ -73,7 +73,7 @@ export default function JapaneseNewsIndexPage() {
             ) : (
               <>
                 <p className="text-[0.95rem] text-[#4a5878]">
-                  記事はまだありません。新しい研究ニュースが入り次第、ここに並びます。
+                  現在、掲載するニュースを準備しています。新しい記事が届き次第、ここに新しい順で並びます。それまでは、トップページのカウントダウンと8分野の進み具合をご覧ください。
                 </p>
                 <p className="mt-2 text-[0.9rem]">
                   <Link

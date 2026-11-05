@@ -161,19 +161,28 @@ export default function JapaneseLandingPage() {
                 left: "4%",
                 highlight: true,
                 hideYear: true,
+                yearsToGo: `あと${earlyYear - baseYear}年`,
               },
-              { year: medianYear, tag: "標準ペース", left: "46%" },
-              { year: lateYear, tag: "遅ければ", left: "96%" },
+              {
+                year: medianYear,
+                tag: "標準ペース",
+                left: "46%",
+                yearsToGo: `あと${medianYear - baseYear}年`,
+              },
+              {
+                year: lateYear,
+                tag: "遅ければ",
+                left: "96%",
+                yearsToGo: `あと${lateYear - baseYear}年`,
+              },
             ]}
             note={
               <Phrases
                 parts={[
-                  "このページの",
                   "「あと何年」は、",
-                  "3つの見通しのうち、",
                   "いちばん早い到達",
-                  `（${earlyYear}年）を`,
-                  "終着点にしています。",
+                  `（${earlyYear}年）までの`,
+                  "年数です。",
                 ]}
               />
             }
@@ -204,7 +213,7 @@ export default function JapaneseLandingPage() {
               nowPct={Math.round(currentGain * 100)}
               goalLabel="🚀 追い越し地点（LEV）"
               goalValueText="1年で 1.00 年 延びる"
-              note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年延びています。この伸びが1.00年を超えたとき、医療は老化を追い越し始めます。`}
+              note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年（約2.6か月分）延びています。この伸びが1.00年に届いたとき、医療は老化を追い越し始めます。`}
             />
           </Disclosure>
         </section>
@@ -326,6 +335,9 @@ export default function JapaneseLandingPage() {
               />
             }
           />
+          <p className="mt-3 text-center text-[0.85rem] text-[#4a5878]">
+            🟢 加速中 50%以上 ／ 🟡 前進中 40〜49% ／ 🟠 土台づくり中 40%未満
+          </p>
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <span className="font-bold">🌍 8分野全体の進み具合（平均）</span>
@@ -347,8 +359,7 @@ export default function JapaneseLandingPage() {
           </div>
           <FieldCards fields={fieldCardsByScore} locale="ja" />
           <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
-            スコアは各分野の「現在地」を示す目安です（{reviewedLabel}
-            時点の評価）。分野名の横の色は、スコア帯による進み具合の目安表示です。
+            スコアは各分野の現在地の目安です（{reviewedLabel}時点の評価）。
           </p>
         </section>
 
@@ -362,7 +373,10 @@ export default function JapaneseLandingPage() {
               研究が進んでも、治療として人に届くまでには、安全性の確認、臨床試験、承認、製造、社会の受け入れと、いくつも壁があります。
             </p>
             <p className="mt-3">
-              人で試すことの安全性確認は、省くわけにはいきません。一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
+              人で試すことの安全性確認は、省くわけにはいきません。
+            </p>
+            <p className="mt-3">
+              一方で、老化を治療の対象として扱う枠組みがまだ整っていないことや、更新の遅い手続きなど、科学とは別の理由の遅れもあります。この遅れは、人の手で取り除けるものです。
             </p>
             <p className="mt-4">
               治療として届ける準備は、研究の進み具合に比べて、まだ入口の段階です。
@@ -392,8 +406,7 @@ export default function JapaneseLandingPage() {
           secondaryHref="/model"
           locale="ja"
           finePrint={[
-            `このページの「あと${heroEarlyYears}年」は、公開中のモデルが置く「早ければ」の到達年（${earlyYear}年）を基準にした目安です。「標準ペース」では${medianYear}年、「遅ければ」${lateYear}年です。`,
-            "いずれも、科学の進み方によって前後します。将来の約束ではなく、現在地を測るための物差しとしてご覧ください。",
+            `このページの「あと${heroEarlyYears}年」は目安です。科学の進み方によって前後します。将来の約束ではなく、現在地を測るための物差しとしてご覧ください。`,
           ]}
         />
       </div>

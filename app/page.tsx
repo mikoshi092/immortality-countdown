@@ -160,11 +160,22 @@ export default function Home() {
                 left: "4%",
                 highlight: true,
                 wrapTagOnMobile: true,
+                yearsToGo: `${earlyYear - baseYear} years to go`,
               },
-              { year: medianYear, tag: "Standard pace", left: "46%" },
-              { year: lateYear, tag: "Latest", left: "96%" },
+              {
+                year: medianYear,
+                tag: "Standard pace",
+                left: "46%",
+                yearsToGo: `${medianYear - baseYear} years to go`,
+              },
+              {
+                year: lateYear,
+                tag: "Latest",
+                left: "96%",
+                yearsToGo: `${lateYear - baseYear} years to go`,
+              },
             ]}
-            note={`The years-to-go figure on this page counts down to the earliest of the three outlooks (${earlyYear}).`}
+            note={`The years-to-go figure counts down to the earliest outlook (${earlyYear}).`}
           />
         </section>
 
@@ -181,7 +192,7 @@ export default function Home() {
               nowPct={Math.round(currentGain * 100)}
               goalLabel="🚀 The overtaking point (LEV)"
               goalValueText="Each year adds 1.00 years"
-              note={`Right now, each year you live adds about ${currentGain.toFixed(2)} years to life expectancy. When that gain passes 1.00 years, medicine starts to outrun aging.`}
+              note={`Right now, each year you live adds about ${currentGain.toFixed(2)} years (roughly 2.6 months) to life expectancy. When that gain reaches 1.00 years, medicine starts to outrun aging.`}
             />
           </Disclosure>
         </section>
@@ -240,7 +251,7 @@ export default function Home() {
               href="/news"
               className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              Longevity research news is on its way →
+              Ageless longevity news is on its way →
             </Link>
           </section>
         )}
@@ -267,6 +278,9 @@ export default function Home() {
             title="Eight fields, advancing at the same time"
             sub="Aging will not be beaten by a single technology. The closer the eight fields march together, the nearer arrival comes."
           />
+          <p className="mt-3 text-center text-[0.85rem] text-[#4a5878]">
+            🟢 Accelerating 50%+ / 🟡 Advancing 40–49% / 🟠 Building foundations under 40%
+          </p>
           <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-6 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <span className="font-bold">🌍 All eight fields (average)</span>
@@ -290,8 +304,7 @@ export default function Home() {
           </div>
           <FieldCards fields={fieldCardsByScore} locale="en" />
           <p className="mt-[14px] text-[0.8rem] text-[#4a5878]">
-            Scores are a guide to where each field stands (reviewed {reviewedLabel}). The chip
-            beside each field name bands progress by score.
+            Scores are a guide to where each field stands (reviewed {reviewedLabel}).
           </p>
         </section>
 
@@ -305,10 +318,12 @@ export default function Home() {
               acceptance by society.
             </p>
             <p className="mt-3">
-              The safety checks for testing in people cannot be skipped. On the other hand, some
-              delays have nothing to do with science: there is still no established framework for
-              treating aging itself as a target of medicine, and some procedures are slow to
-              update. Those are delays people can remove.
+              The safety checks for testing in people cannot be skipped.
+            </p>
+            <p className="mt-3">
+              On the other hand, some delays have nothing to do with science: there is still no
+              established framework for treating aging itself as a target of medicine, and some
+              procedures are slow to update. Those are delays people can remove.
             </p>
             <p className="mt-4">
               Compared with how far the research has progressed, the readiness to deliver this as
@@ -337,8 +352,7 @@ export default function Home() {
           secondaryHref="/model"
           locale="en"
           finePrint={[
-            `The "${heroEarlyYears} years to go" on this page is measured against the published model's earliest arrival year (${earlyYear}). At the standard pace it is ${medianYear}; at the latest, ${lateYear}.`,
-            "All three move with the pace of science — a yardstick for where we stand, not a promise about the future.",
+            `The "${heroEarlyYears} years to go" on this page is an estimate. It moves with the pace of science — a yardstick for where we stand, not a promise about the future.`,
           ]}
         />
       </div>
