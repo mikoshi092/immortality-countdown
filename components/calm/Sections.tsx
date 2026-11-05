@@ -190,46 +190,6 @@ export function Disclosure({
   );
 }
 
-/** Two-row LEV gauge: where the gain rate is now vs the 1.00 goal. */
-export function LevGauge({
-  nowLabel,
-  nowValueText,
-  nowPct,
-  goalLabel,
-  goalValueText,
-  note,
-}: {
-  nowLabel: string;
-  nowValueText: string;
-  nowPct: number;
-  goalLabel: string;
-  goalValueText: string;
-  note: string;
-}) {
-  return (
-    <div className="mt-6 rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-7 shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
-      <div className="flex flex-wrap items-baseline justify-between gap-2 text-[0.95rem] font-bold">
-        <span>{nowLabel}</span>
-        <span>{nowValueText}</span>
-      </div>
-      <div className="mt-2 h-[22px] overflow-hidden rounded-full bg-[#eef2f9]">
-        <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,#57b8ff,#00a8a8)]"
-          style={{ width: `${nowPct}%` }}
-        />
-      </div>
-      <div className="mt-[22px] flex flex-wrap items-baseline justify-between gap-2 text-[0.95rem] font-bold">
-        <span>{goalLabel}</span>
-        <span>{goalValueText}</span>
-      </div>
-      <div className="mt-2 h-[22px] overflow-hidden rounded-full bg-[#eef2f9]">
-        <div className="h-full w-full rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a)]" />
-      </div>
-      <p className="mt-4 text-center text-[0.92rem] font-bold">{note}</p>
-    </div>
-  );
-}
-
 /**
  * Display deformation (owner decision, 2026-11-05): on a strict
  * linear scale the arrival point strands far to the right and the

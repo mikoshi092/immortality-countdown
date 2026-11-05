@@ -10,7 +10,6 @@ import {
   Disclosure,
   FaqSection,
   FieldCards,
-  LevGauge,
   Milestones,
   Phrases,
   RangeBar,
@@ -95,7 +94,6 @@ export default function JapaneseLandingPage() {
   const road2028Pct = gainPercentAt(2028);
   const road2030Pct = gainPercentAt(2030);
   const road2036Pct = gainPercentAt(2036);
-  const yearsToMedian = medianYear - baseYear;
   const articles = listArticles();
   const latestRows = toNewsRows(newsFaceArticles(articles, "ja").slice(0, 5), "ja", now);
   const faq = faqItems("ja");
@@ -193,14 +191,9 @@ export default function JapaneseLandingPage() {
             sub="当サイトでは、不老不死達成の定義を未来学者のレイ・カーツワイルや、老年学者のオーブリー・デ・グレイらが提唱した寿命脱出速度に到達する時とする。"
           />
           <Disclosure label="くわしく見る">
-            <LevGauge
-              nowLabel="🌱 いま"
-              nowValueText={`1年で寿命は ${currentGain.toFixed(2)} 年 延びている`}
-              nowPct={Math.round(currentGain * 100)}
-              goalLabel="🚀 追い越し地点（LEV）"
-              goalValueText="1年で 1.00 年 延びる"
-              note={`いまは、1年生きるごとに寿命が約${currentGain.toFixed(2)}年（約2.6か月分）延びています。この伸びが1.00年に届いたとき、医療は老化を追い越し始めます。`}
-            />
+<p className="mt-6 leading-[1.9]">
+              寿命脱出速度（LEV）とは、医療の進歩で寿命が延びる速さが、老いていく速さを追い越し始める地点のことだ。現在OECD加盟国では、男女の平均寿命が毎年２.６ヶ月伸びている。つまり、平均的な人が1年生きると寿命が約2.6か月分延びているということである。この平均寿命の伸びが毎年１年に届くと、平均的な人が1年生きるごとに寿命が1年伸び、理論上は、老化による死から逃げ続けられる状態となる。このLEVへの到達こそが、人類が夢見てきた不老不死と言えるのである。
+            </p>
           </Disclosure>
         </section>
 
@@ -264,7 +257,7 @@ export default function JapaneseLandingPage() {
         {latestRows.length > 0 ? (
         <section className="pt-[52px]">
           <SectionHeading
-            title="📰 不老長寿ニュース"
+            title="📰 不老不死ニュース"
             sub={
               <Phrases
                 parts={[
@@ -299,7 +292,7 @@ export default function JapaneseLandingPage() {
               href="/ja/news"
               className={`text-[0.95rem] font-bold text-[#4a5878] hover:text-[#00a8a8] hover:underline ${FOCUS_RING}`}
             >
-              不老長寿ニュースは準備中です →
+              不老不死ニュースは準備中です →
             </Link>
           </section>
         )}
@@ -307,22 +300,12 @@ export default function JapaneseLandingPage() {
         {/* Age calculator */}
         <section className="pt-[52px]">
           <SectionHeading
-            title={<Phrases parts={["あなたは", "不老長寿に", "間に合うか？"]} />}
+            title={<Phrases parts={["あなたは", "不老不死に", "間に合うか？"]} />}
             sub={
               <Phrases parts={["あなたの", "現在の年齢を", "入れてください。"]} />
             }
           />
-          <AgeCalculator
-            locale="ja"
-            earlyYear={earlyYear}
-            medianYear={medianYear}
-            yearsToEarly={heroEarlyYears}
-            yearsToMedian={yearsToMedian}
-          />
-          <p className="mt-[14px] text-center text-[0.92rem] text-[#4a5878]">
-            例：今年生まれた赤ちゃんは、{earlyYear}年に{heroEarlyYears}歳になります。いま40歳の人は
-            {40 + heroEarlyYears}歳です。
-          </p>
+          <AgeCalculator locale="ja" yearsToEarly={heroEarlyYears} />
         </section>
 
         {/* Eight fields */}
