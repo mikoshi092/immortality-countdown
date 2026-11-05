@@ -13,6 +13,12 @@ import type { SiteLocale } from "@/lib/locale";
  * view counts) on 2026-11-04. Each video is a click-to-play thumbnail
  * facade: only the thumbnail image loads up front, and the YouTube
  * iframe is created on click, keeping the page light.
+ *
+ * The JA rail additionally leads with a TV Asahi news segment (owner
+ * request, 2026-11-05; URL and title supplied by the owner). It is a
+ * news clip, not a most-watched classic, so the JA header and footnote
+ * no longer describe the whole rail as classics. The EN rail is
+ * unchanged.
  */
 const VIDEOS = [
   {
@@ -52,16 +58,30 @@ const VIDEOS = [
   },
 ] as const;
 
+/**
+ * JA-only lead item: TV Asahi "Good! Morning" news segment (TV Asahi
+ * NEWS) on a FANCL senolytic ingredient, broadcast 2026-11-05. The meta
+ * line shows the broadcast date instead of a view count.
+ */
+const TV_ASAHI_NEWS_VIDEO = {
+  id: "dyBcfQMZzC8",
+  title: "世界初　老化細胞を減らす成分発見　バラ科のキンミズヒキの葉から　ファンケル",
+  channel: "テレビ朝日「グッド！モーニング」",
+  viewsJa: "2026年11月5日放送",
+  viewsEn: "",
+} as const;
+
 export default function VideoRail({ locale }: { locale: SiteLocale }) {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const ja = locale === "ja";
+  const videos = ja ? [TV_ASAHI_NEWS_VIDEO, ...VIDEOS] : VIDEOS;
 
   return (
     <aside className="rounded-[18px] border-[3px] border-[#7d97bd] bg-white p-[18px] shadow-[0_1px_6px_rgba(35,50,82,0.06)]">
       <h2 className="mb-[14px] text-[1.05rem] font-extrabold text-[#233252]">
-        {ja ? "🎬 関連動画（再生数の多い定番）" : "🎬 Related videos (most-watched classics)"}
+        {ja ? "🎬 関連動画" : "🎬 Related videos (most-watched classics)"}
       </h2>
-      {VIDEOS.map((video) => (
+      {videos.map((video) => (
         <div key={video.id} className="mb-[18px] last:mb-0">
           <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
             {playingId === video.id ? (
@@ -109,7 +129,7 @@ export default function VideoRail({ locale }: { locale: SiteLocale }) {
       ))}
       <p className="mt-2 text-[0.78rem] leading-[1.6] text-[#4a5878]">
         {ja
-          ? "再生数の多い定番動画を並べています。たまに入れ替えることがあります（クリックで再生）。"
+          ? "話題のニュース動画と、再生数の多い定番動画を並べています。たまに入れ替えることがあります（クリックで再生）。"
           : "The most-watched classics, swapped only occasionally — click to play."}
       </p>
     </aside>
