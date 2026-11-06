@@ -66,6 +66,7 @@ export function sourceLabelFromUrl(sourceUrl: string): string {
   if (host.includes("riken.jp")) return "理化学研究所";
   if (host.includes("healthdayjapan.com")) return "ヘルスデージャパン";
   if (host.includes("news.mynavi.jp")) return "マイナビニュース";
+  if (host.includes("bloomberg.com")) return "ブルームバーグ";
   return host;
 }
 
