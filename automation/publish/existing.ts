@@ -228,7 +228,20 @@ export function gateExistingArticles(
         evidence: ranked.evidence,
       };
     }
-    const candidate = toCandidate(ranked);
+    if (!ranked.fieldId) {
+      // Unreachable in practice: exclusionReasons above already
+      // rejects field-less records. This only narrows the type.
+      return {
+        articleId: article.id,
+        ok: false,
+        hold: false,
+        reasons: ["no field fit: the title/abstract match no field's terms"],
+        relevanceScore: ranked.relevanceScore,
+        significanceScore: ranked.significanceScore,
+        evidence: ranked.evidence,
+      };
+    }
+    const candidate = toCandidate({ ...ranked, fieldId: ranked.fieldId });
     const others = catalog.filter((entry) => entry.slug !== article.slug);
     const result = validateDraft(
       articleToDraft(article, fetched.recordId),

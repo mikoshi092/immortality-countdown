@@ -45,6 +45,17 @@ describe("field classification", () => {
       "biomarkers-diagnostics",
     );
   });
+
+  it("assigns no field when no field's terms match (no silent default)", () => {
+    const result = classifyField(
+      record({
+        title: "Editors discuss the future of the journal",
+        abstract: "An editorial roundtable about publishing plans and readership.",
+      }),
+    );
+    assert.equal(result.fieldId, null);
+    assert.deepEqual(result.hits, []);
+  });
 });
 
 describe("evidence is conservative", () => {

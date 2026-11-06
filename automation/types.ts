@@ -122,7 +122,9 @@ export type FetchedRecord = {
 };
 
 export type RankedRecord = FetchedRecord & {
-  fieldId: FieldId;
+  /** Null when no field's terms match the record: no honest tag
+   *  exists, and exclusionReasons turns that into a hard exclusion. */
+  fieldId: FieldId | null;
   evidence: EvidenceLevel;
   relevanceScore: number;
   significanceScore: number;
@@ -159,7 +161,7 @@ export type Rejection = {
   title: string;
   sourceUrl?: string;
   reasons: string[];
-  fieldId?: FieldId;
+  fieldId?: FieldId | null;
   evidence?: EvidenceLevel;
   relevanceScore?: number;
   significanceScore?: number;
