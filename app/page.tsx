@@ -12,6 +12,7 @@ import {
   FieldCards,
   Milestones,
   SectionHeading,
+  WireSectionHeading,
   type FieldCardData,
 } from "@/components/calm/Sections";
 import { listArticles } from "@/data/articles";
@@ -221,8 +222,8 @@ export default function Home() {
             below swaps its empty shelf for one quiet signpost line so a
             first-time visitor still learns the site has news. */}
         {latestRows.length > 0 ? (
-        <section className="pt-[52px]">
-          <SectionHeading title="📰 Latest News" />
+        <section className="-mx-5 bg-[#ededed] px-5 pb-[26px] pt-[34px]">
+          <WireSectionHeading title="📰 Latest News" />
           <div className="mt-6">
             <RtNewsList
               rows={latestRows}
