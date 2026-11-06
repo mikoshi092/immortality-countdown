@@ -149,7 +149,7 @@ export default function Home() {
 
         {/* Hero */}
         <section className="pt-14 text-center">
-          <h1 className="font-hero-display text-[clamp(2.2rem,6vw,3.4rem)] font-black leading-[1.25]">
+          <h1 className="font-hero-display text-[clamp(2.9rem,12.3vw,3.2rem)] font-black leading-[1.25] sm:text-[clamp(2.6rem,7.2vw,4.8rem)]">
             Countdown to Immortality
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">

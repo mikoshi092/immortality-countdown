@@ -141,7 +141,7 @@ export default function JapaneseLandingPage() {
 
         {/* Hero */}
         <section className="pt-14 text-center">
-          <h1 className="font-hero-display text-[clamp(2.2rem,6vw,3.4rem)] font-black leading-[1.3]">
+          <h1 className="font-hero-display text-[clamp(2.95rem,12vw,3.3rem)] font-black leading-[1.3] sm:text-[clamp(2.8rem,6.8vw,4.4rem)]">
             不老不死への<br className="sm:hidden" />カウントダウン
           </h1>
           <p className="mx-auto mt-[18px] max-w-[640px] text-[clamp(0.98rem,2.8vw,1.08rem)] [word-break:auto-phrase]">
