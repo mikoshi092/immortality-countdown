@@ -128,6 +128,21 @@ export default function Home() {
 
   return (
     <main id="top" className="min-h-screen bg-[#fdfdfb] leading-[1.75] text-[#233252]">
+      {/* Hero wash (specimen B, owner-approved 2026-11-06): a pale-blue
+          gradient behind the header and hero zone only. The wrapper's box
+          is stretched 110px past the hero (pb) and pulled back by the same
+          amount (-mb), so the wash fades out fully above the road panel
+          without moving anything on the page. */}
+      <div
+        className="-mb-[110px] pb-[110px]"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, rgba(95,151,198,0.15), rgba(95,151,198,0.05) 62%, rgba(95,151,198,0) 100%)",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "50% 0",
+        }}
+      >
       <SiteHeader />
       <div className="mx-auto max-w-[980px] px-5">
         <TopStoriesStrip articles={articles} locale="en" now={now} />
@@ -160,7 +175,9 @@ export default function Home() {
           </div>
 
         </section>
-
+      </div>
+      </div>
+      <div className="mx-auto max-w-[980px] px-5">
         {/* LEV in one sentence */}
         <section className="pt-[52px]">
           <SectionHeading
