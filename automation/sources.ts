@@ -25,6 +25,14 @@ import type { SourceDefinition } from "./types";
  * articles it publishes, and the display layer uses it to keep
  * English-source items off the Japanese news surfaces.
  *
+ * Bloomberg Japan is registered but disabled: Bloomberg offers no
+ * public article feed and its articles are paywalled, so the runner
+ * never fetches it. The entry exists so the display layer can resolve
+ * the language of Bloomberg links on manually added records. Note
+ * that bloomberg.com serves both the Japanese and English editions
+ * from one host, so any Bloomberg record resolves as Japanese;
+ * manual additions must therefore link the /jp/ edition.
+ *
  * `url` is the public site. `api.baseUrl` is the feed URL the adapter
  * actually calls, and `api.linkPattern` admits only article URLs.
  */
@@ -223,6 +231,20 @@ export const SOURCES: SourceDefinition[] = [
       kind: "rss",
       baseUrl: "https://news.mynavi.jp/rss/index",
       linkPattern: "^https://news\\.mynavi\\.jp/(?:[\\w-]+/)?article/\\d{8}-\\d+/$",
+    },
+  },
+  {
+    id: "bloomberg-japan",
+    name: "Bloomberg Japan",
+    type: "science-news",
+    url: "https://www.bloomberg.com/jp/",
+    enabled: false,
+    trustTier: 2,
+    language: "ja",
+    api: {
+      kind: "rss",
+      baseUrl: "https://www.bloomberg.com/jp/",
+      linkPattern: "^https://www\\.bloomberg\\.com/jp/news/articles/\\d{4}-\\d{2}-\\d{2}/[\\w-]+$",
     },
   },
   {

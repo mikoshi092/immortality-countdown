@@ -115,6 +115,7 @@ describe("general media sources", () => {
     );
     assert.equal(sourceById("pubmed")?.enabled, false);
     assert.equal(sourceById("clinicaltrials")?.enabled, false);
+    assert.equal(sourceById("bloomberg-japan")?.enabled, false);
     assert.ok(enabledSources().every((source) => source.type === "science-news"));
   });
 
@@ -326,7 +327,7 @@ describe("Tier-1 Japanese sources for the Japanese news face", () => {
   it("marks exactly the Japanese sources with language ja", () => {
     assert.deepEqual(
       SOURCES.filter((source) => source.language === "ja").map((source) => source.id),
-      ["gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news"],
+      ["gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news", "bloomberg-japan"],
     );
     assert.ok(SOURCES.every((source) => source.language === "ja" || source.language === "en"));
   });

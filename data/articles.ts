@@ -5772,6 +5772,93 @@ export const articles: Article[] = [
       }
     },
     "sitePublishedAt": "2026-11-05T14:11:00.000Z"
+  },
+  {
+    "id": "2026-11-05-alphabet-s-isomorphic-labs-in-talks-to-raise-about-5b-at-a-50b-valuation",
+    "slug": "2026-11-05-alphabet-s-isomorphic-labs-in-talks-to-raise-about-5b-at-a-50b-valuation",
+    "sourceUrl": "https://www.bloomberg.com/jp/news/articles/2026-11-05/TO083JT9NJLU00",
+    "sourceLabel": "ブルームバーグ",
+    "sourcePublishedAt": "2026-11-05T07:39:00.000Z",
+    "draftCreatedAt": "2026-11-06T08:40:00.000Z",
+    "discoveredAt": "2026-11-06T08:39:00.000Z",
+    "fieldId": "ai-drug-discovery",
+    "evidence": "Evidence E",
+    "studySubjects": [],
+    "contentType": "science-news",
+    "attentionLevel": 4,
+    "countdownImpact": "none",
+    "localizedFacts": {
+      "en": {
+        "studyDesign": "Science news report",
+        "populationOrModel": "Not assessed in this news report",
+        "outcomes": "Bloomberg reported that Isomorphic Labs is in talks to raise about $5 billion in a round that would value the company at about $50 billion (about ¥7.89 trillion)",
+        "limitations": "The financing has not closed and its terms may change; the report rests on unnamed sources and the company has not confirmed it",
+        "resultStatus": "Science news report"
+      },
+      "ja": {
+        "studyDesign": "科学ニュース報道",
+        "populationOrModel": "本報道では研究対象を検証していない",
+        "outcomes": "アイソモーフィック・ラボが約5ビリオン・ドル（約50億ドル）の資金調達に向けて協議中だとブルームバーグが報じました。実現すれば評価額は約7.89兆円となります",
+        "limitations": "調達はまだ完了しておらず条件は変わる可能性があります。匿名の関係者への取材に基づく報道で、会社側の確認は取れていません",
+        "resultStatus": "科学ニュース報道"
+      }
+    },
+    "en": {
+      "headline": "Alphabet's Isomorphic Labs in talks to raise about $5B at a $50B valuation",
+      "dek": "Bloomberg reports that Isomorphic Labs, the AI drug-discovery company spun out of Google DeepMind in 2021, is in talks to raise roughly $5 billion, in a round that would value it at about $50 billion (about ¥7.89 trillion).",
+      "whatHappened": "Bloomberg reported, citing people familiar with the matter, that Isomorphic Labs is in talks to raise about $5 billion in new funding, which would value the company at about $50 billion. Isomorphic Labs was spun out of Google DeepMind in 2021 and applies AI, building on the AlphaFold protein-structure work, to drug discovery. The talks follow a funding round in May led by Thrive Capital. The financing has not closed, and the terms could still change.",
+      "whyItMatters": "Isomorphic Labs is the flagship company in AI drug discovery, the field with the highest readiness score on this site, and a raise of this size would widen the funding gap between AI-led discovery platforms and the rest of the field. Its own drug candidates are still in preclinical development, with first human trials expected by the end of 2026.",
+      "realityCheck": "This is a reported negotiation, not a completed financing: the account rests on unnamed sources, the company has not confirmed it, and the amount and valuation may change. Isomorphic has not yet tested any of its own drug candidates in people, so the valuation prices expectations, not clinical results.",
+      "popHeadline": "Isomorphic Labs in talks for a $5B raise at a $50B valuation"
+    },
+    "ja": {
+      "headline": "アルファベット傘下のAI創薬アイソモーフィック、約50億ドルの調達で協議",
+      "dek": "ブルームバーグは、グーグル・ディープマインドから2021年に分離したAI創薬企業アイソモーフィック・ラボが、約50億ドルの資金調達に向けて協議中だと報じました。実現すれば評価額は約7.89兆円となります。",
+      "whatHappened": "ブルームバーグは、事情に詳しい関係者の話として、アイソモーフィック・ラボが約50億ドルの新たな資金調達に向けて協議していると報じました。調達が実現すれば、同社の評価額は約7.89兆円となります。同社は2021年にグーグル・ディープマインドから分離して設立され、タンパク質構造予測AIのAlphaFoldの成果を土台に、AIを使った創薬に取り組んでいます。今年5月にはスライブ・キャピタル主導の資金調達を完了しています。ただし今回の調達はまだ完了しておらず、条件は変更される可能性があります。",
+      "whyItMatters": "アイソモーフィック・ラボは、当サイトで準備度スコアが最も高い分野であるAI創薬の代表格です。これだけの規模の資金が集まれば、AI主導の創薬プラットフォームと他社との資金力の差はさらに広がります。一方、同社自身の薬候補はまだ前臨床段階で、初のヒト試験は2026年末の開始が見込まれています。",
+      "realityCheck": "これは完了した調達ではなく協議の報道です。匿名の関係者への取材に基づく内容で、会社側の確認は取れておらず、金額や評価額は変わる可能性があります。評価額は臨床試験の結果ではなく、期待への価格です。",
+      "popHeadline": "AI創薬アイソモーフィック、約50億ドルの調達で協議、評価額は約7.89兆円"
+    },
+    "sourceCheck": {
+      "sourceId": "bloomberg-japan",
+      "sourceUrl": "https://www.bloomberg.com/jp/news/articles/2026-11-05/TO083JT9NJLU00",
+      "title": "アルファベット傘下のAI創薬アイソモーフィック、7890億円調達で協議",
+      "publishedAt": "2026-11-05T07:39:00.000Z",
+      "fetchedAt": "2026-11-06T08:39:00.000Z",
+      "abstract": "ブルームバーグは、アルファベット傘下のAI創薬スタートアップである英アイソモーフィック・ラボが、AIを活用した創薬の取り組みを支えるため、約50億ドル（約7,890億円）の資金調達に向けて協議していると報じた。調達が実現すれば同社の評価額は約500億ドル（約7.89兆円）となる見通しだが、調達はまだ完了しておらず、条件は変更される可能性がある。同社は2021年にグーグル・ディープマインドから分離して設立され、今年5月には21億ドルの資金調達を完了している。",
+      "fieldId": "ai-drug-discovery",
+      "evidence": "Evidence E",
+      "relevanceScore": 50,
+      "significanceScore": 70,
+      "reason": "Science-news event priority only; source-reported financing talks, not a closed transaction. Study subjects are not inferred from news copy.",
+      "recordId": "TO083JT9NJLU00",
+      "dateFields": {
+        "publicationDate": {
+          "raw": "2026-11-05T16:39:00+09:00",
+          "iso": "2026-11-05T07:39:00.000Z",
+          "precision": "datetime"
+        }
+      },
+      "windowMatch": {
+        "inWindow": true,
+        "matchedFields": [
+          "publicationDate"
+        ]
+      },
+      "urlOrigin": {
+        "kind": "source-feed",
+        "rule": "Exact link supplied by the site owner for a manual addition; Bloomberg Japan is registered for language resolution with ingest disabled",
+        "id": "https://www.bloomberg.com/jp/news/articles/2026-11-05/TO083JT9NJLU00"
+      },
+      "studySubjects": [],
+      "hints": {
+        "pubTypes": [
+          "News"
+        ],
+        "journal": "Bloomberg"
+      }
+    },
+    "sitePublishedAt": "2026-11-06T08:40:00.000Z"
   }
 ] as Article[];
 
