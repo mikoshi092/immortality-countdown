@@ -35,6 +35,21 @@ export function SectionHeading({ title, sub }: { title: ReactNode; sub?: ReactNo
 }
 
 /**
+ * Wire-style heading for the news zone (owner-approved specimen C,
+ * 2026-11-06): smaller, left-aligned, one strong rule underneath — the
+ * news zone deliberately reads as a bulletin board, not as another
+ * framed main-content panel, so it is never mistaken for the site's
+ * main content.
+ */
+export function WireSectionHeading({ title }: { title: ReactNode }) {
+  return (
+    <h2 className="border-b-2 border-[#233252] pb-2 text-left text-[1.12rem] font-extrabold leading-[1.35] text-[#233252]">
+      {title}
+    </h2>
+  );
+}
+
+/**
  * Phrase-unit spans for Japanese copy: each part renders as a
  * whitespace-nowrap inline span, so a line break can only fall
  * BETWEEN parts — never mid-phrase (「延びるようにな／る」). Browsers
