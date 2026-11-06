@@ -139,7 +139,7 @@ export default function JapaneseLandingPage() {
                 <CountUp target={heroEarlyYears} />
               </span>{" "}
               年
-              <span className="ml-2 align-middle text-[0.95rem] font-semibold text-[#4a5878]">
+              <span className="ml-2 whitespace-nowrap align-middle text-[0.95rem] font-semibold text-[#4a5878]">
                 （早ければ）
               </span>
             </div>
@@ -291,11 +291,33 @@ export default function JapaneseLandingPage() {
                 <span className="text-[0.85rem] font-bold">%</span>
               </b>
             </div>
-            <div className="mt-2 h-[22px] overflow-hidden rounded-full bg-[#eef2f9]">
-              <div
-                className="h-full rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a)]"
-                style={{ width: `${averageScore}%` }}
-              />
+            {/* Bar geometry copies the field cards below (owner,
+                2026-11-06: the average bar must share the cards'
+                px-per-% scale). The -mx-[27px] pull (panel border 3px
+                + padding 24px) makes this grid exactly as wide as the
+                cards' grid, the auto-fill column sizes like a card
+                column, the cell replays the card's horizontal inset
+                (20px padding + 3px border = px-[23px]), and the row
+                replays the card bar row (gap + fixed-width % label),
+                so 1% covers
+                the same pixels here as in any card. The row's % label
+                is a layout replica only — the figure itself sits in
+                the header above — so it is invisible and aria-hidden. */}
+            <div className="-mx-[27px] mt-2 grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(210px,1fr))]">
+              <div className="px-[23px]">
+                <div className="flex items-center gap-2">
+                  <div className="h-[22px] flex-1 overflow-hidden rounded-full border-2 border-[#7d97bd] bg-[#eef2f9]">
+                    <div
+                      className="h-full rounded-full bg-[linear-gradient(90deg,#ffb703,#ff6b4a)]"
+                      style={{ width: `${averageScore}%` }}
+                    />
+                  </div>
+                  <b aria-hidden="true" className="invisible w-[34px] whitespace-nowrap text-[1.05rem] tabular-nums">
+                    {averageScore}
+                    <span className="text-[0.8rem]">%</span>
+                  </b>
+                </div>
+              </div>
             </div>
             <p className="mt-2 text-[0.8rem] text-[#4a5878]">100% = 治療として実際に使える状態</p>
             <p className="mt-[10px] text-[0.9rem]">

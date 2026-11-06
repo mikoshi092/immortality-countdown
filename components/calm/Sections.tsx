@@ -399,9 +399,10 @@ export type FieldCardData = { key: string; icon: FieldId; name: string; blurb: s
 /**
  * Field cards in fixed lanes (owner report, 2026-11-05: bars and chips
  * sat at different heights from card to card). Each card is a flex
- * column — icon row, two-line title, the status chip on its own row
- * under the title, description, then the bar row pinned to the bottom
- * by margin-top:auto — and the grid stretches every card in a row to
+ * column — the field icon inline at the left of the title's first
+ * line (owner, 2026-11-06), two-line title, the status chip on its
+ * own row under the title, description, then the bar row pinned to
+ * the bottom by margin-top:auto — and the grid stretches every card in a row to
  * the same height, so bars and percentages line up across the row.
  * The lane min-heights only apply once the grid can actually hold
  * more than one column (≥480px viewport); in a single column the
@@ -419,11 +420,9 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
             key={field.key}
             className="flex flex-col rounded-[14px] border-[3px] border-[#7d97bd] bg-white p-5 shadow-[0_1px_6px_rgba(35,50,82,0.06)]"
           >
-            <div className="flex h-7 items-start">
+            <h3 className="flex items-start gap-2 text-[1.02rem] font-extrabold leading-[1.4] min-[480px]:min-h-[2.8em]">
               <FieldIcon id={field.icon} className="h-7 w-7 shrink-0" />
-            </div>
-            <h3 className="mt-2 text-[1.02rem] font-extrabold leading-[1.4] min-[480px]:min-h-[2.8em]">
-              {field.name}
+              <span>{field.name}</span>
             </h3>
             <div className="mt-1.5 flex items-center">
               <span
@@ -440,13 +439,13 @@ export function FieldCards({ fields, locale }: { fields: FieldCardData[]; locale
               {field.blurb}
             </p>
             <div className="mt-auto flex items-center gap-2 pt-3">
-              <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#eef2f9]">
+              <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-[#7d97bd] bg-[#eef2f9]">
                 <div
                   className="h-full rounded-full bg-[linear-gradient(90deg,#00a8a8,#57b8ff)]"
                   style={{ width: `${field.score}%` }}
                 />
               </div>
-              <b className="text-[1.05rem]">
+              <b className="w-[34px] whitespace-nowrap text-[1.05rem] tabular-nums">
                 {field.score}
                 <span className="text-[0.8rem]">%</span>
               </b>
