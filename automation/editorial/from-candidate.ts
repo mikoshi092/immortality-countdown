@@ -67,6 +67,18 @@ export function sourceLabelFromUrl(sourceUrl: string): string {
   if (host.includes("healthdayjapan.com")) return "ヘルスデージャパン";
   if (host.includes("news.mynavi.jp")) return "マイナビニュース";
   if (host.includes("bloomberg.com")) return "ブルームバーグ";
+  // Major Japanese outlets (keyword-collection design §5.2): keyword
+  // records resolved to these hosts get the outlet's name, not the
+  // bare host. Order matters only where hosts overlap: gooday (above)
+  // must win over the bare nikkei.com check.
+  if (host.includes("yomiuri.co.jp")) return "読売新聞";
+  if (host.includes("asahi.com")) return "朝日新聞";
+  if (host.includes("mainichi.jp")) return "毎日新聞";
+  if (host.includes("nikkei.com")) return "日本経済新聞";
+  if (host.includes("jiji.com")) return "時事通信";
+  if (host.includes("kyodo.co.jp")) return "共同通信";
+  if (host.includes("tv-asahi.co.jp")) return "テレビ朝日";
+  if (host.includes("nhk.or.jp")) return "NHK";
   return host;
 }
 

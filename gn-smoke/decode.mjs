@@ -1,1 +1,209 @@
-Ly8gU3RlcC0wIHNtb2tlIHRlc3QgKHRlbXBvcmFyeTsgZGVsZXRlZCBhZnRlciB0aGUgcnVuKTogdmVyaWZ5IHRoYXQgdGhlCi8vIEdvb2dsZSBOZXdzIHR3by1zdGVwIGRlY29kZSAoZ29vZ2xlbmV3c2RlY29kZXIgbWV0aG9kKSB3b3JrcyBmcm9tIHRoZQovLyBHaXRIdWIgQWN0aW9ucyBlZ3Jlc3MsIGFuZCB0aGF0IHRoZSBrZXl3b3JkIFJTUyBmZWVkcyBhcmUgcmVhY2hhYmxlCi8vIGZyb20gdGhlcmUgYXQgYWxsLiBXcml0ZXMgYSBmdWxsIGxvZyB0byBnbi1zbW9rZS9SRVNVTFQubWQgYW5kIGVtaXRzCi8vIHRoZSBoZWFkbGluZSB2ZXJkaWN0cyBhcyB3b3JrZmxvdyBhbm5vdGF0aW9ucy4KCmltcG9ydCB7IHdyaXRlRmlsZVN5bmMgfSBmcm9tICJub2RlOmZzIjsKCmNvbnN0IFVBID0KICAiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzMS4wLjAuMCBTYWZhcmkvNTM3LjM2IjsKCmNvbnN0IGxpbmVzID0gW107CmZ1bmN0aW9uIHNheShtZXNzYWdlKSB7CiAgY29uc3QgbGluZSA9IFN0cmluZyhtZXNzYWdlKTsKICBjb25zb2xlLmxvZyhsaW5lKTsKICBsaW5lcy5wdXNoKGxpbmUpOwp9CmZ1bmN0aW9uIGFubm90YXRlKGtpbmQsIG1lc3NhZ2UpIHsKICAvLyBXb3JrZmxvdyBjb21tYW5kczogc3VyZmFjZSBpbiB0aGUgcnVuJ3MgYW5ub3RhdGlvbnMgKHB1YmxpY2x5IHJlYWRhYmxlKS4KICBjb25zb2xlLmxvZyhgOjoke2tpbmR9Ojoke1N0cmluZyhtZXNzYWdlKS5yZXBsYWNlKC8lL2csICIlMjUiKS5yZXBsYWNlKC9cci9nLCAiJTBEIikucmVwbGFjZSgvXG4vZywgIiUwQSIpfWApOwp9CgpmdW5jdGlvbiB1bmVzY2FwZUh0bWwodmFsdWUpIHsKICByZXR1cm4gdmFsdWUKICAgIC5yZXBsYWNlKC8mcXVvdDsvZywgJyInKQogICAgLnJlcGxhY2UoLyZhcG9zO3wmIzM5Oy9nLCAiJyIpCiAgICAucmVwbGFjZSgvJmx0Oy9nLCAiPCIpCiAgICAucmVwbGFjZSgvJmd0Oy9nLCAiPiIpCiAgICAucmVwbGFjZSgvJmFtcDsvZywgIiYiKTsKfQoKLyoqIFJlY3Vyc2l2ZWx5IGZpbmQgYSBKU09OIHN0cmluZyB0aGF0IHBhcnNlcyB0byBbImdhcnR1cmxyZXEiLCAuLi5dLiAqLwpmdW5jdGlvbiBmaW5kR2FydHVybHJlcSh2YWx1ZSwgZGVwdGggPSAwKSB7CiAgaWYgKGRlcHRoID4gNiB8fCB2YWx1ZSA9PT0gbnVsbCB8fCB2YWx1ZSA9PT0gdW5kZWZpbmVkKSByZXR1cm4gbnVsbDsKICBpZiAodHlwZW9mIHZhbHVlID09PSAic3RyaW5nIikgewogICAgY29uc3QgdHJpbW1lZCA9IHZhbHVlLnRyaW0oKTsKICAgIGlmICh0cmltbWVkLnN0YXJ0c1dpdGgoIlsiKSkgewogICAgICB0cnkgewogICAgICAgIGNvbnN0IHBhcnNlZCA9IEpTT04ucGFyc2UodHJpbW1lZCk7CiAgICAgICAgaWYgKEFycmF5LmlzQXJyYXkocGFyc2VkKSAmJiBwYXJzZWRbMF0gPT09ICJnYXJ0dXJscmVxIikgcmV0dXJuIHBhcnNlZDsKICAgICAgICByZXR1cm4gZmluZEdhcnR1cmxyZXEocGFyc2VkLCBkZXB0aCArIDEpOwogICAgICB9IGNhdGNoIHsKICAgICAgICByZXR1cm4gbnVsbDsKICAgICAgfQogICAgfQogICAgcmV0dXJuIG51bGw7CiAgfQogIGlmIChBcnJheS5pc0FycmF5KHZhbHVlKSkgewogICAgZm9yIChjb25zdCBpdGVtIG9mIHZhbHVlKSB7CiAgICAgIGNvbnN0IGZvdW5kID0gZmluZEdhcnR1cmxyZXEoaXRlbSwgZGVwdGggKyAxKTsKICAgICAgaWYgKGZvdW5kKSByZXR1cm4gZm91bmQ7CiAgICB9CiAgfQogIHJldHVybiBudWxsOwp9CgpmdW5jdGlvbiBleHRyYWN0RGVjb2RlUGFyYW1zKGh0bWwpIHsKICBjb25zdCBtYXRjaCA9IGh0bWwubWF0Y2goLzxjLXdpeltePl0qXHNkYXRhLXA9IihbXiJdKykiLyk7CiAgaWYgKCFtYXRjaCkgcmV0dXJuIG51bGw7CiAgY29uc3QgZGF0YVAgPSB1bmVzY2FwZUh0bWwobWF0Y2hbMV0pOwogIHNheShgREFUQV9QIHByZWZpeDogJHtkYXRhUC5zbGljZSgwLCA4MCl9YCk7CiAgY29uc3QgY2FuZGlkYXRlcyA9IFtkYXRhUCwgZGF0YVAucmVwbGFjZSgvXiVcLlxAXC4vLCAiIildOwogIGZvciAoY29uc3QgY2FuZGlkYXRlIG9mIGNhbmRpZGF0ZXMpIHsKICAgIHRyeSB7CiAgICAgIGNvbnN0IG91dGVyID0gSlNPTi5wYXJzZShjYW5kaWRhdGUpOwogICAgICBjb25zdCBpbm5lciA9IGZpbmRHYXJ0dXJscmVxKG91dGVyKTsKICAgICAgaWYgKGlubmVyKSByZXR1cm4gaW5uZXI7CiAgICB9IGNhdGNoIHsKICAgICAgLy8gdHJ5IHRoZSBuZXh0IGNhbmRpZGF0ZSBzaGFwZQogICAgfQogICAgY29uc3QgaW5uZXIgPSBmaW5kR2FydHVybHJlcShjYW5kaWRhdGUpOwogICAgaWYgKGlubmVyKSByZXR1cm4gaW5uZXI7CiAgfQogIHJldHVybiBudWxsOwp9CgpmdW5jdGlvbiBleHRyYWN0UmVzb2x2ZWRVcmwodGV4dCkgewogIC8vIFN0cnVjdHVyZWQgcGF0aDogbGluZXMgb2YgSlNPTiBhZnRlciB0aGUgKV19JyBwcmVmaXg7IGZpbmQgdGhlCiAgLy8gd3JiLmZyIGVudHJ5IGZvciBGYnY0amUgYW5kIHJlYWQgaXRzIHBheWxvYWQuCiAgZm9yIChjb25zdCBsaW5lIG9mIHRleHQuc3BsaXQoIlxuIikpIHsKICAgIGNvbnN0IHRyaW1tZWQgPSBsaW5lLnRyaW0oKTsKICAgIGlmICghdHJpbW1lZC5zdGFydHNXaXRoKCJbIikpIGNvbnRpbnVlOwogICAgbGV0IHBhcnNlZDsKICAgIHRyeSB7CiAgICAgIHBhcnNlZCA9IEpTT04ucGFyc2UodHJpbW1lZCk7CiAgICB9IGNhdGNoIHsKICAgICAgY29udGludWU7CiAgICB9CiAgICBpZiAoIUFycmF5LmlzQXJyYXkocGFyc2VkKSkgY29udGludWU7CiAgICBmb3IgKGNvbnN0IGVudHJ5IG9mIHBhcnNlZCkgewogICAgICBpZiAoQXJyYXkuaXNBcnJheShlbnRyeSkgJiYgZW50cnlbMF0gPT09ICJ3cmIuZnIiICYmIGVudHJ5WzFdID09PSAiRmJ2NGplIiAmJiB0eXBlb2YgZW50cnlbMl0gPT09ICJzdHJpbmciKSB7CiAgICAgICAgdHJ5IHsKICAgICAgICAgIGNvbnN0IHBheWxvYWQgPSBKU09OLnBhcnNlKGVudHJ5WzJdKTsKICAgICAgICAgIGlmIChBcnJheS5pc0FycmF5KHBheWxvYWQpICYmIHR5cGVvZiBwYXlsb2FkWzFdID09PSAic3RyaW5nIiAmJiAvXmh0dHBzPzpcL1wvLy50ZXN0KHBheWxvYWRbMV0pKSB7CiAgICAgICAgICAgIHJldHVybiBwYXlsb2FkWzFdOwogICAgICAgICAgfQogICAgICAgIH0gY2F0Y2ggewogICAgICAgICAgLy8gZmFsbCB0aHJvdWdoIHRvIHRoZSByZWdleCBzY2FuCiAgICAgICAgfQogICAgICB9CiAgICB9CiAgfQogIC8vIEZhbGxiYWNrOiBmaXJzdCBub24tR29vZ2xlIGh0dHBzIFVSTCBpbiB0aGUgdW5lc2NhcGVkIGJvZHkuCiAgY29uc3QgdW5lc2NhcGVkID0gdGV4dC5yZXBsYWNlKC9cXFwvL2csICIvIik7CiAgZm9yIChjb25zdCBtYXRjaCBvZiB1bmVzY2FwZWQubWF0Y2hBbGwoL2h0dHBzPzpcL1wvW15ccyInXFw8Pl0rL2cpKSB7CiAgICB0cnkgewogICAgICBjb25zdCBob3N0ID0gbmV3IFVSTChtYXRjaFswXSkuaG9zdG5hbWU7CiAgICAgIGlmICghLyhefFwuKWdvb2dsZVwuY29tJHwoXnxcLilnb29nbGV1c2VyY29udGVudFwuY29tJHwoXnxcLilnc3RhdGljXC5jb20kLy50ZXN0KGhvc3QpKSByZXR1cm4gbWF0Y2hbMF07CiAgICB9IGNhdGNoIHsKICAgICAgLy8ga2VlcCBzY2FubmluZwogICAgfQogIH0KICByZXR1cm4gbnVsbDsKfQoKYXN5bmMgZnVuY3Rpb24gZGVjb2RlKHRva2VuLCBsb2NhbGUpIHsKICBjb25zdCBwYWdlVXJsID0gYGh0dHBzOi8vbmV3cy5nb29nbGUuY29tL2FydGljbGVzLyR7dG9rZW59P2hsPSR7bG9jYWxlLmhsfSZnbD0ke2xvY2FsZS5nbH0mY2VpZD0ke2xvY2FsZS5jZWlkfWA7CiAgbGV0IGh0bWw7CiAgdHJ5IHsKICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2gocGFnZVVybCwgewogICAgICBoZWFkZXJzOiB7ICJ1c2VyLWFnZW50IjogVUEsICJhY2NlcHQtbGFuZ3VhZ2UiOiBsb2NhbGUuaGwgfSwKICAgICAgcmVkaXJlY3Q6ICJmb2xsb3ciLAogICAgfSk7CiAgICBzYXkoYEFSVElDTEVfUEFHRSBzdGF0dXM9JHtyZXNwb25zZS5zdGF0dXN9YCk7CiAgICBodG1sID0gYXdhaXQgcmVzcG9uc2UudGV4dCgpOwogIH0gY2F0Y2ggKGVycm9yKSB7CiAgICBzYXkoYEFSVElDTEVfUEFHRV9FUlJPUiAke2Vycm9yIGluc3RhbmNlb2YgRXJyb3IgPyBlcnJvci5tZXNzYWdlIDogZXJyb3J9YCk7CiAgICByZXR1cm4gbnVsbDsKICB9CiAgc2F5KGBBUlRJQ0xFX1BBR0UgYnl0ZXM9JHtodG1sLmxlbmd0aH1gKTsKICBjb25zdCBwYXJhbXMgPSBleHRyYWN0RGVjb2RlUGFyYW1zKGh0bWwpOwogIGlmICghcGFyYW1zKSB7CiAgICBzYXkoIkRFQ09ERV9QQVJBTVNfTk9UX0ZPVU5EIik7CiAgICByZXR1cm4gbnVsbDsKICB9CiAgY29uc3QgWywgbG9jYWxlQXJyYXksIHBhcmFtVG9rZW4sIHRpbWVzdGFtcCwgc2lnbmF0dXJlXSA9IHBhcmFtczsKICBzYXkoCiAgICBgUEFSQU1TIHRva2VuTWF0Y2g9JHtwYXJhbVRva2VuID09PSB0b2tlbn0gdGltZXN0YW1wVHlwZT0ke3R5cGVvZiB0aW1lc3RhbXB9IHNpZ25hdHVyZUxlbmd0aD0ke1N0cmluZyhzaWduYXR1cmUgPz8gIiIpLmxlbmd0aH0gbG9jYWxlPSR7SlNPTi5zdHJpbmdpZnkobG9jYWxlQXJyYXkpfWAsCiAgKTsKICBjb25zdCBwYXlsb2FkID0gSlNPTi5zdHJpbmdpZnkoWyJnYXJ0dXJscmVxIiwgbG9jYWxlQXJyYXksIHBhcmFtVG9rZW4sIHRpbWVzdGFtcCwgc2lnbmF0dXJlXSk7CiAgY29uc3QgYm9keSA9IG5ldyBVUkxTZWFyY2hQYXJhbXMoewogICAgImYucmVxIjogSlNPTi5zdHJpbmdpZnkoW1tbIkZidjRqZSIsIHBheWxvYWQsIG51bGwsICJnZW5lcmljIl1dXSksCiAgfSk7CiAgbGV0IHRleHQ7CiAgdHJ5IHsKICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goImh0dHBzOi8vbmV3cy5nb29nbGUuY29tL18vRG90c1NwbGFzaFVpL2RhdGEvYmF0Y2hleGVjdXRlIiwgewogICAgICBtZXRob2Q6ICJQT1NUIiwKICAgICAgaGVhZGVyczogewogICAgICAgICJjb250ZW50LXR5cGUiOiAiYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkO2NoYXJzZXQ9VVRGLTgiLAogICAgICAgICJ1c2VyLWFnZW50IjogVUEsCiAgICAgICAgcmVmZXJlcjogImh0dHBzOi8vbmV3cy5nb29nbGUuY29tLyIsCiAgICAgIH0sCiAgICAgIGJvZHksCiAgICB9KTsKICAgIHNheShgQkFUQ0hFWEVDVVRFIHN0YXR1cz0ke3Jlc3BvbnNlLnN0YXR1c31gKTsKICAgIHRleHQgPSBhd2FpdCByZXNwb25zZS50ZXh0KCk7CiAgfSBjYXRjaCAoZXJyb3IpIHsKICAgIHNheShgQkFUQ0hFWEVDVVRFX0VSUk9SICR7ZXJyb3IgaW5zdGFuY2VvZiBFcnJvciA/IGVycm9yLm1lc3NhZ2UgOiBlcnJvcn1gKTsKICAgIHJldHVybiBudWxsOwogIH0KICBzYXkoYEJBVENIRVhFQ1VURSBieXRlcz0ke3RleHQubGVuZ3RofWApOwogIGNvbnN0IHJlc29sdmVkID0gZXh0cmFjdFJlc29sdmVkVXJsKHRleHQpOwogIGlmIChyZXNvbHZlZCkgc2F5KGBSRVNPTFZFRCAke3Jlc29sdmVkfWApOwogIGVsc2Ugc2F5KCJSRVNPTFZFRF9VUkxfTk9UX0ZPVU5EIik7CiAgcmV0dXJuIHJlc29sdmVkOwp9Cgphc3luYyBmdW5jdGlvbiBtYWluKCkgewogIGNvbnN0IHF1ZXJ5ID0gIkFJ5Ym16JasICjos4fph5Hoqr/pgZQgT1Ig5o+Q5pC6IE9SIOiyt+WPjiBPUiDkuIrloLQpIHdoZW46MmQiOwogIGNvbnN0IHJzc1VybCA9IGBodHRwczovL25ld3MuZ29vZ2xlLmNvbS9yc3Mvc2VhcmNoP3E9JHtlbmNvZGVVUklDb21wb25lbnQocXVlcnkpfSZobD1qYSZnbD1KUCZjZWlkPUpQOmphYDsKICBsZXQgdG9rZW4gPSBudWxsOwogIHRyeSB7CiAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKHJzc1VybCwgeyBoZWFkZXJzOiB7ICJ1c2VyLWFnZW50IjogVUEgfSB9KTsKICAgIHNheShgUlNTIHN0YXR1cz0ke3Jlc3BvbnNlLnN0YXR1c31gKTsKICAgIGNvbnN0IHhtbCA9IGF3YWl0IHJlc3BvbnNlLnRleHQoKTsKICAgIGNvbnN0IGxpbmtzID0gWy4uLnhtbC5tYXRjaEFsbCgvPGxpbms+KGh0dHBzOlwvXC9uZXdzXC5nb29nbGVcLmNvbVwvcnNzXC9hcnRpY2xlc1wvW148XSspPFwvbGluaz4vZyldLm1hcCgobSkgPT4gbVsxXSk7CiAgICBzYXkoYFJTUyBpdGVtcz0ke2xpbmtzLmxlbmd0aH1gKTsKICAgIGNvbnN0IGZpcnN0VGl0bGUgPSB4bWwubWF0Y2goLzxpdGVtPltcc1xTXSo/PHRpdGxlPihbXjxdKyk8XC90aXRsZT4vKT8uWzFdID8/ICIiOwogICAgc2F5KGBSU1MgZmlyc3RUaXRsZT0ke2ZpcnN0VGl0bGUuc2xpY2UoMCwgMTAwKX1gKTsKICAgIGlmIChsaW5rcy5sZW5ndGggPiAwKSB7CiAgICAgIHRva2VuID0gbGlua3NbMF0ubWF0Y2goL2FydGljbGVzXC8oW0EtWmEtejAtOV8tXSspLyk/LlsxXSA/PyBudWxsOwogICAgfQogIH0gY2F0Y2ggKGVycm9yKSB7CiAgICBzYXkoYFJTU19FUlJPUiAke2Vycm9yIGluc3RhbmNlb2YgRXJyb3IgPyBlcnJvci5tZXNzYWdlIDogZXJyb3J9YCk7CiAgfQogIGlmICghdG9rZW4pIHsKICAgIHNheSgiVkVSRElDVCBSU1NfTk9fVE9LRU4iKTsKICAgIGFubm90YXRlKCJlcnJvciIsICJHTiBTTU9LRSBWRVJESUNUOiBSU1NfTk9fVE9LRU4gKG5vIGluLXdpbmRvdyBpdGVtIGxpbmsgZnJvbSBBY3Rpb25zIGVncmVzcykiKTsKICAgIHJldHVybjsKICB9CiAgc2F5KGBUT0tFTiBwcmVmaXg9JHt0b2tlbi5zbGljZSgwLCAyNCl9IGxlbmd0aD0ke3Rva2VuLmxlbmd0aH1gKTsKICBjb25zdCByZXNvbHZlZCA9IGF3YWl0IGRlY29kZSh0b2tlbiwgeyBobDogImphIiwgZ2w6ICJKUCIsIGNlaWQ6ICJKUDpqYSIgfSk7CiAgaWYgKHJlc29sdmVkKSB7CiAgICBzYXkoYFZFUkRJQ1QgREVDT0RFX09LICR7cmVzb2x2ZWR9YCk7CiAgICBhbm5vdGF0ZSgibm90aWNlIiwgYEdOIFNNT0tFIFZFUkRJQ1Q6IERFQ09ERV9PSyByZXNvbHZlZD0ke3Jlc29sdmVkfWApOwogIH0gZWxzZSB7CiAgICBzYXkoIlZFUkRJQ1QgREVDT0RFX0ZBSUxFRCIpOwogICAgYW5ub3RhdGUoImVycm9yIiwgIkdOIFNNT0tFIFZFUkRJQ1Q6IERFQ09ERV9GQUlMRUQgKHNlZSBnbi1zbW9rZS9SRVNVTFQubWQgb24gdGhpcyBicmFuY2gpIik7CiAgfQp9CgptYWluKCkKICAuY2F0Y2goKGVycm9yKSA9PiB7CiAgICBzYXkoYEZBVEFMICR7ZXJyb3IgaW5zdGFuY2VvZiBFcnJvciA/IGVycm9yLnN0YWNrID8/IGVycm9yLm1lc3NhZ2UgOiBlcnJvcn1gKTsKICAgIGFubm90YXRlKCJlcnJvciIsICJHTiBTTU9LRSBWRVJESUNUOiBGQVRBTCIpOwogIH0pCiAgLmZpbmFsbHkoKCkgPT4gewogICAgd3JpdGVGaWxlU3luYyhuZXcgVVJMKCIuL1JFU1VMVC5tZCIsIGltcG9ydC5tZXRhLnVybCksIGxpbmVzLmpvaW4oIlxuIikgKyAiXG4iKTsKICB9KTsK
+// Step-0 smoke test (temporary; deleted after the run): verify that the
+// Google News two-step decode (googlenewsdecoder method) works from the
+// GitHub Actions egress, and that the keyword RSS feeds are reachable
+// from there at all. Writes a full log to gn-smoke/RESULT.md and emits
+// the headline verdicts as workflow annotations.
+
+import { writeFileSync } from "node:fs";
+
+const UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
+const lines = [];
+function say(message) {
+  const line = String(message);
+  console.log(line);
+  lines.push(line);
+}
+function annotate(kind, message) {
+  // Workflow commands: surface in the run's annotations (publicly readable).
+  console.log(`::${kind}::${String(message).replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A")}`);
+}
+
+function unescapeHtml(value) {
+  return value
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;|&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
+}
+
+/** Recursively find a JSON string that parses to ["garturlreq", ...]. */
+function findGarturlreq(value, depth = 0) {
+  if (depth > 6 || value === null || value === undefined) return null;
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (trimmed.startsWith("[")) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed) && parsed[0] === "garturlreq") return parsed;
+        return findGarturlreq(parsed, depth + 1);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const found = findGarturlreq(item, depth + 1);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function extractDecodeParams(html) {
+  const match = html.match(/<c-wiz[^>]*\sdata-p="([^"]+)"/);
+  if (!match) return null;
+  const dataP = unescapeHtml(match[1]);
+  say(`DATA_P prefix: ${dataP.slice(0, 80)}`);
+  const candidates = [dataP, dataP.replace(/^%\.\@\./, "")];
+  for (const candidate of candidates) {
+    try {
+      const outer = JSON.parse(candidate);
+      const inner = findGarturlreq(outer);
+      if (inner) return inner;
+    } catch {
+      // try the next candidate shape
+    }
+    const inner = findGarturlreq(candidate);
+    if (inner) return inner;
+  }
+  return null;
+}
+
+function extractResolvedUrl(text) {
+  // Structured path: lines of JSON after the )]}' prefix; find the
+  // wrb.fr entry for Fbv4je and read its payload.
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith("[")) continue;
+    let parsed;
+    try {
+      parsed = JSON.parse(trimmed);
+    } catch {
+      continue;
+    }
+    if (!Array.isArray(parsed)) continue;
+    for (const entry of parsed) {
+      if (Array.isArray(entry) && entry[0] === "wrb.fr" && entry[1] === "Fbv4je" && typeof entry[2] === "string") {
+        try {
+          const payload = JSON.parse(entry[2]);
+          if (Array.isArray(payload) && typeof payload[1] === "string" && /^https?:\/\//.test(payload[1])) {
+            return payload[1];
+          }
+        } catch {
+          // fall through to the regex scan
+        }
+      }
+    }
+  }
+  // Fallback: first non-Google https URL in the unescaped body.
+  const unescaped = text.replace(/\\\//g, "/");
+  for (const match of unescaped.matchAll(/https?:\/\/[^\s"'\\<>]+/g)) {
+    try {
+      const host = new URL(match[0]).hostname;
+      if (!/(^|\.)google\.com$|(^|\.)googleusercontent\.com$|(^|\.)gstatic\.com$/.test(host)) return match[0];
+    } catch {
+      // keep scanning
+    }
+  }
+  return null;
+}
+
+async function decode(token, locale) {
+  const pageUrl = `https://news.google.com/articles/${token}?hl=${locale.hl}&gl=${locale.gl}&ceid=${locale.ceid}`;
+  let html;
+  try {
+    const response = await fetch(pageUrl, {
+      headers: { "user-agent": UA, "accept-language": locale.hl },
+      redirect: "follow",
+    });
+    say(`ARTICLE_PAGE status=${response.status}`);
+    html = await response.text();
+  } catch (error) {
+    say(`ARTICLE_PAGE_ERROR ${error instanceof Error ? error.message : error}`);
+    return null;
+  }
+  say(`ARTICLE_PAGE bytes=${html.length}`);
+  const params = extractDecodeParams(html);
+  if (!params) {
+    say("DECODE_PARAMS_NOT_FOUND");
+    return null;
+  }
+  const [, localeArray, paramToken, timestamp, signature] = params;
+  say(
+    `PARAMS tokenMatch=${paramToken === token} timestampType=${typeof timestamp} signatureLength=${String(signature ?? "").length} locale=${JSON.stringify(localeArray)}`,
+  );
+  const payload = JSON.stringify(["garturlreq", localeArray, paramToken, timestamp, signature]);
+  const body = new URLSearchParams({
+    "f.req": JSON.stringify([[["Fbv4je", payload, null, "generic"]]]),
+  });
+  let text;
+  try {
+    const response = await fetch("https://news.google.com/_/DotsSplashUi/data/batchexecute", {
+      method: "POST",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "user-agent": UA,
+        referer: "https://news.google.com/",
+      },
+      body,
+    });
+    say(`BATCHEXECUTE status=${response.status}`);
+    text = await response.text();
+  } catch (error) {
+    say(`BATCHEXECUTE_ERROR ${error instanceof Error ? error.message : error}`);
+    return null;
+  }
+  say(`BATCHEXECUTE bytes=${text.length}`);
+  const resolved = extractResolvedUrl(text);
+  if (resolved) say(`RESOLVED ${resolved}`);
+  else say("RESOLVED_URL_NOT_FOUND");
+  return resolved;
+}
+
+async function main() {
+  const query = "AI創薬 (資金調達 OR 提携 OR 買収 OR 上場) when:2d";
+  const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ja&gl=JP&ceid=JP:ja`;
+  let token = null;
+  try {
+    const response = await fetch(rssUrl, { headers: { "user-agent": UA } });
+    say(`RSS status=${response.status}`);
+    const xml = await response.text();
+    const links = [...xml.matchAll(/<link>(https:\/\/news\.google\.com\/rss\/articles\/[^<]+)<\/link>/g)].map((m) => m[1]);
+    say(`RSS items=${links.length}`);
+    const firstTitle = xml.match(/<item>[\s\S]*?<title>([^<]+)<\/title>/)?.[1] ?? "";
+    say(`RSS firstTitle=${firstTitle.slice(0, 100)}`);
+    if (links.length > 0) {
+      token = links[0].match(/articles\/([A-Za-z0-9_-]+)/)?.[1] ?? null;
+    }
+  } catch (error) {
+    say(`RSS_ERROR ${error instanceof Error ? error.message : error}`);
+  }
+  if (!token) {
+    say("VERDICT RSS_NO_TOKEN");
+    annotate("error", "GN SMOKE VERDICT: RSS_NO_TOKEN (no in-window item link from Actions egress)");
+    return;
+  }
+  say(`TOKEN prefix=${token.slice(0, 24)} length=${token.length}`);
+  const resolved = await decode(token, { hl: "ja", gl: "JP", ceid: "JP:ja" });
+  if (resolved) {
+    say(`VERDICT DECODE_OK ${resolved}`);
+    annotate("notice", `GN SMOKE VERDICT: DECODE_OK resolved=${resolved}`);
+  } else {
+    say("VERDICT DECODE_FAILED");
+    annotate("error", "GN SMOKE VERDICT: DECODE_FAILED (see gn-smoke/RESULT.md on this branch)");
+  }
+}
+
+main()
+  .catch((error) => {
+    say(`FATAL ${error instanceof Error ? error.stack ?? error.message : error}`);
+    annotate("error", "GN SMOKE VERDICT: FATAL");
+  })
+  .finally(() => {
+    writeFileSync(new URL("./RESULT.md", import.meta.url), lines.join("\n") + "\n");
+  });
