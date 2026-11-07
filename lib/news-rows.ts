@@ -37,14 +37,16 @@ import type { SiteLocale } from "@/lib/locale";
  * data changes. `newsFaceArticles` is the filter, and both row builders
  * below apply it so no caller can bypass the policy.
  *
- * Language policy (owner, 2026-11-04): the Japanese news surfaces
- * link only to Japanese-language articles — a Japanese headline that
- * lands the reader on an English article is not acceptable to the
- * core audience. An article's language is resolved from its
- * `sourceUrl` host against the ingest registry (`automation/sources`),
- * whose entries carry the source's language; hosts belonging to no
- * Japanese source count as English, so an unregistered source can
- * never slip onto the Japanese face. English surfaces are unchanged.
+ * Language policy (owner, 2026-11-04; made symmetric 2026-11-06):
+ * each news face links only to articles in its own language — the
+ * Japanese surfaces show Japanese-source records only, and the
+ * English surfaces show English-source records only. A headline that
+ * lands the reader on an article in the other language is not
+ * acceptable on either face. An article's language is resolved from
+ * its `sourceUrl` host against the ingest registry
+ * (`automation/sources`), whose entries carry the source's language;
+ * hosts belonging to no Japanese source count as English, so an
+ * unregistered source can never slip onto the Japanese face.
  */
 
 export const FIELD_EMOJI: Record<FieldId, string> = {
@@ -184,16 +186,23 @@ export function isJapaneseSourceArticle(article: Article): boolean {
   return sourceLanguageFor(article) === "ja";
 }
 
+export function isEnglishSourceArticle(article: Article): boolean {
+  return sourceLanguageFor(article) === "en";
+}
+
 /**
  * The news-face display filter: general-media ("science-news")
- * records only. On the Japanese surfaces (`locale: "ja"`) it also
- * requires a Japanese source, per the language policy above; any
- * other call — including omitting the locale — keeps the original
- * behavior exactly.
+ * records only. With a locale it also applies the language policy
+ * above — Japanese source on the Japanese surfaces (`locale: "ja"`),
+ * English source on the English surfaces (`locale: "en"`). Omitting
+ * the locale keeps the original behavior exactly: every
+ * general-media record, whatever its source language.
  */
 export function newsFaceArticles(articles: readonly Article[], locale?: SiteLocale): Article[] {
   const media = articles.filter((article) => article.contentType === "science-news");
-  return locale === "ja" ? media.filter(isJapaneseSourceArticle) : media;
+  if (locale === "ja") return media.filter(isJapaneseSourceArticle);
+  if (locale === "en") return media.filter(isEnglishSourceArticle);
+  return media;
 }
 
 export function toNewsRows(

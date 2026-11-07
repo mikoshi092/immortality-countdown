@@ -31,7 +31,7 @@ export const metadata: Metadata = {
  */
 export default function NewsIndexPage() {
   const now = new Date();
-  const articles = newsFaceArticles(listArticles()).slice(0, 100);
+  const articles = newsFaceArticles(listArticles(), "en").slice(0, 100);
   const rows = toNewsRows(articles, "en", now);
   const ui = ARTICLE_UI.en;
 
