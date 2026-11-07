@@ -26,12 +26,15 @@ describe("heroEarlyYears", () => {
 });
 
 // TEMPORARY Step-0 smoke hook (keyword-collection merge gate): runs the
-// Google News decode probe in the CI environment and forwards its
-// output — including the ::notice/::error workflow commands that carry
-// the verdict — to the job log. Never fails the suite. Removed as soon
+// Google News decode probe in the CI environment. The verdict is the
+// test result itself — probe output channels (workflow commands, job
+// summary) proved unreliable from inside a test subprocess, while CI
+// pass/fail is always readable. Green = the two-step decode resolved
+// a live article URL from the Actions egress (DECODE_OK in the probe
+// output, which is forwarded to the log either way). Removed as soon
 // as the verdict has been read.
 describe("gn-smoke (temporary)", () => {
-  it("runs the Google News decode probe", async () => {
+  it("decodes a Google News URL from this environment (Step-0 gate)", async () => {
     const { execFile } = await import("node:child_process");
     const { promisify } = await import("node:util");
     const { appendFile } = await import("node:fs/promises");
@@ -45,15 +48,16 @@ describe("gn-smoke (temporary)", () => {
       captured = stdout + (stderr ?? "");
     } catch (error) {
       const e = error as { stdout?: string; stderr?: string; message?: string };
-      captured = `${e.stdout ?? ""}${e.stderr ?? ""}\ngn-smoke probe error (non-fatal): ${e.message ?? String(error)}\n`;
+      captured = `${e.stdout ?? ""}${e.stderr ?? ""}\ngn-smoke probe error: ${e.message ?? String(error)}\n`;
     }
     process.stdout.write(captured);
-    // The verdict also goes to the job summary file: workflow commands
-    // printed from a test subprocess are not reliably parsed, but the
-    // summary is a plain file write and renders on the run page.
     const summaryPath = process.env.GITHUB_STEP_SUMMARY;
     if (summaryPath) {
       await appendFile(summaryPath, `## GN SMOKE (temporary Step-0 probe)\n\n\`\`\`\n${captured}\n\`\`\`\n`);
     }
+    assert.ok(
+      captured.includes("VERDICT DECODE_OK"),
+      `Step-0 gate: Google News decode did not succeed in this environment.\n${captured}`,
+    );
   });
 });
