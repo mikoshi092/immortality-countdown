@@ -122,3 +122,79 @@ describe("news-face language policy", () => {
     );
   });
 });
+
+describe("language resolution fallback (keyword-collection design §5, split port)", () => {
+  function collectedBy(sourceId: string): Partial<Article> {
+    return {
+      sourceCheck: { sourceId } as unknown as NonNullable<Article["sourceCheck"]>,
+    };
+  }
+
+  it("classifies Layer-1 outlet hosts as Japanese", () => {
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www.yomiuri.co.jp/articles/20261105-OYT1T50001" })),
+      "ja",
+    );
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www.asahi.com/articles/AS123456789.html" })),
+      "ja",
+    );
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www3.nhk.or.jp/news/html/20261105/k100123456.html" })),
+      "ja",
+    );
+  });
+
+  it("falls back to the collecting source's language on unclaimed hosts", () => {
+    // The collector ids are stand-ins: the google-news collectors stayed
+    // parked with the keyword feature, but any registered ja/en source
+    // recorded in sourceCheck exercises the same fallback path.
+    const collectedJa = mediaArticle({
+      id: "collected-ja",
+      slug: "collected-ja",
+      sourceUrl: "https://www.chunichi.co.jp/article/1234567",
+      ...collectedBy("science-portal"),
+    });
+    const collectedEn = mediaArticle({
+      id: "collected-en",
+      slug: "collected-en",
+      sourceUrl: "https://www.statnews.com/2026/11/05/story/",
+      ...collectedBy("sciencedaily-aging"),
+    });
+    assert.equal(sourceLanguageFor(collectedJa), "ja");
+    assert.equal(sourceLanguageFor(collectedEn), "en");
+    assert.deepEqual(newsFaceArticles([collectedJa, collectedEn], "ja").map((a) => a.id), ["collected-ja"]);
+    assert.deepEqual(newsFaceArticles([collectedJa, collectedEn], "en").map((a) => a.id), ["collected-en"]);
+  });
+
+  it("lets a claimed host's verdict win over the collecting source, both ways", () => {
+    const jaCollectorEnHost = mediaArticle({
+      sourceUrl: "https://www.sciencedaily.com/releases/2026/11/261105100000.htm",
+      ...collectedBy("science-portal"),
+    });
+    const enCollectorJaHost = mediaArticle({
+      sourceUrl: "https://www.yomiuri.co.jp/medical/20261105-OYT1T50002/",
+      ...collectedBy("sciencedaily-aging"),
+    });
+    assert.equal(sourceLanguageFor(jaCollectorEnHost), "en");
+    assert.equal(sourceLanguageFor(enCollectorJaHost), "ja");
+  });
+
+  it("keeps the English default when no signal exists", () => {
+    assert.equal(
+      sourceLanguageFor(
+        mediaArticle({ sourceUrl: "https://example.com/news/aging", sourceCheck: undefined }),
+      ),
+      "en",
+    );
+    assert.equal(
+      sourceLanguageFor(
+        mediaArticle({
+          sourceUrl: "https://example.com/news/aging",
+          ...collectedBy("no-such-source"),
+        }),
+      ),
+      "en",
+    );
+  });
+});
