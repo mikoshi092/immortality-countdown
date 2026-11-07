@@ -44,3 +44,18 @@ describe("promptInputFromCandidate", () => {
     assert.equal(input.lastUpdatePostDate, undefined);
   });
 });
+
+describe("sourceLabelFromUrl — Japanese outlets (keyword design §5.2)", () => {
+  it("labels the major outlets and keeps gooday ahead of bare nikkei.com", async () => {
+    const { sourceLabelFromUrl } = await import("./from-candidate");
+    assert.equal(sourceLabelFromUrl("https://www.yomiuri.co.jp/articles/x"), "読売新聞");
+    assert.equal(sourceLabelFromUrl("https://www.asahi.com/articles/x"), "朝日新聞");
+    assert.equal(sourceLabelFromUrl("https://mainichi.jp/articles/x"), "毎日新聞");
+    assert.equal(sourceLabelFromUrl("https://www.nikkei.com/article/x"), "日本経済新聞");
+    assert.equal(sourceLabelFromUrl("https://www.jiji.com/jc/article?k=x"), "時事通信");
+    assert.equal(sourceLabelFromUrl("https://www.kyodo.co.jp/news/x"), "共同通信");
+    assert.equal(sourceLabelFromUrl("https://www.tv-asahi.co.jp/news/x"), "テレビ朝日");
+    assert.equal(sourceLabelFromUrl("https://www.nhk.or.jp/news/x"), "NHK");
+    assert.equal(sourceLabelFromUrl("https://gooday.nikkei.co.jp/atcl/column/x"), "日経Gooday");
+  });
+});

@@ -13,18 +13,30 @@ import { parseGeneratedCopyJson } from "./generated-copy";
  * The model is not asked to invent sourceUrl, DOI, Evidence, FieldId, or
  * study subjects. Those are copied from the locked candidate after
  * generation. Message JSON is schema-checked before use.
+ *
+ * Transport failures are retried (default 3 attempts, backoff
+ * 500ms → 2s → …): a fetch-level throw (e.g. a transient "fetch
+ * failed") or an HTTP 429/5xx is worth another attempt, while other
+ * 4xx responses are deterministic and fail immediately. Run #32
+ * (2026-11-07) died on exactly one transient fetch failure with no
+ * retry; the formatted error of the last attempt is what surfaces
+ * after exhaustion, unchanged from the pre-retry behavior.
  */
 export class OpenAIEditorialProvider implements EditorialProvider {
   readonly name = "openai" as const;
   readonly model: string;
   private readonly apiKey: string;
   private readonly fetchImpl: typeof fetch;
+  private readonly maxAttempts: number;
+  private readonly sleepImpl: (ms: number) => Promise<void>;
 
   constructor(options?: {
     apiKey?: string;
     model?: string;
     fetchImpl?: typeof fetch;
     env?: EnvVars;
+    maxAttempts?: number;
+    sleepImpl?: (ms: number) => Promise<void>;
   }) {
     const env = options?.env ?? process.env;
     const apiKey = options?.apiKey ?? env[EDITORIAL_CONFIG.apiKeyEnv]?.trim();
@@ -36,10 +48,14 @@ export class OpenAIEditorialProvider implements EditorialProvider {
     this.apiKey = apiKey;
     this.model = options?.model ?? editorialModelName(env);
     this.fetchImpl = options?.fetchImpl ?? fetch;
+    this.maxAttempts = Math.max(1, Math.floor(options?.maxAttempts ?? 3));
+    this.sleepImpl =
+      options?.sleepImpl ??
+      ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
   }
 
   async generate(input: EditorialPromptInput): Promise<GeneratedCopy> {
-    const response = await this.fetchImpl(EDITORIAL_CONFIG.openaiUrl, {
+    const init: RequestInit = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,25 +69,50 @@ export class OpenAIEditorialProvider implements EditorialProvider {
           { role: "user", content: userPrompt(input) },
         ],
       }),
-    });
+    };
 
-    const rawText = await response.text();
-    if (!response.ok) {
-      throw new Error(
-        `OpenAI API request failed (${response.status}): ${redactSecrets(rawText.slice(0, 500), this.apiKey)}`,
-      );
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= this.maxAttempts; attempt += 1) {
+      let response: Response;
+      try {
+        response = await this.fetchImpl(EDITORIAL_CONFIG.openaiUrl, init);
+      } catch (error) {
+        // Network-level failure (DNS, reset, "fetch failed"): transient
+        // by nature, retry while attempts remain.
+        lastError = error;
+        if (attempt < this.maxAttempts) await this.sleepImpl(retryBackoffMs(attempt));
+        continue;
+      }
+
+      const rawText = await response.text();
+      if (!response.ok) {
+        const formatted = new Error(
+          `OpenAI API request failed (${response.status}): ${redactSecrets(rawText.slice(0, 500), this.apiKey)}`,
+        );
+        const retryable = response.status === 429 || response.status >= 500;
+        if (!retryable) throw formatted;
+        lastError = formatted;
+        if (attempt < this.maxAttempts) await this.sleepImpl(retryBackoffMs(attempt));
+        continue;
+      }
+
+      let parsed: { choices?: Array<{ message?: { content?: string } }> };
+      try {
+        parsed = JSON.parse(rawText) as typeof parsed;
+      } catch {
+        throw new Error("OpenAI API returned a non-JSON body.");
+      }
+
+      const content = parsed.choices?.[0]?.message?.content;
+      return parseGeneratedCopyJson(content ?? "");
     }
 
-    let parsed: { choices?: Array<{ message?: { content?: string } }> };
-    try {
-      parsed = JSON.parse(rawText) as typeof parsed;
-    } catch {
-      throw new Error("OpenAI API returned a non-JSON body.");
-    }
-
-    const content = parsed.choices?.[0]?.message?.content;
-    return parseGeneratedCopyJson(content ?? "");
+    throw lastError instanceof Error ? lastError : new Error(String(lastError));
   }
+}
+
+function retryBackoffMs(failedAttempt: number): number {
+  return Math.min(8_000, 500 * 4 ** (failedAttempt - 1));
 }
 
 const SYSTEM_PROMPT = `You are an editorial assistant for Immortality Countdown.

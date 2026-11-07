@@ -47,6 +47,19 @@ import type { SiteLocale } from "@/lib/locale";
  * (`automation/sources`), whose entries carry the source's language;
  * hosts belonging to no Japanese source count as English, so an
  * unregistered source can never slip onto the Japanese face.
+ *
+ * Collecting-source addendum (2026-11-07, split from the parked
+ * keyword-collection design): a record can link to a publisher host
+ * the registry may not claim at all (a regional paper, a press-release
+ * host) while still recording which source collected it. For those,
+ * host resolution has no verdict, so `sourceLanguageFor` falls back
+ * to the language of the collecting source
+ * (`article.sourceCheck.sourceId`). The fallback applies ONLY when no
+ * registry source claims the host — a claimed host's verdict always
+ * wins, in both directions (a Japanese outlet recorded by an English
+ * source is still Japanese; an English wire recorded by a Japanese
+ * source is still English). Records with no collecting source
+ * recorded keep the historical default: English.
  */
 
 export const FIELD_EMOJI: Record<FieldId, string> = {
@@ -167,19 +180,40 @@ const JAPANESE_SOURCE_HOSTS: ReadonlySet<string> = new Set(
   }),
 );
 
+/** Hosts (www-stripped) claimed by ANY registry source, either language. */
+const ALL_SOURCE_HOSTS: ReadonlySet<string> = new Set(
+  SOURCES.flatMap((source) => {
+    const hosts = [hostOf(source.url), hostOf(source.api.baseUrl)];
+    return hosts.filter((host): host is string => host !== null);
+  }),
+);
+
+function hostClaimedBy(host: string, hosts: ReadonlySet<string>): boolean {
+  for (const sourceHost of hosts) {
+    if (host === sourceHost || host.endsWith(`.${sourceHost}`)) return true;
+  }
+  return false;
+}
+
 /**
- * The language of the article a record links to, resolved from its
- * source URL against the ingest registry. A host matches when it is
- * a Japanese source's host or a subdomain of one; anything else —
- * including hosts no registry entry claims — is English.
+ * The language of the article a record links to. Host resolution
+ * first: a host matches when it is a registry source's host or a
+ * subdomain of one, and a claimed host's registry language is the
+ * verdict. Only when NO registry source claims the host does the
+ * collecting source's language apply (see the policy note above);
+ * with neither signal the record counts as English, so an unknown
+ * source can never slip onto the Japanese face by default.
  */
 export function sourceLanguageFor(article: Article): "ja" | "en" {
   const host = hostOf(article.sourceUrl);
-  if (!host) return "en";
-  for (const sourceHost of JAPANESE_SOURCE_HOSTS) {
-    if (host === sourceHost || host.endsWith(`.${sourceHost}`)) return "ja";
+  if (host && hostClaimedBy(host, ALL_SOURCE_HOSTS)) {
+    return hostClaimedBy(host, JAPANESE_SOURCE_HOSTS) ? "ja" : "en";
   }
-  return "en";
+  const collectorId = article.sourceCheck?.sourceId;
+  const collector = collectorId
+    ? SOURCES.find((source) => source.id === collectorId)
+    : undefined;
+  return collector?.language === "ja" ? "ja" : "en";
 }
 
 export function isJapaneseSourceArticle(article: Article): boolean {
