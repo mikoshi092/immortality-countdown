@@ -34,19 +34,26 @@ describe("gn-smoke (temporary)", () => {
   it("runs the Google News decode probe", async () => {
     const { execFile } = await import("node:child_process");
     const { promisify } = await import("node:util");
+    const { appendFile } = await import("node:fs/promises");
     const run = promisify(execFile);
+    let captured = "";
     try {
       const { stdout, stderr } = await run("node", ["gn-smoke/decode.mjs"], {
         timeout: 120_000,
         maxBuffer: 4 * 1024 * 1024,
       });
-      process.stdout.write(stdout);
-      if (stderr) process.stdout.write(stderr);
+      captured = stdout + (stderr ?? "");
     } catch (error) {
       const e = error as { stdout?: string; stderr?: string; message?: string };
-      if (e.stdout) process.stdout.write(e.stdout);
-      if (e.stderr) process.stdout.write(e.stderr);
-      process.stdout.write(`gn-smoke probe error (non-fatal): ${e.message ?? String(error)}\n`);
+      captured = `${e.stdout ?? ""}${e.stderr ?? ""}\ngn-smoke probe error (non-fatal): ${e.message ?? String(error)}\n`;
+    }
+    process.stdout.write(captured);
+    // The verdict also goes to the job summary file: workflow commands
+    // printed from a test subprocess are not reliably parsed, but the
+    // summary is a plain file write and renders on the run page.
+    const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+    if (summaryPath) {
+      await appendFile(summaryPath, `## GN SMOKE (temporary Step-0 probe)\n\n\`\`\`\n${captured}\n\`\`\`\n`);
     }
   });
 });
