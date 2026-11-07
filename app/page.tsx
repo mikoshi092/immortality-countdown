@@ -106,7 +106,7 @@ export default function Home() {
   const road2030Pct = gainPercentAt(2030);
   const road2036Pct = gainPercentAt(2036);
   const articles = listArticles();
-  const latestRows = toNewsRows(newsFaceArticles(articles).slice(0, 5), "en", now);
+  const latestRows = toNewsRows(newsFaceArticles(articles, "en").slice(0, 5), "en", now);
   const faq = faqItems("en");
 
   const fieldCards: FieldCardData[] = FIELD_IDS.map((id) => ({

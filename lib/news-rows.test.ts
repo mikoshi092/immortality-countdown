@@ -2,6 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { articles, type Article } from "../data/articles";
 import {
+  isEnglishSourceArticle,
   isJapaneseSourceArticle,
   newsFaceArticles,
   sourceLanguageFor,
@@ -43,6 +44,15 @@ const jpPaper = mediaArticle({
   sourceUrl: "https://www.riken.jp/press/2026/20261104_1/index.html",
   sourceLabel: "理化学研究所",
 });
+// The manually added Bloomberg record (PR #64): one host serves both
+// editions, and the registry marks Bloomberg Japan as a Japanese
+// source, so the record resolves as Japanese.
+const jpBloomberg = mediaArticle({
+  id: "jp-bloomberg",
+  slug: "jp-bloomberg",
+  sourceUrl: "https://www.bloomberg.com/jp/news/articles/2026-11-05/TO083JT9NJLU00",
+  sourceLabel: "ブルームバーグ",
+});
 const all = [jpGigazine, jpPortal, enDaily, jpPaper];
 const now = new Date("2026-11-04T12:00:00Z");
 
@@ -58,11 +68,18 @@ describe("news-face language policy", () => {
     );
     assert.equal(isJapaneseSourceArticle(jpGigazine), true);
     assert.equal(isJapaneseSourceArticle(enDaily), false);
+    assert.equal(isEnglishSourceArticle(enDaily), true);
+    assert.equal(isEnglishSourceArticle(jpGigazine), false);
+    assert.equal(sourceLanguageFor(jpBloomberg), "ja");
   });
 
-  it("keeps the default and English faces exactly as before", () => {
+  it("keeps the no-locale default exactly as before", () => {
     const expected = ["jp-gigazine", "jp-portal", "en-daily"];
     assert.deepEqual(newsFaceArticles(all).map((a) => a.id), expected);
+  });
+
+  it("shows only English-source items on the English face", () => {
+    const expected = ["en-daily"];
     assert.deepEqual(newsFaceArticles(all, "en").map((a) => a.id), expected);
     assert.deepEqual(
       toNewsRows(all, "en", now).map((row) => row.key),
@@ -71,6 +88,24 @@ describe("news-face language policy", () => {
     assert.deepEqual(
       topStoryRows(all, "en", now, 3).map((row) => row.key).sort(),
       [...expected].sort(),
+    );
+  });
+
+  it("keeps the Bloomberg Japan record on the Japanese face only", () => {
+    const withBloomberg = [...all, jpBloomberg];
+    assert.deepEqual(newsFaceArticles(withBloomberg, "ja").map((a) => a.id), [
+      "jp-gigazine",
+      "jp-portal",
+      "jp-bloomberg",
+    ]);
+    assert.deepEqual(newsFaceArticles(withBloomberg, "en").map((a) => a.id), ["en-daily"]);
+    assert.deepEqual(
+      toNewsRows(withBloomberg, "en", now).map((row) => row.key),
+      ["en-daily"],
+    );
+    assert.deepEqual(
+      toNewsRows(withBloomberg, "ja", now).map((row) => row.key),
+      ["jp-gigazine", "jp-portal", "jp-bloomberg"],
     );
   });
 
