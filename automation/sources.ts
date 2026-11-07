@@ -33,6 +33,22 @@ import type { SourceDefinition } from "./types";
  * from one host, so any Bloomberg record resolves as Japanese;
  * manual additions must therefore link the /jp/ edition.
  *
+ * Google News keyword sources (google-news-ja / google-news-en) are
+ * the catch-net for major stories broken by outlets outside this
+ * registry (owner decision, 2026-11): each runs a fixed set of
+ * keyword queries against Google News search RSS and resolves the
+ * opaque Google links to the original publisher URLs at fetch time.
+ * They carry no linkPattern on purpose — only successfully resolved
+ * publisher URLs ever become records, and that resolution is their
+ * admission control. The resolver relies on an undocumented Google
+ * RPC and can break without notice; its failure mode is safe (items
+ * are dropped and counted in the ingest report, never published with
+ * a Google URL). The major Japanese outlets registered disabled
+ * further below exist for the same display-layer language resolution
+ * as Bloomberg Japan: Google News surfaces their articles, and their
+ * hosts must resolve as Japanese regardless of which edition's query
+ * found the story.
+ *
  * `url` is the public site. `api.baseUrl` is the feed URL the adapter
  * actually calls, and `api.linkPattern` admits only article URLs.
  */
@@ -234,6 +250,32 @@ export const SOURCES: SourceDefinition[] = [
     },
   },
   {
+    id: "google-news-ja",
+    name: "Google News keyword search (JP)",
+    type: "science-news",
+    url: "https://news.google.com/",
+    enabled: true,
+    trustTier: 3,
+    language: "ja",
+    api: {
+      kind: "google-news-rss",
+      baseUrl: "https://news.google.com/rss/search",
+    },
+  },
+  {
+    id: "google-news-en",
+    name: "Google News keyword search (US)",
+    type: "science-news",
+    url: "https://news.google.com/",
+    enabled: true,
+    trustTier: 3,
+    language: "en",
+    api: {
+      kind: "google-news-rss",
+      baseUrl: "https://news.google.com/rss/search",
+    },
+  },
+  {
     id: "bloomberg-japan",
     name: "Bloomberg Japan",
     type: "science-news",
@@ -246,6 +288,91 @@ export const SOURCES: SourceDefinition[] = [
       baseUrl: "https://www.bloomberg.com/jp/",
       linkPattern: "^https://www\\.bloomberg\\.com/jp/news/articles/\\d{4}-\\d{2}-\\d{2}/[\\w-]+$",
     },
+  },
+  // Disabled language-registry entries for the major Japanese outlets
+  // (keyword-collection design §5 Layer 1): no feed is fetched from any
+  // of them. A story resolved from a keyword search to one of these
+  // hosts must read as Japanese on the Japanese face and must stay off
+  // the English face, which needs the host claimed in the registry.
+  {
+    id: "yomiuri",
+    name: "読売新聞",
+    type: "science-news",
+    url: "https://www.yomiuri.co.jp/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.yomiuri.co.jp/" },
+  },
+  {
+    id: "asahi",
+    name: "朝日新聞",
+    type: "science-news",
+    url: "https://www.asahi.com/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.asahi.com/" },
+  },
+  {
+    id: "mainichi",
+    name: "毎日新聞",
+    type: "science-news",
+    url: "https://mainichi.jp/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://mainichi.jp/" },
+  },
+  {
+    id: "nikkei",
+    name: "日本経済新聞",
+    type: "science-news",
+    url: "https://www.nikkei.com/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.nikkei.com/" },
+  },
+  {
+    id: "jiji",
+    name: "時事通信",
+    type: "science-news",
+    url: "https://www.jiji.com/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.jiji.com/" },
+  },
+  {
+    id: "kyodo",
+    name: "共同通信",
+    type: "science-news",
+    url: "https://www.kyodo.co.jp/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.kyodo.co.jp/" },
+  },
+  {
+    id: "tv-asahi",
+    name: "テレビ朝日",
+    type: "science-news",
+    url: "https://www.tv-asahi.co.jp/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.tv-asahi.co.jp/" },
+  },
+  {
+    id: "nhk",
+    name: "NHK",
+    type: "science-news",
+    url: "https://www.nhk.or.jp/",
+    enabled: false,
+    trustTier: 1,
+    language: "ja",
+    api: { kind: "rss", baseUrl: "https://www.nhk.or.jp/" },
   },
   {
     id: "pubmed",

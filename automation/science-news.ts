@@ -69,11 +69,15 @@ function linkPatternFor(source: SourceDefinition): RegExp | undefined {
 // A media report is evidence of a reported development, not a clinical
 // study. Only registered science-news sources feed this route, and an
 // item counts only when its link matches the source's article pattern.
+// A source registered without a pattern (the Google News keyword
+// sources) admits any URL instead: its admission control is upstream,
+// because only publisher URLs the resolver successfully extracted ever
+// become records for those sources.
 export function isScienceNews(record: { sourceId: string; sourceUrl: string }): boolean {
   const source = sourceById(record.sourceId);
   if (!source || source.type !== "science-news") return false;
   const pattern = linkPatternFor(source);
-  return pattern ? pattern.test(record.sourceUrl) : false;
+  return pattern ? pattern.test(record.sourceUrl) : true;
 }
 
 /**
@@ -89,7 +93,7 @@ const JP_BIOLOGY = /(?:生物学|ゲノム|タンパク質|酵素|遺伝子|創�
 const JP_AI = /(?:人工知能|機械学習|深層学習|ロボット|自動化|\bAI\b)/;
 const JP_THERAPY = /(?:がん|癌|腫瘍|リンパ腫|白血病|黒色腫|肉腫|再生医療|遺伝子編集|遺伝子治療|セノリティクス|セノライティクス|若返|オルガノイド|異種移植)/;
 const JP_AGEING = /(?:老化|長寿|寿命|生物学的年齢|エピジェネティッククロック|老化クロック|若返|アルツハイマー|認知症|パーキンソン|フレイル|サルコペニア|ラパマイシン|メトホルミン|セノリティクス|セノライティクス|エイジング)/;
-const JP_EVENT = /(?:発見|開発|報告|発表|開始|成功|示し|明らか|延び|延長|改善|確認|実証|証明|試験|承認|公表|掲載)/;
+const JP_EVENT = /(?:発見|開発|報告|発表|開始|成功|示し|明らか|延び|延長|改善|確認|実証|証明|試験|承認|公表|掲載|資金調達|提携|買収|出資|調達|大型契約|上場)/;
 
 export function isRelevantDevelopment(text: string): boolean {
   const biology = /\b(biology|biological|biolab|genom\w*|protein\w*|enzyme\w*|dna|rna|crispr|drug\w*|medicin\w*)\b/i.test(text) || JP_BIOLOGY.test(text);
@@ -99,11 +103,21 @@ export function isRelevantDevelopment(text: string): boolean {
   // with method terms, so ageing and age-related-disease vocabulary is
   // a relevance branch of its own (still gated on an event word).
   const ageing = /\b(aging|ageing|senescence|senolytic\w*|longevity|healthspan|lifespan|biological age|epigenetic clock|rejuvenat\w*|alzheimer\w*|dementia|parkinson\w*|frailty|sarcopenia|rapamycin|metformin)\b/i.test(text) || JP_AGEING.test(text);
-  const event = /\b(discover\w*|finds?|found|identif\w*|launch\w*|establish\w*|opens?|opened|develop\w*|trial\w*|approv\w*|test\w*|design\w*|report\w*|shows?|extend\w*|reveal\w*|publish\w*|demonstrat\w*)\b/i.test(text) || JP_EVENT.test(text);
+  // Business events (raise/funding/partner/acquire/deal/invest and
+  // 資金調達・提携・買収・出資・調達・大型契約・上場) count as developments
+  // since the 2026-11 keyword-collection design: funding, partnership
+  // and M&A scoops from unregistered outlets are the stories that
+  // design exists to catch. They still require one of the field
+  // branches below, so a bare money story with no biology/therapy/
+  // ageing term fails. 協議 is deliberately NOT an event word (it
+  // appears in every corporate-dispute story); bare 調達 is, because
+  // the flagship funding headlines use it (「7890億円調達で協議」) and
+  // the branch gate keeps general procurement news out.
+  const event = /\b(discover\w*|finds?|found|identif\w*|launch\w*|establish\w*|opens?|opened|develop\w*|trial\w*|approv\w*|test\w*|design\w*|report\w*|shows?|extend\w*|reveal\w*|publish\w*|demonstrat\w*|rais\w*|funding|partner\w*|acquir\w*|deal|invest\w*)\b/i.test(text) || JP_EVENT.test(text);
   return event && ((biology && ai) || therapy || ageing);
 }
 
-function plainText(value: string): string {
+export function plainText(value: string): string {
   return value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
     .replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&")
@@ -114,7 +128,7 @@ function plainText(value: string): string {
     }).replace(/\s+/g, " ").trim();
 }
 
-function tag(item: string, name: string): string {
+export function tag(item: string, name: string): string {
   return plainText(item.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${name}>`, "i"))?.[1] ?? "");
 }
 

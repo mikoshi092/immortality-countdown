@@ -111,7 +111,7 @@ describe("general media sources", () => {
   it("enables only media sources; PubMed and ClinicalTrials.gov stay registered but disabled", () => {
     assert.deepEqual(
       enabledSources().map((source) => source.id),
-      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging", "gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news"],
+      ["nature-news", "sciencedaily-aging", "new-atlas-medical", "gen-news", "fierce-biotech", "fight-aging", "gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news", "google-news-ja", "google-news-en"],
     );
     assert.equal(sourceById("pubmed")?.enabled, false);
     assert.equal(sourceById("clinicaltrials")?.enabled, false);
@@ -327,7 +327,7 @@ describe("Tier-1 Japanese sources for the Japanese news face", () => {
   it("marks exactly the Japanese sources with language ja", () => {
     assert.deepEqual(
       SOURCES.filter((source) => source.language === "ja").map((source) => source.id),
-      ["gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news", "bloomberg-japan"],
+      ["gigazine", "nazology-health", "science-portal", "nikkei-gooday", "univ-journal", "riken-press", "healthday-japan", "mynavi-news", "google-news-ja", "bloomberg-japan", "yomiuri", "asahi", "mainichi", "nikkei", "jiji", "kyodo", "tv-asahi", "nhk"],
     );
     assert.ok(SOURCES.every((source) => source.language === "ja" || source.language === "en"));
   });
@@ -382,5 +382,69 @@ describe("Tier-1 Japanese sources for the Japanese news face", () => {
     const mynavi = parseRssFeed(sourceById("mynavi-news")!, mynaviRss, novWindow);
     assert.equal(mynavi.length, 1);
     assert.equal(mynavi[0].sourceId, "mynavi-news");
+  });
+});
+
+describe("business-event vocabulary (keyword-collection design, 2026-11)", () => {
+  it("admits funding, partnership and acquisition stories that carry a field branch", () => {
+    // The motivating case from the design: an AI drug-discovery funding
+    // scoop whose headline has no research-event word.
+    assert.equal(
+      isRelevantDevelopment("Isomorphic Labs in talks to raise $5 billion for AI drug discovery"),
+      true,
+    );
+    assert.equal(
+      isRelevantDevelopment("AstraZeneca signs partnership deal with insitro on AI-powered drug discovery"),
+      true,
+    );
+    assert.equal(
+      isRelevantDevelopment("Merck taps Variational AI platform in acquisition of drug discovery startup"),
+      true,
+    );
+    // The exact Bloomberg Japan headline the design captured from the
+    // J1 feed (passes via 創薬 + AI + 調達; 協議 is not an event word).
+    assert.equal(
+      isRelevantDevelopment("アルファベット傘下のAI創薬アイソモーフィック、7890億円調達で協議"),
+      true,
+    );
+    assert.equal(
+      isRelevantDevelopment("長寿ベンチャー、大手製薬会社と提携を発表"),
+      true,
+    );
+    assert.equal(
+      isRelevantDevelopment("老化細胞を除去するセノリティクス企業が資金調達"),
+      true,
+    );
+  });
+
+  it("still rejects money stories with no field branch", () => {
+    assert.equal(isRelevantDevelopment("Bakery chain raises prices after funding crunch"), false);
+    assert.equal(isRelevantDevelopment("Investors deal blow to retail stocks in market rout"), false);
+    assert.equal(isRelevantDevelopment("AI company launches an advertising app"), false);
+    assert.equal(isRelevantDevelopment("地元のパン店、資金調達に成功"), false);
+    // Pure IT funding: 人工知能 branch alone is not enough without biology.
+    assert.equal(isRelevantDevelopment("IT企業、生成AIサービス拡大へ資金調達"), false);
+    // 協議 alone is not an event word, even next to a field term.
+    assert.equal(isRelevantDevelopment("AI創薬の業界団体、規制のあり方で協議"), false);
+  });
+});
+
+describe("pattern-less science-news admission (keyword sources)", () => {
+  it("admits any URL for the pattern-less keyword sources; the resolver is the admission control", () => {
+    assert.equal(
+      isScienceNews({
+        sourceId: "google-news-ja",
+        sourceUrl: "https://www.bloomberg.com/jp/news/articles/2026-11-05/isomorphic-labs",
+      }),
+      true,
+    );
+    assert.equal(
+      isScienceNews({ sourceId: "google-news-en", sourceUrl: "https://example.com/story" }),
+      true,
+    );
+    assert.equal(
+      isScienceNews({ sourceId: "no-such-source", sourceUrl: "https://example.com/story" }),
+      false,
+    );
   });
 });

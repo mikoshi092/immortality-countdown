@@ -17,7 +17,7 @@ export type SourceType = "literature" | "trial-registry" | "science-news";
 /** Higher number = more editorial caution required, not a quality score. */
 export type TrustTier = 1 | 2 | 3;
 
-export type SourceApiKind = "pubmed-eutils" | "ctgov-studies" | "rss";
+export type SourceApiKind = "pubmed-eutils" | "ctgov-studies" | "rss" | "google-news-rss";
 
 export type SourceApi = {
   kind: SourceApiKind;
@@ -175,6 +175,7 @@ export type SourceIssue = {
     | "http"
     | "parse"
     | "truncated"
+    | "resolution-failed"
     | "abstract-missing-in-source"
     | "abstract-fetch-failed"
     | "abstract-not-in-response";

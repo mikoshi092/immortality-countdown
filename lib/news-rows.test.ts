@@ -122,3 +122,76 @@ describe("news-face language policy", () => {
     );
   });
 });
+
+describe("keyword-collection language resolution (design §5)", () => {
+  function collectedBy(sourceId: string): Partial<Article> {
+    return {
+      sourceCheck: { sourceId } as unknown as NonNullable<Article["sourceCheck"]>,
+    };
+  }
+
+  it("classifies Layer-1 outlet hosts as Japanese", () => {
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www.yomiuri.co.jp/articles/20261105-OYT1T50001" })),
+      "ja",
+    );
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www.asahi.com/articles/AS123456789.html" })),
+      "ja",
+    );
+    assert.equal(
+      sourceLanguageFor(mediaArticle({ sourceUrl: "https://www3.nhk.or.jp/news/html/20261105/k100123456.html" })),
+      "ja",
+    );
+  });
+
+  it("falls back to the collecting source's language on unclaimed hosts", () => {
+    const kwJa = mediaArticle({
+      id: "kw-ja",
+      slug: "kw-ja",
+      sourceUrl: "https://www.chunichi.co.jp/article/1234567",
+      ...collectedBy("google-news-ja"),
+    });
+    const kwEn = mediaArticle({
+      id: "kw-en",
+      slug: "kw-en",
+      sourceUrl: "https://www.statnews.com/2026/11/05/story/",
+      ...collectedBy("google-news-en"),
+    });
+    assert.equal(sourceLanguageFor(kwJa), "ja");
+    assert.equal(sourceLanguageFor(kwEn), "en");
+    assert.deepEqual(newsFaceArticles([kwJa, kwEn], "ja").map((a) => a.id), ["kw-ja"]);
+    assert.deepEqual(newsFaceArticles([kwJa, kwEn], "en").map((a) => a.id), ["kw-en"]);
+  });
+
+  it("lets a claimed host's verdict win over the collecting source, both ways", () => {
+    const jaSearchEnHost = mediaArticle({
+      sourceUrl: "https://www.sciencedaily.com/releases/2026/11/261105100000.htm",
+      ...collectedBy("google-news-ja"),
+    });
+    const enSearchJaHost = mediaArticle({
+      sourceUrl: "https://www.yomiuri.co.jp/medical/20261105-OYT1T50002/",
+      ...collectedBy("google-news-en"),
+    });
+    assert.equal(sourceLanguageFor(jaSearchEnHost), "en");
+    assert.equal(sourceLanguageFor(enSearchJaHost), "ja");
+  });
+
+  it("keeps the English default when no signal exists", () => {
+    assert.equal(
+      sourceLanguageFor(
+        mediaArticle({ sourceUrl: "https://example.com/news/aging", sourceCheck: undefined }),
+      ),
+      "en",
+    );
+    assert.equal(
+      sourceLanguageFor(
+        mediaArticle({
+          sourceUrl: "https://example.com/news/aging",
+          ...collectedBy("no-such-source"),
+        }),
+      ),
+      "en",
+    );
+  });
+});
